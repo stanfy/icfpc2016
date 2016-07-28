@@ -26,3 +26,5 @@ dependencies {
 }
 
 mainClassName = 'icfp16.MainKt'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
