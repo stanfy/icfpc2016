@@ -10,4 +10,9 @@ class FakeKtTest {
     assertEquals("ok", "ok")
   }
 
+  @Test
+  fun dummyTest() {
+    assertEquals(4, 2+2)
+  }
+
 }
