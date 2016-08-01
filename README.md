@@ -9,6 +9,10 @@ Code style
 ----------
 Please use 2 spaces indentation (4 spaces for continuation indent).
 
+Recommended IDE
+---------------
+[IntelliJ Idea Community Edition](https://www.jetbrains.com/idea/download/)
+
 Import to IDEA
 --------------
 Just choose an import option and select build.gradle file in this repo root. Configure Java 8 to be used as Gradle VM.
