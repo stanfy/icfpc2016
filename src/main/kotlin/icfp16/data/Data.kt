@@ -28,6 +28,10 @@ data class Fraction(val a: BigInteger, val b: BigInteger = BigInteger.ONE) {
     return a.toDouble() / b.toDouble()
   }
 
+  fun isZero(): Boolean {
+    return BigInteger.ZERO.equals(a)
+  }
+
   override fun toString(): String {
     return if (b == BigInteger.ONE) "$a" else "$a/$b"
   }
@@ -37,8 +41,14 @@ data class Fraction(val a: BigInteger, val b: BigInteger = BigInteger.ONE) {
 
 data class Vertex(val x: Fraction, val y: Fraction) {
   constructor(x: Int, y: Int = 1) : this(x = Fraction(x), y = Fraction(y))
-  fun toPoint(): Pair<Double, Double> {
-    return Pair(x.toDouble(), y.toDouble())
+
+  // Be careful! You should use relative values for this. x, and y are big!
+  fun toPoint(): DPoint {
+    return DPoint(x.toDouble(), y.toDouble())
+  }
+
+  fun relativeVector(v: Vertex): Vector {
+    return Vector(x.sub(v.x).toDouble(), y.sub(v.y).toDouble())
   }
 
   override fun toString(): String {
@@ -74,6 +84,33 @@ data class Polygon(val vertices: List<Vertex>) {
     }
     return Math.abs(value) * 0.5
   }
+
+  fun convexIn(v: Vertex, includeEdges: Boolean = true): Boolean {
+    //http://stackoverflow.com/questions/1119627/how-to-test-if-a-point-is-inside-of-a-convex-polygon-in-2d-integer-coordinates
+    // + modification to include points on edges
+    var firstSide = VectorSide.NONE
+    for (n in 0..vertices.size-1) {
+      val a = vertices[n]
+      val b = vertices[(n + 1) % vertices.size]
+      val affineSegment = b.relativeVector(a)
+      val affinePoint = v.relativeVector(a)
+
+      val side = affineSegment.side(affinePoint)
+      if (side == VectorSide.NONE) {
+        if (!includeEdges) {
+          return false
+        }
+        // Check if it's on the edge.
+        return Edge(a, b).hasPoint(v)
+      }
+      if (firstSide == VectorSide.NONE) {
+        firstSide = side
+      } else if (firstSide != side) {
+        return false
+      }
+    }
+    return true
+  }
 }
 
 data class Facet(val indexes: List<Int>) {
@@ -86,7 +123,47 @@ enum class Direction {
   LEFT, RIGHT, TOP, BOTTOM
 }
 
+data class DPoint(val x: Double, val y: Double)
+
 data class Edge(val a: Vertex, val b: Vertex){
 
+  companion object {
+    val ZERO = Pair(0.0, 0.0)
+  }
+
+  fun hasPoint(v: Vertex): Boolean {
+    // Relative calculations!!! Yeah, no big integers!
+
+    val edgePoint = DPoint(b.x.sub(a.x).toDouble(), b.y.sub(a.y).toDouble())
+    val p = DPoint(v.x.sub(a.x).toDouble(), v.y.sub(a.y).toDouble())
+
+    // Our equation:
+    // p.y = edgePoint.y / edgePoint.x * p.x
+
+    // Vertical line.
+    if (edgePoint.x == 0.0) {
+      return (edgePoint.y >= 0 && p.y >= 0 || edgePoint.y < 0 && p.y < 0)
+          && Math.abs(p.y) <= Math.abs(edgePoint.y)
+    }
+
+    return p.y - edgePoint.y / edgePoint.x * p.x < 0.0000001 // TODO: Fuck, it's time to learn how to compare doubles finally.
+  }
 }
 
+/** Use it after normalization only (vertex coordinates can be big). This is supposed to be in [0..1] interval. */
+data class Vector(val a: Double, val b: Double) {
+  fun scalarProduct(v2: Vector): Double {
+    return a * v2.a + b * v2.b
+  }
+  fun crossProduct(v2: Vector): Double {
+    return a * v2.b - b * v2.a
+  }
+  fun side(v2: Vector): VectorSide {
+    val p = crossProduct(v2)
+    if (p < 0) return VectorSide.LEFT
+    if (p > 0) return VectorSide.RIGHT
+    return VectorSide.NONE
+  }
+}
+
+enum class VectorSide { LEFT, RIGHT, NONE }
