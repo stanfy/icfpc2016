@@ -14,6 +14,12 @@ data class ProblemContainer (
   var problemHash: String = ""
 )
 
+data class SolutionContainer (
+  val problemContainer: ProblemContainer,
+  val solution: String,
+  val realResemblance: Double,
+  val estimatedResemblance: Double
+)
 
 data class Fraction(val a: BigInteger, val b: BigInteger = BigInteger.ONE) {
   constructor(a:Int, b: Int = 1):this(a = BigInteger("$a"), b = BigInteger("$b"))
