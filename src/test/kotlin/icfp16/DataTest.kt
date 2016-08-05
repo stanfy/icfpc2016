@@ -26,4 +26,12 @@ class DataTest {
     assertThat(problem.poligons[0].maxVertextIn(Direction.BOTTOM)).isEqualTo(Vertex(Fraction(0), Fraction(0)))
   }
 
+  @Test
+  fun fractionAdding() {
+    assertThat(Fraction(1).add(Fraction(2))).isEqualTo(Fraction(3))
+    assertThat(Fraction(1, 3).add(Fraction(2,3))).isEqualTo(Fraction(1))
+    assertThat(Fraction(5, 3).add(Fraction(-2,3))).isEqualTo(Fraction(1))
+    assertThat(Fraction(1, 12).add(Fraction(2,6))).isEqualTo(Fraction(5, 12))
+  }
+
 }
