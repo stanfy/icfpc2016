@@ -155,7 +155,56 @@ val tasks = arrayOf(
                 Vertex(Fraction(1, 3), Fraction(0))
             )
         )
+    ),
+
+    // Task 3
+    Pair(
+        Problem(
+            listOf(
+                Polygon(
+                    listOf(
+                        Vertex(Fraction(0), Fraction(1)),
+                        Vertex(Fraction(0), Fraction(2,3)),
+                        Vertex(Fraction(2,3), Fraction(0)),
+                        Vertex(Fraction(1), Fraction(0)),
+                        Vertex(Fraction(2, 3), Fraction(1, 3)),
+                        Vertex(Fraction(2, 3), Fraction(2, 3)),
+                        Vertex(Fraction(1, 3), Fraction(2, 3))
+                    )
+                )
+            ),
+            emptyList()
+        ),
+        State(
+            arrayOf(
+                Vertex(Fraction(0),Fraction(0)),
+                Vertex(Fraction(2, 3),Fraction(0)),
+                Vertex(Fraction(1),Fraction(0)),
+                Vertex(Fraction(1),Fraction(1, 3)),
+                Vertex(Fraction(1),Fraction(1)),
+                Vertex(Fraction(1, 3),Fraction(1)),
+                Vertex(Fraction(0),Fraction(1)),
+                Vertex(Fraction(0),Fraction(2, 3))
+            ),
+            arrayOf(
+                Facet(arrayListOf(0, 1, 7)),
+                Facet(arrayListOf(1, 2, 6, 7)),
+                Facet(arrayListOf(2, 3, 5, 6)),
+                Facet(arrayListOf(3, 4, 5))
+            ),
+            arrayOf(
+                Vertex(Fraction(2, 3), Fraction(2, 3)),
+                Vertex(Fraction(2, 3), Fraction(0)),
+                Vertex(Fraction(1), Fraction(0)),
+                Vertex(Fraction(2, 3), Fraction(0)),
+                Vertex(Fraction(2, 3), Fraction(2, 3)),
+                Vertex(Fraction(0), Fraction(2, 3)),
+                Vertex(Fraction(0), Fraction(1)),
+                Vertex(Fraction(0), Fraction(2, 3))
+            )
+        )
     )
+
 )
 
 var submit = true
