@@ -51,6 +51,7 @@ class BitmapEstimator : Estimator {
     for (x in 0..image.width - 1)  {
       for (y in 0..image.height - 1) {
         val rgb = image.getRGB(x, y)
+        val color = Color(rgb)
         if (rgb == 0) continue
 
         allSquarePixels++
@@ -58,7 +59,7 @@ class BitmapEstimator : Estimator {
         if (rgb == Visualizer.originalItemColor.rgb) {
           noncoveredPixels++
         }
-        if (rgb != Visualizer.originalItemColor.rgb && rgb != Visualizer.solutionColor.rgb) {
+        if (color.red > 0 && color.blue > 0) {
           coveredPixels++
         }
       }

@@ -13,7 +13,7 @@ import javax.imageio.ImageIO
 class Visualizer {
   val BITMAP_STEP = 1000
   companion object {
-    val originalItemColor = Color.YELLOW
+    val originalItemColor = Color.RED
     val solutionColor = Color(0, 0, 255, 128)
   }
 
