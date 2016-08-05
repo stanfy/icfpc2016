@@ -44,6 +44,18 @@ fun Fraction.equals(that:Fraction):Boolean{
 
 }
 
+fun Fraction.leq(that:Fraction):Boolean{
+  val thisScaled = this.mul(Fraction(that.b))
+  val thatScaled = that.mul(Fraction(this.b))
+  return  thisScaled.a <= thatScaled.a
+}
+
+fun Fraction.geq(that:Fraction):Boolean{
+  val thisScaled = this.mul(Fraction(that.b))
+  val thatScaled = that.mul(Fraction(this.b))
+  return  thisScaled.a >= thatScaled.a
+}
+
 fun Fraction.abs():Fraction{
   return Fraction(a.abs(),b)
 }

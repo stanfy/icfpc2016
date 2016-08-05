@@ -49,6 +49,7 @@ data class Vertex(val x: Fraction, val y: Fraction) {
 
 
 data class Polygon(val vertices: List<Vertex>) {
+
   fun maxVertextIn(direction: Direction): Vertex? {
     when (direction) {
       Direction.LEFT -> return vertices.minBy { v -> v.x.toDouble() }
@@ -56,6 +57,12 @@ data class Polygon(val vertices: List<Vertex>) {
       Direction.TOP -> return vertices.maxBy { v -> v.y.toDouble() }
       Direction.BOTTOM -> return vertices.minBy { v -> v.y.toDouble() }
     }
+  }
+  fun vertices() : List<Vertex> = vertices
+
+  fun edges() : List<Edge>{
+    val pairs = vertices.subList(0, vertices.count()-1).zip(vertices.subList(1, vertices.count()))
+    return pairs.map{Edge(it.first, it.second)}
   }
 }
 
