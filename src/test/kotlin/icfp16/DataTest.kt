@@ -1,5 +1,6 @@
 package icfp16
 
+import icfp16.data.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 

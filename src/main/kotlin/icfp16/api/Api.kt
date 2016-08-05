@@ -3,6 +3,10 @@ package icfp16.api
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import icfp16.*
+import icfp16.data.Fraction
+import icfp16.data.Problem
+import icfp16.data.ProblemParser
+import icfp16.data.Vertex
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
@@ -115,31 +119,7 @@ data class ContestStatus(
 )
 
 fun parseProblem(str: String): Problem {
-  val s = Scanner(str)
-
-  val polygons = LinkedList<Polygon>()
-
-  val polygonsCount = s.nextInt()
-  for (i in 0..polygonsCount - 1) {
-    val vertices = LinkedList<Vertex>()
-    val polygonSize = s.nextInt()
-    s.nextLine()
-    for (j in 0..polygonSize - 1) {
-      val s1 = s.nextLine()
-      vertices.add(parseVertex(s1))
-    }
-    polygons.add(Polygon(vertices))
-  }
-
-  val edges = LinkedList<Edge>()
-
-  val edgesCount = s.nextInt()
-  s.nextLine()
-  for (i in 0..edgesCount - 1) {
-    edges.add(Edge(parseVertex(s.next()), parseVertex(s.next())))
-  }
-
-  return Problem(polygons, edges, str)
+  return ProblemParser().parseProblem(str)
 }
 
 internal fun parseVertex(s: String): Vertex {
