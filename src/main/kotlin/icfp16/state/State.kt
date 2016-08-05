@@ -2,12 +2,21 @@ package icfp16.state
 
 import icfp16.Facet
 import icfp16.Fraction
+import icfp16.Polygon
 import icfp16.Vertex
 import java.math.BigInteger
 
 data class State(val vertexes: Array<Vertex> = emptyArray(),
                  val facets: Array<Facet> = emptyArray(),
                  val finalPositions: Array<Vertex> = vertexes) {
+
+  fun poligons(): Array<Polygon> {
+    return facets.map { facet ->
+      Polygon(facet.indexes.map { index ->
+        vertexes[index]
+      })
+    }.toTypedArray()
+  }
 
   fun solution(): String {
     var result = mutableListOf<String>()
