@@ -2,6 +2,7 @@ package icfp16.data
 
 import icfp16.state.State
 import java.math.BigInteger
+import java.util.*
 
 data class Problem(
   val poligons: List<Polygon>,
@@ -73,6 +74,13 @@ data class Polygon(val vertices: List<Vertex>) {
     return pairs.map{Edge(it.first, it.second)}
   }
 
+  // edges() + pair of first and last vertexes
+  fun fullEdges(): List<Edge> {
+    val res = ArrayList(edges())
+    res.add(Edge(vertices[vertices.size - 1], vertices[0]))
+    return res
+  }
+
   fun area(): Double {
     var value = 0.0
     val count = vertices.count()
@@ -111,6 +119,7 @@ data class Polygon(val vertices: List<Vertex>) {
     }
     return true
   }
+
 }
 
 data class Facet(val indexes: List<Int>) {
@@ -127,14 +136,19 @@ data class DPoint(val x: Double, val y: Double)
 
 data class Edge(val a: Vertex, val b: Vertex){
 
-  companion object {
-    val ZERO = Pair(0.0, 0.0)
+  // Relative calculations!!! Yeah, no big integers!
+  fun edgePoint(): DPoint = DPoint(b.x.sub(a.x).toDouble(), b.y.sub(a.y).toDouble())
+
+  fun length(): Double = Math.sqrt(comparativeValue())
+
+  // Sum of squares - no need of sqrt.
+  fun comparativeValue(): Double {
+    val data = edgePoint()
+    return data.x * data.x + data.y * data.y
   }
 
   fun hasPoint(v: Vertex): Boolean {
-    // Relative calculations!!! Yeah, no big integers!
-
-    val edgePoint = DPoint(b.x.sub(a.x).toDouble(), b.y.sub(a.y).toDouble())
+    val edgePoint = edgePoint()
     val p = DPoint(v.x.sub(a.x).toDouble(), v.y.sub(a.y).toDouble())
 
     // Our equation:
@@ -142,11 +156,12 @@ data class Edge(val a: Vertex, val b: Vertex){
 
     // Vertical line.
     if (edgePoint.x == 0.0) {
-      return (edgePoint.y >= 0 && p.y >= 0 || edgePoint.y < 0 && p.y < 0)
+      return p.x == 0.0
+          && (edgePoint.y >= 0 && p.y >= 0 || edgePoint.y < 0 && p.y < 0)
           && Math.abs(p.y) <= Math.abs(edgePoint.y)
     }
 
-    return p.y - edgePoint.y / edgePoint.x * p.x < 0.0000001 // TODO: Fuck, it's time to learn how to compare doubles finally.
+    return Math.abs(p.y - edgePoint.y / edgePoint.x * p.x) < 0.0000001 // TODO: Fuck, it's time to learn how to compare doubles finally.
   }
 }
 

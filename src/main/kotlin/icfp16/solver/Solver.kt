@@ -112,7 +112,7 @@ class SequenceSolver: Solver {
 class BestSolverEver: Solver {
 
   override fun solve(problem: Problem): State {
-    val solvers = arrayOf<Solver>(StupidSolver(), TranslatorSolver(), BetterTranslatorSolver(), SequenceSolver())
+    val solvers = arrayOf<Solver>(StupidSolver(), TranslatorSolver(), BetterTranslatorSolver(), SequenceSolver(), Wrapper())
     val states =  solvers
         .map { it.solve(problem) }
         .map { it.to(BitmapEstimator().resemblanceOf(problem, it, quality = 2)) }
