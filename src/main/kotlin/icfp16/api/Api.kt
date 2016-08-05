@@ -43,8 +43,18 @@ data class Snapshots(
 )
 
 data class Problem(
-    val s: String
+    val poligons: List<Polygon>,
+    val skeleton: List<Edge>
 )
+
+data class Fraction(val a: Int, val b: Int = 1)
+data class Vertex(val x: Fraction, val y: Fraction)
+data class Polygon(val vertices: List<Vertex>)
+data class Edge(val a: Vertex, val b: Vertex)
+
+fun parseProblem(str: String): Problem {
+  return Problem(emptyList(), emptyList())
+}
 
 fun createApi(): Api {
   val logInterceptor = HttpLoggingInterceptor()
@@ -69,8 +79,8 @@ fun createApi(): Api {
       .addConverterFactory(object: Converter.Factory() {
         override fun responseBodyConverter(type: Type?, annotations: Array<out Annotation>?, retrofit: Retrofit?): Converter<ResponseBody, *>? {
           return Converter<okhttp3.ResponseBody, icfp16.api.Problem> { value ->
-            //TODO Parse string into real structure
-            Problem(value!!.string()) }
+            parseProblem(value!!.string())
+          }
         }
       })
       .addConverterFactory(GsonConverterFactory.create())
