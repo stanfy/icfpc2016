@@ -44,8 +44,8 @@ val tasks = arrayOf(
                 Vertex(Fraction(1), Fraction(1, 3)),
                 Vertex(Fraction(0), Fraction(2, 3)),
                 Vertex(Fraction(1), Fraction(2, 3)),
-                Vertex(Fraction(0), Fraction(2, 3)),
-                Vertex(Fraction(1), Fraction(2, 3))
+                Vertex(Fraction(0), Fraction(1, 3)),
+                Vertex(Fraction(1), Fraction(1, 3))
             )
         )
     ),
