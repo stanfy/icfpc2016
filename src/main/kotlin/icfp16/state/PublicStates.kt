@@ -90,36 +90,6 @@ class PublicStates {
           Vertex(Fraction(1, 3), Fraction(1))
         )
       )
-
-      // trapezium from icfpc sample
-      /*
-      State(vertexes = arrayOf(
-          Vertex(Fraction(0), Fraction(0)),
-          Vertex(Fraction(1), Fraction(0)),
-          Vertex(Fraction(1), Fraction(1)),
-          Vertex(Fraction(0), Fraction(1)),
-          Vertex(Fraction(0), Fraction(1, 2)),
-          Vertex(Fraction(1, 2), Fraction(1, 2)),
-          Vertex(Fraction(1, 2), Fraction(1))
-      ),
-          facets = arrayOf(
-              Facet(listOf(0, 1, 5, 4)),
-              Facet(listOf(1, 2, 6, 5)),
-              Facet(listOf(3, 4, 5, 3)),
-              Facet(listOf(3, 5, 6, 3))
-          ),
-          finalPositions = arrayOf(
-              Vertex(Fraction(0), Fraction(0)),
-              Vertex(Fraction(1), Fraction(0)),
-              Vertex(Fraction(0), Fraction(0)),
-              Vertex(Fraction(0), Fraction(0)),
-              Vertex(Fraction(0), Fraction(1, 2)),
-              Vertex(Fraction(1, 2), Fraction(1, 2)),
-              Vertex(Fraction(0), Fraction(1, 2))
-          )
-      )
-      */
-
       /*,
 
       // task 2
@@ -180,6 +150,62 @@ class PublicStates {
         )
       )
     */
+
+      // square folded in 4 parts
+      ,
+      State(vertexes = arrayOf(
+        Vertex(Fraction(0), Fraction(0)),
+        Vertex(Fraction(0), Fraction(1, 2)),
+        Vertex(Fraction(0), Fraction(1)),
+        Vertex(Fraction(1, 2), Fraction(1)),
+        Vertex(Fraction(1), Fraction(1)),
+        Vertex(Fraction(1), Fraction(1, 2)),
+        Vertex(Fraction(1), Fraction(0)),
+        Vertex(Fraction(1, 2), Fraction(0)),
+        Vertex(Fraction(1, 2), Fraction(1, 2))
+      ),
+        facets = arrayOf(
+          Facet(arrayListOf(0, 1, 8, 7)),
+          Facet(arrayListOf(1, 2, 3, 8)),
+          Facet(arrayListOf(8, 3, 4, 5)),
+          Facet(arrayListOf(7, 8, 5, 6))
+        ),
+
+        finalPositions = arrayOf(
+          Vertex(Fraction(0), Fraction(0)), //
+          Vertex(Fraction(0), Fraction(1, 2)), //
+          Vertex(Fraction(0), Fraction(0)), //
+          Vertex(Fraction(1, 2), Fraction(0)), //
+          Vertex(Fraction(0), Fraction(0)), //
+          Vertex(Fraction(0), Fraction(1, 2)),
+          Vertex(Fraction(0), Fraction(0)),
+          Vertex(Fraction(1, 2), Fraction(0)),
+          Vertex(Fraction(1, 2), Fraction(1, 2)) //
+        )
+      )
+
+      ,
+
+      // triangle
+      State(
+        arrayOf(
+          Vertex(0, 0),
+          Vertex(0, 1),
+          Vertex(1, 1),
+          Vertex(1, 0)
+        ),
+        arrayOf(
+          Facet(listOf(0, 1, 2)),
+          Facet(listOf(0, 2, 3))
+        ),
+        arrayOf(
+          Vertex(0, 0),
+          Vertex(1, 0),
+          Vertex(1, 1),
+          Vertex(1, 0)
+        )
+      )
+
     )
   }
 

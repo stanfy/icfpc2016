@@ -48,26 +48,30 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
   /**
    *  Rotates around vertex
    */
-  fun rotate(around: Vertex, angle: Double): State {
+  fun rotate90(around: Vertex): State {
     val translatedPositions = this.finalPositions.map {
-
-      val center = around
-      val point2 = it
-      val x =
-          center.x
-          .add(point2.x.sub(center.x).mul(Math.cos(angle)))
-          .sub(point2.y.sub(center.y).mul(Math.sin(angle)))
-
-      val y =
-          center.y
-              .add(point2.x.sub(center.x).mul(Math.sin(angle)))
-              .add(point2.y.sub(center.y).mul(Math.cos(angle)))
-
-    Vertex(x,y)
+      val relativePoint = it.sub(around)
+      val related = Vertex(relativePoint.y.neg(), relativePoint.x)
+      val final = related.add(around)
+      final
     }.toTypedArray()
     return State(vertexes = this.vertexes, facets = this.facets, finalPositions = translatedPositions)
   }
 
+  /**
+   *  Rotates around vertex
+   */
+  fun rotate180(around: Vertex): State {
+    return rotate90(around).rotate90(around)
+  }
+
+
+  /**
+   *  Rotates around vertex
+   */
+  fun rotate270(around: Vertex): State {
+    return rotate90(around).rotate90(around).rotate90(around)
+  }
 
   companion object {
     fun initialSquare(): State {

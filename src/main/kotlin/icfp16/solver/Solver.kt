@@ -62,15 +62,22 @@ class SequenceSolver: Solver {
         // list of all transformations of state
         val stateCentroid = centroid(s.finalPositions.asList())
         listOf<State>(
-            s
-          //,
-          //s.rotate(stateCentroid, Math.PI/180 * 15),
-          //s.rotate(stateCentroid, Math.PI/180 * 30),
-          //s.rotate(stateCentroid, Math.PI/180 * 45)
-//            s.rotate(stateCentroid, Math.PI/180 * 60),
-//            s.rotate(stateCentroid, Math.PI/180 * 75),
-//            s.rotate(stateCentroid, Math.PI/180 * 90)
+            s,
+            s.rotate90(stateCentroid),
+            s.rotate180(stateCentroid),
+            s.rotate270(stateCentroid)
             )
+      }
+      .flatMap { s  ->
+        var shakes = mutableListOf<State>()
+        val gridSize = 5
+        val divider = gridSize * 2
+        for (x in -gridSize..gridSize) {
+          for (y in -gridSize..gridSize) {
+            shakes.add(s.translate(Vertex(Fraction(x, divider),Fraction(y, divider))))
+          }
+        }
+        shakes
       }
       .map { it.to(CompoundEstimator().resemblanceOf(problem, it, quality = 4)) }
       .sortedBy { it.second }

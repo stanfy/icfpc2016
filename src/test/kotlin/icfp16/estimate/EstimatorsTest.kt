@@ -7,6 +7,7 @@ import icfp16.solver.BestSolverEver
 import icfp16.state.State
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.data.Offset
+import org.junit.Ignore
 import org.junit.Test
 
 class EstimatorsTest {
@@ -34,6 +35,7 @@ class EstimatorsTest {
   }
 
   @Test
+  @Ignore
   fun compoundEstimatorShouldBeMorePreciseThatBitmap() {
     val map = mapOf(
         1 to 1.0,
