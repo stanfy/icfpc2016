@@ -1,5 +1,7 @@
 package icfp16
 
+import java.math.BigInteger
+
 data class Problem(
         val poligons: List<Polygon>,
         val skeleton: List<Edge>,
@@ -8,15 +10,17 @@ data class Problem(
         var problemHash: String
 )
 
-data class Fraction(val a: Long, val b: Long = 1) {
+data class Fraction(val a: BigInteger, val b: BigInteger = BigInteger.ONE) {
   fun toDouble(): Double {
-    return a.toDouble() / b
+    return a.toDouble() / b.toDouble()
   }
 
   override fun toString(): String {
-    return if (b == 1.toLong()) "$a" else "$a/$b"
+    return if (b == BigInteger.ONE) "$a" else "$a/$b"
   }
 }
+
+
 data class Vertex(val x: Fraction, val y: Fraction) {
   fun toPoint(): Pair<Double, Double> {
     return Pair(x.toDouble(), y.toDouble())
