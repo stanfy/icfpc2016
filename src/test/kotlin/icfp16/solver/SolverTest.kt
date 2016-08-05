@@ -81,8 +81,8 @@ class SolverTest {
     val solve1R = BitmapEstimator().resemblanceOf(problem, stupidSolve)
     val translatorR = BitmapEstimator().resemblanceOf(problem, translationSolve)
 
-    Visualizer().visualizedAndSaveImage(problem, stupidSolve,filePath = "./stupind_19.png")
-    Visualizer().visualizedAndSaveImage(problem, translationSolve,filePath = "./translator_19.png")
+//    Visualizer().visualizedAndSaveImage(problem, stupidSolve,filePath = "./stupind_19.png")
+//    Visualizer().visualizedAndSaveImage(problem, translationSolve,filePath = "./translator_19.png")
     assertThat(stupidSolve).isNotEqualTo(translationSolve)
     assertThat(translatorR).isGreaterThan(solve1R)
   }
