@@ -1,9 +1,6 @@
 package icfp16.state
 
-import icfp16.data.Facet
-import icfp16.data.Fraction
-import icfp16.data.Polygon
-import icfp16.data.Vertex
+import icfp16.data.*
 import java.math.BigInteger
 
 data class State(val vertexes: Array<Vertex> = emptyArray(),
@@ -41,12 +38,12 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
    * Translates state to another vertex
    */
   fun translate(vartex: Vertex) : State {
-    val finalPositionsX = this.finalPositions.map {
-      val translatedX = Fraction(it.x.a.add(it.x.b.multiply(vartex.x.a).divide(vartex.x.b)), it.x.b)
-      val translatedY = Fraction(it.y.a.add(it.y.b.multiply(vartex.y.a).divide(vartex.y.b)), it.y.b)
-      Vertex(translatedX, translatedY)
+    val translatedPositions = this.finalPositions.map {
+//      val translatedX = Fraction(it.x.a.add(it.x.b.multiply(vartex.x.a).divide(vartex.x.b)), it.x.b)
+//      val translatedY = Fraction(it.y.a.add(it.y.b.multiply(vartex.y.a).divide(vartex.y.b)), it.y.b)
+      it.add(vartex)
     }.toTypedArray()
-    return State(vertexes = this.vertexes, facets = this.facets, finalPositions = finalPositionsX)
+    return State(vertexes = this.vertexes, facets = this.facets, finalPositions = translatedPositions)
   }
 
   companion object {
@@ -62,5 +59,4 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
           ))
     }
   }
-
 }

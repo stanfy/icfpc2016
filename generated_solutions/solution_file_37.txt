@@ -1,0 +1,26 @@
+-------------------------- container --------------------
+SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[0,3/4, 1/8,7/8, 0,1, -1/8,7/8])], skeleton=[Edge(a=0,3/4, b=0,1), Edge(a=0,3/4, b=1/8,7/8), Edge(a=0,3/4, b=-1/8,7/8), Edge(a=-1/8,7/8, b=0,1), Edge(a=1/8,7/8, b=0,1)], rawString=1
+4
+0,3/4
+1/8,7/8
+0,1
+-1/8,7/8
+5
+0,3/4 0,1
+0,3/4 1/8,7/8
+0,3/4 -1/8,7/8
+-1/8,7/8 0,1
+1/8,7/8 0,1
+), problemId=37, problemHash=), state=State(vertexes=[0,0, 0,1, 1,1, 1,0], facets=[4 0 1 2 3], finalPositions=[-21/40,7/40, -21/40,47/40, 19/40,47/40, 19/40,7/40]), realResemblance=0.03125, estimatedResemblance=0.03125)
+-------------------------- solution --------------------
+4
+0,0
+0,1
+1,1
+1,0
+1
+4 0 1 2 3
+-21/40,7/40
+-21/40,47/40
+19/40,47/40
+19/40,7/40

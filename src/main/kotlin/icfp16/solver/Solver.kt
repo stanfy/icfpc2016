@@ -21,15 +21,30 @@ class TranslatorSolver: Solver {
     val centroid = centroid(vertexes)
 
     val translation = centroid.add(Vertex(Fraction(-1, 2), Fraction(-1, 2)))
-    return State.initialSquare().translate(translation)
+    val initialSquare = State.initialSquare()
+    val translatedSolve = initialSquare.translate(translation)
+    return translatedSolve
   }
 }
 
 
+class BetterTranslatorSolver : Solver {
+  override fun solve(problem: Problem): State {
+    // simple centroid  as  sum of all polygon coords
+    val vertexes = problem.poligons.flatMap { it.vertices }
+    val centroid = massCentroid(vertexes)
+
+    val translation = centroid.add(Vertex(Fraction(-1, 2), Fraction(-1, 2)))
+    val initialSquare = State.initialSquare()
+    val translatedSolve = initialSquare.translate(translation)
+    return translatedSolve
+  }
+}
+
 class BestSolverEver: Solver {
 
   override fun solve(problem: Problem): State {
-    val solvers = arrayOf<Solver>(StupidSolver(), TranslatorSolver())
+    val solvers = arrayOf<Solver>(StupidSolver(), TranslatorSolver(), BetterTranslatorSolver())
     val states =  solvers
         .map { it.solve(problem) }
         .map { it.to(BitmapEstimator().resemblanceOf(problem, it, quality = 4)) }
