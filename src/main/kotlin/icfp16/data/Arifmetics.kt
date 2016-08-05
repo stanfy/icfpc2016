@@ -33,6 +33,14 @@ fun Fraction.mul(that: Fraction): Fraction {
   return Fraction(topPart, bottomPart).simple()
 }
 
+fun Fraction.mul(dbl: Double): Fraction {
+  val that = Fraction((dbl * 1000000000).toInt(), 1000000000)
+  val topPart = that.a.multiply(a)
+  val bottomPart = that.b.multiply(b)
+  return Fraction(topPart, bottomPart).simple()
+}
+
+
 fun Fraction.inverse():Fraction{
   return Fraction(b,a)
 }
