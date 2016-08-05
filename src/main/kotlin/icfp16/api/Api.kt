@@ -1,5 +1,6 @@
 package icfp16.api
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import icfp16.*
 import okhttp3.OkHttpClient
@@ -10,13 +11,13 @@ import retrofit2.Call
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.*
 import java.lang.reflect.Type
 import java.util.*
 
 val API_KEY = "17-04d569ebce709bf6e5482fea22c8acf0"
 
+// Retrofit? WTF?! http://square.github.io/retrofit/
 interface Api {
   @GET("hello")
   fun helloWorld(): Call<Hello>
@@ -25,7 +26,19 @@ interface Api {
   fun listSnapchots(): Call<Snapshots>
 
   @GET("blob/{hash}")
-  fun blob(@Path("hash") hash: String): Call<String>
+  fun getProblemSpec(@Path("hash") hash: String): Call<Problem>
+
+  @GET("blob/{hash}")
+  fun getProblemSpec(@Path("hash") hash: String): Call<Problem>
+
+
+  @FormUrlEncoded
+  @POST("problem/submit")
+  fun submitProblem(@Field("solution_spec") problemSolution: SolutionSpec, @Field("publish_time") publishTime: Long): Call<ProblemSubmission>
+
+  @FormUrlEncoded
+  @POST("solution/submit")
+  fun submitSolution(@Field("problem_id") problemId: String, @Field("solution_spec") publishTime: Long): Call<SolutionSubmission>
 }
 
 data class Hello(
@@ -43,6 +56,31 @@ data class Snapshot(
 data class Snapshots(
     val ok: Boolean,
     val snapshots: List<Snapshot>
+)
+
+//TODO http://2016sv.icfpcontest.org/apihelp#problem_submission
+data class SolutionSpec(val s: String) {
+  override fun toString(): String {
+    return Gson().toJson(this)
+  }
+}
+
+data class ProblemSubmission(
+  val ok: Boolean,
+  val problem_id: String,
+  val publish_time: Long,
+  val solution_spec_hash: String,
+  val solution_size: Int,
+  val problem_spec_hash: String,
+  val problem_size: Int
+)
+
+data class SolutionSubmission(
+  val ok: Boolean,
+  val problem_id: String,
+  val resemblance: Double,
+  val solution_spec_hash: String,
+  val solution_size: Int
 )
 
 fun parseProblem(str: String): Problem {
@@ -104,14 +142,16 @@ fun createApi(logLevel: Level = Level.BASIC): Api {
 
   val retrofit = Retrofit.Builder()
       .baseUrl("http://2016sv.icfpcontest.org/api/")
-      .client(
-          okHttpClient
-      )
+      .client(okHttpClient)
       .addConverterFactory(object: Converter.Factory() {
         override fun responseBodyConverter(type: Type?, annotations: Array<out Annotation>?, retrofit: Retrofit?): Converter<ResponseBody, *>? {
-          return Converter<okhttp3.ResponseBody, Problem> { value ->
-            parseProblem(value!!.string())
+          if (type == Problem::class.java) {
+            return Converter<okhttp3.ResponseBody, Problem> { value ->
+              parseProblem(value!!.string())
+            }
           }
+
+          return null
         }
       })
       .addConverterFactory(GsonConverterFactory.create())
