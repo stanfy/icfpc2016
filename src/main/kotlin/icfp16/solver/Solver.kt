@@ -1,6 +1,7 @@
 package icfp16.solver
 
 import icfp16.data.*
+import icfp16.estimate.BitmapEstimator
 import icfp16.estimate.CompoundEstimator
 import icfp16.state.PublicStates
 import icfp16.state.State
@@ -70,8 +71,8 @@ class SequenceSolver: Solver {
       }
       .flatMap { s  ->
         var shakes = mutableListOf<State>()
-        val gridSize = 5
-        val divider = gridSize * 2
+        val gridSize = 1
+        val divider = gridSize * 25
         for (x in -gridSize..gridSize) {
           for (y in -gridSize..gridSize) {
             shakes.add(s.translate(Vertex(Fraction(x, divider),Fraction(y, divider))))
@@ -93,7 +94,7 @@ class BestSolverEver: Solver {
     val solvers = arrayOf<Solver>(StupidSolver(), TranslatorSolver(), BetterTranslatorSolver(), SequenceSolver())
     val states =  solvers
         .map { it.solve(problem) }
-        .map { it.to(CompoundEstimator().resemblanceOf(problem, it, quality = 4)) }
+        .map { it.to(BitmapEstimator().resemblanceOf(problem, it, quality = 4)) }
     val sorted = states.sortedBy { it.second }
     return sorted.last().first
   }
