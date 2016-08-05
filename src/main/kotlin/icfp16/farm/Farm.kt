@@ -1,27 +1,31 @@
 package icfp16.farm
 
-import icfp16.data.ProblemContainer
-import icfp16.estimate.Estimator
 import icfp16.solver.StupidSolver
+import icfp16.submitter.Submitter
 
 
 class Farm {
+  val submitter = Submitter()
 
   fun startSearchingBestSolutions(problemId: String) {
     println("start searching best solution for problem: $problemId")
-    solveProblemId(problemId)
+    val resemblance = solveSubmitAndGetResemblanceFor(problemId)
   }
 
-  fun solveProblemId(problemId: String) {
-    val problemContainer = ProblemContainersParser().generateProblemContainerForProblemId(problemId)
+  fun solveSubmitAndGetResemblanceFor(problemId: String): Double {
+    val problemContainer = ProblemContainersParser().generateProblemContainerForProblemId(problemId) ?: return 0.0
 
-    if (problemContainer != null) {
-      // TODO: solve and remember result
+    val solver = StupidSolver()
+    val solution = solver.solve(problem = problemContainer.problem).solution()
+    println("---------solution ----\n$solution")
+    val resemblance = submitSolution(problemId, solution)
+    println("---------resemblance $resemblance for id: $problemId")
+    return resemblance
+  }
 
-      val solver = StupidSolver()
-      val solution = solver.solve(problem = problemContainer.problem).solution()
-      println("---------solution ----\n$solution")
 
-    }
+  fun submitSolution(problemId: String, solution: String): Double {
+    val submittedResponse = submitter.submitSolution(problemId = "1", solutionString = solution) ?: return 0.0
+    return submittedResponse.resemblance
   }
 }
