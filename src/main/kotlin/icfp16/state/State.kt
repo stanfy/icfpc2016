@@ -13,7 +13,7 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
   fun poligons(): Array<Polygon> {
     return facets.map { facet ->
       Polygon(facet.indexes.map { index ->
-        vertexes[index]
+        finalPositions[index]
       })
     }.toTypedArray()
   }
