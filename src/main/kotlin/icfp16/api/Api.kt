@@ -49,7 +49,7 @@ data class Snapshot(
     @SerializedName("snapshot_time")
     val time: String,
     @SerializedName("snapshot_hash")
-    val hash: String
+    val snapshot_hash: String
 )
 
 data class Snapshots(
@@ -138,7 +138,7 @@ fun parseProblem(str: String): Problem {
     edges.add(Edge(parseVertex(s.next()), parseVertex(s.next())))
   }
 
-  return Problem(polygons, edges)
+  return Problem(polygons, edges, str, "", "")
 }
 
 internal fun parseVertex(s: String): Vertex {
@@ -149,9 +149,9 @@ internal fun parseVertex(s: String): Vertex {
 internal fun parseFraction(s: String): Fraction {
   if (s.contains("/")) {
     val (a, b) = s.split("/")
-    return Fraction(Integer.parseInt(a), Integer.parseInt(b))
+    return Fraction(a.toLong(), b.toLong())
   } else {
-    return Fraction(Integer.parseInt(s))
+    return Fraction(s.toLong())
   }
 }
 
