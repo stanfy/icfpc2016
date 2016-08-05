@@ -16,7 +16,7 @@ class FileUtils {
     return getDefaultProblemFileFolder()+"/"+filenameForProblemId(problemId)
   }
 
-  // ------------ solutions ------------
+  // ------------ solution images ------------
 
   fun filenameForSolutionImage(problemId: String): String {
     return "solution_image_$problemId.png"
@@ -29,4 +29,19 @@ class FileUtils {
   fun getFullPathForSolutionImage(problemId: String): String {
     return getDefaultSolutionImagesFolder()+"/"+filenameForSolutionImage(problemId)
   }
+
+  // ------------ solutions ------------
+
+  fun filenameForSolution(problemId: String): String {
+    return "solution_file_$problemId.txt"
+  }
+
+  fun getDefaultSolutionFileFolder(): String {
+    return "generated_solutions"
+  }
+
+  fun getFullPathForSolutionFile(problemId: String): String {
+    return getDefaultSolutionFileFolder()+"/"+filenameForSolution(problemId)
+  }
+
 }
