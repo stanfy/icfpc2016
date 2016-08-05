@@ -86,3 +86,11 @@ class BitmapEstimator : Estimator {
     return resemblance
   }
 }
+
+class DummyEstimator : Estimator {
+
+  override fun resemblanceOf(task: Problem, state: State, quality: Int) : Double {
+    return 0.0
+  }
+}
+

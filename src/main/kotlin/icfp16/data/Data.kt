@@ -56,6 +56,18 @@ data class Polygon(val vertices: List<Vertex>) {
       Direction.BOTTOM -> return vertices.minBy { v -> v.y.toDouble() }
     }
   }
+
+  fun area(): Double {
+    var value = 0.0
+    val count = vertices.count()
+    var j = count - 1
+
+    for (i in 0..count - 1) {
+      value += vertices[j].x.add(vertices[i].x).mul(vertices[j].y.sub(vertices[i].y)).toDouble()
+      j = i
+    }
+    return Math.abs(value) * 0.5
+  }
 }
 
 data class Facet(val indexes: List<Int>) {
