@@ -12,7 +12,7 @@ class Submitter {
   fun submitSolution(problemId: String, solutionString: String):
     SolutionSubmission? {
 
-    val api = createApi(HttpLoggingInterceptor.Level.NONE)
+    val api = createApi(HttpLoggingInterceptor.Level.BODY)
     val result: SolutionSubmission? = api.submitSolution(problemId = problemId,
       problemSolution = SolutionSpec(solutionString)).execute().body()
     return result
