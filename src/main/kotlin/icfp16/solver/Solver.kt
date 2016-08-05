@@ -71,9 +71,10 @@ class SequenceSolver: Solver {
       .flatMap { s  ->
         var shakes = mutableListOf<State>()
         val gridSize = 5
+        val divider = gridSize * 2
         for (x in -gridSize..gridSize) {
           for (y in -gridSize..gridSize) {
-            shakes.add(s.translate(Vertex(Fraction(x, gridSize),Fraction(y, gridSize))))
+            shakes.add(s.translate(Vertex(Fraction(x, divider),Fraction(y, divider))))
           }
         }
         shakes
