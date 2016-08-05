@@ -1,6 +1,7 @@
 package icfp16.api
 
 import com.google.gson.annotations.SerializedName
+import icfp16.Problem
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
@@ -42,16 +43,6 @@ data class Snapshots(
     val snapshots: List<Snapshot>
 )
 
-data class Problem(
-    val poligons: List<Polygon>,
-    val skeleton: List<Edge>
-)
-
-data class Fraction(val a: Int, val b: Int = 1)
-data class Vertex(val x: Fraction, val y: Fraction)
-data class Polygon(val vertices: List<Vertex>)
-data class Edge(val a: Vertex, val b: Vertex)
-
 fun parseProblem(str: String): Problem {
   return Problem(emptyList(), emptyList())
 }
@@ -78,7 +69,7 @@ fun createApi(): Api {
       )
       .addConverterFactory(object: Converter.Factory() {
         override fun responseBodyConverter(type: Type?, annotations: Array<out Annotation>?, retrofit: Retrofit?): Converter<ResponseBody, *>? {
-          return Converter<okhttp3.ResponseBody, icfp16.api.Problem> { value ->
+          return Converter<okhttp3.ResponseBody, Problem> { value ->
             parseProblem(value!!.string())
           }
         }
