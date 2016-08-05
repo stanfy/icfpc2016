@@ -15,8 +15,8 @@ class Farm {
   val estimatorQuality = 4
   val shouldShowInvalidPics = false
 
-  val startingId = 9
-  val count = 2
+  val startingId = 1
+  val count = 100
 
   fun startSearchingBestSolutions() {
 

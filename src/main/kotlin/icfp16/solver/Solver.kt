@@ -69,17 +69,17 @@ class SequenceSolver: Solver {
             s.rotate270(stateCentroid)
             )
       }
-      .flatMap { s  ->
-        var shakes = mutableListOf<State>()
-        val gridSize = 1
-        val divider = gridSize * 25
-        for (x in -gridSize..gridSize) {
-          for (y in -gridSize..gridSize) {
-            shakes.add(s.translate(Vertex(Fraction(x, divider),Fraction(y, divider))))
-          }
-        }
-        shakes
-      }
+//      .flatMap { s  ->
+//        var shakes = mutableListOf<State>()
+//        val gridSize = 1
+//        val divider = gridSize * 25
+//        for (x in -gridSize..gridSize) {
+//          for (y in -gridSize..gridSize) {
+//            shakes.add(s.translate(Vertex(Fraction(x, divider),Fraction(y, divider))))
+//          }
+//        }
+//        shakes
+//      }
       .map { it.to(CompoundEstimator().resemblanceOf(problem, it, quality = 4)) }
       .sortedBy { it.second }
       .last().first
