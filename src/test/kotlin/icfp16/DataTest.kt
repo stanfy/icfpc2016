@@ -35,11 +35,23 @@ class DataTest {
   }
 
   @Test
+  fun fractionDiv() {
+    assertThat(Fraction(1, 2).div(3)).isEqualTo(Fraction(1,6))
+    assertThat(Fraction(2, 3).div(2)).isEqualTo(Fraction(1,3))
+    assertThat(Fraction(10, 15).div(3)).isEqualTo(Fraction(2,9))
+  }
+
+  @Test
   fun vertexAdding() {
     assertThat(Vertex(1,1).add(Vertex(2,2))).isEqualTo(Vertex(3,3))
     assertThat(Vertex(20,1).add(Vertex(2,30))).isEqualTo(Vertex(22,31))
     assertThat(Vertex(10,-10).add(Vertex(-11,11))).isEqualTo(Vertex(-1,1))
   }
 
+  @Test
+  fun vertexDiv() {
+    assertThat(Vertex(1, 1).div(2)).isEqualTo(Vertex(Fraction(1, 2), Fraction(1, 2)))
+    assertThat(Vertex(Fraction(1,7), Fraction(1,3)).div(5)).isEqualTo(Vertex(Fraction(1, 35), Fraction(1, 15)))
+  }
 
 }
