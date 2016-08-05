@@ -6,7 +6,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.data.Offset
 import org.junit.Test
 
-class BitmapEstimatorTest {
+class EstimatorsTest {
   @Test
   fun solutionVertexes() {
 
@@ -26,7 +26,6 @@ class BitmapEstimatorTest {
         """.trimMargin()
 
     val problem = parseProblem(problemString)
-
     val estimator = BitmapEstimator()
     assertThat(estimator.resemblanceOf(problem, State.initialSquare(), quality = 4)).isCloseTo(0.015384, Offset.offset(0.00001))
   }
