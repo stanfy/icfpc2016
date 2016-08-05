@@ -72,6 +72,10 @@ fun Vertex.add(v: Vertex): Vertex {
   return Vertex(this.x.add(v.x), this.y.add(v.y))
 }
 
+fun Vertex.sub(v: Vertex): Vertex {
+  return Vertex(this.x.sub(v.x), this.y.sub(v.y))
+}
+
 
 fun Vertex.div(v: Int): Vertex {
   return Vertex(this.x.div(v), this.y.div(v))
