@@ -182,9 +182,7 @@ class PublicStates {
           Vertex(Fraction(1, 2), Fraction(0)),
           Vertex(Fraction(1, 2), Fraction(1, 2)) //
         )
-      )
-
-      ,
+      ),
 
       // triangle
       State(
@@ -204,6 +202,39 @@ class PublicStates {
           Vertex(1, 1),
           Vertex(1, 0)
         )
+      ),
+
+        // 3/4 of square
+
+      State(vertexes = arrayOf(
+          Vertex(Fraction(0), Fraction(0)),
+          Vertex(Fraction(0), Fraction(3, 4)),
+          Vertex(Fraction(0), Fraction(1)),
+          Vertex(Fraction(3, 4), Fraction(1)),
+          Vertex(Fraction(1), Fraction(1)),
+          Vertex(Fraction(1), Fraction(3, 4)),
+          Vertex(Fraction(1), Fraction(0)),
+          Vertex(Fraction(3, 4), Fraction(0)),
+          Vertex(Fraction(3, 4), Fraction(3, 4))
+      ),
+          facets = arrayOf(
+              Facet(arrayListOf(0, 1, 8, 7)),
+              Facet(arrayListOf(1, 2, 3, 8)),
+              Facet(arrayListOf(8, 3, 4, 5)),
+              Facet(arrayListOf(7, 8, 5, 6))
+          ),
+
+          finalPositions = arrayOf(
+              Vertex(Fraction(0), Fraction(0)), //
+              Vertex(Fraction(0), Fraction(3, 4)), //
+              Vertex(Fraction(0), Fraction(1, 2)), //
+              Vertex(Fraction(3, 4), Fraction(1, 2)), //
+              Vertex(Fraction(1, 2), Fraction(1, 2)), //
+              Vertex(Fraction(1, 2), Fraction(3, 4)), //
+              Vertex(Fraction(1, 2), Fraction(0)), //
+              Vertex(Fraction(3, 4), Fraction(0)), //
+              Vertex(Fraction(3, 4), Fraction(3, 4)) //
+          )
       )
 
     )
