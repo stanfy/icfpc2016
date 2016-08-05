@@ -7,10 +7,16 @@ import icfp16.estimate.BitmapEstimator
 import icfp16.io.ProblemContainersParser
 import icfp16.visualizer.Visualizer
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.Timeout
+import java.util.concurrent.TimeUnit
 
 class SolverTest {
-  @Test
+
+  @Rule
+  fun timeoutRule(): Timeout = Timeout(10, TimeUnit.SECONDS)
+
   fun differentSolvers() {
 
     val problemString =
