@@ -146,12 +146,12 @@ fun massCentroid(vertices: List<Vertex>): Vertex {
   vertices.forEachIndexed { index, vertex ->
     if (index != vertices.lastIndex) {
       val nextVertex = vertices[index + 1]
-      sum.add(vertex.x.mul(nextVertex.y).sub(nextVertex.x.mul(vertex.y)))
-      cx.add(
+      sum = sum.add(vertex.x.mul(nextVertex.y).sub(nextVertex.x.mul(vertex.y)))
+      cx = cx.add(
           (vertex.x.add(nextVertex.x))
               .mul(vertex.x.mul(nextVertex.y).sub(nextVertex.x.mul(vertex.y)))
       )
-      cy.add(
+      cy = cy.add(
           (vertex.y.add(nextVertex.y))
               .mul(vertex.x.mul(nextVertex.y).sub(nextVertex.x.mul(vertex.y)))
       )
