@@ -4,7 +4,6 @@ import icfp16.api.parseProblem
 import icfp16.state.State
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.data.Offset
-import org.junit.Ignore
 import org.junit.Test
 
 class BitmapEstimatorTest {
