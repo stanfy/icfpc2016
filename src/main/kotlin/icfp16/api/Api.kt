@@ -29,8 +29,7 @@ interface Api {
   fun getProblemSpec(@Path("hash") hash: String): Call<Problem>
 
   @GET("blob/{hash}")
-  fun getProblemSpec(@Path("hash") hash: String): Call<Problem>
-
+  fun getContestStatus(@Path("hash") hash: String): Call<ContestStatus>
 
   @FormUrlEncoded
   @POST("problem/submit")
@@ -66,21 +65,53 @@ data class SolutionSpec(val s: String) {
 }
 
 data class ProblemSubmission(
-  val ok: Boolean,
-  val problem_id: String,
-  val publish_time: Long,
-  val solution_spec_hash: String,
-  val solution_size: Int,
-  val problem_spec_hash: String,
-  val problem_size: Int
+    val ok: Boolean,
+    val problem_id: String,
+    val publish_time: Long,
+    val solution_spec_hash: String,
+    val solution_size: Int,
+    val problem_spec_hash: String,
+    val problem_size: Int
 )
 
 data class SolutionSubmission(
-  val ok: Boolean,
-  val problem_id: String,
-  val resemblance: Double,
-  val solution_spec_hash: String,
-  val solution_size: Int
+    val ok: Boolean,
+    val problem_id: String,
+    val resemblance: Double,
+    val solution_spec_hash: String,
+    val solution_size: Int
+)
+
+data class Rank(
+    val resemblance: Double,
+    val solution_size: Int
+)
+
+data class ProblemStatus(
+    val ranking: List<Rank>,
+    val publish_time: Long,
+    val solution_size: Int,
+    val problem_id: String,
+    val owner: String,
+    val problem_size: Int,
+    val problem_spec_hash: String
+)
+
+data class UserScore(
+    val username: String,
+    val score: Double
+)
+
+data class User(
+    val username: String,
+    val display_name: String
+)
+
+data class ContestStatus(
+    val problems: List<ProblemStatus>,
+    val snapshot_time: Long,
+    val leaderboard: List<UserScore>,
+    val users: List<User>
 )
 
 fun parseProblem(str: String): Problem {
