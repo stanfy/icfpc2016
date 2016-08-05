@@ -1,7 +1,7 @@
 package icfp16.api
 
 import com.google.gson.annotations.SerializedName
-import icfp16.Problem
+import icfp16.*
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
