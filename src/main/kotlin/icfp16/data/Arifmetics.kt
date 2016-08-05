@@ -162,9 +162,12 @@ fun centroid(vertices: List<Vertex>): Vertex {
 }
 
 fun Vertex.withinBoundary(edge:Edge): Boolean {
-  //if(edge.a.leq(edge.b)){
+  val maxx = edge.a.x.max(edge.b.x)
+  val maxy = edge.a.y.max(edge.b.y)
+  val minx = edge.a.x.min(edge.b.x)
+  val miny = edge.a.y.min(edge.b.y)
 
 
-  return false
+  return x.geq(minx) && x.leq(maxx) && y.geq(miny) && y.leq(maxy)
   //}
 }

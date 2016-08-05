@@ -58,7 +58,6 @@ data class Polygon(val vertices: List<Vertex>) {
       Direction.BOTTOM -> return vertices.minBy { v -> v.y.toDouble() }
     }
   }
-  fun vertices() : List<Vertex> = vertices
 
   fun edges() : List<Edge>{
     val pairs = vertices.subList(0, vertices.count()-1).zip(vertices.subList(1, vertices.count()))

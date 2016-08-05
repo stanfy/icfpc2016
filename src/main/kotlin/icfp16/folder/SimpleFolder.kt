@@ -6,33 +6,32 @@ import java.math.BigInteger
 fun Polygon.fold(by: Edge): List<Polygon> {
 
   val edges = this.edges()
-  var res:List<Polygon> = arrayListOf()
+  var res:MutableList<Polygon> = arrayListOf()
   var currentPoly = Polygon(arrayListOf())
-  var processing  : Boolean = false
   val crossLine = Line(by)
+
   edges.forEach {
 
-    if(processing == false)
-    {
-      currentPoly = Polygon(arrayListOf())
-      res =  res.plus(currentPoly)
-      val crossPoint = Line(it).interection(crossLine)
+    val crossPoint = Line(it).interection(crossLine)
 
-      if(crossPoint != null){
+    if (crossPoint != null) {
+    val crossed = crossPoint.withinBoundary(it)
 
-      }
-      else{
-        currentPoly = Polygon(currentPoly.vertices.plus(it.a))
+      if (crossed) {
+
+        } else {
+          currentPoly = Polygon(currentPoly.vertices.plus(it.a))
+          currentPoly = Polygon(currentPoly.vertices.plus(it.b))
+        }
+
+      } else {
         currentPoly = Polygon(currentPoly.vertices.plus(it.b))
       }
-      processing = true
-    }
-    else
-    {
-      currentPoly = Polygon(currentPoly.vertices.plus(it.b))
-    }
 
   }
+
+  res.add(currentPoly)
+
   return res
 
 }
