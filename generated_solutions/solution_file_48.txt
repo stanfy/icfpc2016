@@ -25,7 +25,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 2791/19096,1 690087514/2929093125,994415609/976364375
 2791/19096,1 1,1
 2016100/1942143,524186/647381 79346500/556311833,470859896/455164227
-), problemId=48, problemHash=), state=State(vertexes=[0,0, 0,1, 1,1, 1,0], facets=[4 0 1 2 3], finalPositions=[0,0, 0,1, 1,1, 1,0]), realResemblance=0.544766, estimatedResemblance=0.5444967345942503)
+), problemId=48, problemHash=), state=State(vertexes=[0,0, 0,1, 1,1, 1,0], facets=[4 0 1 2 3], finalPositions=[0,0, 0,1, 1,1, 1,0]), realResemblance=0.544766, estimatedResemblance=0.5447662689065202)
 -------------------------- solution --------------------
 4
 0,0

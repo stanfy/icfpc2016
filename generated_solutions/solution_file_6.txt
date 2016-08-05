@@ -10,7 +10,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 15/29,-6/29 -6/29,14/29
 -6/29,14/29 14/29,35/29
 35/29,15/29 14/29,35/29
-), problemId=6, problemHash=), state=State(vertexes=[0,0, 0,1, 1,1, 1,0], facets=[4 0 1 2 3], finalPositions=[0,0, 0,1, 1,1, 1,0]), realResemblance=0.707317, estimatedResemblance=0.707317047139172)
+), problemId=6, problemHash=), state=State(vertexes=[0,0, 0,1, 1,1, 1,0], facets=[4 0 1 2 3], finalPositions=[0,0, 0,1, 1,1, 1,0]), realResemblance=0.707317, estimatedResemblance=0.7073170731707317)
 -------------------------- solution --------------------
 4
 0,0
