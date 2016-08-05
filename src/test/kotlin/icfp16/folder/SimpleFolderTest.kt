@@ -78,4 +78,22 @@ fun lineCrossTest(){
     // we create two more points in poly, where cross thakes place
     assertThat(splitPoly.count()).isEqualTo(5)
   }
+
+  @Test
+  fun vertexDistanceTest(){
+    assertThat(Vertex(2,2).distance(Vertex(5,5))).isEqualTo(Fraction(18))
+  }
+
+  @Test
+  fun sortEdgesTest(){
+    val triangle = Polygon(arrayListOf( Vertex(2,2),Vertex(0,0),Vertex(4,0)))
+    var triangleCutter = Edge(Vertex(0,1), Vertex(4,1))
+    val res = splitEdges(triangle, triangleCutter)
+    val splitPoly = res.first
+    val edgesOnLine = res.second
+    val sorted = sortEdges(edgesOnLine, triangleCutter);
+
+    assertThat(sorted.count()).isEqualTo(edgesOnLine.count())
+
+  }
 }

@@ -56,10 +56,22 @@ fun Fraction.leq(that:Fraction):Boolean{
   return  thisScaled.a <= thatScaled.a
 }
 
+fun Fraction.le(that:Fraction):Boolean{
+  val thisScaled = this.mul(Fraction(that.b))
+  val thatScaled = that.mul(Fraction(this.b))
+  return  thisScaled.a < thatScaled.a
+}
+
 fun Fraction.geq(that:Fraction):Boolean{
   val thisScaled = this.mul(Fraction(that.b))
   val thatScaled = that.mul(Fraction(this.b))
   return  thisScaled.a >= thatScaled.a
+}
+
+fun Fraction.ge(that:Fraction):Boolean{
+  val thisScaled = this.mul(Fraction(that.b))
+  val thatScaled = that.mul(Fraction(this.b))
+  return  thisScaled.a > thatScaled.a
 }
 
 fun Fraction.max(that:Fraction) : Fraction{

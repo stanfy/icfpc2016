@@ -2,41 +2,29 @@ package icfp16.folder
 
 import icfp16.data.*
 import java.math.BigInteger
+import java.util.*
 
-fun Polygon.fold(by: Edge): List<Polygon> {
 
-  val edges = this.edges()
-  var res: MutableList<Polygon> = arrayListOf()
-  var currentPoly = Polygon(arrayListOf())
-  val crossLine = Line(by)
-  var newPoly = true
-  edges.forEach {
+data class Line(val edge: Edge) {
 
-    val crossPoint = Line(it).interection(crossLine)
-    if(crossPoint != null) {
+  fun interection(line: Line): Vertex? {
+    // https://www.topcoder.com/community/data-science/data-science-tutorials/geometry-concepts-line-intersection-and-its-applications/
+    val A1 = edge.a.y.sub(edge.b.y)
+    val B1 = edge.b.x.sub(edge.a.x)
+    val C1 = A1.mul(edge.a.x).add(B1.mul(edge.a.y))
 
-      val crossed = crossPoint.withinBoundary(it)
+    val A2 = line.edge.a.y.sub(line.edge.b.y)
+    val B2 = line.edge.b.x.sub(line.edge.a.x)
+    val C2 = A2.mul(line.edge.a.x).add(B2.mul(line.edge.a.y))
 
-      if (crossed) {
-        currentPoly = Polygon(currentPoly.vertices.plus(crossPoint))
-        res.add(currentPoly)
-
-        currentPoly = Polygon(arrayListOf(crossPoint, it.b))
-
-      } else {
-
-        currentPoly = Polygon(currentPoly.vertices.plus(it.a))
-
-      }
-    }else
-    {
-      currentPoly = Polygon(currentPoly.vertices.plus(it.a))
+    val det = A1.mul(B2).sub(A2.mul(B1))
+    if (det.a.equals(BigInteger.ZERO)) {
+      return null
     }
+    val x = (B2.mul(C1).sub(B1.mul(C2))).divFrac(det)
+    val y = (A1.mul(C2).sub(A2.mul(C1))).divFrac(det)
+    return Vertex(x, y)
   }
-
-  res.add(currentPoly)
-
-  return res
 
 }
 
@@ -56,6 +44,50 @@ fun Edge.cross(that:Edge) : Vertex?{
     }
   }
   return null
+}
+
+// distance is nonEuqlidian, but hukares
+fun Vertex.distance(that: Vertex) : Fraction {
+  val dx = x.sub(that.x)
+  val dy = y.sub(that.y)
+  return dx.mul(dx).add(dy.mul(dy))
+}
+
+fun Vertex.signedDistance(edge: Edge) : Fraction {
+
+  val x1 = edge.a.x
+  val x2 = edge.b.x
+  val y1 = edge.a.y
+  val y2 = edge.b.y
+
+  val dx = x2.sub(x1)
+  val dy = y2.sub(y1)
+  // scalar projection on line. in case of co-linear
+  // vectors this is equal to the signed distance.
+  return x.sub(x1).mul(dx).add((y.sub(y1).mul(dy)))
+}
+
+
+fun Vertex.sideOf(edge: Edge) : LineSide {
+
+  val x1 = edge.a.x
+  val x2 = edge.b.x
+  val y1 = edge.a.y
+  val y2 = edge.b.y
+
+  val d = x.sub(x1).mul(y2.sub(y)).sub(y.sub(y1).mul(x2.sub(x)))
+
+  if(d.geq(Fraction(1,13))){
+    return LineSide.RIGHT
+  } else
+  {
+    if(d.leq(Fraction(-1, 13))){
+      return LineSide.LEFT
+    }else
+    {
+      return LineSide.ON
+    }
+  }
 }
 
 enum class LineSide {
@@ -117,48 +149,73 @@ fun splitEdges(polygon: Polygon, cuttingEdge: Edge) : Pair<MutableList<PolyEdge>
   return  Pair(splitPoly, edgesOnLine)
 }
 
-fun Vertex.sideOf(edge: Edge) : LineSide {
+fun sortEdges(edgesOnLine: MutableList<PolyEdge>, cuttingEdge: Edge) : MutableList<PolyEdge>{
 
-  val x1 = edge.a.x
-  val x2 = edge.b.x
-  val y1 = edge.a.y
-  val y2 = edge.b.y
+  edgesOnLine.sortWith(object : Comparator<PolyEdge> {
+    override fun compare(x: PolyEdge?, y: PolyEdge?): Int {
+      if(x != null && y != null) {
+    // it's important to take the signed distance here,
+    // because it can happen that the split line starts/ends
+    // inside the polygon. in that case intersection points
+    // can fall on both sides of the split line and taking
+    // an unsigned distance metric will result in wrongly
+    // ordered points in EdgesOnLine.
 
-  val d = x.sub(x1).mul(y2.sub(y)).sub(y.sub(y1).mul(x2.sub(x)))
+        val d1 = x.vertex.signedDistance(cuttingEdge)
+        val d2 = y.vertex.signedDistance(cuttingEdge)
+        if (d1.le(d2))
+          return -1
+        if (d1.ge(d2))
+          return 1
+        return 0
+      } else
+      {
+       throw NullPointerException("x or y edges are null")
+      }
+    }
+  })
+//  for (size_t i=1; i<EdgesOnLine.size(); i++)
+//  EdgesOnLine[i]->DistOnLine = PointDistance(EdgesOnLine[i]->StartPos, EdgesOnLine[0]->StartPos);
+  edgesOnLine.forEachIndexed { i, polyEdge ->
+    polyEdge.DistOnLine = polyEdge.vertex.distance(edgesOnLine.first().vertex)
+  }
+  return edgesOnLine
+}
 
-  if(d.geq(Fraction(1,13))){
-    return LineSide.RIGHT
-  } else
-  {
-    if(d.leq(Fraction(-1, 13))){
-      return LineSide.LEFT
+
+fun Polygon.fold(by: Edge): List<Polygon> {
+
+  val edges = this.edges()
+  var res: MutableList<Polygon> = arrayListOf()
+  var currentPoly = Polygon(arrayListOf())
+  val crossLine = Line(by)
+  var newPoly = true
+  edges.forEach {
+
+    val crossPoint = Line(it).interection(crossLine)
+    if(crossPoint != null) {
+
+      val crossed = crossPoint.withinBoundary(it)
+
+      if (crossed) {
+        currentPoly = Polygon(currentPoly.vertices.plus(crossPoint))
+        res.add(currentPoly)
+
+        currentPoly = Polygon(arrayListOf(crossPoint, it.b))
+
+      } else {
+
+        currentPoly = Polygon(currentPoly.vertices.plus(it.a))
+
+      }
     }else
     {
-      return LineSide.ON
+      currentPoly = Polygon(currentPoly.vertices.plus(it.a))
     }
   }
-}
 
-data class Line(val edge: Edge) {
+  res.add(currentPoly)
 
-  fun interection(line: Line): Vertex? {
-    // https://www.topcoder.com/community/data-science/data-science-tutorials/geometry-concepts-line-intersection-and-its-applications/
-    val A1 = edge.a.y.sub(edge.b.y)
-    val B1 = edge.b.x.sub(edge.a.x)
-    val C1 = A1.mul(edge.a.x).add(B1.mul(edge.a.y))
-
-    val A2 = line.edge.a.y.sub(line.edge.b.y)
-    val B2 = line.edge.b.x.sub(line.edge.a.x)
-    val C2 = A2.mul(line.edge.a.x).add(B2.mul(line.edge.a.y))
-
-    val det = A1.mul(B2).sub(A2.mul(B1))
-    if (det.a.equals(BigInteger.ZERO)) {
-      return null
-    }
-    val x = (B2.mul(C1).sub(B1.mul(C2))).divFrac(det)
-    val y = (A1.mul(C2).sub(A2.mul(C1))).divFrac(det)
-    return Vertex(x, y)
-  }
+  return res
 
 }
-
