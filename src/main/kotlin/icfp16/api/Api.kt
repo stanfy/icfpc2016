@@ -23,7 +23,7 @@ interface Api {
   fun helloWorld(): Call<Hello>
 
   @GET("snapshot/list")
-  fun listSnapchots(): Call<Snapshots>
+  fun listSnapshots(): Call<Snapshots>
 
   @GET("blob/{hash}")
   fun getProblemSpec(@Path("hash") hash: String): Call<Problem>
@@ -57,7 +57,6 @@ data class Snapshots(
     val snapshots: List<Snapshot>
 )
 
-//TODO http://2016sv.icfpcontest.org/apihelp#problem_submission
 data class SolutionSpec(val s: String) {
   override fun toString(): String {
     return s
