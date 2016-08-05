@@ -56,6 +56,18 @@ fun Fraction.geq(that:Fraction):Boolean{
   return  thisScaled.a >= thatScaled.a
 }
 
+fun Fraction.max(that:Fraction) : Fraction{
+  if(this.geq(that))
+    return this
+  return that
+}
+
+fun Fraction.min(that:Fraction) : Fraction{
+  if(this.geq(that))
+    return that
+  return this
+}
+
 fun Fraction.abs():Fraction{
   return Fraction(a.abs(),b)
 }
@@ -147,4 +159,12 @@ fun centroid(vertices: List<Vertex>): Vertex {
   return vertices.reduce { original, next ->
     original.add(next)
   }.div(vertices.size)
+}
+
+fun Vertex.withinBoundary(edge:Edge): Boolean {
+  //if(edge.a.leq(edge.b)){
+
+
+  return false
+  //}
 }
