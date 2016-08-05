@@ -73,6 +73,28 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
     return rotate90(around).rotate90(around).rotate90(around)
   }
 
+  fun rotate(around: Vertex, pihagorean: Triple<Int,Int,Int>): State {
+    val cos = Fraction(pihagorean.first, pihagorean.third)
+    val sin = Fraction(pihagorean.second, pihagorean.third)
+    val translatedPositions = this.finalPositions.map {
+
+      val center = around
+      val point2 = it
+      val x =
+          center.x
+              .add(point2.x.sub(center.x).mul(cos))
+              .sub(point2.y.sub(center.y).mul(sin))
+
+      val y =
+          center.y
+              .add(point2.x.sub(center.x).mul(sin))
+              .add(point2.y.sub(center.y).mul(cos))
+
+      Vertex(x,y)
+    }.toTypedArray()
+    return State(vertexes = this.vertexes, facets = this.facets, finalPositions = translatedPositions)
+  }
+
   companion object {
     fun initialSquare(): State {
       return State(vertexes = arrayOf(
