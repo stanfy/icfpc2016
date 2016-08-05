@@ -1,11 +1,16 @@
 package icfp16.estimate
 
+<<<<<<< Updated upstream
 import icfp16.data.Problem
+=======
+import com.vividsolutions.jts.geom.Coordinate
+import com.vividsolutions.jts.geom.GeometryFactory
+import icfp16.data.*
+>>>>>>> Stashed changes
 import icfp16.state.State
 import java.awt.Color
 import java.awt.Polygon
 import java.awt.image.BufferedImage
-
 
 interface Estimator {
 
@@ -87,6 +92,7 @@ class BitmapEstimator : Estimator {
   }
 }
 
+<<<<<<< Updated upstream
 class DummyEstimator : Estimator {
 
   override fun resemblanceOf(task: Problem, state: State, quality: Int) : Double {
@@ -94,3 +100,29 @@ class DummyEstimator : Estimator {
   }
 }
 
+=======
+
+fun icfp16.data.Polygon.toJSTPolygon(factory: GeometryFactory = GeometryFactory()): com.vividsolutions.jts.geom.Polygon {
+  // assuming, that we have
+  val coordinates = vertices.plusElement(vertices.first()).map { Coordinate(it.x.toDouble(), it.y.toDouble()) }.toTypedArray()
+  return factory.createPolygon(coordinates)
+}
+
+fun <T : icfp16.data.Polygon> Collection<T>.toJSTMultipolygon(): com.vividsolutions.jts.geom.MultiPolygon {
+  val factory = GeometryFactory()
+  val polygons = map { it.toJSTPolygon(factory) }.toTypedArray()
+  return factory.createMultiPolygon(polygons)
+}
+
+class JSTEstimator : Estimator {
+
+  override fun resemblanceOf(task: Problem, state: State, quality: Int): Double {
+    val problemPolygon = task.poligons.toJSTMultipolygon()
+    val statePolygon = state.poligons().toList().toJSTMultipolygon()
+
+    val intersection = problemPolygon.intersection(statePolygon)
+    val area = intersection.area
+    return area
+  }
+}
+>>>>>>> Stashed changes

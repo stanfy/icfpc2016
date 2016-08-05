@@ -62,5 +62,4 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
           ))
     }
   }
-
 }
