@@ -3,14 +3,15 @@ package icfp16
 import java.math.BigInteger
 
 data class Problem(
-        val poligons: List<Polygon>,
-        val skeleton: List<Edge>,
-        val rawString: String,
-        var problemId: String,
-        var problemHash: String
+    val poligons: List<Polygon>,
+    val skeleton: List<Edge>,
+    val rawString: String = "",
+    var problemId: String = "",
+    var problemHash: String = ""
 )
 
 data class Fraction(val a: BigInteger, val b: BigInteger = BigInteger.ONE) {
+  constructor(a:Int, b: Int = 1):this(a = BigInteger("$a"), b = BigInteger("$b"))
   fun toDouble(): Double {
     return a.toDouble() / b.toDouble()
   }
