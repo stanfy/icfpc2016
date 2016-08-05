@@ -25,18 +25,7 @@ data class Fraction(val a: BigInteger, val b: BigInteger = BigInteger.ONE) {
     return if (b == BigInteger.ONE) "$a" else "$a/$b"
   }
 
-  fun add(f: Fraction): Fraction {
-    val topPart = f.a.multiply(b) +  f.b.multiply(a)
-    val bottomPart = f.b.multiply(b)
-    val gcd = topPart.gcd(bottomPart)
-
-    val finalTopPart = topPart.div(gcd)
-    val finalBottomPart = bottomPart.div(gcd)
-    return Fraction(finalTopPart, finalBottomPart)
-  }
-
 }
-
 
 data class Vertex(val x: Fraction, val y: Fraction) {
   constructor(x: Int, y: Int = 1) : this(x = Fraction(x), y = Fraction(y))
@@ -47,7 +36,10 @@ data class Vertex(val x: Fraction, val y: Fraction) {
   override fun toString(): String {
     return "$x,$y"
   }
+
 }
+
+
 
 data class Polygon(val vertices: List<Vertex>) {
   fun maxVertextIn(direction: Direction): Vertex? {
