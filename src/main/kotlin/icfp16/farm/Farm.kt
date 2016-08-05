@@ -27,7 +27,7 @@ class Farm {
       val solutionContainer = solveAndSubmitSolutionFor(problemId.toString())
 
       // save to files
-      if (solutionContainer != null) {
+      if (solutionContainer != null && solutionContainer.realResemblance != -1.0) {
         saveSolutionContainerToFile(solutionContainer)
         saveSolutionImageToFile(solutionContainer)
       }
