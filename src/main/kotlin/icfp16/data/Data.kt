@@ -34,6 +34,7 @@ data class Fraction(val a: BigInteger, val b: BigInteger = BigInteger.ONE) {
 
 }
 
+
 data class Vertex(val x: Fraction, val y: Fraction) {
   constructor(x: Int, y: Int = 1) : this(x = Fraction(x), y = Fraction(y))
   fun toPoint(): Pair<Double, Double> {
@@ -45,7 +46,6 @@ data class Vertex(val x: Fraction, val y: Fraction) {
   }
 
 }
-
 
 
 data class Polygon(val vertices: List<Vertex>) {
@@ -69,5 +69,7 @@ enum class Direction {
   LEFT, RIGHT, TOP, BOTTOM
 }
 
-data class Edge(val a: Vertex, val b: Vertex)
+data class Edge(val a: Vertex, val b: Vertex){
+
+}
 

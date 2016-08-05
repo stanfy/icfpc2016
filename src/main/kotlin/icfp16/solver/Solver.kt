@@ -1,6 +1,8 @@
 package icfp16.solver
 
-import icfp16.data.Problem
+import icfp16.data.*
+import icfp16.estimate.BitmapEstimator
+import icfp16.estimate.Estimator
 import icfp16.state.State
 
 interface Solver {
@@ -17,9 +19,25 @@ class TranslatorSolver: Solver {
   override fun solve(problem: Problem): State {
     // simple centroid  as  sum of all polygon coords
     val vertexes = problem.poligons.flatMap { it.vertices }
-//    val cententroid = vertexes.reduce { original, next ->
-////      Vertex(original.x.)
-//    }
-    return State()
+
+    val cententroid = vertexes.reduce { original, next ->
+      original.add(next)
+    }.div(vertexes.size)
+
+    val translation = cententroid.add(Vertex(Fraction(-1, 2), Fraction(-1, 2)))
+    return State.initialSquare().translate(translation)
+  }
+}
+
+
+class BestSolverEver: Solver {
+
+  override fun solve(problem: Problem): State {
+    val solvers = arrayOf<Solver>(StupidSolver(), TranslatorSolver())
+    val states =  solvers
+        .map { it.solve(problem) }
+        .map { it.to(BitmapEstimator().resemblanceOf(problem, it, quality = 4)) }
+    val sorted = states.sortedBy { it.second }
+    return sorted.first().first
   }
 }
