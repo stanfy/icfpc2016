@@ -1,17 +1,20 @@
 package icfp16
 
 data class Problem(
-    val poligons: List<Polygon>,
-    val skeleton: List<Edge>
+        val poligons: List<Polygon>,
+        val skeleton: List<Edge>,
+        val rawString: String,
+        var problemId: String,
+        var problemHash: String
 )
 
-data class Fraction(val a: Int, val b: Int = 1) {
+data class Fraction(val a: Long, val b: Long = 1) {
   fun toDouble(): Double {
     return a.toDouble() / b
   }
 
   override fun toString(): String {
-    return if (b == 1) "$a" else "$a/$b"
+    return if (b == 1.toLong()) "$a" else "$a/$b"
   }
 }
 data class Vertex(val x: Fraction, val y: Fraction) {

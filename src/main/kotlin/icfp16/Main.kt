@@ -1,10 +1,13 @@
 package icfp16
 
+import icfp16.api.ContestStatus
 import icfp16.api.Snapshot
 import icfp16.api.SolutionSpec
 import icfp16.api.createApi
+import icfp16.farm.ProblemsGrabber
 import icfp16.submitter.Submitter
 import okhttp3.logging.HttpLoggingInterceptor.Level.NONE
+import java.io.File
 
 var problem = Problem(
     arrayListOf(Polygon(
@@ -15,7 +18,8 @@ var problem = Problem(
             Vertex(Fraction(0), Fraction(1, 2))
         )
     )),
-    arrayListOf()
+    arrayListOf(),
+        "", "", ""
 )
 
 fun main(args: Array<String>) {
@@ -41,5 +45,7 @@ fun main(args: Array<String>) {
           1,0
           """.trim()
 
-  println(submitter.submitSolution(problemId = "1", solutionString = string))
+ // println(submitter.submitSolution(problemId = "1", solutionString = string))
+
+  val problemsGrabber = ProblemsGrabber().grabProblemsAndSaveToFiles("parsed_problems")
 }
