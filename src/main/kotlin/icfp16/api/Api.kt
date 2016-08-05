@@ -37,7 +37,7 @@ interface Api {
 
   @FormUrlEncoded
   @POST("solution/submit")
-  fun submitSolution(@Field("problem_id") problemId: String, @Field("solution_spec") publishTime: Long): Call<SolutionSubmission>
+  fun submitSolution(@Field("problem_id") problemId: String, @Field("solution_spec") problemSolution: SolutionSpec): Call<SolutionSubmission>
 }
 
 data class Hello(
@@ -60,7 +60,7 @@ data class Snapshots(
 //TODO http://2016sv.icfpcontest.org/apihelp#problem_submission
 data class SolutionSpec(val s: String) {
   override fun toString(): String {
-    return Gson().toJson(this)
+    return s
   }
 }
 
