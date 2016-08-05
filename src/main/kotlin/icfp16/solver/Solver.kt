@@ -12,3 +12,10 @@ class StupidSolver: Solver {
     return State.initialSquare()
   }
 }
+
+class TranslatorSolver: Solver {
+
+  override fun solve(problem: Problem): State {
+    throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+}

@@ -28,6 +28,7 @@ data class Fraction(val a: BigInteger, val b: BigInteger = BigInteger.ONE) {
 
 
 data class Vertex(val x: Fraction, val y: Fraction) {
+  constructor(x: Int, y: Int = 1) : this(x = Fraction(x), y = Fraction(y))
   fun toPoint(): Pair<Double, Double> {
     return Pair(x.toDouble(), y.toDouble())
   }
