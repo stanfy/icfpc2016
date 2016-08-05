@@ -8,6 +8,7 @@ import java.awt.Polygon
 import java.awt.image.BufferedImage
 import com.vividsolutions.jts.geom.GeometryFactory
 import com.vividsolutions.jts.geom.Coordinate
+import icfp16.problem
 
 interface Estimator {
 
@@ -21,10 +22,24 @@ interface Estimator {
 class EstimatorFactory {
 
   fun bestEstimatorEver(): Estimator {
-    return BitmapEstimator()
+    return CompoundEstimator()
   }
 }
 
+class CompoundEstimator : Estimator {
+
+  val bitmapEstimator = BitmapEstimator()
+  val jstEstimator = JSTEstimator()
+
+  override fun resemblanceOf(task: Problem, state: State, quality: Int): Double {
+    try {
+      val result = jstEstimator.resemblanceOf(task, state, quality)
+      return if (!result.isNaN()) result else bitmapEstimator.resemblanceOf(problem, state, quality)
+    } catch (e: Exception) {
+      return bitmapEstimator.resemblanceOf(problem, state, quality)
+    }
+  }
+}
 
 class BitmapEstimator : Estimator {
   override fun resemblanceOf(task: Problem, state: State, quality: Int): Double {
@@ -52,7 +67,7 @@ class BitmapEstimator : Estimator {
 //    try {
 //      ImageIO.write(image, "png", File("./output_image.png"))
 //      System.out.println("-- save")
-//    } catch (e: IOException) {
+//    } catch (e: IOException) {=
 //      e.printStackTrace()
 //    }
 //    val matchedParts = allSquarePixels - noncoveredPixels
@@ -67,7 +82,7 @@ class BitmapEstimator : Estimator {
 }
 
 fun icfp16.data.Polygon.toJSTPolygon(factory: GeometryFactory = GeometryFactory()): com.vividsolutions.jts.geom.Polygon {
-  // assuming, that we have
+  // assuming, that we always have correct values
   val coordinates = vertices.plusElement(vertices.first()).map { Coordinate(it.x.toDouble(), it.y.toDouble()) }.toTypedArray()
   return factory.createPolygon(coordinates)
 }
