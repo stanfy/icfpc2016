@@ -44,4 +44,19 @@ class FileUtils {
     return getDefaultSolutionFileFolder()+"/"+filenameForSolution(problemId)
   }
 
+  // ------------ problems ------------
+
+  fun filenameForCustomProblem(problemId: String): String {
+    return "custom_problem_$problemId.txt"
+  }
+
+  fun getDefaultCustomProblemsFileFolder(): String {
+    return "generated_problems"
+  }
+
+  fun getFullPathForCustomProblemFile(problemId: String): String {
+    return getDefaultCustomProblemsFileFolder()+"/"+filenameForCustomProblem(problemId)
+  }
+
+
 }

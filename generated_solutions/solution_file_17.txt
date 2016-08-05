@@ -16,7 +16,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 1/3,1 3/5,6/5
 3/4,1 3/5,6/5
 0,1 3/4,1
-), problemId=17, problemHash=), state=State(vertexes=[0,0, 0,1, 1,1, 1,0], facets=[4 0 1 2 3], finalPositions=[-49/360,17/60, -49/360,77/60, 311/360,77/60, 311/360,17/60]), realResemblance=0.422085, estimatedResemblance=0.4220861582406373)
+), problemId=17, problemHash=), state=State(vertexes=[0,0, 0,1, 1,1, 1,0], facets=[4 0 1 2 3], finalPositions=[-833/4140,62/345, -833/4140,407/345, 3307/4140,407/345, 3307/4140,62/345]), realResemblance=0.455046, estimatedResemblance=0.45511214493340313)
 -------------------------- solution --------------------
 4
 0,0
@@ -25,7 +25,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 1,0
 1
 4 0 1 2 3
--49/360,17/60
--49/360,77/60
-311/360,77/60
-311/360,17/60
+-833/4140,62/345
+-833/4140,407/345
+3307/4140,407/345
+3307/4140,62/345

@@ -96,6 +96,10 @@ fun Vertex.add(v: Vertex): Vertex {
   return Vertex(this.x.add(v.x), this.y.add(v.y))
 }
 
+fun Vertex.sub(v: Vertex): Vertex {
+  return Vertex(this.x.sub(v.x), this.y.sub(v.y))
+}
+
 
 fun Vertex.div(v: Int): Vertex {
   return Vertex(this.x.div(v), this.y.div(v))
@@ -170,4 +174,33 @@ fun Vertex.withinBoundary(edge:Edge): Boolean {
 
   return x.geq(minx) && x.leq(maxx) && y.geq(miny) && y.leq(maxy)
   //}
+}
+
+fun massCentroid(vertices: List<Vertex>): Vertex {
+
+  // http://stackoverflow.com/questions/5271583/center-of-gravity-of-a-polygon
+  var sum = Fraction(0, 1)
+  var cx = Fraction(0, 1)
+  var cy = Fraction(0, 1)
+  vertices.forEachIndexed { index, vertex ->
+    if (index != vertices.lastIndex) {
+      val nextVertex = vertices[index + 1]
+      sum = sum.add(vertex.x.mul(nextVertex.y).sub(nextVertex.x.mul(vertex.y)))
+      cx = cx.add(
+          (vertex.x.add(nextVertex.x))
+              .mul(vertex.x.mul(nextVertex.y).sub(nextVertex.x.mul(vertex.y)))
+      )
+      cy = cy.add(
+          (vertex.y.add(nextVertex.y))
+              .mul(vertex.x.mul(nextVertex.y).sub(nextVertex.x.mul(vertex.y)))
+      )
+    }
+  }
+  var area = sum.div(2)
+
+  cx = cx.div(6).divFrac(area)
+  cy = cy.div(6).divFrac(area)
+
+
+  return Vertex(cx, cy)
 }
