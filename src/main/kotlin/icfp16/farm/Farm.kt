@@ -8,6 +8,9 @@ import icfp16.solver.BestSolverEver
 import icfp16.solver.StupidSolver
 import icfp16.submitter.Submitter
 import icfp16.visualizer.Visualizer
+import java.io.File
+import java.io.ObjectOutputStream
+import java.io.OutputStreamWriter
 
 
 class Farm {
@@ -25,13 +28,10 @@ class Farm {
       val solutionContainer = solveAndSubmitSolutionFor(problemId.toString())
       println("$solutionContainer")
 
-      // save image
+      // save to files
       if (solutionContainer != null) {
-        val filePath = FileUtils().getFullPathForSolutionImage(problemId.toString())
-
-        println("generating image: $filePath")
-        Visualizer().visualizedAndSaveImage(solutionContainer.problemContainer.problem,
-          solutionContainer.state, estimatorQuality, filePath)
+        saveSolutionContainerToFile(solutionContainer)
+        saveSolutionImageToFile(solutionContainer)
       }
 
     }
@@ -61,5 +61,25 @@ class Farm {
   fun submitSolution(problemId: String, solution: String): Double {
     val submittedResponse = submitter.submitSolution(problemId = problemId, solutionString = solution) ?: return -1.0
     return submittedResponse.resemblance
+  }
+
+  fun saveSolutionContainerToFile(container: SolutionContainer) {
+    val filePath = FileUtils().getFullPathForSolutionFile(container.problemContainer.problemId)
+
+    println("...saving text solution container to file $filePath")
+    File(filePath).bufferedWriter().use { out ->
+      out.write("-------------------------- container --------------------\n")
+      out.write(container.toString())
+      out.write("\n-------------------------- solution --------------------\n")
+      out.write(container.state.solution().toString())
+    }
+  }
+
+  fun saveSolutionImageToFile(container: SolutionContainer) {
+    val filePath = FileUtils().getFullPathForSolutionImage(container.problemContainer.problemId)
+
+    println("...generating image: $filePath")
+    Visualizer().visualizedAndSaveImage(container.problemContainer.problem,
+      container.state, estimatorQuality, filePath)
   }
 }
