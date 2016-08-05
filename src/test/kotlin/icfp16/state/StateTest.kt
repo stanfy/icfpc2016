@@ -6,6 +6,7 @@ import icfp16.data.Vertex
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
+import java.math.BigInteger
 
 class StateTest {
   @Test
@@ -124,6 +125,26 @@ class StateTest {
 2,1
 1,1
 """.trim())
+  }
+
+
+  @Test
+  fun solutionTranslate() {
+    ///  This is a simple example of rectangle transformed twice
+    val originalState = State.initialSquare()
+
+    val translatedState = originalState.translate(Vertex(23, 27))
+
+    assertThat(originalState.vertexes).isEqualTo(translatedState.vertexes)
+    assertThat(originalState.facets).isEqualTo(translatedState.facets)
+    assertThat(originalState.finalPositions).isNotEqualTo(translatedState.finalPositions)
+    val expectedFinalPositions = originalState.finalPositions.map {
+      val translatedX = Fraction(it.x.a.add(it.x.b.multiply(BigInteger("23"))), it.x.b)
+      val translatedY = Fraction(it.y.a.add(it.y.b.multiply(BigInteger("27"))), it.y.b)
+      Vertex(translatedX, translatedY)
+    }.toTypedArray()
+    assertThat(expectedFinalPositions).isEqualTo(translatedState.finalPositions)
+
   }
 
 }
