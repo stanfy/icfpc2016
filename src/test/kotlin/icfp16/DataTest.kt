@@ -77,6 +77,11 @@ class DataTest {
     assertThat(Fraction(3,2).inverse()).isEqualTo(Fraction(2,3))
   }
   @Test
+  fun fractionAbs() {
+    assertThat(Fraction(2,3).abs()).isEqualTo(Fraction(2,3))
+    assertThat(Fraction(-2,3).abs()).isEqualTo(Fraction(2,3))
+  }
+  @Test
   fun fractionDivision() {
     assertThat(Fraction(4).divFrac(Fraction(2))).isEqualTo(Fraction(2))
     assertThat(Fraction(1, 3).divFrac(Fraction(2,3))).isEqualTo(Fraction(1,2))

@@ -3,14 +3,19 @@ package icfp16.data
 import java.math.BigInteger
 
 
+fun Fraction.simple(): Fraction{
+  val gcd = a.gcd(b)
+
+  val finalTopPart = a.div(gcd)
+  val finalBottomPart = b.div(gcd)
+  return Fraction(finalTopPart, finalBottomPart)
+}
+
 fun Fraction.add(that: Fraction): Fraction {
   val topPart = that.a.multiply(b) +  that.b.multiply(a)
   val bottomPart = that.b.multiply(b)
-  val gcd = topPart.gcd(bottomPart)
 
-  val finalTopPart = topPart.div(gcd)
-  val finalBottomPart = bottomPart.div(gcd)
-  return Fraction(finalTopPart, finalBottomPart)
+  return Fraction(topPart, bottomPart).simple()
 }
 
 fun Fraction.neg():Fraction{
@@ -24,15 +29,23 @@ fun Fraction.sub(that: Fraction): Fraction {
 fun Fraction.mul(that: Fraction): Fraction {
   val topPart = that.a.multiply(a)
   val bottomPart = that.b.multiply(b)
-  val gcd = topPart.gcd(bottomPart)
 
-  val finalTopPart = topPart.div(gcd)
-  val finalBottomPart = bottomPart.div(gcd)
-  return Fraction(finalTopPart, finalBottomPart)
+  return Fraction(topPart, bottomPart).simple()
 }
 
 fun Fraction.inverse():Fraction{
   return Fraction(b,a)
+}
+
+fun Fraction.equals(that:Fraction):Boolean{
+  val simpleThis = this.simple()
+  val simpleThat = that.simple()
+  return simpleThis.a == simpleThat.a && simpleThis.b == simpleThat.b
+
+}
+
+fun Fraction.abs():Fraction{
+  return Fraction(a.abs(),b)
 }
 
 fun Fraction.divFrac(that: Fraction): Fraction {
