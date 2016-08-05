@@ -89,6 +89,32 @@ class PublicStates {
           Vertex(Fraction(1, 3), Fraction(1, 3)),
           Vertex(Fraction(1, 3), Fraction(1))
         )
+      ),
+
+      State(vertexes = arrayOf(
+          Vertex(Fraction(0), Fraction(0)),
+          Vertex(Fraction(1), Fraction(0)),
+          Vertex(Fraction(1), Fraction(1)),
+          Vertex(Fraction(0), Fraction(1)),
+          Vertex(Fraction(0), Fraction(1, 2)),
+          Vertex(Fraction(1, 2), Fraction(1, 2)),
+          Vertex(Fraction(1, 2), Fraction(1))
+      ),
+          facets = arrayOf(
+              Facet(listOf(0, 1, 5, 4)),
+              Facet(listOf(1, 2, 6, 5)),
+              Facet(listOf(3, 4, 5, 3)),
+              Facet(listOf(3, 5, 6, 3))
+          ),
+          finalPositions = arrayOf(
+              Vertex(Fraction(0), Fraction(0)),
+              Vertex(Fraction(1), Fraction(0)),
+              Vertex(Fraction(0), Fraction(0)),
+              Vertex(Fraction(0), Fraction(0)),
+              Vertex(Fraction(0), Fraction(1, 2)),
+              Vertex(Fraction(1, 2), Fraction(1, 2)),
+              Vertex(Fraction(0), Fraction(1, 2))
+          )
       )
 
       /*,
