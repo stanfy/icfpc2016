@@ -39,12 +39,35 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
    */
   fun translate(vartex: Vertex) : State {
     val translatedPositions = this.finalPositions.map {
-//      val translatedX = Fraction(it.x.a.add(it.x.b.multiply(vartex.x.a).divide(vartex.x.b)), it.x.b)
-//      val translatedY = Fraction(it.y.a.add(it.y.b.multiply(vartex.y.a).divide(vartex.y.b)), it.y.b)
       it.add(vartex)
     }.toTypedArray()
     return State(vertexes = this.vertexes, facets = this.facets, finalPositions = translatedPositions)
   }
+
+
+  /**
+   *  Rotates around vertex
+   */
+  fun rotate(around: Vertex, angle: Double): State {
+    val translatedPositions = this.finalPositions.map {
+
+      val center = around
+      val point2 = it
+      val x =
+          center.x
+          .add(point2.x.sub(center.x).mul(Math.cos(angle)))
+          .sub(point2.y.sub(center.y).mul(Math.sin(angle)))
+
+      val y =
+          center.y
+              .add(point2.x.sub(center.x).mul(Math.sin(angle)))
+              .add(point2.y.sub(center.y).mul(Math.cos(angle)))
+
+    Vertex(x,y)
+    }.toTypedArray()
+    return State(vertexes = this.vertexes, facets = this.facets, finalPositions = translatedPositions)
+  }
+
 
   companion object {
     fun initialSquare(): State {

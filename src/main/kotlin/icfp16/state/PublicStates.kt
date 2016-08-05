@@ -22,34 +22,34 @@ class PublicStates {
         )
       ),
 
-      // task 0
-      State(
-        arrayOf(
-          Vertex(0, 0),
-          Vertex(1, 0),
-          Vertex(Fraction(0), Fraction(1, 3)),
-          Vertex(Fraction(1), Fraction(1, 3)),
-          Vertex(Fraction(0), Fraction(2, 3)),
-          Vertex(Fraction(1), Fraction(2, 3)),
-          Vertex(0, 1),
-          Vertex(1, 1)
-        ),
-        arrayOf(
-          Facet(arrayListOf(0, 1, 3, 2)),
-          Facet(arrayListOf(2, 3, 5, 4)),
-          Facet(arrayListOf(4, 5, 7, 6))
-        ),
-        arrayOf(
-          Vertex(Fraction(0), Fraction(2, 3)),
-          Vertex(Fraction(1), Fraction(2, 3)),
-          Vertex(Fraction(0), Fraction(1, 3)),
-          Vertex(Fraction(1), Fraction(1, 3)),
-          Vertex(Fraction(0), Fraction(2, 3)),
-          Vertex(Fraction(1), Fraction(2, 3)),
-          Vertex(Fraction(0), Fraction(2, 3)),
-          Vertex(Fraction(1), Fraction(2, 3))
-        )
-      ),
+//      // task 0
+//      State(
+//        arrayOf(
+//          Vertex(0, 0),
+//          Vertex(1, 0),
+//          Vertex(Fraction(0), Fraction(1, 3)),
+//          Vertex(Fraction(1), Fraction(1, 3)),
+//          Vertex(Fraction(0), Fraction(2, 3)),
+//          Vertex(Fraction(1), Fraction(2, 3)),
+//          Vertex(0, 1),
+//          Vertex(1, 1)
+//        ),
+//        arrayOf(
+//          Facet(arrayListOf(0, 1, 3, 2)),
+//          Facet(arrayListOf(2, 3, 5, 4)),
+//          Facet(arrayListOf(4, 5, 7, 6))
+//        ),
+//        arrayOf(
+//          Vertex(Fraction(0), Fraction(2, 3)),
+//          Vertex(Fraction(1), Fraction(2, 3)),
+//          Vertex(Fraction(0), Fraction(1, 3)),
+//          Vertex(Fraction(1), Fraction(1, 3)),
+//          Vertex(Fraction(0), Fraction(2, 3)),
+//          Vertex(Fraction(1), Fraction(2, 3)),
+//          Vertex(Fraction(0), Fraction(2, 3)),
+//          Vertex(Fraction(1), Fraction(2, 3))
+//        )
+//      ),
 
       // task 1
       State(
