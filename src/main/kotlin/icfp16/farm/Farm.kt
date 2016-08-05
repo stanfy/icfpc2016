@@ -86,6 +86,6 @@ class Farm {
 
     println("...generating image: $filePath")
     Visualizer().visualizedAndSaveImage(container.problemContainer.problem,
-      container.state, estimatorQuality, filePath)
+      container.state, 1, filePath)
   }
 }
