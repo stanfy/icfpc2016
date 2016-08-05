@@ -13,7 +13,7 @@ import java.io.File
 class Farm {
   val submitter = Submitter()
   val estimatorQuality = 4
-  val shouldShowInvalidPics = true
+  val shouldShowInvalidPics = false
 
   val startingId = 1
   val count = 100
