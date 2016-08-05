@@ -5,12 +5,9 @@ import icfp16.estimate.EstimatorFactory
 import icfp16.io.FileUtils
 import icfp16.io.ProblemContainersParser
 import icfp16.solver.BestSolverEver
-import icfp16.solver.StupidSolver
 import icfp16.submitter.Submitter
 import icfp16.visualizer.Visualizer
 import java.io.File
-import java.io.ObjectOutputStream
-import java.io.OutputStreamWriter
 
 
 class Farm {
@@ -26,7 +23,6 @@ class Farm {
       println("---------------------------------")
       println("start searching best solution for problem: $problemId")
       val solutionContainer = solveAndSubmitSolutionFor(problemId.toString())
-      println("$solutionContainer")
 
       // save to files
       if (solutionContainer != null) {
@@ -44,7 +40,7 @@ class Farm {
     val solver = BestSolverEver()
     val state = solver.solve(problem = problemContainer.problem)
     val solution = state.solution()
-    println("--------- submitting solution ----\n$solution")
+    println("--------- submitted solution ----\n$solution")
 
     val resemblance = submitSolution(problemId, solution)
     println("--------- real resemblance $resemblance for id: $problemId")
@@ -73,6 +69,14 @@ class Farm {
       out.write("\n-------------------------- solution --------------------\n")
       out.write(container.state.solution().toString())
     }
+
+    // json saving & reading
+//    val g = Gson()
+//    val jsonString = g.toJson(container)
+//    println("output = \n" + jsonString)
+//
+//    val outputObj = g.fromJson(jsonString, SolutionContainer::class.java)
+//    assert(outputObj.equals(container))
   }
 
   fun saveSolutionImageToFile(container: SolutionContainer) {

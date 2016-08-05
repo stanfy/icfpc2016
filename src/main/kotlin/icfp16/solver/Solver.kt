@@ -21,7 +21,9 @@ class TranslatorSolver: Solver {
     val centroid = centroid(vertexes)
 
     val translation = centroid.add(Vertex(Fraction(-1, 2), Fraction(-1, 2)))
-    return State.initialSquare().translate(translation)
+    val initialSquare = State.initialSquare()
+    val translatedSolve = initialSquare.translate(translation)
+    return translatedSolve
   }
 }
 

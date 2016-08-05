@@ -52,10 +52,10 @@ fun Fraction.divFrac(that: Fraction): Fraction {
   return mul(that.inverse())
 }
 
-
 fun Fraction.div(v: Int): Fraction {
   return this.div(BigInteger("$v"))
 }
+
 
 fun Fraction.div(v:BigInteger): Fraction {
   val topPart = this.a
