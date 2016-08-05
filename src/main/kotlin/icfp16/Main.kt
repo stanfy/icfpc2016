@@ -20,7 +20,7 @@ var problem = Problem(
         )
     )),
     arrayListOf(),
-        "", "", ""
+        ""
 )
 
 fun main(args: Array<String>) {
@@ -48,5 +48,5 @@ fun main(args: Array<String>) {
 
  // println(submitter.submitSolution(problemId = "1", solutionString = string))
 
-  val problemsGrabber = ProblemsGrabber().grabProblemsAndSaveToFiles("parsed_problems")
+  //val problemsGrabber = ProblemsGrabber().grabProblemsAndSaveToFiles("parsed_problems")
 }
