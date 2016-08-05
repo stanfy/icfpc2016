@@ -8,14 +8,15 @@ import icfp16.farm.ProblemsGrabber
 import icfp16.submitter.Submitter
 import okhttp3.logging.HttpLoggingInterceptor.Level.NONE
 import java.io.File
+import java.math.BigInteger
 
 var problem = Problem(
     arrayListOf(Polygon(
         arrayListOf(
-            Vertex(Fraction(0), Fraction(0)),
-            Vertex(Fraction(1), Fraction(0)),
-            Vertex(Fraction(1, 2), Fraction(1, 2)),
-            Vertex(Fraction(0), Fraction(1, 2))
+            Vertex(Fraction(BigInteger("0")), Fraction(BigInteger("0"))),
+            Vertex(Fraction(BigInteger("1")), Fraction(BigInteger("0"))),
+            Vertex(Fraction(BigInteger("1"), BigInteger("2")), Fraction(BigInteger("1"), BigInteger("2"))),
+            Vertex(Fraction(BigInteger("0")), Fraction(BigInteger("1"), BigInteger("2")))
         )
     )),
     arrayListOf(),

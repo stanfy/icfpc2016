@@ -13,6 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 import java.lang.reflect.Type
+import java.math.BigInteger
 import java.util.*
 
 val API_KEY = "17-04d569ebce709bf6e5482fea22c8acf0"
@@ -149,9 +150,9 @@ internal fun parseVertex(s: String): Vertex {
 internal fun parseFraction(s: String): Fraction {
   if (s.contains("/")) {
     val (a, b) = s.split("/")
-    return Fraction(a.toLong(), b.toLong())
+    return Fraction(BigInteger(a), BigInteger(b))
   } else {
-    return Fraction(s.toLong())
+    return Fraction(BigInteger(s))
   }
 }
 
