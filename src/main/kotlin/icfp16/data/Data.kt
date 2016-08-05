@@ -60,7 +60,8 @@ data class Polygon(val vertices: List<Vertex>) {
 
   fun edges() : List<Edge>{
     val pairs = vertices.subList(0, vertices.count()-1).zip(vertices.subList(1, vertices.count()))
-    return pairs.map{Edge(it.first, it.second)}
+    val closedPairs = pairs.plus(Pair(vertices.last(), vertices.first()))
+    return closedPairs.map{Edge(it.first, it.second)}
   }
 
   fun area(): Double {

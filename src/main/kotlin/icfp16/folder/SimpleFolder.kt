@@ -6,28 +6,32 @@ import java.math.BigInteger
 fun Polygon.fold(by: Edge): List<Polygon> {
 
   val edges = this.edges()
-  var res:MutableList<Polygon> = arrayListOf()
+  var res: MutableList<Polygon> = arrayListOf()
   var currentPoly = Polygon(arrayListOf())
   val crossLine = Line(by)
-
+  var newPoly = true
   edges.forEach {
 
     val crossPoint = Line(it).interection(crossLine)
+    if(crossPoint != null) {
 
-    if (crossPoint != null) {
-    val crossed = crossPoint.withinBoundary(it)
+      val crossed = crossPoint.withinBoundary(it)
 
       if (crossed) {
+        currentPoly = Polygon(currentPoly.vertices.plus(crossPoint))
+        res.add(currentPoly)
 
-        } else {
-          currentPoly = Polygon(currentPoly.vertices.plus(it.a))
-          currentPoly = Polygon(currentPoly.vertices.plus(it.b))
-        }
+        currentPoly = Polygon(arrayListOf(crossPoint, it.b))
 
       } else {
-        currentPoly = Polygon(currentPoly.vertices.plus(it.b))
-      }
 
+        currentPoly = Polygon(currentPoly.vertices.plus(it.a))
+
+      }
+    }else
+    {
+      currentPoly = Polygon(currentPoly.vertices.plus(it.a))
+    }
   }
 
   res.add(currentPoly)
@@ -40,6 +44,32 @@ fun Edge.middle(): Vertex {
   val midx = a.x.sub(b.x).div(2).abs()
   val midy = a.y.sub(b.y).div(2).abs()
   return Vertex(midx, midy)
+}
+
+enum class LineSide {
+  LEFT, RIGHT, ON
+}
+
+fun Vertex.sideOf(edge: Edge) : LineSide {
+
+  val x1 = edge.a.x
+  val x2 = edge.b.x
+  val y1 = edge.a.y
+  val y2 = edge.b.y
+
+  val d = x.sub(x1).mul(y2.sub(y)).sub(y.sub(y1).mul(x2.sub(x)))
+
+  if(d.geq(Fraction(1,13))){
+    return LineSide.RIGHT
+  } else
+  {
+    if(d.leq(Fraction(-1, 13))){
+      return LineSide.LEFT
+    }else
+    {
+      return LineSide.ON
+    }
+  }
 }
 
 fun Edge.crossPoint(that: Edge): Vertex {
