@@ -10,7 +10,7 @@ class ApiKtTest {
 
   @Test
   fun parseProblem1() {
-    val problem =
+    val rawString =
         """1
           |4
           |0,0
@@ -24,7 +24,7 @@ class ApiKtTest {
           |0,1 1,1
         """.trimMargin()
 
-    assertThat(parseProblem(problem)).isEqualTo(
+    assertThat(parseProblem(rawString)).isEqualTo(
         Problem(
             listOf(
                 Polygon(listOf(
@@ -38,11 +38,12 @@ class ApiKtTest {
                 Edge(v(f(0), f(0)), v(f(0), f(1))),
                 Edge(v(f(1), f(0)), v(f(1), f(1))),
                 Edge(v(f(0), f(1)), v(f(1), f(1)))
-            )
+            ),
+                rawString
         )
     )
 
-    parseProblem(problem)
+    parseProblem(rawString)
   }
 
   @Test
@@ -76,7 +77,8 @@ class ApiKtTest {
                 Edge(v(f(1, 2), f(1, 2)), v(f(0), f(1, 2))),
                 Edge(v(f(0), f(1, 2)), v(f(0), f(0))),
                 Edge(v(f(0), f(0)), v(f(1, 2), f(1, 2)))
-            )
+            ),
+                problem
         )
     )
 

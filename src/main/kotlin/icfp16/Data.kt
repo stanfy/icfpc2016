@@ -5,10 +5,15 @@ import java.math.BigInteger
 data class Problem(
     val poligons: List<Polygon>,
     val skeleton: List<Edge>,
-    val rawString: String = "",
+    val rawString: String = ""
+)
+
+data class ProblemContainer (
+    val problem: Problem,
     var problemId: String = "",
     var problemHash: String = ""
 )
+
 
 data class Fraction(val a: BigInteger, val b: BigInteger = BigInteger.ONE) {
   constructor(a:Int, b: Int = 1):this(a = BigInteger("$a"), b = BigInteger("$b"))

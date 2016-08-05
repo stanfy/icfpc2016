@@ -139,7 +139,7 @@ fun parseProblem(str: String): Problem {
     edges.add(Edge(parseVertex(s.next()), parseVertex(s.next())))
   }
 
-  return Problem(polygons, edges, str, "", "")
+  return Problem(polygons, edges, str)
 }
 
 internal fun parseVertex(s: String): Vertex {

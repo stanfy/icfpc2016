@@ -1,6 +1,7 @@
 package icfp16.farm
 
 import icfp16.Problem
+import icfp16.ProblemContainer
 import icfp16.api.Snapshot
 import icfp16.api.createApi
 import okhttp3.logging.HttpLoggingInterceptor
@@ -9,11 +10,11 @@ import java.util.*
 
 class ProblemsGrabber {
 
-    fun grabProblemsAndSaveToFiles(): List<Problem> {
+    fun grabProblemsAndSaveToFiles(): List<ProblemContainer> {
         return this.grabProblemsAndSaveToFiles("parsed_problems")
     }
 
-    fun grabProblemsAndSaveToFiles(fileFolder: String): List<Problem> {
+    fun grabProblemsAndSaveToFiles(fileFolder: String): List<ProblemContainer> {
         val api = createApi(HttpLoggingInterceptor.Level.NONE)
         val snapshots: List<Snapshot> = api.listSnapshots().execute().body().snapshots
         println(snapshots)
@@ -29,15 +30,14 @@ class ProblemsGrabber {
         val problemSpecs = api.getContestStatus(hash = hash).execute().body().problems
         println("problemSpecs \n"+ problemSpecs)
 
-        val result = ArrayList<Problem>()
+        val result = ArrayList<ProblemContainer>()
 
         problemSpecs.map { p ->
             Thread.sleep(1000)
             val problem = api.getProblemSpec(hash = p.problem_spec_hash).execute().body()
-            problem.problemHash = p.problem_spec_hash
-            problem.problemId = p.problem_id
 
-            result.add(problem)
+            val problemContainer = ProblemContainer(problem, p.problem_id, p.problem_spec_hash)
+            result.add(problemContainer)
 
             println("problem spec" + p)
             println("full problem " + problem)
