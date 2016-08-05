@@ -60,7 +60,7 @@ class SequenceSolver: Solver {
       }
       .flatMap { s ->
         // list of all transformations of state
-        val stateCentroid = massCentroid(s.finalPositions.asList())
+        val stateCentroid = centroid(s.finalPositions.asList())
         listOf<State>(
             s
 //            s.rotate(stateCentroid, Math.PI/2 * 15),
