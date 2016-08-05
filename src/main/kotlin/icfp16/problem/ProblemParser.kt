@@ -1,6 +1,10 @@
-package icfp16.data
+package icfp16.problem
 
 import icfp16.api.parseVertex
+import icfp16.data.Edge
+import icfp16.data.Polygon
+import icfp16.data.Problem
+import icfp16.data.Vertex
 import java.util.*
 
 class ProblemParser {

@@ -1,15 +1,16 @@
-package icfp16.farm
+package icfp16.io
 
 import icfp16.data.Problem
 import icfp16.data.ProblemContainer
-import icfp16.data.ProblemParser
+import icfp16.io.FileUtils
+import icfp16.problem.ProblemParser
 import java.io.File
 
 
 class ProblemContainersParser {
 
   fun generateProblemContainerForProblemId(problemId: String): ProblemContainer? {
-    val filePath = ParsedProblemsFileUtils().getFullPathForProblemId(problemId)
+    val filePath = FileUtils().getFullPathForProblemId(problemId)
     return generateProblemContainerFromFile(filePath)
   }
 
