@@ -23,6 +23,7 @@ class PublicStates {
       ),
 
       // task 0
+      /*
       State(
         arrayOf(
           Vertex(0, 0),
@@ -50,6 +51,7 @@ class PublicStates {
           Vertex(Fraction(1), Fraction(2, 3))
         )
       ),
+            */
 
       // task 1
       State(

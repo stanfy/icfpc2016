@@ -20,6 +20,8 @@ class Farm {
   fun startSearchingBestSolutions() {
 
     for (problemId in startingId..(startingId + count)) {
+      Thread.sleep(1000) // <--- api
+
       println("---------------------------------")
       println("start searching best solution for problem: $problemId")
       val solutionContainer = solveAndSubmitSolutionFor(problemId.toString())
