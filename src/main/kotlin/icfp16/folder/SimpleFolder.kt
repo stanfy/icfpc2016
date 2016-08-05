@@ -3,8 +3,37 @@ package icfp16.folder
 import icfp16.data.*
 import java.math.BigInteger
 
-fun Edge.fold(by: Edge): Edge {
-  return by
+fun Polygon.fold(by: Edge): List<Polygon> {
+
+  val edges = this.edges()
+  var res:MutableList<Polygon> = arrayListOf()
+  var currentPoly = Polygon(arrayListOf())
+  val crossLine = Line(by)
+
+  edges.forEach {
+
+    val crossPoint = Line(it).interection(crossLine)
+
+    if (crossPoint != null) {
+    val crossed = crossPoint.withinBoundary(it)
+
+      if (crossed) {
+
+        } else {
+          currentPoly = Polygon(currentPoly.vertices.plus(it.a))
+          currentPoly = Polygon(currentPoly.vertices.plus(it.b))
+        }
+
+      } else {
+        currentPoly = Polygon(currentPoly.vertices.plus(it.b))
+      }
+
+  }
+
+  res.add(currentPoly)
+
+  return res
+
 }
 
 fun Edge.middle(): Vertex {

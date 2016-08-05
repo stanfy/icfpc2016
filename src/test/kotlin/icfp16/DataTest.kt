@@ -95,6 +95,35 @@ class DataTest {
   }
 
   @Test
+  fun fractionLeq() {
+    assertThat(Fraction(1, 2).leq(Fraction(1,2))).isEqualTo(true)
+    assertThat(Fraction(1, 3).leq(Fraction(1,2))).isEqualTo(true)
+    assertThat(Fraction(1, 2).leq(Fraction(1,3))).isEqualTo(false)
+
+  }
+
+  @Test
+  fun fractionGeq() {
+    assertThat(Fraction(1, 2).geq(Fraction(1,2))).isEqualTo(true)
+    assertThat(Fraction(1, 3).geq(Fraction(1,2))).isEqualTo(false)
+    assertThat(Fraction(1, 2).geq(Fraction(1,3))).isEqualTo(true)
+  }
+
+  @Test
+  fun fractionMax() {
+    assertThat(Fraction(1, 2).max(Fraction(1,2))).isEqualTo(Fraction(1,2))
+    assertThat(Fraction(1, 3).max(Fraction(1,2))).isEqualTo(Fraction(1,2))
+    assertThat(Fraction(1, 2).max(Fraction(1,3))).isEqualTo(Fraction(1,2))
+  }
+
+  @Test
+  fun fractionMin() {
+    assertThat(Fraction(1, 2).min(Fraction(1,2))).isEqualTo(Fraction(1,2))
+    assertThat(Fraction(1, 3).min(Fraction(1,2))).isEqualTo(Fraction(1,3))
+    assertThat(Fraction(1, 2).min(Fraction(1,3))).isEqualTo(Fraction(1,3))
+  }
+
+  @Test
   fun vertexAdding() {
     assertThat(Vertex(1,1).add(Vertex(2,2))).isEqualTo(Vertex(3,3))
     assertThat(Vertex(20,1).add(Vertex(2,30))).isEqualTo(Vertex(22,31))
@@ -117,7 +146,6 @@ class DataTest {
     assertThat(Vertex(2, 2).reflect(Edge(Vertex(0,0), Vertex(0,7)))).isEqualTo(Vertex(-2,2))
     assertThat(Vertex(1, 2).reflect(Edge(Vertex(0,4), Vertex(4,0)))).isEqualTo(Vertex(2,3))
     assertThat(Vertex(5, 2).reflect(Edge(Vertex(3,0), Vertex(3,3)))).isEqualTo(Vertex(1,2))
-   // assertThat(Vertex(2, 1).reflect(Edge(Vertex(1,0), Vertex(1,1)))).isEqualTo(Vertex(0,1))
-    //assertThat(Vertex(2, 1).reflect(Edge(Vertex(1,0), Vertex(1,1)))).isEqualTo(Vertex(0,1))
   }
+
 }

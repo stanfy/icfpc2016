@@ -44,6 +44,30 @@ fun Fraction.equals(that:Fraction):Boolean{
 
 }
 
+fun Fraction.leq(that:Fraction):Boolean{
+  val thisScaled = this.mul(Fraction(that.b))
+  val thatScaled = that.mul(Fraction(this.b))
+  return  thisScaled.a <= thatScaled.a
+}
+
+fun Fraction.geq(that:Fraction):Boolean{
+  val thisScaled = this.mul(Fraction(that.b))
+  val thatScaled = that.mul(Fraction(this.b))
+  return  thisScaled.a >= thatScaled.a
+}
+
+fun Fraction.max(that:Fraction) : Fraction{
+  if(this.geq(that))
+    return this
+  return that
+}
+
+fun Fraction.min(that:Fraction) : Fraction{
+  if(this.geq(that))
+    return that
+  return this
+}
+
 fun Fraction.abs():Fraction{
   return Fraction(a.abs(),b)
 }
@@ -139,6 +163,17 @@ fun centroid(vertices: List<Vertex>): Vertex {
   return vertices.reduce { original, next ->
     original.add(next)
   }.div(vertices.size)
+}
+
+fun Vertex.withinBoundary(edge:Edge): Boolean {
+  val maxx = edge.a.x.max(edge.b.x)
+  val maxy = edge.a.y.max(edge.b.y)
+  val minx = edge.a.x.min(edge.b.x)
+  val miny = edge.a.y.min(edge.b.y)
+
+
+  return x.geq(minx) && x.leq(maxx) && y.geq(miny) && y.leq(maxy)
+  //}
 }
 
 fun massCentroid(vertices: List<Vertex>): Vertex {
