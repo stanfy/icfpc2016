@@ -3,13 +3,17 @@ package icfp16.visualizer
 import icfp16.data.Problem
 import icfp16.state.State
 import java.awt.Color
+import java.awt.Graphics2D
 import java.awt.Image
 import java.awt.Polygon
 import java.awt.image.BufferedImage
+import java.io.File
+import javax.imageio.ImageIO
 
 class Visualizer {
   val BITMAP_STEP = 1000
-  fun visualizationOf(task: Problem, state: State, quality: Int = 1): Image {
+
+  fun visualizationOf(task: Problem, state: State, quality: Int = 1): BufferedImage {
     val BITMAP_SIZE = BITMAP_STEP * quality
     val image = BufferedImage(BITMAP_SIZE, BITMAP_SIZE, BufferedImage.TYPE_INT_ARGB)
     val graphics = image.createGraphics()
@@ -33,5 +37,10 @@ class Visualizer {
       graphics.fillPolygon(poly)
     }
     return image
+  }
+
+  fun visualizedAndSaveImage(task: Problem, state: State, quality: Int = 1, filePath: String) {
+    val image = visualizationOf(task, state, quality)
+    ImageIO.write(image,"png", File(filePath))
   }
 }
