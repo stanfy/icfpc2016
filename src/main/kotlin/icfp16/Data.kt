@@ -9,10 +9,18 @@ data class Fraction(val a: Int, val b: Int = 1) {
   fun toDouble(): Double {
     return a.toDouble() / b
   }
+
+  override fun toString(): String {
+    return if (b == 1) "$a" else "$a/$b"
+  }
 }
 data class Vertex(val x: Fraction, val y: Fraction) {
   fun toPoint(): Pair<Double, Double> {
     return Pair(x.toDouble(), y.toDouble())
+  }
+
+  override fun toString(): String {
+    return "$x,$y"
   }
 }
 
@@ -24,6 +32,12 @@ data class Polygon(val vertices: List<Vertex>) {
       Direction.TOP -> return vertices.maxBy { v -> v.y.toDouble() }
       Direction.BOTTOM -> return vertices.minBy { v -> v.y.toDouble() }
     }
+  }
+}
+
+data class Facet(val indexes: List<Int>) {
+  override fun toString(): String {
+    return "${indexes.size} " + indexes.joinToString(separator = " ") { "$it" }
   }
 }
 
