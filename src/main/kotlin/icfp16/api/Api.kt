@@ -11,6 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import java.lang.reflect.Type
+import java.util.*
 
 val API_KEY = "17-04d569ebce709bf6e5482fea22c8acf0"
 
@@ -53,7 +54,45 @@ data class Polygon(val vertices: List<Vertex>)
 data class Edge(val a: Vertex, val b: Vertex)
 
 fun parseProblem(str: String): Problem {
-  return Problem(emptyList(), emptyList())
+  val s = Scanner(str)
+
+  val polygons = LinkedList<Polygon>()
+
+  val polygonsCount = s.nextInt()
+  for (i in 0..polygonsCount - 1) {
+    val vertices = LinkedList<Vertex>()
+    val polygonSize = s.nextInt()
+    s.nextLine()
+    for (j in 0..polygonSize - 1) {
+      val s1 = s.nextLine()
+      vertices.add(parseVertex(s1))
+    }
+    polygons.add(Polygon(vertices))
+  }
+
+  val edges = LinkedList<Edge>()
+
+  val edgesCount = s.nextInt()
+  s.nextLine()
+  for (i in 0..edgesCount - 1) {
+    edges.add(Edge(parseVertex(s.next()), parseVertex(s.next())))
+  }
+
+  return Problem(polygons, edges)
+}
+
+internal fun parseVertex(s: String): Vertex {
+  val (a, b) = s.split(",")
+  return Vertex(parseFraction(a), parseFraction(b))
+}
+
+internal fun parseFraction(s: String): Fraction {
+  if (s.contains("/")) {
+    val (a, b) = s.split("/")
+    return Fraction(Integer.parseInt(a), Integer.parseInt(b))
+  } else {
+    return Fraction(Integer.parseInt(s))
+  }
 }
 
 fun createApi(): Api {
