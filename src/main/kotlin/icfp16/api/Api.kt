@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import icfp16.*
 import icfp16.data.Fraction
 import icfp16.data.Problem
-import icfp16.data.ProblemParser
+import icfp16.problem.ProblemParser
 import icfp16.data.Vertex
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody

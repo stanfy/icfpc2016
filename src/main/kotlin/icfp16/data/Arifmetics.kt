@@ -52,10 +52,10 @@ fun Fraction.divFrac(that: Fraction): Fraction {
   return mul(that.inverse())
 }
 
-
 fun Fraction.div(v: Int): Fraction {
   return this.div(BigInteger("$v"))
 }
+
 
 fun Fraction.div(v:BigInteger): Fraction {
   val topPart = this.a
@@ -81,3 +81,13 @@ fun Vertex.div(v: BigInteger): Vertex {
   return Vertex(this.x.div(v), this.y.div(v))
 }
 
+/// THis is not correct actually
+fun Polygon.translate(v: Vertex): Polygon {
+  return Polygon(this.vertices.map { it.add(Vertex(v.x.neg(), v.y.neg())) })
+}
+
+fun centroid(vertices: List<Vertex>): Vertex {
+  return vertices.reduce { original, next ->
+    original.add(next)
+  }.div(vertices.size)
+}

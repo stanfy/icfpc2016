@@ -9,8 +9,8 @@ import icfp16.data.Polygon
 import icfp16.data.Problem
 import icfp16.data.Vertex
 import icfp16.farm.Farm
-import icfp16.farm.ProblemContainersGrabber
-import icfp16.farm.ProblemContainersParser
+import icfp16.io.ProblemContainersGrabber
+import icfp16.io.ProblemContainersParser
 import icfp16.submitter.Submitter
 import okhttp3.logging.HttpLoggingInterceptor.Level.NONE
 import java.io.File
@@ -55,7 +55,7 @@ fun main(args: Array<String>) {
  // println(submitter.submitSolution(problemId = "1", solutionString = string))
 
   // grab problems from server
-  //val problemsGrabber = ProblemsGrabber().grabProblemsAndSaveToFiles("parsed_problems")
+  //val problemsGrabber = ProblemContainersGrabber().grabProblemsAndSaveToFiles()
 
   // farm
   Farm().startSearchingBestSolutions()

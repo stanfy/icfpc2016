@@ -1,18 +1,19 @@
 package icfp16.folder
+
 import icfp16.data.*
 import java.math.BigInteger
 
-fun Edge.fold(by : Edge) : Edge{
-    return by
+fun Edge.fold(by: Edge): Edge {
+  return by
 }
 
-fun Edge.middle() : Vertex{
-    val midx = a.x.sub(b.x).div(2).abs()
-    val midy = a.y.sub(b.y).div(2).abs()
-    return Vertex(midx, midy)
+fun Edge.middle(): Vertex {
+  val midx = a.x.sub(b.x).div(2).abs()
+  val midy = a.y.sub(b.y).div(2).abs()
+  return Vertex(midx, midy)
 }
 
-fun Edge.crossPoint(that : Edge) : Vertex{
+fun Edge.crossPoint(that: Edge): Vertex {
 
 //        if (a.x.equals(that.a.x))   // вертикаль
 //        {
@@ -31,33 +32,39 @@ fun Edge.crossPoint(that : Edge) : Vertex{
 //            else
 //            return new Point((int)x, p3.Y);
 //        }
-    return that.a
+  return that.a
 }
 
 
+data class Line(val edge: Edge) {
 
-//class Line {
+  fun interection(line: Line): Vertex? {
+    // https://www.topcoder.com/community/data-science/data-science-tutorials/geometry-concepts-line-intersection-and-its-applications/
+    val A1 = edge.a.y.sub(edge.b.y)
+    val B1 = edge.b.x.sub(edge.a.x)
+    val C1 = A1.mul(edge.a.x).add(B1.mul(edge.a.y))
+
+    val A2 = line.edge.a.y.sub(line.edge.b.y)
+    val B2 = line.edge.b.x.sub(line.edge.a.x)
+    val C2 = A2.mul(line.edge.a.x).add(B2.mul(line.edge.a.y))
+
+    val det = A1.mul(B2).sub(A2.mul(B1))
+    if (det.a.equals(BigInteger.ZERO)) {
+      return null
+    }
+    val x = (B2.mul(C1).sub(B1.mul(C2))).divFrac(det)
+    val y = (A1.mul(C2).sub(A2.mul(C1))).divFrac(det)
+    return Vertex(x, y)
+  }
+
+//  // Fraction(edge.b.y.sub(edge.a.y), edge.b.x.sub(edge.a.x))
+//  var b: Fraction = null!!// = edge.b.x //Fraction(edge.a.y.sub(k.mul(edge.a.x)))
 //
-//    constructor(k: Fraction, b: Fraction) {
-//        this.k = k
-//        this.b =b
-//    }
+//  fun perp(): Line {
 //
-//    constructor(edge:Edge){
-//        this.k = edge.a.x
-//        // Fraction(edge.b.y.sub(edge.a.y), edge.b.x.sub(edge.a.x))
-//        this.b = edge.b.x //Fraction(edge.a.y.sub(k.mul(edge.a.x)))
-//    }
+//    val m = edge.a
 //
-//    abstract var k: Fraction
-//    // Fraction(edge.b.y.sub(edge.a.y), edge.b.x.sub(edge.a.x))
-//    var b: Fraction = null!!// = edge.b.x //Fraction(edge.a.y.sub(k.mul(edge.a.x)))
-//
-//    fun perp(): Line {
-//
-//        val m = edge.a
-//
-//        return this
-//    }
-//
-//}
+//    return this
+//  }
+
+}

@@ -1,7 +1,8 @@
 package icfp16.estimate
 
-import icfp16.data.Problem
+import icfp16.data.*
 import icfp16.state.State
+import icfp16.visualizer.Visualizer
 import java.awt.Color
 import java.awt.Polygon
 import java.awt.image.BufferedImage
@@ -26,46 +27,23 @@ class EstimatorFactory {
 
 
 class BitmapEstimator : Estimator {
-  val BITMAP_STEP = 1000
-
   override fun resemblanceOf(task: Problem, state: State, quality: Int): Double {
-    val BITMAP_SIZE = BITMAP_STEP *  quality
-    val image = BufferedImage(BITMAP_SIZE, BITMAP_SIZE, BufferedImage.TYPE_INT_ARGB)
-    val graphics = image.createGraphics()
-
-    val originalItemColor = Color.YELLOW
-    val solutionColor = Color(0, 0, 255, 128)
-
-    graphics.color = originalItemColor
-    task.poligons.map {
-      val xPoints = it.vertices.map { (BITMAP_SIZE/4 + BITMAP_SIZE/2 * it.x.toDouble()).toInt() }.toIntArray()
-      val yPoints = it.vertices.map { (BITMAP_SIZE/4 + BITMAP_SIZE/2 * it.y.toDouble()).toInt() }.toIntArray()
-      val poly = Polygon(xPoints, yPoints, xPoints.size)
-      graphics.fillPolygon(poly)
-    }
-
-    graphics.color = solutionColor
-    state.poligons().map {
-      val xPoints = it.vertices.map { (BITMAP_SIZE/4 + BITMAP_SIZE/2 * it.x.toDouble()).toInt() }.toIntArray()
-      val yPoints = it.vertices.map { (BITMAP_SIZE/4 + BITMAP_SIZE/2 * it.y.toDouble()).toInt() }.toIntArray()
-      val poly = Polygon(xPoints, yPoints, xPoints.size)
-      graphics.fillPolygon(poly)
-    }
+    val image = Visualizer().visualizationOf(task, state, quality)
 
     var allSquarePixels = 0
     var noncoveredPixels = 0
     var coveredPixels = 0
-    for (x in 0..BITMAP_SIZE - 1)  {
-      for (y in 0..BITMAP_SIZE - 1) {
+    for (x in 0..image.width - 1)  {
+      for (y in 0..image.height - 1) {
         val rgb = image.getRGB(x, y)
         if (rgb == 0) continue
 
         allSquarePixels++
 
-        if (rgb == originalItemColor.rgb) {
+        if (rgb == Visualizer.originalItemColor.rgb) {
           noncoveredPixels++
         }
-        if (rgb != originalItemColor.rgb && rgb != solutionColor.rgb) {
+        if (rgb != Visualizer.originalItemColor.rgb && rgb != Visualizer.solutionColor.rgb) {
           coveredPixels++
         }
       }

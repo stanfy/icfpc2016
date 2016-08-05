@@ -1,0 +1,25 @@
+-------------------------- container --------------------
+SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[0,0, 1/2,0, 1/2,1/2, 0,1/2])], skeleton=[Edge(a=0,0, b=1/2,0), Edge(a=0,0, b=0,1/2), Edge(a=1/2,0, b=1/2,1/2), Edge(a=0,1/2, b=1/2,1/2)], rawString=1
+4
+0,0
+1/2,0
+1/2,1/2
+0,1/2
+4
+0,0 1/2,0
+0,0 0,1/2
+1/2,0 1/2,1/2
+0,1/2 1/2,1/2
+), problemId=8, problemHash=), state=State(vertexes=[0,0, 0,1, 1,1, 1,0], facets=[4 0 1 2 3], finalPositions=[-1/4,-1/4, -1/4,3/4, 3/4,3/4, 3/4,-1/4]), realResemblance=0.25, estimatedResemblance=0.25)
+-------------------------- solution --------------------
+4
+0,0
+0,1
+1,1
+1,0
+1
+4 0 1 2 3
+-1/4,-1/4
+-1/4,3/4
+3/4,3/4
+3/4,-1/4

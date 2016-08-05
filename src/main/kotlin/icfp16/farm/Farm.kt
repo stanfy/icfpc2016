@@ -2,10 +2,12 @@ package icfp16.farm
 
 import icfp16.data.SolutionContainer
 import icfp16.estimate.EstimatorFactory
+import icfp16.io.FileUtils
+import icfp16.io.ProblemContainersParser
 import icfp16.solver.BestSolverEver
-import icfp16.solver.StupidSolver
 import icfp16.submitter.Submitter
 import icfp16.visualizer.Visualizer
+import java.io.File
 
 
 class Farm {
@@ -13,7 +15,7 @@ class Farm {
   val estimatorQuality = 4
 
   val startingId = 1
-  val count = 10
+  val count = 100
 
   fun startSearchingBestSolutions() {
 
@@ -21,15 +23,11 @@ class Farm {
       println("---------------------------------")
       println("start searching best solution for problem: $problemId")
       val solutionContainer = solveAndSubmitSolutionFor(problemId.toString())
-      println("$solutionContainer")
 
-      // save image
+      // save to files
       if (solutionContainer != null) {
-        val filePath = ParsedProblemsFileUtils().getFullPathForSolutionImage(problemId.toString())
-
-        println("generating image: $filePath")
-        Visualizer().visualizedAndSaveImage(solutionContainer.problemContainer.problem,
-          solutionContainer.state, estimatorQuality, filePath)
+        saveSolutionContainerToFile(solutionContainer)
+        saveSolutionImageToFile(solutionContainer)
       }
 
     }
@@ -42,7 +40,7 @@ class Farm {
     val solver = BestSolverEver()
     val state = solver.solve(problem = problemContainer.problem)
     val solution = state.solution()
-    println("--------- submitting solution ----\n$solution")
+    println("--------- submitted solution ----\n$solution")
 
     val resemblance = submitSolution(problemId, solution)
     println("--------- real resemblance $resemblance for id: $problemId")
@@ -59,5 +57,33 @@ class Farm {
   fun submitSolution(problemId: String, solution: String): Double {
     val submittedResponse = submitter.submitSolution(problemId = problemId, solutionString = solution) ?: return -1.0
     return submittedResponse.resemblance
+  }
+
+  fun saveSolutionContainerToFile(container: SolutionContainer) {
+    val filePath = FileUtils().getFullPathForSolutionFile(container.problemContainer.problemId)
+
+    println("...saving text solution container to file $filePath")
+    File(filePath).bufferedWriter().use { out ->
+      out.write("-------------------------- container --------------------\n")
+      out.write(container.toString())
+      out.write("\n-------------------------- solution --------------------\n")
+      out.write(container.state.solution().toString())
+    }
+
+    // json saving & reading
+//    val g = Gson()
+//    val jsonString = g.toJson(container)
+//    println("output = \n" + jsonString)
+//
+//    val outputObj = g.fromJson(jsonString, SolutionContainer::class.java)
+//    assert(outputObj.equals(container))
+  }
+
+  fun saveSolutionImageToFile(container: SolutionContainer) {
+    val filePath = FileUtils().getFullPathForSolutionImage(container.problemContainer.problemId)
+
+    println("...generating image: $filePath")
+    Visualizer().visualizedAndSaveImage(container.problemContainer.problem,
+      container.state, estimatorQuality, filePath)
   }
 }
