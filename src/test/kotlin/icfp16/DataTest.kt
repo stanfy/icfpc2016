@@ -78,8 +78,8 @@ class DataTest {
   }
   @Test
   fun fractionDivision() {
-    assertThat(Fraction(4).div(Fraction(2))).isEqualTo(Fraction(2))
-    assertThat(Fraction(1, 3).div(Fraction(2,3))).isEqualTo(Fraction(1,2))
+    assertThat(Fraction(4).divFrac(Fraction(2))).isEqualTo(Fraction(2))
+    assertThat(Fraction(1, 3).divFrac(Fraction(2,3))).isEqualTo(Fraction(1,2))
   }
 
   @Test

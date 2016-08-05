@@ -2,9 +2,7 @@ package icfp16.data
 
 import java.math.BigInteger
 
-fun Fraction.add(f: Fraction): Fraction {
-  val topPart = f.a.multiply(b) +  f.b.multiply(a)
-  val bottomPart = f.b.multiply(b)
+
 fun Fraction.add(that: Fraction): Fraction {
   val topPart = that.a.multiply(b) +  that.b.multiply(a)
   val bottomPart = that.b.multiply(b)
@@ -37,7 +35,7 @@ fun Fraction.inverse():Fraction{
   return Fraction(b,a)
 }
 
-fun Fraction.div(that: Fraction): Fraction {
+fun Fraction.divFrac(that: Fraction): Fraction {
   return mul(that.inverse())
 }
 
