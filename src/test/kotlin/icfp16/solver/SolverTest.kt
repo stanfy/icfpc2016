@@ -1,6 +1,7 @@
 package icfp16.solver
 
 import icfp16.api.parseProblem
+import icfp16.data.centroid
 import icfp16.estimate.BitmapEstimator
 import icfp16.visualizer.Visualizer
 import org.assertj.core.api.Assertions.assertThat
