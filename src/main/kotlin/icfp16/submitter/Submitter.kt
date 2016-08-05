@@ -1,4 +1,4 @@
-package icfp16
+package icfp16.submitter
 
 import icfp16.api.SolutionSpec
 import icfp16.api.SolutionSubmission

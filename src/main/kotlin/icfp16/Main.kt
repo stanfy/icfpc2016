@@ -1,7 +1,9 @@
 package icfp16
 
+import icfp16.api.Snapshot
 import icfp16.api.SolutionSpec
 import icfp16.api.createApi
+import icfp16.submitter.Submitter
 import okhttp3.logging.HttpLoggingInterceptor.Level.NONE
 
 var problem = Problem(
@@ -23,6 +25,7 @@ fun main(args: Array<String>) {
 //  println(rightMost)
 
   val submitter = Submitter()
+
   // submit solution:
   val string = """
           4
@@ -40,12 +43,3 @@ fun main(args: Array<String>) {
 
   println(submitter.submitSolution(problemId = "1", solutionString = string))
 }
-
-
-fun grabProblems() {
-  val api = createApi(NONE)
-  println(api.listSnapshots().execute().body())
-
-
-}
-
