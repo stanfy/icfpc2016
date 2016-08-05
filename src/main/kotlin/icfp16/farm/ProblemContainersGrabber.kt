@@ -1,14 +1,14 @@
 package icfp16.farm
 
-import icfp16.Problem
-import icfp16.ProblemContainer
+import icfp16.data.Problem
+import icfp16.data.ProblemContainer
 import icfp16.api.Snapshot
 import icfp16.api.createApi
 import okhttp3.logging.HttpLoggingInterceptor
 import java.io.File
 import java.util.*
 
-class ProblemsGrabber {
+class ProblemContainersGrabber {
 
     fun grabProblemsAndSaveToFiles(): List<ProblemContainer> {
         return this.grabProblemsAndSaveToFiles("parsed_problems")

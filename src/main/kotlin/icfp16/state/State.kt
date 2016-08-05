@@ -1,9 +1,9 @@
 package icfp16.state
 
-import icfp16.Facet
-import icfp16.Fraction
-import icfp16.Polygon
-import icfp16.Vertex
+import icfp16.data.Facet
+import icfp16.data.Fraction
+import icfp16.data.Polygon
+import icfp16.data.Vertex
 import java.math.BigInteger
 
 data class State(val vertexes: Array<Vertex> = emptyArray(),

@@ -1,17 +1,17 @@
-package icfp16
+package icfp16.data
 
 import java.math.BigInteger
 
 data class Problem(
-    val poligons: List<Polygon>,
-    val skeleton: List<Edge>,
-    val rawString: String = ""
+  val poligons: List<Polygon>,
+  val skeleton: List<Edge>,
+  val rawString: String = ""
 )
 
 data class ProblemContainer (
-    val problem: Problem,
-    var problemId: String = "",
-    var problemHash: String = ""
+  val problem: Problem,
+  var problemId: String = "",
+  var problemHash: String = ""
 )
 
 
