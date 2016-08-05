@@ -5,6 +5,7 @@ import icfp16.*
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.logging.HttpLoggingInterceptor.Level
 import retrofit2.Call
 import retrofit2.Converter
 import retrofit2.Retrofit
@@ -86,9 +87,9 @@ internal fun parseFraction(s: String): Fraction {
   }
 }
 
-fun createApi(): Api {
+fun createApi(logLevel: Level = Level.BASIC): Api {
   val logInterceptor = HttpLoggingInterceptor()
-  logInterceptor.level = HttpLoggingInterceptor.Level.BASIC
+  logInterceptor.level = logLevel
 
   val okHttpClient = OkHttpClient.Builder()
       .addInterceptor(logInterceptor)
