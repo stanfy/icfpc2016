@@ -18,6 +18,13 @@ class SimpleFolderTest {
 
   }
 
+@Test
+fun lineCrossTest(){
+  val edge1 = Edge(Vertex(0, 1), Vertex(4, 1))
+  val edge2 = Edge(Vertex(2, 2), Vertex(0, 0))
+  val res = Line(edge1).interection(Line(edge2))
+  assertThat(res).isEqualTo(Vertex(1,1))
+}
   @Test
   fun edgeCrossTest(){
     val edge1 = Edge(Vertex(0, 0), Vertex(1, 1))
@@ -66,6 +73,9 @@ class SimpleFolderTest {
     val res = splitEdges(triangle, triangleCutter)
     val splitPoly = res.first
     val edgesOnLine = res.second
+    // two edges are crossing the line
     assertThat(edgesOnLine.count()).isEqualTo(2)
+    // we create two more points in poly, where cross thakes place
+    assertThat(splitPoly.count()).isEqualTo(5)
   }
 }

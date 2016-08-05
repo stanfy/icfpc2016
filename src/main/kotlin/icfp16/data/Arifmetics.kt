@@ -8,6 +8,12 @@ fun Fraction.simple(): Fraction{
 
   val finalTopPart = a.div(gcd)
   val finalBottomPart = b.div(gcd)
+
+  // (-1,-1) == (1,1)
+  if(finalBottomPart < BigInteger.ZERO && finalTopPart < BigInteger.ZERO)
+  {
+    return Fraction(finalTopPart.negate(), finalBottomPart.negate())
+  }
   return Fraction(finalTopPart, finalBottomPart)
 }
 
