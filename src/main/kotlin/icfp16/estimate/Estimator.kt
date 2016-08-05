@@ -22,7 +22,7 @@ interface Estimator {
 class EstimatorFactory {
 
   fun bestEstimatorEver(): Estimator {
-    return CompoundEstimator()
+    return BitmapEstimator()
   }
 }
 
