@@ -14,8 +14,12 @@ class StupidSolver: Solver {
 }
 
 class TranslatorSolver: Solver {
-
   override fun solve(problem: Problem): State {
-    throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    // simple centroid  as  sum of all polygon coords
+    val vertexes = problem.poligons.flatMap { it.vertices }
+//    val cententroid = vertexes.reduce { original, next ->
+////      Vertex(original.x.)
+//    }
+    return State()
   }
 }
