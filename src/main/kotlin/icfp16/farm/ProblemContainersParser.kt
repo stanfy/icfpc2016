@@ -8,26 +8,31 @@ import java.io.File
 
 class ProblemContainersParser {
 
-    fun parseProblemContainerFromFile(filePath: String): ProblemContainer? {
-        val file = File(filePath)
-        val problemName = file.nameWithoutExtension
-        val regex = "problem_(\\d*)".toRegex()
+  fun generateProblemContainerForProblemId(problemId: String): ProblemContainer? {
+    val filePath = ParsedProblemsFileUtils().getFullPathForProblemId(problemId)
+    return generateProblemContainerFromFile(filePath)
+  }
 
-        val problemId = regex.matchEntire(problemName)?.groups?.get(1)?.value
-        println("problemId " + problemId)
-        if (problemId == null) {
-            return null
-        }
+  fun generateProblemContainerFromFile(filePath: String): ProblemContainer? {
+    val file = File(filePath)
+    val problemName = file.nameWithoutExtension
+    val regex = "problem_(\\d*)".toRegex()
 
-        val rawProblem = file.readText()
-        println("raw problem " + rawProblem)
+    val problemId = regex.matchEntire(problemName)?.groups?.get(1)?.value
 
-        return generateProblemContainerFromRawProblem(rawProblem, problemId)
+    if (problemId == null) {
+      return null
     }
 
-    fun generateProblemContainerFromRawProblem(rawProblem: String, problemId: String): ProblemContainer? {
-        val problem = ProblemParser().parseProblem(rawProblem)
-        val container = ProblemContainer(problem, problemId, "")
-        return container
-    }
+    val rawProblem = file.readText()
+    println("--- raw problem: \n" + rawProblem)
+
+    return generateProblemContainerFromRawProblem(rawProblem, problemId)
+  }
+
+  fun generateProblemContainerFromRawProblem(rawProblem: String, problemId: String): ProblemContainer? {
+    val problem = ProblemParser().parseProblem(rawProblem)
+    val container = ProblemContainer(problem, problemId, "")
+    return container
+  }
 }

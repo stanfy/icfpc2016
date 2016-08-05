@@ -11,7 +11,7 @@ import java.util.*
 class ProblemContainersGrabber {
 
     fun grabProblemsAndSaveToFiles(): List<ProblemContainer> {
-        return this.grabProblemsAndSaveToFiles("parsed_problems")
+        return this.grabProblemsAndSaveToFiles(ParsedProblemsFileUtils().getDefaultProblemFileFolder())
     }
 
     fun grabProblemsAndSaveToFiles(fileFolder: String): List<ProblemContainer> {
@@ -42,8 +42,7 @@ class ProblemContainersGrabber {
             println("problem spec" + p)
             println("full problem " + problem)
 
-            val fileName = "problem_" + p.problem_id + ".txt"
-            val filePath = fileFolder + "/" + fileName
+            val filePath = ParsedProblemsFileUtils().getFullPathForProblemId(p.problem_id)
             File(filePath).bufferedWriter().use { out ->
                 out.write(problem.rawString)
             }

@@ -8,6 +8,7 @@ import icfp16.data.Fraction
 import icfp16.data.Polygon
 import icfp16.data.Problem
 import icfp16.data.Vertex
+import icfp16.farm.Farm
 import icfp16.farm.ProblemContainersGrabber
 import icfp16.farm.ProblemContainersParser
 import icfp16.submitter.Submitter
@@ -55,4 +56,7 @@ fun main(args: Array<String>) {
 
   // grab problems from server
   //val problemsGrabber = ProblemsGrabber().grabProblemsAndSaveToFiles("parsed_problems")
+
+  // farm
+  Farm().startSearchingBestSolutions("1")
 }

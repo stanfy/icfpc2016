@@ -1,6 +1,6 @@
 package icfp16.solver
 
-import icfp16.Problem
+import icfp16.data.Problem
 import icfp16.state.State
 
 interface Solver {
