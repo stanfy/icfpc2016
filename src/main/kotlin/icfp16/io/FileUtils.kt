@@ -1,6 +1,6 @@
-package icfp16.farm
+package icfp16.io
 
-class ParsedProblemsFileUtils {
+class FileUtils {
 
   // ------------ problems ------------
 
@@ -23,7 +23,7 @@ class ParsedProblemsFileUtils {
   }
 
   fun getDefaultSolutionImagesFolder(): String {
-    return "generated_pictures_bitmap_solver"
+    return "generated_pictures"
   }
 
   fun getFullPathForSolutionImage(problemId: String): String {

@@ -2,6 +2,8 @@ package icfp16.farm
 
 import icfp16.data.SolutionContainer
 import icfp16.estimate.EstimatorFactory
+import icfp16.io.FileUtils
+import icfp16.io.ProblemContainersParser
 import icfp16.solver.BestSolverEver
 import icfp16.solver.StupidSolver
 import icfp16.submitter.Submitter
@@ -13,7 +15,7 @@ class Farm {
   val estimatorQuality = 4
 
   val startingId = 1
-  val count = 10
+  val count = 100
 
   fun startSearchingBestSolutions() {
 
@@ -25,7 +27,7 @@ class Farm {
 
       // save image
       if (solutionContainer != null) {
-        val filePath = ParsedProblemsFileUtils().getFullPathForSolutionImage(problemId.toString())
+        val filePath = FileUtils().getFullPathForSolutionImage(problemId.toString())
 
         println("generating image: $filePath")
         Visualizer().visualizedAndSaveImage(solutionContainer.problemContainer.problem,
