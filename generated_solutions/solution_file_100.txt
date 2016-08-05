@@ -1,4 +1,5 @@
--------------------------- container --------------------
+-------------------------- resemblance --------------------
+real res =0.561475 estimated res =0.5614754098360656-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[-1/8,1/4, 1/8,1/4, 1/8,3/8, 1/4,1/2, 1/4,1, -1/4,1, -1/4,1/2, -1/8,3/8])], skeleton=[Edge(a=-1/4,1/2, b=-1/4,1), Edge(a=-1/8,1/4, b=-1/8,3/8), Edge(a=0,1/4, b=0,1), Edge(a=1/8,1/4, b=1/8,3/8), Edge(a=1/4,1/2, b=1/4,1), Edge(a=0,1/4, b=1/4,1/2), Edge(a=0,1/4, b=-1/4,1/2), Edge(a=-1/8,3/8, b=0,1/2), Edge(a=-1/8,1/4, b=1/8,1/4), Edge(a=1/8,3/8, b=0,1/2), Edge(a=-1/8,3/8, b=1/8,3/8), Edge(a=-1/4,1/2, b=1/4,1/2), Edge(a=-1/4,1, b=1/4,1)], rawString=1
 8
 -1/8,1/4

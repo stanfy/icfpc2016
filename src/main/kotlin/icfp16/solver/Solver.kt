@@ -80,7 +80,7 @@ class SequenceSolver: Solver {
 //        }
 //        shakes
 //      }
-      .map { it.to(CompoundEstimator().resemblanceOf(problem, it, quality = 4)) }
+      .map { it.to(BitmapEstimator().resemblanceOf(problem, it, quality = 4)) }
       .sortedBy { it.second }
       .last().first
 

@@ -67,6 +67,8 @@ class Farm {
 
     println("...saving text solution container to file $filePath")
     File(filePath).bufferedWriter().use { out ->
+      out.write("-------------------------- resemblance --------------------\n")
+      out.write("real res =" + container.realResemblance.toString() + " estimated res =" + container.estimatedResemblance.toString())
       out.write("-------------------------- container --------------------\n")
       out.write(container.toString())
       out.write("\n-------------------------- solution --------------------\n")
