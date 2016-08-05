@@ -10,13 +10,17 @@ class Farm {
   val submitter = Submitter()
   val estimatorQuality = 4
 
-  fun startSearchingBestSolutions(problemId: String) {
-    println("start searching best solution for problem: $problemId")
-    val solutionContainer = submitSolutionFor(problemId)
-    println("solutionContainer \n$solutionContainer")
+  fun startSearchingBestSolutions() {
+
+    for (problemId in 1..101) {
+      println("start searching best solution for problem: $problemId")
+      val solutionContainer = solveAndSubmitSolutionFor(problemId.toString())
+      println("solutionContainer \n$solutionContainer")
+    }
   }
 
-  fun submitSolutionFor(problemId: String): SolutionContainer? {
+
+  fun solveAndSubmitSolutionFor(problemId: String): SolutionContainer? {
     val problemContainer = ProblemContainersParser().generateProblemContainerForProblemId(problemId) ?: return null
 
     val solver = StupidSolver()
@@ -36,7 +40,7 @@ class Farm {
 
 
   fun submitSolution(problemId: String, solution: String): Double {
-    val submittedResponse = submitter.submitSolution(problemId = "1", solutionString = solution) ?: return 0.0
+    val submittedResponse = submitter.submitSolution(problemId = problemId, solutionString = solution) ?: return 0.0
     return submittedResponse.resemblance
   }
 }
