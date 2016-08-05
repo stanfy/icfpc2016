@@ -1,8 +1,10 @@
 package icfp16.solver
 
 import icfp16.api.parseProblem
+import icfp16.data.ProblemContainer
 import icfp16.data.centroid
 import icfp16.estimate.BitmapEstimator
+import icfp16.io.ProblemContainersParser
 import icfp16.visualizer.Visualizer
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
@@ -86,6 +88,21 @@ class SolverTest {
 //    Visualizer().visualizedAndSaveImage(problem, translationSolve,filePath = "./translator_19.png")
     assertThat(stupidSolve).isNotEqualTo(translationSolve)
     assertThat(translatorR).isGreaterThan(solve1R)
+  }
+
+
+  @Test
+  fun task6Solution() {
+
+    val problemString =
+        ProblemContainersParser().generateProblemContainerForProblemId("6")!!.problem.rawString
+
+    val problem = parseProblem(problemString)
+    val translationSolve = SequenceSolver().solve(problem)
+
+    val translatorR = BitmapEstimator().resemblanceOf(problem, translationSolve)
+
+    Visualizer().visualizedAndSaveImage(problem, translationSolve,filePath = "./translator_19.png")
   }
 
 }
