@@ -1,17 +1,17 @@
-package icfp16
+package icfp16.data
 
 import java.math.BigInteger
 
 data class Problem(
-    val poligons: List<Polygon>,
-    val skeleton: List<Edge>,
-    val rawString: String = ""
+  val poligons: List<Polygon>,
+  val skeleton: List<Edge>,
+  val rawString: String = ""
 )
 
 data class ProblemContainer (
-    val problem: Problem,
-    var problemId: String = "",
-    var problemHash: String = ""
+  val problem: Problem,
+  var problemId: String = "",
+  var problemHash: String = ""
 )
 
 
@@ -24,6 +24,17 @@ data class Fraction(val a: BigInteger, val b: BigInteger = BigInteger.ONE) {
   override fun toString(): String {
     return if (b == BigInteger.ONE) "$a" else "$a/$b"
   }
+
+  fun add(f: Fraction): Fraction {
+    val topPart = f.a.multiply(b) +  f.b.multiply(a)
+    val bottomPart = f.b.multiply(b)
+    val gcd = topPart.gcd(bottomPart)
+
+    val finalTopPart = topPart.div(gcd)
+    val finalBottomPart = bottomPart.div(gcd)
+    return Fraction(finalTopPart, finalBottomPart)
+  }
+
 }
 
 

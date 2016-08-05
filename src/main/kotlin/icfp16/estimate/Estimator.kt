@@ -1,6 +1,6 @@
 package icfp16.estimate
 
-import icfp16.Problem
+import icfp16.data.Problem
 import icfp16.state.State
 import java.awt.Color
 import java.awt.Polygon
