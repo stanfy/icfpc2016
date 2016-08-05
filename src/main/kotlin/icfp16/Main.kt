@@ -22,7 +22,10 @@ fun main(args: Array<String>) {
   println(rightMost)
 
   val api = createApi(NONE)
-  println(api.blob("f4b1a8567108144bae331340a57c68b85df487e0").execute().body())
+//  println(api.helloWorld().execute().body())
+//  println(api.getProblemSpec("f4b1a8567108144bae331340a57c68b85df487e0").execute().body())
+//  println(api.listSnapchots().execute().body())
+//  println(api.getContestStatus("89c4c40226f4efcdb8fc58c9f74339d768ef4737").execute().body())
 }
 
 
