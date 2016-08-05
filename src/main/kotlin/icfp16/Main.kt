@@ -11,6 +11,7 @@ import icfp16.data.Vertex
 import icfp16.farm.Farm
 import icfp16.io.ProblemContainersGrabber
 import icfp16.io.ProblemContainersParser
+import icfp16.state.PublicStates
 import icfp16.submitter.Submitter
 import okhttp3.logging.HttpLoggingInterceptor.Level.NONE
 import java.io.File
@@ -54,6 +55,9 @@ fun main(args: Array<String>) {
 
  // println(submitter.submitSolution(problemId = "1", solutionString = string))
 
+//  val sol = PublicStates.states.last().solution().trim()
+//  println(submitter.submitSolution(problemId = "47", solutionString = sol))
+
   // submit problem
   //println(submitter.submitProblemOnExactTime(string, "2016-08-06 00:00:00 UTC"))
 
@@ -61,5 +65,5 @@ fun main(args: Array<String>) {
   //val problemsGrabber = ProblemContainersGrabber().grabProblemsAndSaveToFiles()
 
   // farm
-  Farm().startSearchingBestSolutions()
+  //Farm().startSearchingBestSolutions()
 }

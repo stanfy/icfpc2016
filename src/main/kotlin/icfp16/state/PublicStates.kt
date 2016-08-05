@@ -233,8 +233,38 @@ class PublicStates {
               Vertex(Fraction(1, 2), Fraction(3, 4)), //
               Vertex(Fraction(1, 2), Fraction(0)), //
               Vertex(Fraction(3, 4), Fraction(0)), //
-              Vertex(Fraction(3, 4), Fraction(3, 4)) //
+            Vertex(Fraction(3, 4), Fraction(3, 4)) //
           )
+      ),
+
+
+      // two diagonals from 0.1 to center; 1.0 to center
+      State(
+        arrayOf(
+          Vertex(0, 0),   // 0
+          Vertex(Fraction(0), Fraction(1, 2)), // 1
+          Vertex(0, 1),   // 2
+          Vertex(Fraction(1, 2), Fraction(1)), // 3
+          Vertex(1, 1),   // 4
+          Vertex(Fraction(1), Fraction(1, 2)), // 5
+          Vertex(1, 0),   // 6
+          Vertex(Fraction(1, 2), Fraction(0))  // 7
+        ),
+        arrayOf(
+          Facet(listOf(0, 1, 3, 4, 5, 7)),
+          Facet(listOf(1, 2, 3)),
+          Facet(listOf(7, 5, 6))
+        ),
+        arrayOf(
+          Vertex(0, 0),   // 0
+          Vertex(Fraction(0), Fraction(1, 2)), // 1
+          Vertex(Fraction(1, 2), Fraction(1, 2)),   // 2
+          Vertex(Fraction(1, 2), Fraction(1)), // 3
+          Vertex(1, 1),   // 4
+          Vertex(Fraction(1), Fraction(1, 2)), // 5
+          Vertex(Fraction(1, 2), Fraction(1, 2)),   // 6
+          Vertex(Fraction(1, 2), Fraction(0))  // 7
+        )
       )
 
     )
