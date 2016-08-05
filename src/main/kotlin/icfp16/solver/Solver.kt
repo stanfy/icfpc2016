@@ -63,12 +63,13 @@ class SequenceSolver: Solver {
         val stateCentroid = centroid(s.finalPositions.asList())
         listOf<State>(
             s
-//            s.rotate(stateCentroid, Math.PI/2 * 15),
-//            s.rotate(stateCentroid, Math.PI/2 * 30),
-//            s.rotate(stateCentroid, Math.PI/2 * 45),
-//            s.rotate(stateCentroid, Math.PI/2 * 60),
-//            s.rotate(stateCentroid, Math.PI/2 * 75),
-//            s.rotate(stateCentroid, Math.PI/2 * 90)
+          //,
+          //s.rotate(stateCentroid, Math.PI/180 * 15),
+          //s.rotate(stateCentroid, Math.PI/180 * 30),
+          //s.rotate(stateCentroid, Math.PI/180 * 45)
+//            s.rotate(stateCentroid, Math.PI/180 * 60),
+//            s.rotate(stateCentroid, Math.PI/180 * 75),
+//            s.rotate(stateCentroid, Math.PI/180 * 90)
             )
       }
       .map { it.to(CompoundEstimator().resemblanceOf(problem, it, quality = 4)) }

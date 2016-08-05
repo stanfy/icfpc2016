@@ -34,7 +34,9 @@ fun Fraction.mul(that: Fraction): Fraction {
 }
 
 fun Fraction.mul(dbl: Double): Fraction {
-  val that = Fraction((dbl * 1000000000).toInt(), 1000000000)
+  val orig = (dbl * 1000000000000).toString()
+  val str = orig.filterIndexed { i, c -> i < orig.indexOf(".") }
+  val that = Fraction(BigInteger(str), BigInteger(1000000000000.toString()))
   val topPart = that.a.multiply(a)
   val bottomPart = that.b.multiply(b)
   return Fraction(topPart, bottomPart).simple()

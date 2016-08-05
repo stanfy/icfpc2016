@@ -13,6 +13,7 @@ import java.io.File
 class Farm {
   val submitter = Submitter()
   val estimatorQuality = 4
+  val shouldShowInvalidPics = true
 
   val startingId = 1
   val count = 100
@@ -27,7 +28,7 @@ class Farm {
       val solutionContainer = solveAndSubmitSolutionFor(problemId.toString())
 
       // save to files
-      if (solutionContainer != null && solutionContainer.realResemblance != -1.0) {
+      if (solutionContainer != null && (shouldShowInvalidPics || solutionContainer.realResemblance != -1.0)) {
         saveSolutionContainerToFile(solutionContainer)
         saveSolutionImageToFile(solutionContainer)
       }
