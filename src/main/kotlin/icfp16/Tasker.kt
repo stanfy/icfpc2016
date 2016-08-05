@@ -146,6 +146,56 @@ val tasks = arrayOf(
                 Vertex(1, 0)
             )
         )
+    ),
+
+    // Task 3
+    Pair(
+        Problem(
+            listOf(
+                Polygon(
+                    listOf(
+                        Vertex(Fraction(1, 2), Fraction(0)),
+                        Vertex(Fraction(1, 2), Fraction(1, 2)),
+                        Vertex(Fraction(22619537, 77227930), Fraction(54608393, 77227930)),
+                        Vertex(Fraction(54608393, 77227930), Fraction(54608393, 77227930)),
+                        Vertex(Fraction(1), Fraction(0))
+                    )
+                )
+            ),
+            emptyList()
+        ),
+        State(
+            arrayOf(
+                Vertex(0, 0),
+                Vertex(0, 1),
+                Vertex(Fraction(54608393, 77227930), Fraction(54608393, 77227930)),
+                Vertex(1, 1),
+                Vertex(1, 0),
+                Vertex(Fraction(1, 2), Fraction(1, 2)),
+                Vertex(Fraction(1, 2), Fraction(0)),
+                Vertex(Fraction(0), Fraction(1, 2))
+            ),
+            arrayOf(
+                Facet(listOf(0, 5, 7)),
+                Facet(listOf(7, 5, 1)),
+                Facet(listOf(5, 2, 1)),
+                Facet(listOf(2, 3, 1)),
+                Facet(listOf(4, 3, 2)),
+                Facet(listOf(4, 2, 5)),
+                Facet(listOf(4, 5, 6)),
+                Facet(listOf(6, 5, 0))
+            ),
+            arrayOf(
+                Vertex(1, 0),
+                Vertex(1, 0),
+                Vertex(Fraction(54608393, 77227930), Fraction(54608393, 77227930)),
+                Vertex(Fraction(22619537, 77227930), Fraction(54608393, 77227930)),
+                Vertex(1, 0),
+                Vertex(Fraction(1, 2), Fraction(1, 2)),
+                Vertex(Fraction(1, 2), Fraction(0)),
+                Vertex(Fraction(1, 2), Fraction(0))
+            )
+        )
     )
 )
 
