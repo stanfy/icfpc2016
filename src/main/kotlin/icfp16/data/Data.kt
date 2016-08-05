@@ -1,5 +1,6 @@
 package icfp16.data
 
+import icfp16.state.State
 import java.math.BigInteger
 
 data class Problem(
@@ -16,7 +17,7 @@ data class ProblemContainer (
 
 data class SolutionContainer (
   val problemContainer: ProblemContainer,
-  val solution: String,
+  val state: State,
   val realResemblance: Double,
   val estimatedResemblance: Double
 )
