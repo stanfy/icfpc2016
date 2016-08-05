@@ -136,3 +136,32 @@ fun centroid(vertices: List<Vertex>): Vertex {
     original.add(next)
   }.div(vertices.size)
 }
+
+fun massCentroid(vertices: List<Vertex>): Vertex {
+
+  // http://stackoverflow.com/questions/5271583/center-of-gravity-of-a-polygon
+  var sum = Fraction(0, 1)
+  var cx = Fraction(0, 1)
+  var cy = Fraction(0, 1)
+  vertices.forEachIndexed { index, vertex ->
+    if (index != vertices.lastIndex) {
+      val nextVertex = vertices[index + 1]
+      sum.add(vertex.x.mul(nextVertex.y).sub(nextVertex.x.mul(vertex.y)))
+      cx.add(
+          (vertex.x.add(nextVertex.x))
+              .mul(vertex.x.mul(nextVertex.y).sub(nextVertex.x.mul(vertex.y)))
+      )
+      cy.add(
+          (vertex.y.add(nextVertex.y))
+              .mul(vertex.x.mul(nextVertex.y).sub(nextVertex.x.mul(vertex.y)))
+      )
+    }
+  }
+  var area = sum.div(2)
+
+  cx = cx.div(6).divFrac(area)
+  cy = cy.div(6).divFrac(area)
+
+
+  return Vertex(cx, cy)
+}
