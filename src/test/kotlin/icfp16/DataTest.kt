@@ -107,4 +107,17 @@ class DataTest {
     assertThat(Vertex(Fraction(1,7), Fraction(1,3)).div(5)).isEqualTo(Vertex(Fraction(1, 35), Fraction(1, 15)))
   }
 
+  @Test
+  fun vertexReflect(){
+    assertThat(Vertex(0, 0).reflect(Edge(Vertex(0,1), Vertex(1,0)))).isEqualTo(Vertex(1,1))
+    assertThat(Vertex(1, 1).reflect(Edge(Vertex(0,1), Vertex(1,0)))).isEqualTo(Vertex(0,0))
+    assertThat(Vertex(1, 1).reflect(Edge(Vertex(1,0), Vertex(0,1)))).isEqualTo(Vertex(0,0))
+    assertThat(Vertex(1, 1).reflect(Edge(Vertex(2,0), Vertex(0,2)))).isEqualTo(Vertex(1,1))
+    assertThat(Vertex(2, 2).reflect(Edge(Vertex(0,0), Vertex(0,2)))).isEqualTo(Vertex(-2,2))
+    assertThat(Vertex(2, 2).reflect(Edge(Vertex(0,0), Vertex(0,7)))).isEqualTo(Vertex(-2,2))
+    assertThat(Vertex(1, 2).reflect(Edge(Vertex(0,4), Vertex(4,0)))).isEqualTo(Vertex(2,3))
+    assertThat(Vertex(5, 2).reflect(Edge(Vertex(3,0), Vertex(3,3)))).isEqualTo(Vertex(1,2))
+   // assertThat(Vertex(2, 1).reflect(Edge(Vertex(1,0), Vertex(1,1)))).isEqualTo(Vertex(0,1))
+    //assertThat(Vertex(2, 1).reflect(Edge(Vertex(1,0), Vertex(1,1)))).isEqualTo(Vertex(0,1))
+  }
 }
