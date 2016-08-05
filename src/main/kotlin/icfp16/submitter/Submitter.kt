@@ -9,12 +9,13 @@ import okhttp3.logging.HttpLoggingInterceptor
 class Submitter {
 
 
-    fun submitSolution(problemId: String, solutionString: String):
-            SolutionSubmission? {
+  fun submitSolution(problemId: String, solutionString: String):
+    SolutionSubmission? {
 
-        val api = createApi(HttpLoggingInterceptor.Level.NONE)
-        val result: SolutionSubmission? = api.submitSolution(problemId = "1", problemSolution = SolutionSpec(solutionString)).execute().body()
-        return result
-    }
+    val api = createApi(HttpLoggingInterceptor.Level.BODY)
+    val result: SolutionSubmission? = api.submitSolution(problemId = problemId,
+      problemSolution = SolutionSpec(solutionString)).execute().body()
+    return result
+  }
 
 }

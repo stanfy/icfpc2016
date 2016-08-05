@@ -58,5 +58,5 @@ fun main(args: Array<String>) {
   //val problemsGrabber = ProblemsGrabber().grabProblemsAndSaveToFiles("parsed_problems")
 
   // farm
-  Farm().startSearchingBestSolutions("1")
+  Farm().startSearchingBestSolutions()
 }

@@ -38,6 +38,6 @@ class BestSolverEver: Solver {
         .map { it.solve(problem) }
         .map { it.to(BitmapEstimator().resemblanceOf(problem, it, quality = 4)) }
     val sorted = states.sortedBy { it.second }
-    return sorted.first().first
+    return sorted.last().first
   }
 }
