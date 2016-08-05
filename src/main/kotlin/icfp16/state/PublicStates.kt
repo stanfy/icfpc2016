@@ -89,8 +89,10 @@ class PublicStates {
           Vertex(Fraction(1, 3), Fraction(1, 3)),
           Vertex(Fraction(1, 3), Fraction(1))
         )
-      ),
+      )
 
+      // trapezium from icfpc sample
+      /*
       State(vertexes = arrayOf(
           Vertex(Fraction(0), Fraction(0)),
           Vertex(Fraction(1), Fraction(0)),
@@ -116,6 +118,7 @@ class PublicStates {
               Vertex(Fraction(0), Fraction(1, 2))
           )
       )
+      */
 
       /*,
 
