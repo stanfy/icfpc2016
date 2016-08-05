@@ -3,8 +3,6 @@ package icfp16.folder
 import icfp16.data.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import org.assertj.core.api.*;
-
 
 class SimpleFolderTest {
 
@@ -34,11 +32,15 @@ class SimpleFolderTest {
     val edge6 = Edge(Vertex(3, 1), Vertex(4, 0))
     assertThat(edge5.cross(edge6)).isEqualTo(null)
 
+    val edge7 = Edge(Vertex(0, 1), Vertex(4, 1))
+    val edge8 = Edge(Vertex(2, 2), Vertex(0, 0))
+    val res = edge7.cross(edge8)
+    assertThat(res).isEqualTo(Vertex(1,1))
+
   }
 
   @Test
   fun polygonFoldWithoutCross() {
-
 
     val edge = Edge(Vertex(0, 2), Vertex(1, 3))
     val res = poly.fold(edge)
@@ -55,7 +57,15 @@ class SimpleFolderTest {
     val res = poly.fold(edge)
     assert(res.count() == 2)
 
-    //assertThat(res[0].vertices.count() == 4)
-    //assertThat(res[0].edges().count() == 4)
+  }
+
+  @Test
+  fun splitEdgesTest(){
+    val triangle = Polygon(arrayListOf(Vertex(0,0), Vertex(4,0), Vertex(2,2)))
+    var triangleCutter = Edge(Vertex(0,1), Vertex(4,1))
+    val res = splitEdges(triangle, triangleCutter)
+    val splitPoly = res.first
+    val edgesOnLine = res.second
+    assertThat(edgesOnLine.count()).isEqualTo(2)
   }
 }

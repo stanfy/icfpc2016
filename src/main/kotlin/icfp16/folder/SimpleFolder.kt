@@ -89,39 +89,31 @@ fun splitEdges(polygon: Polygon, cuttingEdge: Edge) : Pair<MutableList<PolyEdge>
     else
       if (edgeStartSide != edgeEndSide && edgeEndSide != LineSide.ON)
       {
-        cuttingEdge.cross(it)
+        val crossPoint = cuttingEdge.cross(it)
+        if(crossPoint != null)
+        {
+          splitPoly.add(PolyEdge(crossPoint, LineSide.ON))
+          edgesOnLine.add(splitPoly.last())
+        }
       }
 
-    //      QPointF ip;
-    //      auto res = edge.intersect(line, &ip);
-    //      assert(res != QLineF::NoIntersection);
-    //      SplitPoly.push_back(PolyEdge{ip, LineSide::On});
-    //      EdgesOnLine.push_back(&SplitPoly.back());
-    //    }
-
    }
-//  for (int i=0; i<poly.count(); i++)
-//  {
-//    const QLineF edge(poly[i], poly[(i+1)%poly.count()]);
-//    const LineSide edgeStartSide = GetSideOfLine(line, edge.p1());
-//    const LineSide edgeEndSide = GetSideOfLine(line, edge.p2());
-//    SplitPoly.push_back(PolyEdge{poly[i], edgeStartSide});
-//
+  val length = splitPoly.count() - 1
 
-//  }
-//
 //  // connect doubly linked list, except
 //  // first->prev and last->next
-//  for (auto iter=SplitPoly.begin(); iter!=std::prev(SplitPoly.end()); iter++)
-//  {
-//    auto nextIter = std::next(iter);
-//    iter->Next = &(*nextIter);
-//    nextIter->Prev = &(*iter);
-//  }
-//
+  splitPoly.forEachIndexed { i, polyEdge ->
+      if(i < length){
+        splitPoly[i].Next = splitPoly[i+1]
+        splitPoly[i+1].Prev = splitPoly[i]
+      }
+    }
+
 //  // connect first->prev and last->next
-//  SplitPoly.back().Next = &SplitPoly.front();
-//  SplitPoly.front().Prev = &SplitPoly.back();
+
+  splitPoly.last().Next = splitPoly.first()
+  splitPoly.first().Prev = splitPoly.last()
+
   return  Pair(splitPoly, edgesOnLine)
 }
 
