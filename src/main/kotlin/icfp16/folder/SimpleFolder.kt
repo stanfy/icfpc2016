@@ -46,8 +46,83 @@ fun Edge.middle(): Vertex {
   return Vertex(midx, midy)
 }
 
+fun Edge.cross(that:Edge) : Vertex?{
+  val crossPoint = Line(this).interection(Line(that))
+  if(crossPoint != null) {
+    val crossed = crossPoint.withinBoundary(this)
+
+    if (crossed) {
+      return crossPoint
+    }
+  }
+  return null
+}
+
 enum class LineSide {
   LEFT, RIGHT, ON
+}
+
+data class PolyEdge (val vertex: Vertex, val lineSide: LineSide)
+{
+  var Next : PolyEdge = this       // next polygon in linked list
+  var Prev : PolyEdge = this       // previous polygon in linked list
+  var DistOnLine : Fraction = Fraction(1, 2*3*5*7*13*19)      // distance relative to first point on split line
+
+  var Visited : Boolean = false    // for collecting split polygons
+}
+
+fun splitEdges(polygon: Polygon, cuttingEdge: Edge) : Pair<MutableList<PolyEdge>,MutableList<PolyEdge>>{
+
+  val splitPoly:MutableList<PolyEdge> = arrayListOf()
+  val edgesOnLine:MutableList<PolyEdge> = arrayListOf()
+
+
+  val edges = polygon.edges()
+  edges.forEach {
+    val edgeStartSide = it.a.sideOf(cuttingEdge)
+    val edgeEndSide = it.b.sideOf(cuttingEdge)
+    splitPoly.add(PolyEdge(it.a, edgeStartSide))
+
+    if(edgeStartSide == LineSide.ON){
+      edgesOnLine.add(splitPoly.last())
+    }
+    else
+      if (edgeStartSide != edgeEndSide && edgeEndSide != LineSide.ON)
+      {
+        cuttingEdge.cross(it)
+      }
+
+    //      QPointF ip;
+    //      auto res = edge.intersect(line, &ip);
+    //      assert(res != QLineF::NoIntersection);
+    //      SplitPoly.push_back(PolyEdge{ip, LineSide::On});
+    //      EdgesOnLine.push_back(&SplitPoly.back());
+    //    }
+
+   }
+//  for (int i=0; i<poly.count(); i++)
+//  {
+//    const QLineF edge(poly[i], poly[(i+1)%poly.count()]);
+//    const LineSide edgeStartSide = GetSideOfLine(line, edge.p1());
+//    const LineSide edgeEndSide = GetSideOfLine(line, edge.p2());
+//    SplitPoly.push_back(PolyEdge{poly[i], edgeStartSide});
+//
+
+//  }
+//
+//  // connect doubly linked list, except
+//  // first->prev and last->next
+//  for (auto iter=SplitPoly.begin(); iter!=std::prev(SplitPoly.end()); iter++)
+//  {
+//    auto nextIter = std::next(iter);
+//    iter->Next = &(*nextIter);
+//    nextIter->Prev = &(*iter);
+//  }
+//
+//  // connect first->prev and last->next
+//  SplitPoly.back().Next = &SplitPoly.front();
+//  SplitPoly.front().Prev = &SplitPoly.back();
+  return  Pair(splitPoly, edgesOnLine)
 }
 
 fun Vertex.sideOf(edge: Edge) : LineSide {
@@ -72,29 +147,6 @@ fun Vertex.sideOf(edge: Edge) : LineSide {
   }
 }
 
-fun Edge.crossPoint(that: Edge): Vertex {
-
-//        if (a.x.equals(that.a.x))   // вертикаль
-//        {
-//            val y = a.y + ((that.a.Y - p1.Y) * (p3.X - p1.X)) / (p2.X - p1.X);
-//
-//            if (y > Math.Max(p3.Y, p4.Y) || y < Math.Min(p3.Y, p4.Y) || y > Math.Max(p1.Y, p2.Y) || y < Math.Min(p1.Y, p2.Y))   // если за пределами отрезков
-//                return new Point(0, 0);
-//            else
-//            return new Point(p3.X, (int)y);
-//        }
-//        else            // горизонталь
-//        {
-//            double x = p1.X + ((p2.X - p1.X) * (p3.Y - p1.Y)) / (p2.Y - p1.Y);
-//            if (x > Math.Max(p3.X, p4.X) || x < Math.Min(p3.X, p4.X) || x > Math.Max(p1.X, p2.X) || x < Math.Min(p1.X, p2.X))   // если за пределами отрезков
-//                return new Point(0, 0);
-//            else
-//            return new Point((int)x, p3.Y);
-//        }
-  return that.a
-}
-
-
 data class Line(val edge: Edge) {
 
   fun interection(line: Line): Vertex? {
@@ -116,14 +168,5 @@ data class Line(val edge: Edge) {
     return Vertex(x, y)
   }
 
-//  // Fraction(edge.b.y.sub(edge.a.y), edge.b.x.sub(edge.a.x))
-//  var b: Fraction = null!!// = edge.b.x //Fraction(edge.a.y.sub(k.mul(edge.a.x)))
-//
-//  fun perp(): Line {
-//
-//    val m = edge.a
-//
-//    return this
-//  }
-
 }
+
