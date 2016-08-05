@@ -15,13 +15,13 @@ class Farm {
   val estimatorQuality = 4
   val shouldShowInvalidPics = false
 
-  val startingId = 1
-  val count = 100
+  val startingId = 9
+  val count = 2
 
   fun startSearchingBestSolutions() {
 
     for (problemId in startingId..(startingId + count)) {
-      Thread.sleep(1000) // <--- api
+      //Thread.sleep(1000) // <--- api
 
       println("---------------------------------")
       println("start searching best solution for problem: $problemId")
