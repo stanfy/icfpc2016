@@ -15,6 +15,15 @@ interface Estimator {
   fun resemblanceOf(task: Problem, state: State, quality: Int = 1) : Double
 }
 
+
+class EstimatorFactory {
+
+  fun bestEstimatorEver(): Estimator {
+    return BitmapEstimator()
+  }
+}
+
+
 class BitmapEstimator : Estimator {
   val BITMAP_STEP = 1000
 
