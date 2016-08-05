@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <style>
+      canvas {
+        width: 500px;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <textarea rows="50" cols="30" id="input"></textarea>
+    <canvas width="800" height="800" id="canvas"></canvas>
+
+    <script>
+      var scale = 20;
+      var ox = 300, oy = 500;
+      var w = 800, h = 800;
+
+      $('#input').change(function() {
+        var canvas = $('#canvas').get(0);
+        var ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        var text = $('#input').val();
+        var lines = text.split('\n');
+        var n = 0;
+        var polygons = parseInt(lines[0]);
+        n++;
+        console.log('start for ' + polygons + ' p');
+
+        ctx.strokeStyle = 'black';
+        ctx.beginPath();
+        ctx.moveTo(ox, 0);
+        ctx.lineTo(ox, h);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(0, oy);
+        ctx.lineTo(w, oy);
+        ctx.stroke();
+
+        for (var p = 0; p < polygons; p++) {
+          var numberOfPoints = parseInt(lines[n++]);
+
+          ctx.beginPath();
+          var line = lines[n++].split(',')
+          var x = parseInt(line[0]), y = parseInt(line[1]);
+          var x1 = ox + x * scale, y1 = oy - y * scale;
+          ctx.moveTo(x1, y1);
+          for (var i = 1; i < numberOfPoints; i++) {
+            var line = lines[n++].split(',')
+            var x = parseInt(line[0]), y = parseInt(line[1]);
+            var xx = ox + x * scale, yy = oy - y * scale;
+            ctx.lineTo(xx, yy);
+          }
+          ctx.lineTo(x1, y1);
+          ctx.strokeStyle = 'green';
+          ctx.stroke();
+
+          var skCount = parseInt(lines[n++]);
+          for (var i = 0; i < skCount; i++) {
+            var coords = lines[n++].split(' ');
+            var x1 = parseInt(coords[0].split(',')[0]);
+            var y1 = parseInt(coords[0].split(',')[1]);
+            var x2 = parseInt(coords[1].split(',')[0]);
+            var y2 = parseInt(coords[1].split(',')[1]);
+            console.log(x1 + ', ' + y1 + ' - ' + x2 + ',' + y2);
+            ctx.beginPath();
+            ctx.strokeStyle = 'blue';
+            ctx.moveTo(ox + x1 * scale, oy - y1 * scale);
+            ctx.lineTo(ox + x2 * scale, oy - y2 * scale);
+            ctx.stroke();
+          }
+        }
+
+      });
+    </script>
+
+  </body>
+</html>
