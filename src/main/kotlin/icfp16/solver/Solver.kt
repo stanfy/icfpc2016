@@ -48,12 +48,12 @@ class SequenceSolver: Solver {
   override fun solve(problem: Problem): State {
 
     val vertexes = problem.poligons.flatMap { it.vertices }
-    val problemCentroid = massCentroid(vertexes)
+    val problemCentroid = centroid(vertexes)
 
     val bestState = PublicStates.states
       .map { s ->
         // translate S many times
-        val stateCentroid = massCentroid(s.finalPositions.asList())
+        val stateCentroid = centroid(s.finalPositions.asList())
         val translation = problemCentroid.sub(stateCentroid)
         val translatedState = s.translate(translation)
         translatedState
@@ -62,12 +62,13 @@ class SequenceSolver: Solver {
         // list of all transformations of state
         val stateCentroid = massCentroid(s.finalPositions.asList())
         listOf<State>(
-            s,
-            s.rotate(stateCentroid, Math.PI/2 * 15),
-            s.rotate(stateCentroid, Math.PI/2 * 30),
-            s.rotate(stateCentroid, Math.PI/2 * 45),
-            s.rotate(stateCentroid, Math.PI/2 * 60),
-            s.rotate(stateCentroid, Math.PI/2 * 75),
+            s
+                ,
+//            s.rotate(stateCentroid, Math.PI/2 * 15),
+//            s.rotate(stateCentroid, Math.PI/2 * 30),
+//            s.rotate(stateCentroid, Math.PI/2 * 45),
+//            s.rotate(stateCentroid, Math.PI/2 * 60),
+//            s.rotate(stateCentroid, Math.PI/2 * 75),
             s.rotate(stateCentroid, Math.PI/2 * 90)
             )
       }

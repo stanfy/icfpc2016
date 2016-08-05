@@ -61,5 +61,5 @@ fun main(args: Array<String>) {
   //val problemsGrabber = ProblemContainersGrabber().grabProblemsAndSaveToFiles()
 
   // farm
-  //Farm().startSearchingBestSolutions()
+  Farm().startSearchingBestSolutions()
 }
