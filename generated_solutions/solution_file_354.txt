@@ -1,0 +1,14 @@
+-------------------------- raw solution --------------------
+4
+          0,0
+          0,1
+          1,1
+          1,0
+          1
+          4 0 1 2 3
+          0,0
+          0,1
+          1,1
+          1,0
+-------------------------- problem spec --------------------
+ProblemSubmission(ok=true, problem_id=354, publish_time=1470441600, solution_spec_hash=d141fbf7b43b4107082cc072a852db13ca920605, solution_size=31, problem_spec_hash=44f66105e0136a9ea0a4fa4b055c35318ed8840f, problem_size=39)
