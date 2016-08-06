@@ -66,6 +66,86 @@ class ComplexStateTest {
   }
 
   @Test
+  fun triangle2() {
+    val state = ComplexState()
+        .fold(Edge(
+            Vertex(Fraction(1), Fraction(1)),
+            Vertex(Fraction(0), Fraction(0))
+        ))
+        .fold(Edge(Vertex(Fraction(0), Fraction(1)),
+            Vertex(Fraction(0), Fraction(0))
+        ))
+
+    assertThat(state.isValid()).isEqualTo(true)
+
+  }
+
+  @Test
+  fun triangle3() {
+    val state = ComplexState()
+        .fold(Edge(
+            Vertex(Fraction(1), Fraction(1)),
+            Vertex(Fraction(0), Fraction(0))
+        ))
+        .fold(Edge(Vertex(Fraction(1), Fraction(1)),
+            Vertex(Fraction(-1), Fraction(-1))
+        ))
+
+    assertThat(state.isValid()).isEqualTo(true)
+  }
+
+  @Test
+  fun triangle4() {
+    val state = ComplexState()
+        .fold(Edge(
+            Vertex(Fraction(1), Fraction(1)),
+            Vertex(Fraction(0), Fraction(0))
+        ))
+        .fold(Edge(Vertex(Fraction(2), Fraction(1)),
+            Vertex(Fraction(-1), Fraction(-2))
+        ))
+
+    assertThat(state.isValid()).isEqualTo(true)
+  }
+
+
+  @Test
+  fun bublo() {
+    val state =
+        ComplexState()
+            .fold(Edge(
+                Vertex(Fraction(1, 2), Fraction(1, 1)),
+                Vertex(Fraction(1, 2), Fraction(0, 1))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(1, 4), Fraction(1, 1)),
+                Vertex(Fraction(1, 4), Fraction(0, 1))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(1, 8), Fraction(1, 1)),
+                Vertex(Fraction(1, 8), Fraction(0, 1))
+            ))
+
+            .fold(Edge(
+                Vertex(Fraction(1, 8), Fraction(2, 8)),
+                Vertex(Fraction(0, 8), Fraction(1, 8))
+            ))
+
+            .fold(Edge(
+                Vertex(Fraction(0, 8), Fraction(4, 8)),
+                Vertex(Fraction(1, 8), Fraction(3, 8))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(0, 8), Fraction(5, 8)),
+                Vertex(Fraction(1, 8), Fraction(6, 8))
+            ))
+            .appendName("Okolobubl")
+
+    assertThat(state.isValid()).isEqualTo(true)
+  }
+
+
+  @Test
   @Ignore
   fun rotate90() {
     // TBD:
