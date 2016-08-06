@@ -7,6 +7,7 @@ import icfp16.estimate.BitmapEstimator
 import icfp16.io.ProblemContainersParser
 import icfp16.visualizer.Visualizer
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.Timeout
@@ -98,6 +99,7 @@ class SolverTest {
 
 
   @Test
+  @Ignore
   fun task6Solution() {
 
     val problemString =
