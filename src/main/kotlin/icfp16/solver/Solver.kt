@@ -6,6 +6,7 @@ import icfp16.estimate.CompoundEstimator
 import icfp16.state.IState
 import icfp16.state.PublicStates
 import icfp16.state.State
+import icfp16.state.solution
 
 interface Solver {
   fun solve(problem: Problem): IState
@@ -98,6 +99,7 @@ class SequenceSolver: Solver {
             s.rotate(stateCentroid, Triple(72, 65, 97))
         )
       }
+      .filter { it.solution().length <= 5000 }
       .map { it.to(BitmapEstimator().resemblanceOf(problem, it, quality = 2)) }
       .sortedBy { it.second }
       .last().first
