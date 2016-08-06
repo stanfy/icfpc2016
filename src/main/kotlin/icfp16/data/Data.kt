@@ -80,7 +80,7 @@ data class Polygon(val vertices: List<Vertex>) {
   // edges() + pair of first and last vertexes
   fun fullEdges(): List<Edge> {
     val res = ArrayList(edges())
-    res.add(Edge(vertices[vertices.size - 1], vertices[0]))
+    //res.add(Edge(vertices[vertices.size - 1], vertices[0]))
     return res
   }
 
