@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 
-LOG_PATH="/Users/zen/Desktop/farm_log.txt"
+if [ $# -ge 1 ]; then 
+LOG_PATH="$1"
+else
+LOG_PATH="/tmp/icfp_get_new_problem_log.txt"
+fi
 
 echo >> $LOG_PATH
 date >> $LOG_PATH
 
 echo "Pulling repo.." >> $LOG_PATH
-git pull >> $LOG_PATH || exit 1
+git pull >> $LOG_PATH 2>&1 || exit 1
+echo "Pulled"
 
 ./gradlew run -PrunArgs=grab >> $LOG_PATH || exit 1
 

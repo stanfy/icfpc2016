@@ -1,90 +1,65 @@
 package icfp16.state
 
-import icfp16.data.ComlexPolygon
+import icfp16.data.ComplexPolygon
+import icfp16.data.Edge
 import icfp16.data.Fraction
 import icfp16.data.Vertex
 
 
 class PaulPublicStates {
   companion object {
-    val states: Array<IState> = arrayOf(
-        ComplexState(
-            arrayOf(
-                ComlexPolygon(
-                    initial = listOf(
-                        v(f(0, 1), f(0, 1)),
-                        v(f(0, 1), f(1, 1)),
-                        v(f(1, 5), f(1, 1)),
-                        v(f(1, 5), f(0, 1))
-                    ),
-                    final = listOf(
-                        v(f(0, 1), f(0, 1)),
-                        v(f(0, 1), f(1, 1)),
-                        v(f(1, 5), f(1, 1)),
-                        v(f(1, 5), f(0, 1))
-                    )
-                ),
+    fun lineSolution(folds: Int): IState {
+      val polygons = (0..folds - 1).map { idx ->
+        ComplexPolygon(
 
-                ComlexPolygon(
-                    initial = listOf(
-                        v(f(1, 5), f(0, 1)),
-                        v(f(1, 5), f(1, 1)),
-                        v(f(2, 5), f(1, 1)),
-                        v(f(2, 5), f(0, 1))
-                    ),
-                    final = listOf(
-                        v(f(1, 5), f(0, 1)),
-                        v(f(1, 5), f(1, 1)),
-                        v(f(0, 5), f(1, 1)),
-                        v(f(0, 5), f(0, 1))
-                    )
-                ),
-
-                ComlexPolygon(
-                    initial = listOf(
-                        v(f(2, 5), f(0, 1)),
-                        v(f(2, 5), f(1, 1)),
-                        v(f(3, 5), f(1, 1)),
-                        v(f(3, 5), f(0, 1))
-                    ),
-                    final = listOf(
-                        v(f(0, 5), f(0, 1)),
-                        v(f(0, 5), f(1, 1)),
-                        v(f(1, 5), f(1, 1)),
-                        v(f(1, 5), f(0, 1))
-                    )
-                ),
-
-                ComlexPolygon(
-                    initial = listOf(
-                        v(f(3, 5), f(0, 1)),
-                        v(f(3, 5), f(1, 1)),
-                        v(f(4, 5), f(1, 1)),
-                        v(f(4, 5), f(0, 1))
-                    ),
-                    final = listOf(
-                        v(f(1, 5), f(0, 1)),
-                        v(f(1, 5), f(1, 1)),
-                        v(f(0, 5), f(1, 1)),
-                        v(f(0, 5), f(0, 1))
-                    )
-                ),
-                ComlexPolygon(
-                    initial = listOf(
-                        v(f(4, 5), f(0, 1)),
-                        v(f(4, 5), f(1, 1)),
-                        v(f(5, 5), f(1, 1)),
-                        v(f(5, 5), f(0, 1))
-                    ),
-                    final = listOf(
-                        v(f(0, 5), f(0, 1)),
-                        v(f(0, 5), f(1, 1)),
-                        v(f(1, 5), f(1, 1)),
-                        v(f(1, 5), f(0, 1))
-                    )
-                )
+            initial = listOf(
+                v(f(idx, folds), f(0, 1)),
+                v(f(idx, folds), f(1, 1)),
+                v(f(idx + 1, folds), f(1, 1)),
+                v(f(idx + 1, folds), f(0, 1))
+            ),
+            final = listOf(
+                v(f(idx % 2, folds), f(0, 1)),
+                v(f(idx % 2, folds), f(1, 1)),
+                v(f((idx + 1) % 2, folds), f(1, 1)),
+                v(f((idx + 1) % 2, folds), f(0, 1))
             )
         )
+      }
+      return ComplexState(polygons.toTypedArray())
+          .appendName("Line(x$folds}")
+    }
+
+    val states: Array<IState> = arrayOf(
+        lineSolution(5),
+        lineSolution(6),
+        lineSolution(7),
+        lineSolution(8),
+        lineSolution(9),
+        lineSolution(11),
+        lineSolution(12),
+        lineSolution(13),
+        lineSolution(14),
+        lineSolution(15),
+        lineSolution(16),
+        lineSolution(32),
+        ComplexState()
+            .fold(Edge(
+                Vertex(Fraction(0), Fraction(1, 3)),
+                Vertex(Fraction(1), Fraction(2, 3))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(0), Fraction(1, 4)),
+                Vertex(Fraction(1), Fraction(2, 4))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(0), Fraction(1, 5)),
+                Vertex(Fraction(1), Fraction(7, 10))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(1,4), Fraction(0)),
+                Vertex(Fraction(1,5), Fraction(1))
+            ))
     )
   }
 }
