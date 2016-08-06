@@ -80,6 +80,10 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
     return State(vertexes = this.vertexes, facets = this.facets, finalPositions = translatedPositions)
   }
 
+  override fun split(splitterEdge: Edge): IState {
+    throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
   companion object {
     fun initialSquare(): State {
       return State(vertexes = arrayOf(

@@ -1,5 +1,6 @@
 package icfp16.state
 
+import icfp16.data.Edge
 import icfp16.data.Facet
 import icfp16.data.Polygon
 import icfp16.data.Vertex
@@ -12,6 +13,7 @@ interface IState {
   fun rotate90(around: Vertex): IState
   fun rotate270(around: Vertex): IState
   fun rotate(around: Vertex, pihagorean: Triple<Int,Int,Int>): IState
+  fun split(splitterEdge: Edge) : IState
 
   fun finalPositions(): Array<Vertex>
   fun vertexes(): Array<Vertex>
@@ -19,6 +21,7 @@ interface IState {
 
   fun poligons(): Array<Polygon>
   fun initialPoligons(): Array<Polygon>
+
 
 }
 

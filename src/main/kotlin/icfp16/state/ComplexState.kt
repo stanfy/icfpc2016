@@ -1,6 +1,7 @@
 package icfp16.state
 
 import icfp16.data.*
+import icfp16.folder.splitSimple
 
 data class ComplexState(val polys: Array<ComlexPolygon>) : IState {
 
@@ -62,6 +63,28 @@ data class ComplexState(val polys: Array<ComlexPolygon>) : IState {
 
   override fun rotate270(around: Vertex): IState {
     return rotate90(around).rotate90(around).rotate90(around)
+  }
+
+  override fun split(splitterEdge: Edge): IState {
+    val res : MutableList<ComlexPolygon> = arrayListOf()
+
+    polys.forEach {
+      val splitted = it.final.splitSimple(splitterEdge)
+     // splitted.forEach { res.add(ComlexPolygon(it, it)) }
+    }
+
+    return ComplexState(polys.map {
+
+//      ComlexPolygon(initial = it.initial,
+//          final = Polygon(it.final.vertices.map {
+//            val relativePoint = it.sub(around)
+//            val related = Vertex(relativePoint.y.neg(), relativePoint.x)
+//            val final = related.add(around)
+//            final
+//          })
+//      )
+      it
+    }.toTypedArray())
   }
 
   /**

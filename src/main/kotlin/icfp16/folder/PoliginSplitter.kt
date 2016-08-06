@@ -1,9 +1,6 @@
 package icfp16.folder
 
-import icfp16.data.Edge
-import icfp16.data.Fraction
-import icfp16.data.Polygon
-import icfp16.data.Vertex
+import icfp16.data.*
 import java.util.*
 
 
@@ -52,7 +49,13 @@ fun Polygon.toLindedEdges() : List<LinkedEdge> {
     return res
 }
 
-fun Polygon.splitSimple(foldingEdge: Edge): List<Polygon> {
+data class SplitResult(val polygons: List<Polygon>,
+                       val firstCrossVertex : Vertex?, val secondCrossVertex : Vertex?,
+                       val firstCrossEdge : Edge?, val secondCrossEdge: Edge?){
+  val splitted = polygons.count() == 2
+}
+
+fun Polygon.splitSimple(foldingEdge: Edge): SplitResult {
   val linked = this.toLindedEdges()
   val isCrossed = linked.any { edge -> edge.crosses(foldingEdge) != null}
   if(isCrossed)
@@ -66,7 +69,7 @@ fun Polygon.splitSimple(foldingEdge: Edge): List<Polygon> {
       currentEdge = currentEdge.Next
     }
     val firstCrossPoint = currentEdge.crosses(foldingEdge)
-
+    val firstCrossEdge = currentEdge;
     if(firstCrossPoint != null) {
 
       val firstPolygonPoints: MutableList<Vertex> = arrayListOf()
@@ -83,6 +86,7 @@ fun Polygon.splitSimple(foldingEdge: Edge): List<Polygon> {
       }
 
       val secondCrossPoint = currentEdge.crosses(foldingEdge)
+      val secondCrossEdge = currentEdge
       if(secondCrossPoint != null){
         firstPolygonPoints.add(secondCrossPoint)
 
@@ -97,11 +101,26 @@ fun Polygon.splitSimple(foldingEdge: Edge): List<Polygon> {
         secondPolygonPoints.add(firstCrossPoint)
       }
 
-      return arrayListOf(Polygon(firstPolygonPoints), Polygon(secondPolygonPoints))
+      val resultList =arrayListOf(Polygon(firstPolygonPoints), Polygon(secondPolygonPoints))
+
+      return SplitResult(resultList,firstCrossPoint, secondCrossPoint,
+              Edge(firstCrossEdge.startVertex, firstCrossEdge.endVertex) ,Edge(secondCrossEdge.startVertex, secondCrossEdge.endVertex))
     }
   }
 
-  return arrayListOf(this)
+  return SplitResult(arrayListOf(this),null, null, null, null)
+}
+
+fun ComlexPolygon.splitSimple(foldingEdge: Edge): List<ComlexPolygon> {
+  val splitted = final.splitSimple(foldingEdge)
+  if(splitted.splitted)
+  {
+   return arrayListOf(this)
+  }else
+  {
+    //
+    return arrayListOf(this)
+  }
 }
 
 

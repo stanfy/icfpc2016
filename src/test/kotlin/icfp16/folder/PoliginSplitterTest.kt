@@ -27,11 +27,17 @@ class PoliginSplitterTest {
     val poly = Polygon(arrayListOf(Vertex(0, 0), Vertex(1, 0), Vertex(1, 1), Vertex(0, 1)))
     val edge = Edge(Vertex(Fraction(0), Fraction(1, 2)), Vertex(Fraction(1), Fraction(1, 2)))
     val res = poly.splitSimple(edge)
-    assertThat(res)
+    assertThat(res.polygons)
         .containsExactly(
             Polygon(arrayListOf(Vertex(Fraction(1), Fraction(1, 2)), Vertex(1, 1), Vertex(0, 1),Vertex(Fraction(0), Fraction(1, 2)))),
             Polygon(arrayListOf(Vertex(Fraction(0), Fraction(1, 2)),Vertex(0, 0), Vertex(1, 0),Vertex(Fraction(1), Fraction(1, 2))))
         )
+    assertThat(res.splitted).isEqualTo(true)
+    assertThat(res.firstCrossVertex).isEqualTo(Vertex(Fraction(1), Fraction(1, 2)))
+    assertThat(res.secondCrossVertex).isEqualTo(Vertex(Fraction(0), Fraction(1, 2)))
+    assertThat(res.firstCrossEdge).isEqualTo(Edge(Vertex(1,0), Vertex(1, 1)))
+    assertThat(res.secondCrossEdge).isEqualTo(Edge(Vertex(0,1), Vertex(0, 0)))
+
   }
 
   @Test
@@ -39,11 +45,16 @@ class PoliginSplitterTest {
     val poly = Polygon(arrayListOf(Vertex(0, 0), Vertex(2, 2), Vertex(4, 0)))
     val edge = Edge(Vertex(0,1), Vertex(4,1))
     val res = poly.splitSimple(edge)
-    assertThat(res)
+    assertThat(res.polygons)
         .containsExactly(
             Polygon(arrayListOf(Vertex(1,1), Vertex(2, 2), Vertex(3, 1))),
             Polygon(arrayListOf(Vertex(3,1), Vertex(4, 0), Vertex(0, 0), Vertex(1,1)))
         )
+    assertThat(res.splitted).isEqualTo(true)
+    assertThat(res.firstCrossVertex).isEqualTo(Vertex(1,1))
+    assertThat(res.secondCrossVertex).isEqualTo(Vertex(3,1))
+    assertThat(res.firstCrossEdge).isEqualTo(Edge(Vertex(0,0), Vertex(2, 2)))
+    assertThat(res.secondCrossEdge).isEqualTo(Edge(Vertex(2,2), Vertex(4, 0)))
   }
 
   @Test
@@ -51,10 +62,15 @@ class PoliginSplitterTest {
     val poly = Polygon(arrayListOf(Vertex(0, 0), Vertex(2, 2), Vertex(4, 0)))
     val edge = Edge(Vertex(0,5), Vertex(4,5))
     val res = poly.splitSimple(edge)
-    assertThat(res)
+    assertThat(res.polygons)
         .containsExactly(
             Polygon(arrayListOf(Vertex(0, 0), Vertex(2, 2), Vertex(4, 0)))
         )
+    assertThat(res.splitted).isEqualTo(false)
+    assertThat(res.firstCrossVertex).isEqualTo(null)
+    assertThat(res.secondCrossVertex).isEqualTo(null)
+    assertThat(res.firstCrossEdge).isEqualTo(null)
+    assertThat(res.secondCrossEdge).isEqualTo(null)
   }
 
 
