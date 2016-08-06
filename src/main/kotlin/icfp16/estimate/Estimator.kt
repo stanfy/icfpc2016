@@ -64,4 +64,26 @@ class BitmapEstimator : Estimator {
 //    System.out.println("Resemlense ${resemblence}")
     return resemblance
   }
+
+  fun bestPossibleResemblanceOf(task: Problem, state: IState, quality: Int): Double {
+    val stateImage = Visualizer().visualizationOf(Problem(emptyList(), emptyList(), ""), state, quality)
+    val problemImage = Visualizer().visualizationOf(task, State(emptyArray(), emptyArray(), arrayOf(task.poligons.first().vertices.first())), quality)
+
+    var statePixels = 0
+    var problemPixels = 0
+    for (x in 0..stateImage.width - 1)  {
+      for (y in 0..stateImage.height - 1) {
+        if (stateImage.getRGB(x, y) != 0) statePixels++
+        if (problemImage.getRGB(x, y) != 0) problemPixels++
+      }
+    }
+
+    val maxCovered = if (problemPixels > statePixels) (statePixels) else (problemPixels)
+    val allSquare = problemPixels + statePixels - maxCovered
+
+
+    val bestPossibleResemblance = maxCovered / allSquare.toDouble()
+    return bestPossibleResemblance
+  }
+
 }
