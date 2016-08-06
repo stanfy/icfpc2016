@@ -49,6 +49,20 @@ fun main(args: Array<String>) {
     return
   }
 
+  if (args.size > 0 && "automate-doit".equals(args[0])) {
+    val t = Thread({
+      while (true) {
+        val p = Runtime.getRuntime().exec("./get-and-solve-new-problems.sh")
+        println("${Instant.now()} ${p.waitFor()}")
+        Thread.sleep(TimeUnit.MINUTES.toMillis(45))
+      }
+    }, "grab and solve automator")
+    t.start()
+    t.join()
+    return
+  }
+
+
   println("Starting the farm")
   if (args.size == 0) {
     Farm().startSearchingBestSolutions()
