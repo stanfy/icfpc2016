@@ -45,7 +45,7 @@ fun main(args: Array<String>) {
         val p = Runtime.getRuntime().exec(script)
         println("${Instant.now()} ${p.waitFor()}")
 
-        val delay = if (shouldSolve) 40 else 15
+        val delay: Long = if (shouldSolve) 40 else 15
         Thread.sleep(TimeUnit.MINUTES.toMillis(delay))
       }
     }, "grab automator")
