@@ -20,7 +20,7 @@ class PublicStates {
             facets = arrayOf(
                 Facet(listOf(0, 1, 2, 3))
             )
-        ),
+        ).appendName("Square"),
 
         // task 0
         State(
@@ -49,7 +49,7 @@ class PublicStates {
                 Vertex(Fraction(0), Fraction(1, 3)),
                 Vertex(Fraction(1), Fraction(1, 3))
             )
-        ),
+        ).appendName("Task 0"),
 
         // task 1
         State(
@@ -89,7 +89,7 @@ class PublicStates {
                 Vertex(Fraction(1, 3), Fraction(1, 3)),
                 Vertex(Fraction(1, 3), Fraction(1))
             )
-        ),
+        ).appendName("Task 1"),
 
         // task 2
         State(
@@ -114,7 +114,7 @@ class PublicStates {
                 Vertex(Fraction(1, 3), Fraction(2, 3)),
                 Vertex(Fraction(1, 3), Fraction(0))
             )
-        ),
+        ).appendName("Task 2"),
 
         // task 3
         State(
@@ -144,7 +144,7 @@ class PublicStates {
                 Vertex(Fraction(0), Fraction(1)),
                 Vertex(Fraction(0), Fraction(2, 3))
             )
-        )
+        ).appendName("Task 3")
 
         // square folded in 4 parts
         ,
@@ -177,7 +177,7 @@ class PublicStates {
                 Vertex(Fraction(1, 2), Fraction(0)),
                 Vertex(Fraction(1, 2), Fraction(1, 2)) //
             )
-        ),
+        ).appendName("Square F4Parts"),
 
         // triangle
         State(
@@ -197,7 +197,7 @@ class PublicStates {
                 Vertex(1, 1),
                 Vertex(1, 0)
             )
-        ),
+        ).appendName("Triangle"),
 
         // 3/4 of square
 
@@ -230,7 +230,7 @@ class PublicStates {
                 Vertex(Fraction(3, 4), Fraction(0)), //
                 Vertex(Fraction(3, 4), Fraction(3, 4)) //
             )
-        ),
+        ).appendName("3/4 square"),
 
         // two diagonals from 0.1 to center; 1.0 to center
         State(
@@ -259,7 +259,7 @@ class PublicStates {
                 Vertex(Fraction(1, 2), Fraction(1, 2)), // 6
                 Vertex(Fraction(1, 2), Fraction(0))  // 7
             )
-        ),
+        ).appendName("Two diagonals 0,1"),
 
 
         //        // very small square
@@ -357,7 +357,7 @@ class PublicStates {
                   vertexes[0] // 24
               )
           )
-        }()
+        }().appendName("Very small square")
 
         ,
         // kolbaska-diagonal
@@ -388,7 +388,7 @@ class PublicStates {
                 Vertex(Fraction(1, 2), Fraction(1, 2)), // 6
                 Vertex(Fraction(1, 2), Fraction(0))  // 7
             )
-        ),
+        ).appendName("Kolbaska diagonal"),
 
         // cool last figure
         State(
@@ -412,7 +412,7 @@ class PublicStates {
                 Vertex(Fraction(1), Fraction(1, 4)), //4
                 Vertex(Fraction(1), Fraction(0)) //5
             )
-        )
+        ).appendName("Cool last phigure")
     )
 
     val states: Array<IState> = localState.plus(PaulPublicStates.states)
