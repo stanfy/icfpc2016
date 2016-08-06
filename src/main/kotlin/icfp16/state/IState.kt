@@ -1,5 +1,6 @@
 package icfp16.state
 
+import com.sun.org.apache.xpath.internal.operations.Bool
 import icfp16.data.*
 
 interface IState {
@@ -46,4 +47,11 @@ fun IState.solution(): String {
 fun IState.appendName(s: String): IState {
   this.name = this.name + " -> " + s
   return this
+}
+
+
+fun IState.isValid():Boolean {
+  return this.facets().all { f ->
+    f.indexes.distinct().size == f.indexes.size
+  }
 }
