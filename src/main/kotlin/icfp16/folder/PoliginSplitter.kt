@@ -169,16 +169,34 @@ fun ComlexPolygon.splitSimple(foldingEdge: Edge): List<ComlexPolygon> {
   val splitted = final.splitSimple(foldingEdge)
   if(splitted.count() > 1)
   {
-    var firstNewFinal = splitted.first()
+    val split1 = splitted.first()
+    val split2= splitted.last()
+    val final1 = split1.polygon
+    val final2 = split2.polygon
+
     //now we need to find index of splitted edge
-    if(firstNewFinal.crossEdge != null && firstNewFinal.crossVertex != null) {
+    val edge1 = initial.edges()[split1.edgeIndex]
+    val edge2 = initial.edges()[split2.edgeIndex]
+    val xr1 = split1.xRatio
+    val yr1 = split1.yRatio
+    val xr2 = split2.xRatio
+    val yr2 = split2.yRatio
 
-      val firstInitialEdge = initial.edges()[firstNewFinal.edgeIndex]
+    if(xr1 != null && yr1 != null && xr2 != null && yr2 != null) {
+        val vertex1 = edge1.findSplitPoint(ratioX = xr1, ratioY = yr1)
+        val vertex2 = edge2.findSplitPoint(ratioX = xr2, ratioY = yr2)
+        // now we need split initial poly
+        val splittedInit = initial.splitSimple(Edge(vertex1, vertex2))
+        if(splittedInit.count() >1)
+        {
+          val initial1 = splittedInit.first().polygon
+          val initial2 = splittedInit.last().polygon
+          val res1 = ComlexPolygon(initial = initial1, final = final1)
+          val res2 = ComlexPolygon(initial = initial2, final = final2)
 
-
+          return arrayListOf(res1, res2)
+        }
     }
-
-
     return arrayListOf(this)
   }else
   {

@@ -49,6 +49,20 @@ class PoliginSplitterTest {
 
   }
 
+
+  @Test
+  fun edgeSplitTest(){
+
+    val ratioX = Fraction(3,4)
+    val ratioY = Fraction(3,4)
+
+    assertThat(Edge(Vertex(0,0), Vertex(8,8)).findSplitPoint(ratioX, ratioY)).isEqualTo(Vertex(6,6))
+    assertThat(Edge(Vertex(0,0), Vertex(0,8)).findSplitPoint(ratioX, ratioY)).isEqualTo(Vertex(0,6))
+    assertThat(Edge(Vertex(0,0), Vertex(8,4)).findSplitPoint(ratioX, ratioY)).isEqualTo(Vertex(6,3))
+    assertThat(Edge(Vertex(1,1), Vertex(9,5)).findSplitPoint(ratioX, ratioY)).isEqualTo(Vertex(7,4))
+    assertThat(Edge(Vertex(0,0), Vertex(-8,-8)).findSplitPoint(ratioX, ratioY)).isEqualTo(Vertex(-6,-6))
+
+  }
   @Test
   fun ploygonSplitTriangleSimple() {
     val poly = Polygon(arrayListOf(Vertex(0, 0), Vertex(2, 2), Vertex(4, 0)))
