@@ -5,6 +5,7 @@ import icfp16.api.createApi
 import icfp16.data.*
 import icfp16.state.PYTHAGOREAN_TRIPLES
 import icfp16.state.State
+import icfp16.visualizer.Visualizer
 import okhttp3.logging.HttpLoggingInterceptor
 import java.io.File
 import java.time.Instant
@@ -349,7 +350,7 @@ fun main(args: Array<String>) {
 
   var i = 0
 
-  while (ts.isBefore(START_TIME.plus(72, ChronoUnit.HOURS))) {
+  while (ts.isBefore(START_TIME.plus(48, ChronoUnit.HOURS))) {
     val data = tasks[i % tasks.size]
     i++
 
@@ -365,9 +366,9 @@ fun main(args: Array<String>) {
         .rotate(pivot, pythagoreanTriple)
         .translate(translation)
 
-//    val visualizer = Visualizer()
-//    visualizer.visualizedAndSaveImage(problem, solution, 1, "our_problems/task$i.png")
-//    visualizer.visualizedAndSaveFolds(solution, 1, "our_problems/task${i}folds.png")
+    val visualizer = Visualizer()
+    visualizer.visualizedAndSaveImage(problem, solution, 1, "our_problems/task$i.png")
+    visualizer.visualizedAndSaveFolds(solution, 1, "our_problems/task${i}folds.png")
     val text = solution.solution()
     File(dir, "task$i.txt").writeText(text)
 
