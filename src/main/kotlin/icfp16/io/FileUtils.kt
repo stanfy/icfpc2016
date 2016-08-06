@@ -1,5 +1,7 @@
 package icfp16.io
 
+import java.io.File
+
 class FileUtils {
 
   // ------------ problems ------------
@@ -18,6 +20,18 @@ class FileUtils {
 
   fun getFullPathForProblemName(problemNameFile: String): String {
     return getDefaultProblemFileFolder()+"/"+problemNameFile
+  }
+
+  fun getProblemIdByFilePath(filePath: String): String? {
+    val file = File(filePath)
+    val problemName = file.nameWithoutExtension
+    return getProblemIdByFileNameWithoutExtension(problemName)
+  }
+
+  fun getProblemIdByFileNameWithoutExtension(problemName: String): String? {
+    val regex = "problem_(\\d*)(.*)".toRegex()
+    val problemId = regex.matchEntire(problemName)?.groups?.get(1)?.value
+    return problemId
   }
 
 
