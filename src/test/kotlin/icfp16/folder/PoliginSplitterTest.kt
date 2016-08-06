@@ -123,4 +123,40 @@ class PoliginSplitterTest {
     assert(res.count() == 2)
 
   }
+
+  @Test
+  fun duplicatesProblem() {
+    val polygon = Polygon(arrayListOf(
+        Vertex(Fraction(7, 8), Fraction(3, 8)),
+        Vertex(Fraction(7, 8), Fraction(1)),
+        Vertex(Fraction(1), Fraction(1)),
+        Vertex(Fraction(1), Fraction(1, 2))
+    ))
+    val res = polygon.splitSimple(Edge(Vertex(Fraction(7, 8), Fraction(1)), Vertex(Fraction(1), Fraction(1, 2))))
+    res.forEach {
+      assertThat(it.polygon.vertices.distinct()).isEqualTo(it.polygon.vertices)
+    }
+  }
+
+  @Test
+  fun noCross() {
+    val polygon = Polygon(
+        arrayListOf( Vertex(Fraction(-1,4), Fraction(3,8)),
+            Vertex(Fraction(1,8), Fraction(3,8)),
+            Vertex(Fraction(0), Fraction(1,2)),
+            Vertex(Fraction(-1,8), Fraction(1,2))))
+    val edge = Edge(
+        Vertex(Fraction(0,8), Fraction(1, 8)),
+        Vertex(Fraction(1,8), Fraction(0, 8)))
+
+    val res = polygon.splitSimple(edge)
+    assertThat(res).hasSize(1)
+    assertThat(res[0].polygon).isEqualTo(polygon)
+  }
+
+  @Test
+  fun crossProblem() {
+    val le = LinkedEdge(Vertex(Fraction(-1, 4), Fraction(3, 8)), Vertex(Fraction(1, 8), Fraction(3, 8)))
+    assertThat(le.crosses(Edge(Vertex(Fraction(0), Fraction(1, 8)), Vertex(Fraction(1, 8), Fraction(0))))).isNull()
+  }
 }
