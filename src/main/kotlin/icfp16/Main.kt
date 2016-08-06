@@ -39,9 +39,14 @@ fun main(args: Array<String>) {
   if (args.size > 0 && "automate".equals(args[0])) {
     val t = Thread({
       while (true) {
-        val p = Runtime.getRuntime().exec("./get-new-problems.sh")
+        val shouldSolve = args.size > 1 && args[1] == "doit"
+        val script = if (shouldSolve) "./get-and-solve-new-problems.sh" else "./get-new-problems.sh"
+
+        val p = Runtime.getRuntime().exec(script)
         println("${Instant.now()} ${p.waitFor()}")
-        Thread.sleep(TimeUnit.MINUTES.toMillis(15))
+
+        val delay = if (shouldSolve) 40 else 15
+        Thread.sleep(TimeUnit.MINUTES.toMillis(delay))
       }
     }, "grab automator")
     t.start()
