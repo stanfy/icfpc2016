@@ -35,8 +35,8 @@ class SolverTest {
         """.trimMargin()
 
     val problem = parseProblem(problemString)
-    val stupidSolve = StupidSolver().solve(problem)
-    val translationSolve = TranslatorSolver().solve(problem)
+    val stupidSolve = StupidSolver().solve(problem, "")
+    val translationSolve = TranslatorSolver().solve(problem, "")
 
     val solve1R = BitmapEstimator().resemblanceOf(problem, stupidSolve)
     val translatorR = BitmapEstimator().resemblanceOf(problem, translationSolve)
@@ -85,8 +85,8 @@ class SolverTest {
         """.trimMargin()
 
     val problem = parseProblem(problemString)
-    val stupidSolve = StupidSolver().solve(problem)
-    val translationSolve = TranslatorSolver().solve(problem)
+    val stupidSolve = StupidSolver().solve(problem, "")
+    val translationSolve = TranslatorSolver().solve(problem, "")
 
     val solve1R = BitmapEstimator().resemblanceOf(problem, stupidSolve)
     val translatorR = BitmapEstimator().resemblanceOf(problem, translationSolve)
@@ -106,7 +106,7 @@ class SolverTest {
         ProblemContainersParser().generateProblemContainerForProblemId("6")!!.problem.rawString
 
     val problem = parseProblem(problemString)
-    val translationSolve = SequenceSolver().solve(problem)
+    val translationSolve = SequenceSolver().solve(problem, "")
 
     val translatorR = BitmapEstimator().resemblanceOf(problem, translationSolve)
 

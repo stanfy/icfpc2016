@@ -31,10 +31,10 @@ class Wrapper: Solver {
     return State.initialSquare()
   }
 
-  override fun solve(problem: Problem): IState {
+  override fun solve(problem: Problem, problemId: String): IState? {
     // Position our square.
-    val startState = BetterTranslatorSolver().solve(problem)
-    return solveWithWrapping(problem, startState)
+    val startState = BetterTranslatorSolver().solve(problem, problemId)
+    return solveWithWrapping(problem, startState!!)
   }
 
 }

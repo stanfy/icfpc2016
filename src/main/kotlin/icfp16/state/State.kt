@@ -45,7 +45,7 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
       it.add(vartex)
     }.toTypedArray()
     return State(vertexes = this.vertexes, facets = this.facets, finalPositions = translatedPositions)
-        .appendName("Translate ($vartex)")
+        .appendName(this.name).appendName("Translate ($vartex)")
   }
 
   /**
@@ -59,7 +59,7 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
       final
     }.toTypedArray()
     return State(vertexes = this.vertexes, facets = this.facets, finalPositions = translatedPositions)
-        .appendName("Rotate 90")
+      .appendName(this.name).appendName("Rotate 90")
   }
 
   /**
@@ -84,7 +84,7 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
       it.rotate(around, pihagorean)
     }.toTypedArray()
     return State(vertexes = this.vertexes, facets = this.facets, finalPositions = translatedPositions)
-        .appendName("Rotate($around, <$pihagorean>)")
+        .appendName(this.name).appendName("Rotate($around, <$pihagorean>)")
   }
 
   override fun toString(): String {

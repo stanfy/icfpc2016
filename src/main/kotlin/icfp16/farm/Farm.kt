@@ -16,11 +16,15 @@ class Farm {
   val estimatorQuality = 4
   val shouldShowInvalidPics = false
 
-  val startingId = 2200
-  val count = 1
+  val startingId = 8
+  val count = 0
 
 
   fun listOfProblemFileNamesToSolve(solveOnlyNotSolved: Boolean = false): List<String> {
+
+    // 1. filter ".ignore"
+    // 2. get solution file
+    // 3. if solveOnlyNotSolved --> check that solution file doesn't exist yet
 
     val list = File(FileUtils().getDefaultProblemFileFolder()).listFiles()
       .map { it.name }
@@ -42,16 +46,16 @@ class Farm {
   fun startSearchingBestSolutions(full: Boolean = false, solveOnlyNotSolved: Boolean = false,
                                   problemNames: List<String> = emptyList()) {
 
-    // 1. filter ".ignore"
-    // 2. get solution file
-    // 3. if solveOnlyNotSolved --> check that solution file doesn't exist yet
     val problemList = if (full) {
       listOfProblemFileNamesToSolve(solveOnlyNotSolved)
+
     } else if (problemNames.size == 0) {
       (startingId..(startingId + count)).map { "problem_$it.txt" }
+
     } else {
       problemNames.filter { !it.endsWith(".ignore") }
     }
+
 
     if (problemList.count() == 0) {
       println("Stopping the farm: nothing to solve")
@@ -81,23 +85,27 @@ class Farm {
 
         // ignore for future
         if (solutionContainer.realResemblance == 1.0) {
-          println("this problem has realResemblance == 1.0, ignore it for later")
-          val ignoreFileName = FileUtils().getFullPathForProblemName(problemFileName) + ".ignore"
-          File(FileUtils().getFullPathForProblemName(problemFileName)).renameTo(File(ignoreFileName))
+          addIgnoreToFileName(problemFileName)
         }
       }
-
     }
   }
 
 
   fun solveAndSubmitSolutionFor(problemFileName: String): SolutionContainer? {
+
     val filePath = FileUtils().getFullPathForProblemName(problemFileName)
     val problemContainer = ProblemContainersParser()
         .generateProblemContainerFromFile(filePath) ?: return null
 
     val solver = BestSolverEver()
-    val state = solver.solve(problem = problemContainer.problem)
+    val state = solver.solve(problem = problemContainer.problem, problemId = problemContainer.problemId)
+
+    if (state == null) {
+      println(" -------- nononon, we won't submit it, because we already did")
+      return null
+    }
+
     val solution = state.solution()
     println("--------- submitted solution ----\n$solution")
 
@@ -113,12 +121,14 @@ class Farm {
   }
 
 
-  fun submitSolution(problemId: String, solution: String): Double {
+  // ---------- private
+
+  private fun submitSolution(problemId: String, solution: String): Double {
     val submittedResponse = submitter.submitSolution(problemId = problemId, solutionString = solution) ?: return -1.0
     return submittedResponse.resemblance
   }
 
-  fun saveSolutionContainerToFile(container: SolutionContainer) {
+  private fun saveSolutionContainerToFile(container: SolutionContainer) {
     val filePath = FileUtils().getFullPathForSolutionFile(container.problemContainer.problemId)
 
     println("...saving text solution container to file $filePath")
@@ -140,11 +150,19 @@ class Farm {
 //    assert(outputObj.equals(container))
   }
 
-  fun saveSolutionImageToFile(container: SolutionContainer) {
+
+  private fun saveSolutionImageToFile(container: SolutionContainer) {
     val filePath = FileUtils().getFullPathForSolutionImage(container.problemContainer.problemId)
 
     println("...generating image: $filePath")
     Visualizer().visualizedAndSaveImage(container.problemContainer.problem,
       container.state, 1, filePath, resemblance =  container.realResemblance)
   }
+
+  private fun addIgnoreToFileName(problemFileName: String) {
+    println("this problem has realResemblance == 1.0, ignore it for later")
+    val ignoreFileName = FileUtils().getFullPathForProblemName(problemFileName) + ".ignore"
+    File(FileUtils().getFullPathForProblemName(problemFileName)).renameTo(File(ignoreFileName))
+  }
+
 }
