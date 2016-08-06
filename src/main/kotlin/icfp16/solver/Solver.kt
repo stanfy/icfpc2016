@@ -59,12 +59,12 @@ class SequenceSolver: Solver {
     val cachedNames = cache.readCachedSolutionNamesFor(problemId = problemId)
 
     val allStates = PublicStates.states
-      .map { s ->
+      .flatMap  { s ->
         // sub S many times
         val stateCentroid = centroid(s.finalPositions().asList())
         val translation = problemCentroid.sub(stateCentroid)
         val translatedState = s.translate(translation)
-        translatedState
+        listOf(translatedState, s)
       }
       .flatMap { s ->
         // list of all transformations of state
