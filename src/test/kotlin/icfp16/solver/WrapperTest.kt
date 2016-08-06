@@ -61,7 +61,7 @@ class WrapperTest {
 
     val estimator = BitmapEstimator()
     assertThat(estimator.resemblanceOf(problem, state, 4))
-        .isGreaterThan(estimator.resemblanceOf(problem, anotherState, 4))
+        .isGreaterThan(estimator.resemblanceOf(problem, anotherState!!, 4))
   }
 
 }
