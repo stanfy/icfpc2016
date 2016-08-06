@@ -132,6 +132,6 @@ class Farm {
 
     println("...generating image: $filePath")
     Visualizer().visualizedAndSaveImage(container.problemContainer.problem,
-      container.state, 1, filePath)
+      container.state, 1, filePath, resemblance =  container.realResemblance)
   }
 }

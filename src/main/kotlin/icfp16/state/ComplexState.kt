@@ -15,14 +15,16 @@ data class ComplexState(val polys: Array<ComlexPolygon>) : IState {
   // It's actually original positions
   override fun vertexes(): Array<Vertex> {
     // TODO: This is a bit complex but
-    return polys.flatMap { it.initial.vertices }.distinct().toTypedArray()
+    return polys.flatMap { it.initial.vertices }.distinctBy{ it }.toTypedArray()
   }
 
   override fun facets(): Array<Facet> {
     // TODO: This is bit comutational hard
     val vert = vertexes()
     return polys.map {
-      Facet(it.initial.vertices.map { vert.indexOf(it) })
+      Facet(it.initial.vertices.map { vertx ->
+        vert.indexOf(vertx)
+      })
     }.toTypedArray()
   }
 
@@ -35,17 +37,17 @@ data class ComplexState(val polys: Array<ComlexPolygon>) : IState {
   }
 
   override fun translate(vartex: Vertex): IState {
-    return ComplexState(polys.map {
-      ComlexPolygon(initial = it.initial,
-          final = it.final.add(vartex)
+    return ComplexState(polys.map { poly ->
+      ComlexPolygon(initial = poly.initial,
+          final = poly.final.add(vartex)
       )
     }.toTypedArray())
   }
 
   override fun rotate90(around: Vertex): IState {
-    return ComplexState(polys.map {
-      ComlexPolygon(initial = it.initial,
-          final = Polygon(it.final.vertices.map {
+    return ComplexState(polys.map { poly ->
+      ComlexPolygon(initial = poly.initial,
+          final = Polygon(poly.final.vertices.map {
             val relativePoint = it.sub(around)
             val related = Vertex(relativePoint.y.neg(), relativePoint.x)
             val final = related.add(around)
@@ -69,9 +71,9 @@ data class ComplexState(val polys: Array<ComlexPolygon>) : IState {
    * Piphagorean triple is a triple with wich we can make pryamougolniy triangle
    */
   override fun rotate(around: Vertex, pihagorean: Triple<Int, Int, Int>): IState {
-    return ComplexState(polys.map {
-      ComlexPolygon(initial = it.initial,
-          final = Polygon(it.final.vertices.map {
+    return ComplexState(polys.map { poly ->
+      ComlexPolygon(initial = poly.initial,
+          final = Polygon(poly.final.vertices.map {
             it.rotate(around, pihagorean)
           })
       )
