@@ -98,6 +98,12 @@ fun Polygon.splitSimple(foldingEdge: Edge): List<SplitResult> {
         firstPolygonPoints.add(secondCrossPoint)
 
         secondPolygonPoints.add(secondCrossPoint)
+
+        // In case if we have it on the edge of polys - we would better fo to tnext poly
+        if (currentEdge.endVertex == secondCrossPoint)  {
+          currentEdge = currentEdge.Next
+        }
+
         secondPolygonPoints.add(currentEdge.endVertex)
         currentEdge = currentEdge.Next
         while (currentEdge.crosses(foldingEdge) == null)

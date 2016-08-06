@@ -1,9 +1,6 @@
 package icfp16.state
 
-import icfp16.data.ComplexPolygon
-import icfp16.data.Facet
-import icfp16.data.Polygon
-import icfp16.data.Vertex
+import icfp16.data.*
 import org.junit.Test
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Ignore
@@ -54,6 +51,18 @@ class ComplexStateTest {
     assertThat(state.vertexes()).isEqualTo(tranlsated.vertexes())
     assertThat(state.facets()).isEqualTo(tranlsated.facets())
     assertThat(tranlsated.finalPositions()).isEqualTo(arrayOf(Vertex(6, 6), Vertex(6, 7), Vertex(7, 6)))
+  }
+
+  @Test
+  fun triangle() {
+    val state = ComplexState()
+        .fold(Edge(
+            Vertex(Fraction(1), Fraction(1)),
+            Vertex(Fraction(0), Fraction(0))
+        ))
+
+    assertThat(state.isValid()).isEqualTo(true)
+
   }
 
   @Test
