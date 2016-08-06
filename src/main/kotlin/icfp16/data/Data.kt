@@ -41,6 +41,9 @@ data class Fraction(val a: BigInteger, val b: BigInteger = BigInteger.ONE) {
 
 }
 
+fun f(a: Int, b: Int): Fraction {
+  return Fraction(a, b)
+}
 
 data class Vertex(val x: Fraction, val y: Fraction) {
   constructor(x: Int, y: Int = 1) : this(x = Fraction(x), y = Fraction(y))
@@ -58,6 +61,10 @@ data class Vertex(val x: Fraction, val y: Fraction) {
     return "$x,$y"
   }
 
+}
+
+fun v(x: Fraction, y: Fraction): Vertex {
+  return Vertex(x, y)
 }
 
 

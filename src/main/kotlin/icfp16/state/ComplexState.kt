@@ -46,6 +46,7 @@ data class ComplexState(val polys: Array<ComplexPolygon> = arrayOf(ComplexPolygo
           final = poly.final.add(vartex)
       )
     }.toTypedArray())
+        .appendName(this.name)
         .appendName("Translate ($vartex)")
   }
 
@@ -60,7 +61,8 @@ data class ComplexState(val polys: Array<ComplexPolygon> = arrayOf(ComplexPolygo
           })
       )
     }.toTypedArray())
-    .appendName("Rotate 90")
+        .appendName(this.name)
+        .appendName("Rotate 90")
   }
 
   override fun rotate180(around: Vertex): IState {
@@ -78,7 +80,8 @@ data class ComplexState(val polys: Array<ComplexPolygon> = arrayOf(ComplexPolygo
     return ComplexState(polys.flatMap { poly ->
       poly.foldSimple(foldingEdge)
     }.toTypedArray())
-    .appendName("Folded over $foldingEdge")
+        .appendName(this.name)
+        .appendName("Folded over $foldingEdge")
   }
 
   /**
@@ -93,6 +96,7 @@ data class ComplexState(val polys: Array<ComplexPolygon> = arrayOf(ComplexPolygo
           })
       )
     }.toTypedArray())
+        .appendName(this.name)
         .appendName("Rotate($around, <$pihagorean>)")
   }
 
