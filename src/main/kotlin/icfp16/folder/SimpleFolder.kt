@@ -262,7 +262,6 @@ fun splitPolygon(edgesOnLine: MutableList<PolyEdge>, splitPoly: MutableList<Poly
 
     // bridge source and destination
     if (srcEdge != null && dstEdge != null) {
-      // TODO: Do we pass correct arguments? What to do with a result?
       cyclesValid(createBridge(srcEdge, dstEdge, splitPoly))
 
       // is it a configuration in which a vertex
@@ -278,27 +277,42 @@ fun splitPolygon(edgesOnLine: MutableList<PolyEdge>, splitPoly: MutableList<Poly
 
     i++
   }
-  // TODO: What to return?
 }
 
-fun split(polygon: Polygon, by: Edge) {
-  val splitEdgesResult = splitEdges(polygon, by)
-  val splitPoly = splitEdgesResult.first
-  val edgesOnline = sortEdges(splitEdgesResult.second, by)
-  // TODO: What should it return? What should be passed to splitPolygon?
-  splitPolygon(edgesOnline, splitPoly)
+fun collectPollys(splitPoly: MutableList<PolyEdge>): List<Polygon> {
+  val resPolys = ArrayList<Polygon>()
+
+  for (e in splitPoly) {
+    if (!e.Visited) {
+      val polVertices = ArrayList<Vertex>()
+
+      var curEdge = e
+
+      do {
+        curEdge.Visited = true
+        polVertices.add(curEdge.vertex)
+        curEdge = curEdge.Next
+      } while (curEdge != e)
+
+      resPolys.add(Polygon(polVertices))
+    }
+  }
+
+  return resPolys
 }
 
 // reference documentation https://geidav.wordpress.com/2015/03/21/splitting-an-arbitrary-polygon-by-a-line/
 // reference implementation https://github.com/geidav/concave-poly-splitter/blob/master/polysplitter.cpp
-// TODO: translate function void PolySplitter::SplitPolygon() from cpp to kotlin  - see splitPolygon
-// TODO: translate function std::vector<QPolygonF> PolySplitter::Split(const QPolygonF &poly, const QLineF &line) from cpp to kotlin - see split
-// TODO: use PolySplitter::Split in Polygon.fold
+
+fun Polygon.split(by: Edge): List<Polygon> {
+  val splitEdgesResult = splitEdges(this, by)
+  val splitPoly = splitEdgesResult.first
+  val edgesOnline = sortEdges(splitEdgesResult.second, by)
+  splitPolygon(edgesOnline, splitPoly)
+  return collectPollys(splitPoly)
+}
 
 fun Polygon.fold(foldingEdge: Edge): List<Polygon> {
-
-//  val edges = this.edges()
-  var res: MutableList<Polygon> = arrayListOf()
 
   // !!! what should fold do
   // val splitted = splitPolygon(this)
@@ -306,9 +320,14 @@ fun Polygon.fold(foldingEdge: Edge): List<Polygon> {
   //   foreach(edge in polygon)
   //       yield edge.reflect(foldingEdge)
 
-
-
-
-  return res
-
+  return split(foldingEdge)
+    .map {
+      // TODO: Decide if we should reflect this polygon - fold needs a direction parameter.
+      val shouldReflect = false
+      if (shouldReflect) {
+        Polygon(it.vertices.map { it.reflect(foldingEdge) })
+      } else {
+        it
+      }
+    }
 }
