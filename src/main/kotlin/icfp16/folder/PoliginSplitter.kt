@@ -49,25 +49,30 @@ fun Polygon.toLindedEdges() : List<LinkedEdge> {
     return res
 }
 
-data class SplitResult(val polygons: List<Polygon>,
-                       val firstCrossVertex : Vertex?, val secondCrossVertex : Vertex?,
-                       val firstCrossEdge : Edge?, val secondCrossEdge: Edge?){
-  val splitted = polygons.count() == 2
+data class SplitResult(val polygon: Polygon,
+                       val splitted: Boolean,
+                       val crossVertex : Vertex?,
+                       val crossEdge : Edge?,
+                       val edgeIndex : Int = 0,
+                       val xRatio : Fraction?,
+                       val yRatio : Fraction?){
 }
 
-fun Polygon.splitSimple(foldingEdge: Edge): SplitResult {
+fun Polygon.splitSimple(foldingEdge: Edge): List<SplitResult> {
   val linked = this.toLindedEdges()
   val isCrossed = linked.any { edge -> edge.crosses(foldingEdge) != null}
   if(isCrossed)
   {
     // find first cross
+
     var currentEdge = linked.first()
 
     while (currentEdge.crosses(foldingEdge) == null)
     {
-
       currentEdge = currentEdge.Next
+
     }
+
     val firstCrossPoint = currentEdge.crosses(foldingEdge)
     val firstCrossEdge = currentEdge;
     if(firstCrossPoint != null) {
@@ -78,11 +83,13 @@ fun Polygon.splitSimple(foldingEdge: Edge): SplitResult {
       firstPolygonPoints.add(firstCrossPoint)
       firstPolygonPoints.add(currentEdge.endVertex)
 
+
       currentEdge = currentEdge.Next
       while (currentEdge.crosses(foldingEdge) == null)
       {
         firstPolygonPoints.add(currentEdge.endVertex)
         currentEdge = currentEdge.Next
+
       }
 
       val secondCrossPoint = currentEdge.crosses(foldingEdge)
@@ -99,26 +106,76 @@ fun Polygon.splitSimple(foldingEdge: Edge): SplitResult {
           currentEdge = currentEdge.Next
         }
         secondPolygonPoints.add(firstCrossPoint)
+        var firstEdge = Edge(firstCrossEdge.startVertex, firstCrossEdge.endVertex)
+
+
+        val firstIndex = edges().indexOf(firstEdge)
+
+        // (xc - x1)/ (x2 -x1)
+        var firstRatioX = Fraction(1)
+        val firstDx = firstEdge.b.x.sub(firstEdge.a.x)
+        if(!firstDx.isZero()){
+          firstRatioX = firstCrossPoint.x.sub(firstEdge.a.x).divFrac(firstDx)
+        }
+
+        // (yc - y1)/ (y2 -y1)
+        var firstRatioY = Fraction(1)
+        val firstDy = firstEdge.b.y.sub(firstEdge.a.y)
+        if(!firstDy.isZero()){
+          firstRatioY = firstCrossPoint.y.sub(firstEdge.a.y).divFrac(firstDy)
+        }
+
+
+        val firstSplitResult = SplitResult(Polygon(firstPolygonPoints), true, firstCrossPoint,
+            firstEdge, firstIndex, firstRatioX, firstRatioY)
+
+        var secondEdge = Edge(secondCrossEdge.startVertex, secondCrossEdge.endVertex)
+        val secondIndex = edges().indexOf(secondEdge)
+
+        var secondRatioX= Fraction(1)
+        val secondDx = secondEdge.b.x.sub(secondEdge.a.x)
+        if(!secondDx.isZero()){
+          secondRatioX = secondCrossPoint.x.sub(secondEdge.a.x).divFrac(secondDx)
+        }
+
+
+        var secondRatioY= Fraction(1)
+        val secondDy = secondEdge.b.y.sub(secondEdge.a.y)
+        if(!secondDy.isZero()){
+          secondRatioY = secondCrossPoint.y.sub(secondEdge.a.y).divFrac(secondDy)
+        }
+
+        val secondSplitResult = SplitResult(Polygon(secondPolygonPoints), true, secondCrossPoint,
+            secondEdge, secondIndex, secondRatioX, secondRatioY)
+
+        return arrayListOf(firstSplitResult, secondSplitResult)
+
       }
 
-      val resultList =arrayListOf(Polygon(firstPolygonPoints), Polygon(secondPolygonPoints))
 
-      return SplitResult(resultList,firstCrossPoint, secondCrossPoint,
-              Edge(firstCrossEdge.startVertex, firstCrossEdge.endVertex) ,Edge(secondCrossEdge.startVertex, secondCrossEdge.endVertex))
     }
   }
 
-  return SplitResult(arrayListOf(this),null, null, null, null)
+  return arrayListOf(SplitResult(this, false, null, null, 0, null, null))
 }
 
 fun ComlexPolygon.splitSimple(foldingEdge: Edge): List<ComlexPolygon> {
   val splitted = final.splitSimple(foldingEdge)
-  if(splitted.splitted)
+  if(splitted.count() > 1)
   {
-   return arrayListOf(this)
+    var firstNewFinal = splitted.first()
+    //now we need to find index of splitted edge
+    if(firstNewFinal.crossEdge != null && firstNewFinal.crossVertex != null) {
+
+      val firstInitialEdge = initial.edges()[firstNewFinal.edgeIndex]
+
+
+    }
+
+
+    return arrayListOf(this)
   }else
   {
-    //
     return arrayListOf(this)
   }
 }
