@@ -322,9 +322,9 @@ fun Polygon.fold(foldingEdge: Edge): List<Polygon> {
 
   return split(foldingEdge)
     .map {
-      // TODO: Decide if we should reflect this polygon - fold needs a direction parameter.
-      val shouldReflect = false
-      if (shouldReflect) {
+      val sideVertex = it.vertices.find { it.sideOf(foldingEdge) != LineSide.ON } ?:
+          throw IllegalStateException("WTF! Polygon must not be a line")
+      if (sideVertex.sideOf(foldingEdge) == LineSide.LEFT) {
         Polygon(it.vertices.map { it.reflect(foldingEdge) })
       } else {
         it
