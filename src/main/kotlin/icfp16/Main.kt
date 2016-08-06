@@ -66,19 +66,43 @@ fun main(args: Array<String>) {
   println("Starting the farm")
   if (args.size == 0) {
     Farm().startSearchingBestSolutions()
-  } else if ("doit".equals(args[0])) {
-    Farm().startSearchingBestSolutions(true)
+    return
+  }
+
+  var useFullList = false
+  var solveUnsolved = false
+  var threadsNum = 1
+
+  // parse args
+  for (arg in args) {
+    if (arg.equals("doit")) {
+      useFullList = true
+      continue
+    }
+    if (arg.equals("solveUnsolved")) {
+      solveUnsolved = true
+      continue
+    }
+
+    try {
+      threadsNum = Integer.parseInt(arg)
+    } catch (e: Exception) {
+      threadsNum = 1
+    }
+  }
+
+  if (threadsNum == 1) {
+    Farm().startSearchingBestSolutions(useFullList, solveUnsolved)
   } else {
-    val n = Integer.parseInt(args[0])
     val allFiles = File(FileUtils().getDefaultProblemFileFolder()).list()
-    val batchSize = allFiles.size / n
+    val batchSize = allFiles.size / threadsNum
     var index = 0
     val threads = ArrayList<Thread>()
     while (index < allFiles.size) {
       val problems = allFiles.toList().subList(index, Math.min(index + batchSize, allFiles.size))
       threads.add(Thread({
         println("Start thread for $problems")
-        Farm().startSearchingBestSolutions(false, problems)
+        Farm().startSearchingBestSolutions(false, solveUnsolved, problems)
       }))
       index += batchSize
     }
