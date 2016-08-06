@@ -15,7 +15,7 @@ if ! git diff-index --no-ext-diff --quiet HEAD --; then
 fi
 
 echo "=> Start solving.."
-./gradlew run -PrunArgs=doit || exit 1
+./gradlew run -PrunArgs=doit,solveUnsolved,4 || exit 1
 echo "=> Saving farmed solutions.."
 
 if ! git diff-index --no-ext-diff --quiet HEAD --; then
