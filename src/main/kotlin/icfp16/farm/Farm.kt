@@ -16,8 +16,8 @@ class Farm {
   val estimatorQuality = 4
   val shouldShowInvalidPics = false
 
-  val startingId = 857
-  val count = 200
+  val startingId = 11
+  val count = 100
 
 
   fun listOfProblemFileNamesToSolve(solveOnlyNotSolved: Boolean = false): List<String> {
