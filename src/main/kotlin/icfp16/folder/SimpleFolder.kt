@@ -38,9 +38,10 @@ fun Edge.middle(): Vertex {
 fun Edge.cross(that: Edge): Vertex? {
   val crossPoint = Line(this).interection(Line(that))
   if (crossPoint != null) {
-    val crossed = crossPoint.withinBoundary(that) && crossPoint.withinBoundary(this)
+    val crossThis = crossPoint.withinBoundary(this)
+    val crossThat = crossPoint.withinBoundary(that)
 
-    if (crossed) {
+    if (crossThis && crossThat) {
       return crossPoint
     }
   }

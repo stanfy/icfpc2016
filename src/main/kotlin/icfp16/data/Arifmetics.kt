@@ -55,12 +55,7 @@ fun Fraction.inverse():Fraction{
   return Fraction(b,a)
 }
 
-fun Fraction.equals(that:Fraction):Boolean{
-  val simpleThis = this.simple()
-  val simpleThat = that.simple()
-  return simpleThis.a == simpleThat.a && simpleThis.b == simpleThat.b
 
-}
 
 fun Fraction.scaledA(x: BigInteger): BigInteger = this.a.multiply(x)
 
@@ -68,6 +63,11 @@ fun Fraction.leq(that:Fraction):Boolean = this.scaledA(that.b) <= that.scaledA(t
 fun Fraction.le(that:Fraction):Boolean = this.scaledA(that.b) < that.scaledA(this.b)
 fun Fraction.geq(that:Fraction):Boolean = this.scaledA(that.b) >= that.scaledA(this.b)
 fun Fraction.ge(that:Fraction):Boolean = this.scaledA(that.b) > that.scaledA(this.b)
+
+fun Fraction.equals(that:Fraction):Boolean {
+ return  this.scaledA(that.b) == that.scaledA(this.b)
+}
+
 
 fun Fraction.max(that:Fraction) : Fraction{
   if(this.geq(that))
@@ -206,8 +206,11 @@ fun Vertex.withinBoundary(edge:Edge): Boolean {
   val minx = edge.a.x.min(edge.b.x)
   val miny = edge.a.y.min(edge.b.y)
 
-
-  return x.geq(minx) && x.leq(maxx) && y.geq(miny) && y.leq(maxy)
+val xminCheck = x.geq(minx)
+  val xmaxCheck = x.leq(maxx)
+  val yminCheck =y.geq(miny)
+  val ymaxCheck = y.leq(maxy)
+  return  xminCheck && xmaxCheck && yminCheck  && ymaxCheck
   //}
 }
 
