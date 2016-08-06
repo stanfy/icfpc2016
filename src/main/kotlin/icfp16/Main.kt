@@ -10,6 +10,7 @@ import icfp16.io.ProblemContainersGrabber
 import java.io.File
 import java.math.BigInteger
 import java.time.Instant
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 var problem = Problem(
@@ -57,7 +58,18 @@ fun main(args: Array<String>) {
     val n = Integer.parseInt(args[0])
     val allFiles = File(FileUtils().getDefaultProblemFileFolder()).list()
     val batchSize = allFiles.size / n
-
+    var index = 0
+    val threads = ArrayList<Thread>()
+    while (index < allFiles.size) {
+      val problems = allFiles.toList().subList(index, Math.min(index + batchSize, allFiles.size))
+      threads.add(Thread({
+        println("Start thread for $problems")
+        Farm().startSearchingBestSolutions(false, problems)
+      }))
+      index += batchSize
+    }
+    threads.forEach { it.start() }
+    threads.forEach { it.join() }
   }
 }
 

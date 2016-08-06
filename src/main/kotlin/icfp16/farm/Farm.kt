@@ -18,7 +18,7 @@ class Farm {
   val startingId = 90
   val count = 11
 
-  fun startSearchingBestSolutions(full: Boolean = false, problemNames: Array<String> = emptyArray()) {
+  fun startSearchingBestSolutions(full: Boolean = false, problemNames: List<String> = emptyList()) {
 
     val problemList = if (full) {
       File(FileUtils().getDefaultProblemFileFolder()).listFiles()
