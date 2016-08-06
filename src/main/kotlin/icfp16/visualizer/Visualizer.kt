@@ -1,6 +1,7 @@
 package icfp16.visualizer
 
 import icfp16.data.*
+import icfp16.state.IState
 import icfp16.state.State
 import java.awt.BasicStroke
 import java.awt.Color
@@ -17,7 +18,7 @@ class Visualizer {
     val solutionColor = Color(0, 0, 255, 128)
   }
 
-  fun visualizationOf(task: Problem, state: State? = null, quality: Int = 1): BufferedImage {
+  fun visualizationOf(task: Problem, state: IState? = null, quality: Int = 1): BufferedImage {
     val BITMAP_SIZE = BITMAP_STEP * quality
     val image = BufferedImage(BITMAP_SIZE, BITMAP_SIZE, BufferedImage.TYPE_INT_ARGB)
     val graphics = image.createGraphics()
@@ -57,7 +58,7 @@ class Visualizer {
     return image
   }
 
-  fun visualizeFolds(state: State, quality: Int = 1): BufferedImage {
+  fun visualizeFolds(state: IState, quality: Int = 1): BufferedImage {
     val BITMAP_SIZE = BITMAP_STEP * quality
     val image = BufferedImage(BITMAP_SIZE, BITMAP_SIZE, BufferedImage.TYPE_INT_ARGB)
     val graphics = image.createGraphics()
@@ -86,12 +87,12 @@ class Visualizer {
     return image
   }
 
-  fun visualizedAndSaveImage(task: Problem = Problem(emptyList(), emptyList()), state: State? = null, quality: Int = 1, filePath: String = "output.png") {
+  fun visualizedAndSaveImage(task: Problem = Problem(emptyList(), emptyList()), state: IState? = null, quality: Int = 1, filePath: String = "output.png") {
     val image = visualizationOf(task, state, quality)
     ImageIO.write(image,"png", File(filePath))
   }
 
-  fun visualizedAndSaveFolds(state: State, quality: Int = 1, filePath: String = "fold_output.png") {
+  fun visualizedAndSaveFolds(state: IState, quality: Int = 1, filePath: String = "fold_output.png") {
     val image = visualizeFolds(state, quality)
     ImageIO.write(image,"png", File(filePath))
   }

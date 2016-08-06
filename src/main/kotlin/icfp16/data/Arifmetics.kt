@@ -8,6 +8,12 @@ fun Fraction.simple(): Fraction{
 
   val finalTopPart = a.div(gcd)
   val finalBottomPart = b.div(gcd)
+
+  // (-1,-1) == (1,1)
+  if(finalBottomPart < BigInteger.ZERO && finalTopPart < BigInteger.ZERO)
+  {
+    return Fraction(finalTopPart.negate(), finalBottomPart.negate())
+  }
   return Fraction(finalTopPart, finalBottomPart)
 }
 
@@ -60,10 +66,22 @@ fun Fraction.leq(that:Fraction):Boolean{
   return  thisScaled.a <= thatScaled.a
 }
 
+fun Fraction.le(that:Fraction):Boolean{
+  val thisScaled = this.mul(Fraction(that.b))
+  val thatScaled = that.mul(Fraction(this.b))
+  return  thisScaled.a < thatScaled.a
+}
+
 fun Fraction.geq(that:Fraction):Boolean{
   val thisScaled = this.mul(Fraction(that.b))
   val thatScaled = that.mul(Fraction(this.b))
   return  thisScaled.a >= thatScaled.a
+}
+
+fun Fraction.ge(that:Fraction):Boolean{
+  val thisScaled = this.mul(Fraction(that.b))
+  val thatScaled = that.mul(Fraction(this.b))
+  return  thisScaled.a > thatScaled.a
 }
 
 fun Fraction.max(that:Fraction) : Fraction{
