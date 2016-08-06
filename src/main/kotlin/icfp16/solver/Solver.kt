@@ -8,17 +8,21 @@ import icfp16.state.State
 import icfp16.state.solution
 
 interface Solver {
-  fun solve(problem: Problem): IState
+  fun solve(problem: Problem, problemId: String): IState?
+
+  fun solvedSolutionNamesCache(): SolvedSolutionNamesCacher {
+    return SolvedSolutionNamesCacher()
+  }
 }
 
 class StupidSolver: Solver {
-  override fun solve(problem: Problem): State {
+  override fun solve(problem: Problem, problemId: String): IState? {
     return State.initialSquare()
   }
 }
 
 class TranslatorSolver: Solver {
-  override fun solve(problem: Problem): IState {
+  override fun solve(problem: Problem, problemId: String): IState? {
     // simple centroid  as  sum of all polygon coords
     val vertexes = problem.poligons.flatMap { it.vertices }
     val centroid = centroid(vertexes)
@@ -32,7 +36,7 @@ class TranslatorSolver: Solver {
 
 
 class BetterTranslatorSolver : Solver {
-  override fun solve(problem: Problem): IState {
+  override fun solve(problem: Problem, problemId: String): IState? {
     // simple centroid  as  sum of all polygon coords
     val vertexes = problem.poligons.flatMap { it.vertices }
     val centroid = massCentroid(vertexes)
@@ -47,12 +51,14 @@ class BetterTranslatorSolver : Solver {
 
 
 class SequenceSolver: Solver {
-  override fun solve(problem: Problem): IState {
+  override fun solve(problem: Problem, problemId: String): IState? {
 
     val vertexes = problem.poligons.flatMap { it.vertices }
     val problemCentroid = centroid(vertexes)
+    val cache = this.solvedSolutionNamesCache()
+    val cachedNames = cache.readCachedSolutionNamesFor(problemId = problemId)
 
-    val bestState = PublicStates.states
+    val allStates = PublicStates.states
       .map { s ->
         // sub S many times
         val stateCentroid = centroid(s.finalPositions().asList())
@@ -98,10 +104,18 @@ class SequenceSolver: Solver {
             s.rotate(stateCentroid, Triple(72, 65, 97))
         )
       }
+      .filter { !cachedNames.contains(it.name) }
       .filter { it.solution().length <= 5000 }
       .map { it.to(BitmapEstimator().resemblanceOf(problem, it, quality = 2)) }
       .sortedBy { it.second }
-      .last().first
+
+    val bestState = if (allStates.isEmpty()) null else allStates.last().first
+
+    // cache names
+    val names = allStates.map { it.first.name }
+    if (!names.isEmpty()) {
+      cache.cacheSolutionNameToFile(problemId, names)
+    }
 
     return bestState
   }
@@ -109,11 +123,18 @@ class SequenceSolver: Solver {
 
 class BestSolverEver: Solver {
 
-  override fun solve(problem: Problem): IState {
-    val solvers = arrayOf<Solver>(StupidSolver(), TranslatorSolver(), BetterTranslatorSolver(), SequenceSolver(), Wrapper())
+  override fun solve(problem: Problem, problemId: String): IState? {
+    //val solvers = arrayOf<Solver>(StupidSolver(), TranslatorSolver(), BetterTranslatorSolver(), SequenceSolver(), Wrapper())
+    val solvers = arrayOf<Solver>(SequenceSolver())
     val states =  solvers
-        .map { it.solve(problem) }
-        .map { it.to(BitmapEstimator().resemblanceOf(problem, it, quality = 2)) }
+        .map { it.solve(problem, problemId) }
+        .filter { it != null }
+        .map { it.to(BitmapEstimator().resemblanceOf(problem, it!!, quality = 2)) }
+
+    if (states.isEmpty()) {
+      return null
+    }
+
     val sorted = states.sortedBy { it.second }
     return sorted.last().first
   }
