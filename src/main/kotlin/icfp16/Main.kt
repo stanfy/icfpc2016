@@ -1,20 +1,11 @@
 package icfp16
 
-import icfp16.api.ContestStatus
-import icfp16.api.Snapshot
-import icfp16.api.SolutionSpec
-import icfp16.api.createApi
 import icfp16.data.Fraction
 import icfp16.data.Polygon
 import icfp16.data.Problem
 import icfp16.data.Vertex
 import icfp16.farm.Farm
 import icfp16.io.ProblemContainersGrabber
-import icfp16.io.ProblemContainersParser
-import icfp16.state.PublicStates
-import icfp16.submitter.Submitter
-import okhttp3.logging.HttpLoggingInterceptor.Level.NONE
-import java.io.File
 import java.math.BigInteger
 
 var problem = Problem(
@@ -33,37 +24,12 @@ var problem = Problem(
 fun main(args: Array<String>) {
   println("ICFP 2016")
 
-//  val rightMost = problem.poligons[0].vertices.maxBy { v -> v.toPoint().first }
-//  println(rightMost)
+  if (args.size > 0 && "grab".equals(args[0])) {
+    println("Grabbing data")
+    ProblemContainersGrabber().grabProblemsAndSaveToFiles()
+    return
+  }
 
-  val submitter = Submitter()
-
-  // submit solution:
-  val string = """
-          4
-          0,0
-          0,1
-          1,1
-          1,0
-          1
-          4 0 1 2 3
-          0,0
-          0,1
-          1,1
-          1,0
-          """.trim()
-
- // println(submitter.submitSolution(problemId = "1", solutionString = string))
-
-//  val sol = PublicStates.states.last().solution().trim()
-//  println(submitter.submitSolution(problemId = "47", solutionString = sol))
-
-  // submit problem
-  //println(submitter.submitProblemOnExactTime(string, "2016-08-06 00:00:00 UTC"))
-
-  // grab problems from server
-  val problemsGrabber = ProblemContainersGrabber().grabProblemsAndSaveToFiles()
-
-  // farm
-  //Farm().startSearchingBestSolutions()
+  println("Starting the farm")
+  Farm().startSearchingBestSolutions()
 }
