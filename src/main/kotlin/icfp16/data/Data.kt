@@ -1,9 +1,7 @@
 package icfp16.data
 
 import icfp16.state.IState
-import icfp16.state.State
 import java.math.BigInteger
-import java.util.*
 
 data class Problem(
   val poligons: List<Polygon>,
@@ -82,13 +80,6 @@ data class Polygon(val vertices: List<Vertex>) {
     val pairs = vertices.subList(0, vertices.count()-1).zip(vertices.subList(1, vertices.count()))
     val closedPairs = pairs.plus(Pair(vertices.last(), vertices.first()))
     return closedPairs.map{Edge(it.first, it.second)}
-  }
-
-  // edges() + pair of first and last vertexes
-  fun fullEdges(): List<Edge> {
-    val res = ArrayList(edges())
-    //res.add(Edge(vertices[vertices.size - 1], vertices[0]))
-    return res
   }
 
   fun area(): Double {
