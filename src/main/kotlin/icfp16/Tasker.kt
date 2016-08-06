@@ -10,6 +10,7 @@ import icfp16.state.solution
 import icfp16.submitter.Submitter
 import icfp16.visualizer.Visualizer
 import okhttp3.logging.HttpLoggingInterceptor
+import okio.Okio
 import java.io.File
 import java.time.Instant
 import java.time.temporal.ChronoUnit
@@ -74,6 +75,36 @@ val tasks = arrayOf(
             .fold(Edge(
                 Vertex(Fraction(1,4), Fraction(0)),
                 Vertex(Fraction(1,5), Fraction(1))
+            ))
+    ),
+    Pair(
+        Problem(emptyList(), emptyList()),
+        ComplexState()
+            .fold(Edge(
+                Vertex(Fraction(1,2), Fraction(1, 1)),
+                Vertex(Fraction(1,2), Fraction(0, 1))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(1,4), Fraction(1, 1)),
+                Vertex(Fraction(1,4), Fraction(0, 1))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(1,8), Fraction(1, 1)),
+                Vertex(Fraction(1,8), Fraction(0, 1))
+            ))
+
+            .fold(Edge(
+                Vertex(Fraction(1,8), Fraction(2, 8)),
+                Vertex(Fraction(0,8), Fraction(1, 8))
+            ))
+
+            .fold(Edge(
+                Vertex(Fraction(0,8), Fraction(4, 8)),
+                Vertex(Fraction(1,8), Fraction(3, 8))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(0,8), Fraction(5, 8)),
+                Vertex(Fraction(1,8), Fraction(6, 8))
             ))
     ),
     Pair(
@@ -407,9 +438,6 @@ val tasks3 = arrayOf(
 
 var submit = true
 
-//                published                            scheduled
-// Our problems: 705, 705, 1141,1481   |   1573, 1574
-
 fun main(args: Array<String>) {
 
 
@@ -419,18 +447,22 @@ fun main(args: Array<String>) {
 
   val dir = File("our_problems")
   dir.mkdirs()
-  val START_TIME = Instant.parse("2016-08-06T18:00:00Z")
+  val START_TIME = Instant.parse("2016-08-06T19:00:00Z")
   var ts = Instant.from(START_TIME)
   val api = createApi(HttpLoggingInterceptor.Level.NONE)
 
   val log = StringBuilder()
+  val idDump = StringBuilder()
   val logDir = File("submitted_problems_logs")
   logDir.mkdirs()
 
-  var i = 0
+  var i = 1
 
   while (ts.isBefore(Instant.parse("2016-08-07T22:00:00Z"))) {
     val data = tasks[i % tasks.size]
+    if (!submit && i >= tasks.size) {
+      break
+    }
 
     val problem = data.first
     val random = Random()
@@ -442,45 +474,56 @@ fun main(args: Array<String>) {
     )
     val solution = data.second
         .rotate(pivot, pythagoreanTriple)
-        .translate(translation)
+        //.translate(translation) Gets too big size.
 
     val visualizer = Visualizer()
     visualizer.visualizedAndSaveImage(problem, solution, 1, "our_problems/task$i.png")
     visualizer.visualizedAndSaveFolds(solution, 1, "our_problems/task${i}folds.png")
     val text = solution.solution()
     File(dir, "task$i.txt").writeText(text)
-    println("Have task $i for $ts")
+    println("Have task $i for $ts. Size: ${text.replace("\\s+".toRegex(), "").length}")
+
+    var badSolution = false
 
     if (submit) {
       val request = api.submitProblem(SolutionSpec(text), TimeUnit.MILLISECONDS.toSeconds(ts.toEpochMilli())).execute()
       val logStr = "Problem submission #$i $ts is successful: ${request.isSuccessful.toString().toUpperCase()} " +
           "id: ${request.body()?.problem_id}"
       println(logStr)
+      if (request.body()?.problem_id != null) {
+        idDump.append(request.body()?.problem_id).append("\n")
+      }
 
       log.append(logStr)
       log.append("\n")
 
       if (!request.isSuccessful) {
-        val errMsg = "Error: ${request.raw().code()} ${request.message()}"
+        val errMsg = "Error: ${request.raw().code()} ${request.message()} ${request.body()}"
         println(errMsg)
-        if (request.code() != 403) {
+        if (request.code() != 403 && request.code() != 400) {
           println("Retry")
           Thread.sleep(TimeUnit.SECONDS.toMillis(2))
           continue
+        } else if (request.code() == 400) {
+          badSolution = true
         }
       }
 
-      log.append("Pivot: $pivot\n")
-      log.append("Pythagorean triple: $pythagoreanTriple\n")
-      log.append("Translation: $translation\n\n")
+//      log.append("Pivot: $pivot\n")
+//      log.append("Pythagorean triple: $pythagoreanTriple\n")
+//      log.append("Translation: $translation\n\n")
 
       Thread.sleep(TimeUnit.SECONDS.toMillis(2))
     }
 
-    ts = ts.plus(1, ChronoUnit.HOURS)
+    if (!badSolution) {
+      ts = ts.plus(1, ChronoUnit.HOURS)
+    }
     i++
   }
 
   val logFile = File(logDir, "task${Instant.now()}.txt")
   logFile.writeText(log.toString())
+  val idFile = File(logDir, "ids")
+  idFile.appendText(idDump.toString())
 }
