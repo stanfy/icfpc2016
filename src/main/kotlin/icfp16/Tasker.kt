@@ -340,6 +340,9 @@ val tasks = arrayOf(
 
 var submit = true
 
+//                published                            scheduled
+// Our problems: 705, 705, 1141,1481   |   1573, 1574
+
 fun main(args: Array<String>) {
   if (args.size > 0) {
     submit = true
@@ -358,7 +361,7 @@ fun main(args: Array<String>) {
 
     if (submit) {
       val request = api.submitProblem(SolutionSpec(text), TimeUnit.MILLISECONDS.toSeconds(ts.toEpochMilli())).execute()
-      println("Problem submission #$i is successful: ${request.isSuccessful}")
+      println("Problem submission #$i is successful: ${request.isSuccessful} id: ${request.body()?.problem_id}")
       Thread.sleep(TimeUnit.SECONDS.toMillis(2))
     }
 
