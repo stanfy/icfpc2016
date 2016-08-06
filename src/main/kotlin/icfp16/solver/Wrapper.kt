@@ -3,6 +3,7 @@ package icfp16.solver
 import icfp16.data.Edge
 import icfp16.data.Polygon
 import icfp16.data.Problem
+import icfp16.state.IState
 import icfp16.state.State
 
 fun wrappingEdges(envelop: Polygon, target: Polygon): List<Edge> {
@@ -17,7 +18,7 @@ fun wrappingEdges(envelop: Polygon, target: Polygon): List<Edge> {
 
 class Wrapper: Solver {
 
-  fun solveWithWrapping(problem: Problem, startState: State): State {
+  fun solveWithWrapping(problem: Problem, startState: IState): State {
     // We know that we have one polygon at the moment.
     val p = startState.poligons()[0]
 
@@ -30,7 +31,7 @@ class Wrapper: Solver {
     return State.initialSquare()
   }
 
-  override fun solve(problem: Problem): State {
+  override fun solve(problem: Problem): IState {
     // Position our square.
     val startState = BetterTranslatorSolver().solve(problem)
     return solveWithWrapping(problem, startState)

@@ -1,5 +1,6 @@
 package icfp16.data
 
+import icfp16.state.IState
 import icfp16.state.State
 import java.math.BigInteger
 import java.util.*
@@ -17,10 +18,10 @@ data class ProblemContainer (
 )
 
 data class SolutionContainer (
-  val problemContainer: ProblemContainer,
-  val state: State,
-  val realResemblance: Double,
-  val estimatedResemblance: Double
+    val problemContainer: ProblemContainer,
+    val state: IState,
+    val realResemblance: Double,
+    val estimatedResemblance: Double
 )
 
 data class Fraction(val a: BigInteger, val b: BigInteger = BigInteger.ONE) {
