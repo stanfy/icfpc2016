@@ -177,7 +177,7 @@ class PublicStates {
                 Vertex(Fraction(1, 2), Fraction(0)),
                 Vertex(Fraction(1, 2), Fraction(1, 2)) //
             )
-        ).appendName("Square F4Parts"),
+        ).appendName("problem 8, 567, 569, 583, 773, 1094, 1558, 1606, 1610, 1705, 1778, 1779, 1780, 1781, 1782, 1783, 1784, 2421, 2424, 2425, 2426, 2427, 2531, 2670, 2780, 2802"),
 
         // triangle
         State(
@@ -416,6 +416,7 @@ class PublicStates {
     )
 
     val states: Array<IState> = localState.plus(PaulPublicStates.states).plus(DimaPublicStates.states)
+//    val states: Array<IState> = DimaPublicStates.states
   }
 
 }
