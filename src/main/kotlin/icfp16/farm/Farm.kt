@@ -26,15 +26,15 @@ class Farm {
       File(FileUtils().getDefaultProblemFileFolder()).listFiles()
         .map { it.name }
         .filter { !it.endsWith(".ignore") }
+        .map { Pair(it, FileUtils().getProblemIdByFileNameWithoutExtension(it)) }
+        .filter { it.second != null}
+        .map { Pair(it.first, it.second!!) }
         .filter {
-          val problemId = FileUtils().getProblemIdByFileNameWithoutExtension(it)
-          var filter = false
-          if (problemId != null) {
+            val (name, problemId) = it
             val solutionFileName = FileUtils().getFullPathForSolutionFile(problemId)
-            filter = !File(solutionFileName).exists()
-          }
-          filter
+            !File(solutionFileName).exists()
         }
+        .map { it.first }
 
     } else if (problemNames.size == 0) {
       (startingId..(startingId + count)).map { "problem_$it.txt" }
