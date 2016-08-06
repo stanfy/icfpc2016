@@ -97,6 +97,9 @@ data class PolyEdge(val vertex: Vertex, val lineSide: LineSide) {
   var Prev: PolyEdge = this       // previous polygon in linked list
   var DistOnLine: Fraction = Fraction(1, 2 * 3 * 5 * 7 * 13 * 19)      // distance relative to first point on split line
 
+  var IsSrcEdge: Boolean = false
+  var IsDstEdge: Boolean = false
+
   var Visited: Boolean = false    // for collecting split polygons
 }
 
@@ -209,10 +212,87 @@ fun createBridge(src: PolyEdge, dst: PolyEdge, splitPoly: MutableList<PolyEdge>)
   return splitPoly
 }
 
+fun splitPolygon(edgesOnLine: MutableList<PolyEdge>, splitPoly: MutableList<PolyEdge>) {
+  var useSrc: PolyEdge? = null
+
+  var i = 0
+  while (i < edgesOnLine.size) {
+    // find source
+    var srcEdge: PolyEdge? = useSrc
+    useSrc = null
+
+    while (srcEdge == null && i < edgesOnLine.size) {
+      val curEdge = edgesOnLine[i]
+      // val curSide = curEdge.lineSide
+      // assert(curSide == LineSide::On);
+      val prevSide = curEdge.Prev.lineSide
+      val nextSide = curEdge.Next.lineSide
+
+
+      if ((prevSide == LineSide.LEFT && nextSide == LineSide.RIGHT) ||
+          (prevSide == LineSide.LEFT && nextSide == LineSide.ON && !curEdge.Next.DistOnLine.geq(curEdge.DistOnLine)) ||
+          (prevSide == LineSide.ON && nextSide == LineSide.RIGHT && !curEdge.Prev.DistOnLine.geq(curEdge.DistOnLine))) {
+        srcEdge = curEdge
+        srcEdge.IsSrcEdge = true
+      }
+      i++
+    }
+
+    // find destination
+    var dstEdge: PolyEdge? = null
+
+    while (dstEdge == null && i < edgesOnLine.size) {
+      val curEdge = edgesOnLine[i]
+      // val curSide = curEdge.lineSide
+      // assert(curSide == LineSide::On);
+      val prevSide = curEdge.Prev.lineSide
+      val nextSide = curEdge.Next.lineSide
+
+      if ((prevSide == LineSide.RIGHT && nextSide == LineSide.LEFT)  ||
+          (prevSide == LineSide.ON && nextSide == LineSide.LEFT)     ||
+          (prevSide == LineSide.RIGHT && nextSide == LineSide.ON)    ||
+          (prevSide == LineSide.RIGHT && nextSide == LineSide.RIGHT) ||
+          (prevSide == LineSide.LEFT && nextSide == LineSide.LEFT)) {
+        dstEdge = curEdge
+        dstEdge.IsDstEdge = true
+      } else {
+        i++
+      }
+    }
+
+    // bridge source and destination
+    if (srcEdge != null && dstEdge != null) {
+      // TODO: Do we pass correct arguments? What to do with a result?
+      cyclesValid(createBridge(srcEdge, dstEdge, splitPoly))
+
+      // is it a configuration in which a vertex
+      // needs to be reused as source vertex?
+      if (srcEdge.Prev.Prev.lineSide == LineSide.LEFT) {
+        useSrc = srcEdge.Prev
+        useSrc.IsSrcEdge = true
+      } else if (dstEdge.Next.lineSide == LineSide.RIGHT) {
+        useSrc = dstEdge
+        useSrc.IsSrcEdge = true
+      }
+    }
+
+    i++
+  }
+  // TODO: What to return?
+}
+
+fun split(polygon: Polygon, by: Edge) {
+  val splitEdgesResult = splitEdges(polygon, by)
+  val splitPoly = splitEdgesResult.first
+  val edgesOnline = sortEdges(splitEdgesResult.second, by)
+  // TODO: What should it return? What should be passed to splitPolygon?
+  splitPolygon(edgesOnline, splitPoly)
+}
+
 // reference documentation https://geidav.wordpress.com/2015/03/21/splitting-an-arbitrary-polygon-by-a-line/
 // reference implementation https://github.com/geidav/concave-poly-splitter/blob/master/polysplitter.cpp
-// TODO: translate function void PolySplitter::SplitPolygon() from cpp to kotlin
-// TODO: translate function std::vector<QPolygonF> PolySplitter::Split(const QPolygonF &poly, const QLineF &line) from cpp to kotlin
+// TODO: translate function void PolySplitter::SplitPolygon() from cpp to kotlin  - see splitPolygon
+// TODO: translate function std::vector<QPolygonF> PolySplitter::Split(const QPolygonF &poly, const QLineF &line) from cpp to kotlin - see split
 // TODO: use PolySplitter::Split in Polygon.fold
 
 fun Polygon.fold(foldingEdge: Edge): List<Polygon> {

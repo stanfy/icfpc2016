@@ -145,4 +145,9 @@ fun lineCrossTest(){
   {
 
   }
+
+  @Test
+  fun splitPoly() {
+
+  }
 }
