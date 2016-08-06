@@ -38,12 +38,14 @@ data class Fraction(val a: BigInteger, val b: BigInteger = BigInteger.ONE) {
   }
 
   override fun equals(other: Any?): Boolean {
-    val that = other as Fraction
-    val simpleThis = this.simple()
-    val simpleThat = that.simple()
-    return simpleThis.a == simpleThat.a && simpleThis.b == simpleThat.b
+    if(other !is Fraction)
+      return false
+    else
+      return this.scaledA(other.b) == other.scaledA(this.b)
   }
 }
+
+
 
 fun f(a: Int, b: Int): Fraction {
   return Fraction(a, b)
@@ -62,7 +64,7 @@ data class Vertex(val x: Fraction, val y: Fraction) {
   }
 
   override fun toString(): String {
-    return "$x,$y"
+    return " ($x, $y) "
   }
 
 }
