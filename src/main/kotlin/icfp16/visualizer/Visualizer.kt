@@ -73,11 +73,13 @@ class Visualizer {
     }
 
     // GRID :)
-    graphics.color = Color.BLACK
-    val xPoints = arrayOf<Int>(BITMAP_SIZE / 4, BITMAP_SIZE * 3 / 4, BITMAP_SIZE * 3 / 4, BITMAP_SIZE / 4)
-    val yPoints = arrayOf<Int>(BITMAP_SIZE * 3/ 4, BITMAP_SIZE * 3 / 4, BITMAP_SIZE / 4, BITMAP_SIZE / 4)
-    val poly = Polygon(xPoints.toIntArray(), yPoints.toIntArray(), xPoints.size)
-    graphics.drawPolygon(poly)
+    if (showGrid) {
+      graphics.color = Color.BLACK
+      val xPoints = arrayOf<Int>(BITMAP_SIZE / 4, BITMAP_SIZE * 3 / 4, BITMAP_SIZE * 3 / 4, BITMAP_SIZE / 4)
+      val yPoints = arrayOf<Int>(BITMAP_SIZE * 3/ 4, BITMAP_SIZE * 3 / 4, BITMAP_SIZE / 4, BITMAP_SIZE / 4)
+      val poly = Polygon(xPoints.toIntArray(), yPoints.toIntArray(), xPoints.size)
+      graphics.drawPolygon(poly)
+    }
 
     return image
   }
