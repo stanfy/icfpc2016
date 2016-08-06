@@ -1,0 +1,40 @@
+-------------------------- resemblance --------------------
+real res =0.712827 estimated res =0.7128590173494679-------------------------- container --------------------
+SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[3/4,0, 1,0, 1,1, 0,1, 0,3/4])], skeleton=[Edge(a=3/4,0, b=1,0), Edge(a=0,3/4, b=0,1), Edge(a=3/4,0, b=3/4,3/4), Edge(a=1,0, b=1,1), Edge(a=3/4,0, b=0,3/4), Edge(a=0,3/4, b=3/4,3/4), Edge(a=0,1, b=1,1)], rawString=1
+5
+3/4,0
+1,0
+1,1
+0,1
+0,3/4
+7
+3/4,0 1,0
+0,3/4 0,1
+3/4,0 3/4,3/4
+1,0 1,1
+3/4,0 0,3/4
+0,3/4 3/4,3/4
+0,1 1,1
+), problemId=2784, problemHash=), state=(name = ( ->  ->  ->  ->  -> Two diagonals 0,1 -> Translate (1/20,1/20) -> Rotate 90 -> Rotate 90 -> Rotate 90 -> Rotate 270))icfp16.state.State@e415338, realResemblance=0.712827, estimatedResemblance=0.7128590173494679)
+-------------------------- solution --------------------
+8
+0,0
+0,1/2
+0,1
+1/2,1
+1,1
+1,1/2
+1,0
+1/2,0
+3
+6 0 1 3 4 5 7
+3 1 2 3
+3 7 5 6
+1/20,21/20
+11/20,21/20
+11/20,11/20
+21/20,11/20
+21/20,1/20
+11/20,1/20
+11/20,11/20
+1/20,11/20
