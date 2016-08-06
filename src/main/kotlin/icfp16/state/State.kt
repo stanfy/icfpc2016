@@ -6,6 +6,8 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
                  val facets: Array<Facet> = emptyArray(),
                  val finalPositions: Array<Vertex> = vertexes):IState {
 
+  override var name: String = ""
+
   override fun finalPositions(): Array<Vertex> {
     return finalPositions
   }
@@ -43,6 +45,7 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
       it.add(vartex)
     }.toTypedArray()
     return State(vertexes = this.vertexes, facets = this.facets, finalPositions = translatedPositions)
+        .appendName("Translate ($vartex)")
   }
 
   /**
@@ -56,6 +59,7 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
       final
     }.toTypedArray()
     return State(vertexes = this.vertexes, facets = this.facets, finalPositions = translatedPositions)
+        .appendName("Rotate 90")
   }
 
   /**
@@ -63,6 +67,7 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
    */
   override fun rotate180(around: Vertex): IState {
     return rotate90(around).rotate90(around)
+        .appendName("Rotate 180")
   }
 
   /**
@@ -70,14 +75,24 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
    */
   override fun rotate270(around: Vertex): IState {
     return rotate90(around).rotate90(around).rotate90(around)
+        .appendName("Rotate 270")
+
   }
 
-
-  override fun rotate(around: Vertex, pihagorean: Triple<Int,Int,Int>): State {
+  override fun rotate(around: Vertex, pihagorean: Triple<Int,Int,Int>): IState {
     val translatedPositions = this.finalPositions.map {
       it.rotate(around, pihagorean)
     }.toTypedArray()
     return State(vertexes = this.vertexes, facets = this.facets, finalPositions = translatedPositions)
+        .appendName("Rotate($around, <$pihagorean>)")
+  }
+
+  override fun toString(): String {
+    return "(name = ($name))" + super.toString()
+  }
+
+  override fun fold(foldingEdge: Edge): IState {
+    throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
 
   companion object {
