@@ -12,6 +12,11 @@ data class LinkedEdge(val startVertex: Vertex, val endVertex : Vertex) {
   var Prev: LinkedEdge = this       // previous polygon in linked list
 }
 
+fun LinkedEdge.crosses(that:Edge) : Vertex?{
+  val e1 = Edge(this.startVertex, this.endVertex)
+  return e1.cross(that)
+}
+
 fun Polygon.toLindedEdges() : List<LinkedEdge> {
   val res : MutableList<LinkedEdge> = arrayListOf()
   vertices.forEachIndexed { i, vertex ->
@@ -48,8 +53,55 @@ fun Polygon.toLindedEdges() : List<LinkedEdge> {
 }
 
 fun Polygon.splitSimple(foldingEdge: Edge): List<Polygon> {
-  return arrayListOf(this)
+  val linked = this.toLindedEdges()
+  val isCrossed = linked.any { edge -> edge.crosses(foldingEdge) != null}
+  if(isCrossed)
+  {
+    // find first cross
+    var currentEdge = linked.first()
 
+    while (currentEdge.crosses(foldingEdge) == null)
+    {
+
+      currentEdge = currentEdge.Next
+    }
+    val firstCrossPoint = currentEdge.crosses(foldingEdge)
+
+    if(firstCrossPoint != null) {
+
+      val firstPolygonPoints: MutableList<Vertex> = arrayListOf()
+      val secondPolygonPoints: MutableList<Vertex> = arrayListOf()
+
+      firstPolygonPoints.add(firstCrossPoint)
+      firstPolygonPoints.add(currentEdge.endVertex)
+
+      currentEdge = currentEdge.Next
+      while (currentEdge.crosses(foldingEdge) == null)
+      {
+        firstPolygonPoints.add(currentEdge.endVertex)
+        currentEdge = currentEdge.Next
+      }
+
+      val secondCrossPoint = currentEdge.crosses(foldingEdge)
+      if(secondCrossPoint != null){
+        firstPolygonPoints.add(secondCrossPoint)
+
+        secondPolygonPoints.add(secondCrossPoint)
+        secondPolygonPoints.add(currentEdge.endVertex)
+        currentEdge = currentEdge.Next
+        while (currentEdge.crosses(foldingEdge) == null)
+        {
+          secondPolygonPoints.add(currentEdge.endVertex)
+          currentEdge = currentEdge.Next
+        }
+        secondPolygonPoints.add(firstCrossPoint)
+      }
+
+      return arrayListOf(Polygon(firstPolygonPoints), Polygon(secondPolygonPoints))
+    }
+  }
+
+  return arrayListOf(this)
 }
 
 

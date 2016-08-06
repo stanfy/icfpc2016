@@ -22,16 +22,43 @@ class PoliginSplitterTest {
   }
 
   @Test
-  fun ploygonSplitSimple() {
+  fun ploygonSplitSquareSimple() {
     val poly = Polygon(arrayListOf(Vertex(0, 0), Vertex(1, 0), Vertex(1, 1), Vertex(0, 1)))
-    assertThat(poly.splitSimple(Edge(Vertex(Fraction(0), Fraction(1, 2)), Vertex(Fraction(1), Fraction(1, 2)))))
+    val edge = Edge(Vertex(Fraction(0), Fraction(1, 2)), Vertex(Fraction(1), Fraction(1, 2)))
+    val res = poly.splitSimple(edge)
+    assertThat(res)
         .containsExactly(
-            Polygon(arrayListOf(Vertex(0, 0), Vertex(1, 0), Vertex(Fraction(1), Fraction(1, 2)), Vertex(Fraction(0), Fraction(1, 2)))),
-            Polygon(arrayListOf(Vertex(Fraction(0), Fraction(1, 2)), Vertex(Fraction(1), Fraction(1, 2)), Vertex(1, 1), Vertex(0, 1)))
+            Polygon(arrayListOf(Vertex(Fraction(1), Fraction(1, 2)), Vertex(1, 1), Vertex(0, 1),Vertex(Fraction(0), Fraction(1, 2)))),
+            Polygon(arrayListOf(Vertex(Fraction(0), Fraction(1, 2)),Vertex(0, 0), Vertex(1, 0),Vertex(Fraction(1), Fraction(1, 2))))
         )
   }
+
   @Test
-  fun polygonCppFoldWithoutCross() {
+  fun ploygonSplitTriangleSimple() {
+    val poly = Polygon(arrayListOf(Vertex(0, 0), Vertex(2, 2), Vertex(4, 0)))
+    val edge = Edge(Vertex(0,1), Vertex(4,1))
+    val res = poly.splitSimple(edge)
+    assertThat(res)
+        .containsExactly(
+            Polygon(arrayListOf(Vertex(1,1), Vertex(2, 2), Vertex(3, 1))),
+            Polygon(arrayListOf(Vertex(3,1), Vertex(4, 0), Vertex(0, 0), Vertex(1,1)))
+        )
+  }
+
+  @Test
+  fun ploygonSplitWithoutCrossSimple() {
+    val poly = Polygon(arrayListOf(Vertex(0, 0), Vertex(2, 2), Vertex(4, 0)))
+    val edge = Edge(Vertex(0,5), Vertex(4,5))
+    val res = poly.splitSimple(edge)
+    assertThat(res)
+        .containsExactly(
+            Polygon(arrayListOf(Vertex(0, 0), Vertex(2, 2), Vertex(4, 0)))
+        )
+  }
+
+
+  @Test
+  fun polygoSimpleFoldWithoutCross() {
 
     val edge = Edge(Vertex(0, 2), Vertex(1, 3))
     val res = poly.foldSimple(edge)
@@ -42,7 +69,7 @@ class PoliginSplitterTest {
   }
 
   @Test
-  fun polygonCppFoldWithHorizontalCross() {
+  fun polygonSimpleFoldWithHorizontalCross() {
 
     val edge = Edge(Vertex(Fraction(1,2), Fraction(0)), Vertex(Fraction(1,2), Fraction(1)))
     val res = poly.foldSimple(edge)
