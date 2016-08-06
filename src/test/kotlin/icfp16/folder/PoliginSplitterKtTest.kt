@@ -51,4 +51,62 @@ class PoliginSplitterKtTest {
     Visualizer().visualizedAndSaveImage(problem, translationSolve, filePath = "./translator_FOLD.png")
   }
 
+  @Test
+  @Ignore
+  fun starFoldingSolution() {
+
+    val problemString =
+        ProblemContainersParser().generateProblemContainerForProblemId("7")!!.problem.rawString
+
+    val problem = parseProblem(problemString)
+
+    val translationSolve = ComplexState()
+        .foldStar(Edge(
+            Vertex(Fraction(0), Fraction(1, 2)),
+            Vertex(Fraction(1), Fraction(1, 2))
+        ), Fraction(1,2), Fraction(1,2), Vertex(4,4))
+
+
+
+    Visualizer().visualizedAndSaveImage(problem, translationSolve, filePath = "./translator_FOLD_Star.png")
+  }
+
+  @Test
+
+  fun debugExTest(){
+
+    val step1 = ComplexState()
+        .fold(Edge(
+            Vertex(Fraction(1,2), Fraction(1, 1)),
+            Vertex(Fraction(1,2), Fraction(0, 1))
+        ))
+     val step2 = step1.fold(Edge(
+            Vertex(Fraction(1,4), Fraction(1, 1)),
+            Vertex(Fraction(1,4), Fraction(0, 1))
+        ))
+      val step3 = step2.fold(Edge(
+            Vertex(Fraction(1,8), Fraction(1, 1)),
+            Vertex(Fraction(1,8), Fraction(0, 1))
+        ))
+
+     val step4 = step3.fold(Edge(
+            Vertex(Fraction(1,8), Fraction(2, 8)),
+            Vertex(Fraction(0,8), Fraction(1, 8))
+        ))
+
+    val step5 = step4.fold(Edge(
+            Vertex(Fraction(0,8), Fraction(4, 8)),
+            Vertex(Fraction(1,8), Fraction(3, 8))
+        ))
+    val step6 = step5.fold(Edge(
+            Vertex(Fraction(0,8), Fraction(5, 8)),
+            Vertex(Fraction(1,8), Fraction(6, 8))
+        ))
+     val step7 = step6.fold(Edge(
+            Vertex(Fraction(0, 8), Fraction(1, 8)),
+            Vertex(Fraction(1,8), Fraction(0, 8))
+        ))
+    assert(true ==true)
+  }
+
 }

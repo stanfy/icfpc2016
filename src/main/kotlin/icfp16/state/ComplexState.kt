@@ -2,6 +2,7 @@ package icfp16.state
 
 import icfp16.data.*
 import icfp16.folder.foldSimple
+import icfp16.folder.foldStar
 import icfp16.folder.splitSimple
 
 data class ComplexState(val polys: Array<ComplexPolygon> = arrayOf(ComplexPolygon())) : IState {
@@ -79,6 +80,13 @@ data class ComplexState(val polys: Array<ComplexPolygon> = arrayOf(ComplexPolygo
       poly.foldSimple(foldingEdge)
     }.toTypedArray())
     .appendName("Folded over $foldingEdge")
+  }
+
+  override fun foldStar(foldingEdge: Edge, ratioX: Fraction, ratioY : Fraction, externalVertex: Vertex): IState{
+    return ComplexState(polys.flatMap { poly ->
+      poly.foldStar(foldingEdge, ratioX, ratioY, externalVertex)
+    }.toTypedArray())
+        .appendName("Star folded over $foldingEdge, fraction $ratioX, $ratioY, externalVertes : $externalVertex")
   }
 
   /**

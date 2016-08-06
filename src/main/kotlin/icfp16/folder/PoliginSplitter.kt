@@ -226,20 +226,24 @@ fun ComplexPolygon.foldSimple(foldingEdge: Edge): List<ComplexPolygon> {
 
 fun ComplexPolygon.foldStar(foldingEdge: Edge, ratioX: Fraction, ratioY : Fraction, externalVertex: Vertex): List<ComplexPolygon> {
   val firstFold = this.foldSimple(foldingEdge)
-  val reflectedSplitPoint = externalVertex.reflect(foldingEdge)
-  val secondFoldingEdge = Edge(externalVertex, reflectedSplitPoint)
+  val crossPoint = foldingEdge.findSplitPoint(ratioX, ratioY)
+
+  val secondFoldingEdge1 = Edge(externalVertex, crossPoint)
+  val secondFoldingEdge2 = Edge(externalVertex.reflect(foldingEdge), crossPoint)
   val res : MutableList<ComplexPolygon> = arrayListOf()
+
   firstFold.forEach {
-    val secondFold = it.foldSimple(secondFoldingEdge)
-    res.addAll(secondFold)
+    val secondFold1 = it.foldSimple(secondFoldingEdge1)
+    if(secondFold1.count() >1) {
+      res.addAll(secondFold1)
+    }
+    val secondFold2 = it.foldSimple(secondFoldingEdge2)
+    if(secondFold2.count() >1) {
+      res.addAll(secondFold2)
+    }
   }
   return res
 }
 
-
-
-fun Polygon.foldSimple(foldingEdge: Edge): List<Polygon> {
-  return arrayListOf(this)
-}
 
 
