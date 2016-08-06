@@ -6,8 +6,6 @@ import icfp16.visualizer.Visualizer
 import java.awt.Color
 import java.awt.Polygon
 import java.awt.image.BufferedImage
-import com.vividsolutions.jts.geom.GeometryFactory
-import com.vividsolutions.jts.geom.Coordinate
 import icfp16.problem
 import icfp16.state.IState
 
@@ -24,21 +22,6 @@ class EstimatorFactory {
 
   fun bestEstimatorEver(): Estimator {
     return BitmapEstimator()
-  }
-}
-
-class CompoundEstimator : Estimator {
-
-  val bitmapEstimator = BitmapEstimator()
-  val jstEstimator = JSTEstimator()
-
-  override fun resemblanceOf(task: Problem, state: IState, quality: Int): Double {
-    try {
-      val result = jstEstimator.resemblanceOf(task, state, quality)
-      return if (!result.isNaN()) result else bitmapEstimator.resemblanceOf(problem, state, quality)
-    } catch (e: Exception) {
-      return bitmapEstimator.resemblanceOf(problem, state, quality)
-    }
   }
 }
 
@@ -80,30 +63,5 @@ class BitmapEstimator : Estimator {
     val resemblance = coveredPixels.toDouble() / allSquarePixels.toDouble()
 //    System.out.println("Resemlense ${resemblence}")
     return resemblance
-  }
-}
-
-fun icfp16.data.Polygon.toJSTPolygon(factory: GeometryFactory = GeometryFactory()): com.vividsolutions.jts.geom.Polygon {
-  // assuming, that we always have correct values
-  val coordinates = vertices.plusElement(vertices.first()).map { Coordinate(it.x.toDouble(), it.y.toDouble()) }.toTypedArray()
-  return factory.createPolygon(coordinates)
-}
-
-fun <T : icfp16.data.Polygon> Collection<T>.toJSTMultipolygon(): com.vividsolutions.jts.geom.MultiPolygon {
-  val factory = GeometryFactory()
-  val polygons = map { it.toJSTPolygon(factory) }.toTypedArray()
-  return factory.createMultiPolygon(polygons)
-}
-
-class JSTEstimator : Estimator {
-
-  override fun resemblanceOf(task: Problem, state: IState, quality: Int): Double {
-    val problemPolygon = task.poligons.toJSTMultipolygon()
-    val statePolygon = state.poligons().toList().toJSTMultipolygon()
-
-    val areaAnd = problemPolygon.intersection(statePolygon).area
-    val areaOr = problemPolygon.union(statePolygon).area
-
-    return areaAnd / areaOr
   }
 }
