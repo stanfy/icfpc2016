@@ -60,7 +60,14 @@ class DimaPublicStates {
                 Vertex(Fraction(3, 4), Fraction(0)),
                 Vertex(Fraction(0), Fraction(3, 4))
             ))
-            .appendName("problem_1848 (1.0)")
+            .appendName("problem_1848 (1.0)"),
+
+        ComplexState()
+            .fold(Edge(
+                Vertex(Fraction(1, 8), Fraction(0)),
+                Vertex(Fraction(0), Fraction(1, 8))
+            ))
+            .appendName("problem_2084 (1.0)")
     )
 
   }
