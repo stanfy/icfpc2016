@@ -7,11 +7,11 @@ import icfp16.state.IState
 import icfp16.state.State
 
 fun wrappingEdges(envelop: Polygon, target: Polygon): List<Edge> {
-  return target.fullEdges()
+  return target.edges()
       // Check if the edge is inside.
       .filter { envelop.convexIn(it.a) && envelop.convexIn(it.b) }
       // Remove edges that match our boundaries.
-      .filter { e -> !envelop.fullEdges().any { it.hasPoint(e.a) && it.hasPoint(e.b) } }
+      .filter { e -> !envelop.edges().any { it.hasPoint(e.a) && it.hasPoint(e.b) } }
       // Sort by length.
       .sortedByDescending { it.comparativeValue() }
 }
