@@ -22,6 +22,9 @@ class Farm {
   fun startSearchingBestSolutions(full: Boolean = false, solveOnlyNotSolved: Boolean = false,
                                   problemNames: List<String> = emptyList()) {
 
+    // 1. filter ".ignore"
+    // 2. get solution file
+    // 3. if solveOnlyNotSolved --> check that solution file doesn't exist yet
     val problemList = if (full) {
       File(FileUtils().getDefaultProblemFileFolder()).listFiles()
         .map { it.name }
@@ -30,9 +33,9 @@ class Farm {
         .filter { it.second != null}
         .map { Pair(it.first, it.second!!) }
         .filter {
-            val (name, problemId) = it
-            val solutionFileName = FileUtils().getFullPathForSolutionFile(problemId)
-            !File(solutionFileName).exists()
+          val (name, problemId) = it
+          val solutionFileName = FileUtils().getFullPathForSolutionFile(problemId)
+          !(solveOnlyNotSolved && File(solutionFileName).exists())
         }
         .map { it.first }
 
