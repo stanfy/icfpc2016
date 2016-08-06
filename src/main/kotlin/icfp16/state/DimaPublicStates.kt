@@ -9,7 +9,6 @@ import icfp16.data.Vertex
 class DimaPublicStates {
   companion object {
     val states: Array<IState> = arrayOf(
-        // problem 18
         ComplexState()
             .fold(Edge(
                 Vertex(Fraction(1), Fraction(1, 2)),
@@ -18,17 +17,14 @@ class DimaPublicStates {
             .fold(Edge(
                 Vertex(Fraction(1), Fraction(3, 4)),
                 Vertex(Fraction(1, 2), Fraction(1, 2))
-            )).apply { name = "problem_18" }
+            )).appendName("problem_18"),
 
-//        ComplexState()
-//            .fold(Edge(
-//                Vertex(Fraction(1), Fraction(1, 2)),
-//                Vertex(Fraction(1, 2), Fraction(0))
-//            ))
-//            .fold(Edge(
-//                Vertex(Fraction(1), Fraction(1, 2)),
-//                Vertex(Fraction(1, 2), Fraction(1))
-//            )).apply { name = "problem_39" }
+        ComplexState()
+            .fold(Edge(
+                Vertex(Fraction(1, 2), Fraction(1)),
+                Vertex(Fraction(1), Fraction(1, 2)))
+            ).appendName("problem_158")
         )
+
   }
 }
