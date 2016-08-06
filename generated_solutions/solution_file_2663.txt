@@ -1,0 +1,46 @@
+-------------------------- resemblance --------------------
+real res =0.8 estimated res =0.8-------------------------- container --------------------
+SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[0,0, 1/4,0, 1/4,1, 0,1])], skeleton=[Edge(a=0,0, b=1/4,0), Edge(a=0,0, b=0,1), Edge(a=1/4,0, b=1/4,1), Edge(a=0,1, b=1/4,1)], rawString=1
+4
+0,0
+1/4,0
+1/4,1
+0,1
+4
+0,0 1/4,0
+0,0 0,1
+1/4,0 1/4,1
+0,1 1/4,1
+), problemId=2663, problemHash=), state=ComplexState(polys=[ComlexPolygon(initial=Polygon(vertices=[0,0, 0,1, 1/5,1, 1/5,0]), final=Polygon(vertices=[9/40,1, 9/40,0, 1/40,0, 1/40,1])), ComlexPolygon(initial=Polygon(vertices=[1/5,0, 1/5,1, 2/5,1, 2/5,0]), final=Polygon(vertices=[1/40,1, 1/40,0, 9/40,0, 9/40,1])), ComlexPolygon(initial=Polygon(vertices=[2/5,0, 2/5,1, 3/5,1, 3/5,0]), final=Polygon(vertices=[9/40,1, 9/40,0, 1/40,0, 1/40,1])), ComlexPolygon(initial=Polygon(vertices=[3/5,0, 3/5,1, 4/5,1, 4/5,0]), final=Polygon(vertices=[1/40,1, 1/40,0, 9/40,0, 9/40,1])), ComlexPolygon(initial=Polygon(vertices=[4/5,0, 4/5,1, 5/5,1, 5/5,0]), final=Polygon(vertices=[9/40,1, 9/40,0, 1/40,0, 1/40,1]))]), realResemblance=0.8, estimatedResemblance=0.8)
+-------------------------- solution --------------------
+12
+0,0
+0,1
+1/5,1
+1/5,0
+2/5,1
+2/5,0
+3/5,1
+3/5,0
+4/5,1
+4/5,0
+5/5,1
+5/5,0
+5
+4 0 1 2 3
+4 3 2 4 5
+4 5 4 6 7
+4 7 6 8 9
+4 9 8 10 11
+9/40,1
+9/40,0
+1/40,0
+1/40,1
+9/40,0
+9/40,1
+1/40,0
+1/40,1
+9/40,0
+9/40,1
+1/40,0
+1/40,1
