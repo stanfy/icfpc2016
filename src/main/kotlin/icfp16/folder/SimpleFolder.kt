@@ -228,6 +228,8 @@ fun splitPolygon(edgesOnLine: MutableList<PolyEdge>, splitPoly: MutableList<Poly
       val prevSide = curEdge.Prev.lineSide
       val nextSide = curEdge.Next.lineSide
 
+      // FIXME: In our test we have 2 edges on line. And first does not pass this condition. Only second.
+      // Hence, we do not get dst edge.
 
       if ((prevSide == LineSide.LEFT && nextSide == LineSide.RIGHT) ||
           (prevSide == LineSide.LEFT && nextSide == LineSide.ON && !curEdge.Next.DistOnLine.geq(curEdge.DistOnLine)) ||

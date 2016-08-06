@@ -147,7 +147,12 @@ fun lineCrossTest(){
   }
 
   @Test
-  fun splitPoly() {
-
+  fun ploygonSplitSimple() {
+    val poly = Polygon(arrayListOf(Vertex(0, 0), Vertex(1, 0), Vertex(1, 1), Vertex(0, 1)))
+    assertThat(poly.split(Edge(Vertex(Fraction(0), Fraction(1, 2)), Vertex(Fraction(1), Fraction(1, 2)))))
+        .containsExactly(
+            Polygon(arrayListOf(Vertex(0, 0), Vertex(1, 0), Vertex(Fraction(1), Fraction(1, 2)), Vertex(Fraction(0), Fraction(1, 2)))),
+            Polygon(arrayListOf(Vertex(Fraction(0), Fraction(1, 2)), Vertex(Fraction(1), Fraction(1, 2)), Vertex(1, 1), Vertex(0, 1)))
+        )
   }
 }
