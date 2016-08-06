@@ -306,7 +306,7 @@ fun collectPollys(splitPoly: MutableList<PolyEdge>): List<Polygon> {
 // reference documentation https://geidav.wordpress.com/2015/03/21/splitting-an-arbitrary-polygon-by-a-line/
 // reference implementation https://github.com/geidav/concave-poly-splitter/blob/master/polysplitter.cpp
 
-fun Polygon.split(by: Edge): List<Polygon> {
+fun Polygon.splitCpp(by: Edge): List<Polygon> {
   val splitEdgesResult = splitEdges(this, by)
   val splitPoly = splitEdgesResult.first
   val edgesOnline = sortEdges(splitEdgesResult.second, by)
@@ -314,7 +314,7 @@ fun Polygon.split(by: Edge): List<Polygon> {
   return collectPollys(splitPoly)
 }
 
-fun Polygon.fold(foldingEdge: Edge): List<Polygon> {
+fun Polygon.foldCpp(foldingEdge: Edge): List<Polygon> {
 
   // !!! what should fold do
   // val splitted = splitPolygon(this)
@@ -322,7 +322,7 @@ fun Polygon.fold(foldingEdge: Edge): List<Polygon> {
   //   foreach(edge in polygon)
   //       yield edge.reflect(foldingEdge)
 
-  return split(foldingEdge)
+  return splitCpp(foldingEdge)
     .map {
       val sideVertex = it.vertices.find { it.sideOf(foldingEdge) != LineSide.ON } ?:
           throw IllegalStateException("WTF! Polygon must not be a line")
