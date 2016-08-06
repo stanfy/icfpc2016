@@ -139,4 +139,10 @@ fun lineCrossTest(){
     assertThat(cyclesValid(list4)).isEqualTo(false)
 
   }
+
+  @Test
+  fun bridgeCreationTest()
+  {
+
+  }
 }

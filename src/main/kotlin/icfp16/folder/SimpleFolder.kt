@@ -193,7 +193,6 @@ fun cyclesValid(list: MutableList<PolyEdge>): Boolean {
 fun createBridge(src: PolyEdge, dst: PolyEdge, splitPoly: MutableList<PolyEdge>): MutableList<PolyEdge> {
 
   splitPoly.add(src)
-
   val a = splitPoly.last()
 
   splitPoly.add(dst)
@@ -210,37 +209,25 @@ fun createBridge(src: PolyEdge, dst: PolyEdge, splitPoly: MutableList<PolyEdge>)
   return splitPoly
 }
 
-fun Polygon.fold(by: Edge): List<Polygon> {
+// reference documentation https://geidav.wordpress.com/2015/03/21/splitting-an-arbitrary-polygon-by-a-line/
+// reference implementation https://github.com/geidav/concave-poly-splitter/blob/master/polysplitter.cpp
+// TODO: translate function void PolySplitter::SplitPolygon() from cpp to kotlin
+// TODO: translate function std::vector<QPolygonF> PolySplitter::Split(const QPolygonF &poly, const QLineF &line) from cpp to kotlin
+// TODO: use PolySplitter::Split in Polygon.fold
 
-  val edges = this.edges()
+fun Polygon.fold(foldingEdge: Edge): List<Polygon> {
+
+//  val edges = this.edges()
   var res: MutableList<Polygon> = arrayListOf()
-  var currentPoly = Polygon(arrayListOf())
-  val crossLine = Line(by)
-  var newPoly = true
-  edges.forEach {
 
-    val crossPoint = Line(it).interection(crossLine)
-    if (crossPoint != null) {
+  // !!! what should fold do
+  // val splitted = splitPolygon(this)
+  // foreach(polygon in splitted)
+  //   foreach(edge in polygon)
+  //       yield edge.reflect(foldingEdge)
 
-      val crossed = crossPoint.withinBoundary(it)
 
-      if (crossed) {
-        currentPoly = Polygon(currentPoly.vertices.plus(crossPoint))
-        res.add(currentPoly)
 
-        currentPoly = Polygon(arrayListOf(crossPoint, it.b))
-
-      } else {
-
-        currentPoly = Polygon(currentPoly.vertices.plus(it.a))
-
-      }
-    } else {
-      currentPoly = Polygon(currentPoly.vertices.plus(it.a))
-    }
-  }
-
-  res.add(currentPoly)
 
   return res
 
