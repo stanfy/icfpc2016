@@ -21,9 +21,10 @@ class Wrapper: Solver {
     // We know that we have one polygon at the moment.
     val p = startState.poligons()[0]
 
-    problem.poligons.forEach {
-      println(wrappingEdges(p, it))
-    }
+    // TODO: Commented to avoid slowing down solutions.
+//    problem.poligons.forEach {
+//      println(wrappingEdges(p, it))
+//    }
 
     // TODO
     return State.initialSquare()

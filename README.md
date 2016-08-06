@@ -1,13 +1,15 @@
 ICFP 2016
 =========
 
-Some automations
+Some automation
 -----------------
 ```
 ./get-new-problems.sh
 ```
 To automate getting new problems, run `gw run -PrunArgs=automate` and leave it in bg.
-To automate solutions submission for all problems: `gw run -PrunArgs=doit`
+To automate solutions submission for all problems: `gw run -PrunArgs=doit`. But you might prefer next solution instead.
+To start N parallel Farms that split all the problems set: `gw run -PrunArgs=<N>` (for instance, `gw run -PrunArgs=4`).
+You can add `.ignore` suffix to problem files in order to make Farm ignore it and avoid solving it.
 
 **Install Java 8!!!**
 Also, please ensure [your global `.gitignore`](https://help.github.com/articles/ignoring-files/#create-a-global-gitignore) 

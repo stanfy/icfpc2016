@@ -29,7 +29,8 @@ class ProblemContainersGrabber {
     problemSpecs.forEach { p ->
       val filePath = FileUtils().getFullPathForProblemId(p.problem_id)
       var file = File(filePath)
-      if (!file.exists() || file.length() == 0L) {
+      // Download only if file does not exist.
+      if ((!file.exists() || file.length() == 0L) && !File(filePath + ".ignore").exists()) {
         // api limitations
         Thread.sleep(1000)
         val problem = api.getProblemSpec(hash = p.problem_spec_hash).execute().body()
