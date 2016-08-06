@@ -7,6 +7,8 @@ import icfp16.data.Vertex
 import icfp16.farm.Farm
 import icfp16.io.ProblemContainersGrabber
 import java.math.BigInteger
+import java.time.Instant
+import java.util.concurrent.TimeUnit
 
 var problem = Problem(
     arrayListOf(Polygon(
@@ -30,6 +32,25 @@ fun main(args: Array<String>) {
     return
   }
 
+  // I did not succeed in setting up a periodic task using Macos means (Automator+iCalendar, launcherd, cron).
+  if (args.size > 0 && "automate".equals(args[0])) {
+    val t = Thread({
+      while (true) {
+        Thread.sleep(TimeUnit.MINUTES.toMillis(15))
+        val p = Runtime.getRuntime().exec("./get-new-problems.sh > ./tmp")
+        println("${Instant.now()} ${p.waitFor()}")
+      }
+    }, "grab automator")
+    t.start()
+    t.join()
+    return
+  }
+
   println("Starting the farm")
-  Farm().startSearchingBestSolutions()
+  if (args.size == 0) {
+    Farm().startSearchingBestSolutions()
+  } else if ("doit".equals(args[0])) {
+    Farm().startSearchingBestSolutions(true)
+  }
 }
+

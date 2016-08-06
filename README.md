@@ -1,11 +1,13 @@
 ICFP 2016
 =========
 
-Grab new problems
+Some automations
 -----------------
 ```
 ./get-new-problems.sh
 ```
+To automate getting new problems, run `gw run -PrunArgs=automate` and leave it in bg.
+To automate solutions submission for all problems: `gw run -PrunArgs=doit`
 
 **Install Java 8!!!**
 Also, please ensure [your global `.gitignore`](https://help.github.com/articles/ignoring-files/#create-a-global-gitignore) 
