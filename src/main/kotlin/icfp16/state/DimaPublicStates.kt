@@ -21,10 +21,19 @@ class DimaPublicStates {
 
         ComplexState()
             .fold(Edge(
+                Vertex(Fraction(2, 3), Fraction(1)),
+                Vertex(Fraction(1), Fraction(2, 3)))
+            ).fold(Edge(
+            Vertex(Fraction(0), Fraction(2, 3)),
+            Vertex(Fraction(1, 3), Fraction(1)))
+        ).appendName("problem_38"),
+
+        ComplexState()
+            .fold(Edge(
                 Vertex(Fraction(1, 2), Fraction(1)),
                 Vertex(Fraction(1), Fraction(1, 2)))
             ).appendName("problem_158")
-        )
+    )
 
   }
 }
