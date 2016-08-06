@@ -18,7 +18,7 @@ class Visualizer {
     val solutionColor = Color(0, 0, 255, 32)
   }
 
-  fun visualizationOf(task: Problem, state: IState? = null, quality: Int = 1): BufferedImage {
+  fun visualizationOf(task: Problem, state: IState? = null, quality: Int = 1, resemblance : Double? = null): BufferedImage {
     val BITMAP_SIZE = BITMAP_STEP * quality
     val image = BufferedImage(BITMAP_SIZE, BITMAP_SIZE, BufferedImage.TYPE_INT_ARGB)
     val graphics = image.createGraphics()
@@ -55,6 +55,22 @@ class Visualizer {
           val poly = Polygon(xPoints, yPoints, xPoints.size)
           graphics.fillPolygon(poly)
         }
+
+    if (resemblance != null) {
+      val currentFont = graphics.font
+      val newFont = currentFont.deriveFont(currentFont.size * 4f)
+      graphics.font = newFont
+      graphics.s
+      if (resemblance == 1.0) {
+      } else if (resemblance > 0.9) {
+        graphics.color = Color.YELLOW
+      } else if (resemblance > 0.8) {
+        graphics.color = Color.ORANGE
+      } else {
+        graphics.color = Color.RED
+      }
+      graphics.drawString("Resemblance = $resemblance", 10, 40)
+    }
     return image
   }
 
@@ -87,8 +103,9 @@ class Visualizer {
     return image
   }
 
-  fun visualizedAndSaveImage(task: Problem = Problem(emptyList(), emptyList()), state: IState? = null, quality: Int = 1, filePath: String = "output.png") {
-    val image = visualizationOf(task, state, quality)
+  fun visualizedAndSaveImage(task: Problem = Problem(emptyList(), emptyList()), state: IState? = null, quality: Int = 1
+                             , filePath: String = "output.png", resemblance: Double? = null) {
+    val image = visualizationOf(task, state, quality, resemblance)
     ImageIO.write(image,"png", File(filePath))
   }
 
