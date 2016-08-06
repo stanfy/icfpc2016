@@ -15,7 +15,7 @@ class Visualizer {
   val BITMAP_STEP = 1000
   companion object {
     val originalItemColor = Color.RED
-    val solutionColor = Color(0, 0, 255, 128)
+    val solutionColor = Color(0, 0, 255, 32)
   }
 
   fun visualizationOf(task: Problem, state: IState? = null, quality: Int = 1): BufferedImage {
