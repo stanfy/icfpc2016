@@ -1,8 +1,6 @@
 package icfp16.solver
 
-import icfp16.data.Edge
-import icfp16.data.Polygon
-import icfp16.data.Problem
+import icfp16.data.*
 import icfp16.state.IState
 import icfp16.state.State
 
@@ -18,9 +16,24 @@ fun wrappingEdges(envelop: Polygon, target: Polygon): List<Edge> {
 
 class Wrapper: Solver {
 
-  fun solveWithWrapping(problem: Problem, startState: IState): State {
+  fun solveWithWrapping(problem: Problem, startState: IState): IState {
     // We know that we have one polygon at the moment.
     val p = startState.poligons()[0]
+
+    val we = wrappingEdges(p, problem.poligons[0])
+    if (we.isEmpty()) {
+      return startState
+    }
+
+    val affineSegment = we[0].b.relativeVector(we[0].a)
+    var reflectedPoints = p.vertices
+        .filter { affineSegment.side(it.relativeVector(we[0].a)) == VectorSide.LEFT }
+    println(reflectedPoints)
+    reflectedPoints = reflectedPoints
+        .map { it.reflect(we[0]) }
+
+    println(reflectedPoints)
+
 
     // TODO: Commented to avoid slowing down solutions.
 //    problem.poligons.forEach {
