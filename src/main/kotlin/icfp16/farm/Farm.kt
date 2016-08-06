@@ -16,7 +16,7 @@ class Farm {
   val estimatorQuality = 4
   val shouldShowInvalidPics = false
 
-  val startingId = 1
+  val startingId = 2200
   val count = 1
 
   fun startSearchingBestSolutions(full: Boolean = false, solveOnlyNotSolved: Boolean = false,
@@ -24,14 +24,27 @@ class Farm {
 
     val problemList = if (full) {
       File(FileUtils().getDefaultProblemFileFolder()).listFiles()
-          .map { it.name }
-          .filter { !it.endsWith(".ignore") }
+        .map { it.name }
+        .filter { !it.endsWith(".ignore") }
+        .filter {
+          val problemId = FileUtils().getProblemIdByFileNameWithoutExtension(it)
+          var filter = false
+          if (problemId != null) {
+            val solutionFileName = FileUtils().getFullPathForSolutionFile(problemId)
+            filter = !File(solutionFileName).exists()
+          }
+          filter
+        }
+
     } else if (problemNames.size == 0) {
       (startingId..(startingId + count)).map { "problem_$it.txt" }
     } else {
       problemNames.filter { !it.endsWith(".ignore") }
     }
 
+    if (problemList.count() == 0) {
+      println("Stopping the farm: nothing to solve")
+    }
 
     for (problemFileName in problemList) {
       //Thread.sleep(1000) // <--- api
