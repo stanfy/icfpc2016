@@ -1,7 +1,6 @@
 package icfp16.state
 
 import icfp16.data.*
-import java.math.BigInteger
 
 data class State(val vertexes: Array<Vertex> = emptyArray(),
                  val facets: Array<Facet> = emptyArray(),
@@ -11,6 +10,14 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
     return facets.map { facet ->
       Polygon(facet.indexes.map { index ->
         finalPositions[index]
+      })
+    }.toTypedArray()
+  }
+
+  fun initialPoligons(): Array<Polygon> {
+    return facets.map { facet ->
+      Polygon(facet.indexes.map { index ->
+        vertexes[index]
       })
     }.toTypedArray()
   }

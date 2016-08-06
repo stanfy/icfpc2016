@@ -236,7 +236,7 @@ val tasks = arrayOf(
     )
 )
 
-var submit = true
+var submit = false
 
 fun main(args: Array<String>) {
   if (args.size > 0) {
@@ -248,7 +248,9 @@ fun main(args: Array<String>) {
   var ts = Instant.parse("2016-08-06T00:00:00Z")
   val api = createApi(HttpLoggingInterceptor.Level.NONE)
   tasks.forEachIndexed { i, data ->
-    Visualizer().visualizedAndSaveImage(data.first, data.second, 1, "our_problems/task$i.png")
+    val visualizer = Visualizer()
+    visualizer.visualizedAndSaveImage(data.first, data.second, 1, "our_problems/task$i.png")
+    visualizer.visualizedAndSaveFolds(data.second, 1, "our_problems/task${i}folds.png")
     val text = data.second.solution()
     File(dir, "task$i.txt").writeText(text)
 
