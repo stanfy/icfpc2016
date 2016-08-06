@@ -155,7 +155,6 @@ fun Polygon.splitSimple(foldingEdge: Edge): List<SplitResult> {
 
     }
   }
-
   return arrayListOf(SplitResult(this, false, null, null, 0, null, null))
 }
 
@@ -165,7 +164,7 @@ fun Edge.findSplitPoint(ratioX : Fraction, ratioY:Fraction) : Vertex{
   return Vertex(xc, yc)
 }
 
-fun ComlexPolygon.splitSimple(foldingEdge: Edge): List<ComlexPolygon> {
+fun ComplexPolygon.splitSimple(foldingEdge: Edge): List<ComplexPolygon> {
   val splitted = final.splitSimple(foldingEdge)
   if(splitted.count() > 1)
   {
@@ -191,8 +190,8 @@ fun ComlexPolygon.splitSimple(foldingEdge: Edge): List<ComlexPolygon> {
         {
           val initial1 = splittedInit.first().polygon
           val initial2 = splittedInit.last().polygon
-          val res1 = ComlexPolygon(initial = initial1, final = final1)
-          val res2 = ComlexPolygon(initial = initial2, final = final2)
+          val res1 = ComplexPolygon(initial = initial1, final = final1)
+          val res2 = ComplexPolygon(initial = initial2, final = final2)
 
           return arrayListOf(res1, res2)
         }
@@ -203,6 +202,28 @@ fun ComlexPolygon.splitSimple(foldingEdge: Edge): List<ComlexPolygon> {
     return arrayListOf(this)
   }
 }
+
+fun isLeft(a: Vertex, b: Vertex, c: Vertex): Int {
+  return (b.x.sub(a.x).mul(c.y.sub(a.y)))
+  .sub(b.y.sub(a.y).mul(c.x.sub(a.x))).a.signum()
+}
+
+fun ComplexPolygon.foldSimple(foldingEdge: Edge): List<ComplexPolygon> {
+  val splitted = this.splitSimple(foldingEdge)
+  val result = splitted.map {
+    if (it.final.vertices.any { point -> isLeft(foldingEdge.a, foldingEdge.b, point) > 0 }) {
+      ComplexPolygon(it.initial,
+          Polygon(it.final.vertices.map {
+            it.reflect(foldingEdge)
+          })
+      )
+    } else {
+      it
+    }
+  }
+  return result
+}
+
 
 
 fun Polygon.foldSimple(foldingEdge: Edge): List<Polygon> {

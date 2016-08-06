@@ -11,10 +11,11 @@ fun Fraction.simple(): Fraction{
   val finalBottomPart = b.div(gcd)
 
   // (-1,-1) == (1,1)
-  if(finalBottomPart < BigInteger.ZERO && finalTopPart < BigInteger.ZERO)
+  if(finalBottomPart < BigInteger.ZERO)
   {
     return Fraction(finalTopPart.negate(), finalBottomPart.negate())
   }
+
   return Fraction(finalTopPart, finalBottomPart)
 }
 
@@ -138,7 +139,7 @@ fun Vertex.div(v: BigInteger): Vertex {
   return Vertex(this.x.div(v), this.y.div(v))
 }
 
-fun Vertex.reflect(edge : Edge) : Vertex{
+fun Vertex.reflect(edge : Edge) : Vertex {
 
 //  double dx,dy,a,b;
 //  long x2,y2;

@@ -1,6 +1,6 @@
 package icfp16.state
 
-import icfp16.data.ComlexPolygon
+import icfp16.data.ComplexPolygon
 import icfp16.data.Facet
 import icfp16.data.Polygon
 import icfp16.data.Vertex
@@ -10,8 +10,8 @@ import org.junit.Ignore
 
 class ComplexStateTest {
 
-  fun testComplexPolygon(): ComlexPolygon {
-    return ComlexPolygon(
+  fun testComplexPolygon(): ComplexPolygon {
+    return ComplexPolygon(
         Polygon(listOf(Vertex(1, 1), Vertex(1, 2), Vertex(2, 1)))
     )
   }
