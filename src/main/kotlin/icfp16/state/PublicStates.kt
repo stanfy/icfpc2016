@@ -8,7 +8,7 @@ import icfp16.data.Vertex
 class PublicStates {
 
   companion object {
-    val states: Array<State> = arrayOf(
+    val localState: Array<IState> = arrayOf(
 
         // square
         State(vertexes = arrayOf(
@@ -414,6 +414,9 @@ class PublicStates {
             )
         )
     )
+
+    val states: Array<IState> = localState.plus(PaulPublicStates.states)
+
   }
 
 }

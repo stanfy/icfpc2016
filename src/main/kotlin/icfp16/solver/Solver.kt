@@ -2,10 +2,10 @@ package icfp16.solver
 
 import icfp16.data.*
 import icfp16.estimate.BitmapEstimator
-import icfp16.estimate.CompoundEstimator
 import icfp16.state.IState
 import icfp16.state.PublicStates
 import icfp16.state.State
+import icfp16.state.solution
 
 interface Solver {
   fun solve(problem: Problem): IState
@@ -55,7 +55,7 @@ class SequenceSolver: Solver {
     val bestState = PublicStates.states
       .map { s ->
         // sub S many times
-        val stateCentroid = centroid(s.finalPositions.asList())
+        val stateCentroid = centroid(s.finalPositions().asList())
         val translation = problemCentroid.sub(stateCentroid)
         val translatedState = s.translate(translation)
         translatedState
@@ -78,10 +78,6 @@ class SequenceSolver: Solver {
             s.rotate(stateCentroid, Triple(24, 7, 25)),
             s.rotate(stateCentroid, Triple(20, 21, 29)),
             s.rotate(stateCentroid, Triple(21, 20, 29)),
-            s.rotate(stateCentroid, Triple(13, 35, 29)),
-            s.rotate(stateCentroid, Triple(35, 12, 37)),
-            s.rotate(stateCentroid, Triple(40, 9, 37)),
-            s.rotate(stateCentroid, Triple(9, 40, 41)),
             s.rotate(stateCentroid, Triple(28, 45, 53)),
             s.rotate(stateCentroid, Triple(45, 28, 53)),
             s.rotate(stateCentroid, Triple(11, 60, 61)),
@@ -102,6 +98,7 @@ class SequenceSolver: Solver {
             s.rotate(stateCentroid, Triple(72, 65, 97))
         )
       }
+      .filter { it.solution().length <= 5000 }
       .map { it.to(BitmapEstimator().resemblanceOf(problem, it, quality = 2)) }
       .sortedBy { it.second }
       .last().first

@@ -1,0 +1,26 @@
+-------------------------- resemblance --------------------
+real res =1.0 estimated res =1.0-------------------------- container --------------------
+SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[1,1, 2,1, 2,2, 1,2])], skeleton=[Edge(a=1,1, b=1,2), Edge(a=2,1, b=2,2), Edge(a=1,1, b=2,1), Edge(a=1,2, b=2,2)], rawString=1
+4
+1,1
+2,1
+2,2
+1,2
+4
+1,1 1,2
+2,1 2,2
+1,1 2,1
+1,2 2,2
+), problemId=2127, problemHash=), state=State(vertexes=[0,0, 0,1, 1,1, 1,0], facets=[4 0 1 2 3], finalPositions=[1,2, 2,2, 2,1, 1,1]), realResemblance=1.0, estimatedResemblance=1.0)
+-------------------------- solution --------------------
+4
+0,0
+0,1
+1,1
+1,0
+1
+4 0 1 2 3
+1,2
+2,2
+2,1
+1,1

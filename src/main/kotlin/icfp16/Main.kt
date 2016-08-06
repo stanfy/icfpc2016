@@ -49,22 +49,59 @@ fun main(args: Array<String>) {
     return
   }
 
+  if (args.size > 0 && "automate-doit".equals(args[0])) {
+    val t = Thread({
+      while (true) {
+        val p = Runtime.getRuntime().exec("./get-and-solve-new-problems.sh")
+        println("${Instant.now()} ${p.waitFor()}")
+        Thread.sleep(TimeUnit.MINUTES.toMillis(45))
+      }
+    }, "grab and solve automator")
+    t.start()
+    t.join()
+    return
+  }
+
+
   println("Starting the farm")
-  if (args.size == 0) {
-    Farm().startSearchingBestSolutions()
-  } else if ("doit".equals(args[0])) {
-    Farm().startSearchingBestSolutions(true)
+  var useFullList = false
+  var solveUnsolved = false
+  var threadsNum = 1
+
+  // parse args
+  for (arg in args) {
+    if (arg.equals("doit")) {
+      useFullList = true
+      continue
+    }
+    if (arg.equals("solveUnsolved")) {
+      solveUnsolved = true
+      continue
+    }
+
+    try {
+      threadsNum = Integer.parseInt(arg)
+    } catch (e: Exception) {
+      threadsNum = 1
+    }
+  }
+
+  println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+  println("Starting with params: full=$useFullList solveUnsolved=$solveUnsolved threads=$threadsNum")
+  println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+  if (threadsNum == 1) {
+    Farm().startSearchingBestSolutions(useFullList, solveUnsolved)
   } else {
-    val n = Integer.parseInt(args[0])
     val allFiles = File(FileUtils().getDefaultProblemFileFolder()).list()
-    val batchSize = allFiles.size / n
+    val batchSize = allFiles.size / threadsNum
     var index = 0
     val threads = ArrayList<Thread>()
     while (index < allFiles.size) {
       val problems = allFiles.toList().subList(index, Math.min(index + batchSize, allFiles.size))
       threads.add(Thread({
         println("Start thread for $problems")
-        Farm().startSearchingBestSolutions(false, problems)
+        Farm().startSearchingBestSolutions(false, solveUnsolved, problems)
       }))
       index += batchSize
     }
