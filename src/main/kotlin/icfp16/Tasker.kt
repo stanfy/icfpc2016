@@ -419,7 +419,7 @@ fun main(args: Array<String>) {
 
   val dir = File("our_problems")
   dir.mkdirs()
-  val START_TIME = Instant.parse("2016-08-06T14:00:00Z")
+  val START_TIME = Instant.parse("2016-08-06T18:00:00Z")
   var ts = Instant.from(START_TIME)
   val api = createApi(HttpLoggingInterceptor.Level.NONE)
 
@@ -429,9 +429,8 @@ fun main(args: Array<String>) {
 
   var i = 0
 
-  while (ts.isBefore(START_TIME.plus(48, ChronoUnit.HOURS))) {
+  while (ts.isBefore(Instant.parse("2016-08-07T22:00:00Z"))) {
     val data = tasks[i % tasks.size]
-    i++
 
     val problem = data.first
     val random = Random()
@@ -450,6 +449,7 @@ fun main(args: Array<String>) {
     visualizer.visualizedAndSaveFolds(solution, 1, "our_problems/task${i}folds.png")
     val text = solution.solution()
     File(dir, "task$i.txt").writeText(text)
+    println("Have task $i for $ts")
 
     if (submit) {
       val request = api.submitProblem(SolutionSpec(text), TimeUnit.MILLISECONDS.toSeconds(ts.toEpochMilli())).execute()
@@ -463,7 +463,11 @@ fun main(args: Array<String>) {
       if (!request.isSuccessful) {
         val errMsg = "Error: ${request.raw().code()} ${request.message()}"
         println(errMsg)
-        log.append(errMsg)
+        if (request.code() != 403) {
+          println("Retry")
+          Thread.sleep(TimeUnit.SECONDS.toMillis(2))
+          continue
+        }
       }
 
       log.append("Pivot: $pivot\n")
@@ -474,6 +478,7 @@ fun main(args: Array<String>) {
     }
 
     ts = ts.plus(1, ChronoUnit.HOURS)
+    i++
   }
 
   val logFile = File(logDir, "task${Instant.now()}.txt")
