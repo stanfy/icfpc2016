@@ -69,7 +69,7 @@ fun lineCrossTest(){
   @Test
   fun splitEdgesTest(){
     val triangle = Polygon(arrayListOf(Vertex(0,0), Vertex(4,0), Vertex(2,2)))
-    var triangleCutter = Edge(Vertex(0,1), Vertex(4,1))
+    val triangleCutter = Edge(Vertex(0,1), Vertex(4,1))
     val res = splitEdges(triangle, triangleCutter)
     val splitPoly = res.first
     val edgesOnLine = res.second
@@ -87,13 +87,56 @@ fun lineCrossTest(){
   @Test
   fun sortEdgesTest(){
     val triangle = Polygon(arrayListOf( Vertex(2,2),Vertex(0,0),Vertex(4,0)))
-    var triangleCutter = Edge(Vertex(0,1), Vertex(4,1))
+    val triangleCutter = Edge(Vertex(0,1), Vertex(4,1))
     val res = splitEdges(triangle, triangleCutter)
-    val splitPoly = res.first
     val edgesOnLine = res.second
-    val sorted = sortEdges(edgesOnLine, triangleCutter);
+    val sorted = sortEdges(edgesOnLine, triangleCutter)
 
     assertThat(sorted.count()).isEqualTo(edgesOnLine.count())
+
+  }
+
+  @Test
+  fun cycleValidationTest()
+  {
+    val p1 = PolyEdge(Vertex(1), LineSide.LEFT)
+    p1.Next = p1
+    p1.Prev = p1
+    val list1 = arrayListOf(p1)
+    assertThat(cyclesValid(list1)).isEqualTo(true)
+
+    val p2 = PolyEdge(Vertex(2), LineSide.LEFT)
+    val p3 = PolyEdge(Vertex(3), LineSide.LEFT)
+    p2.Next =p3
+    p2.Prev =p3
+    p3.Next = p2
+    p3.Prev = p2
+    val list2 = arrayListOf(p2, p3)
+    assertThat(cyclesValid(list2)).isEqualTo(true)
+
+    val p4 = PolyEdge(Vertex(4), LineSide.LEFT)
+    val p5 = PolyEdge(Vertex(5), LineSide.LEFT)
+    val p6 = PolyEdge(Vertex(6), LineSide.LEFT)
+    p4.Next =p5
+    p4.Prev =p6
+    p5.Next = p6
+    p5.Prev = p4
+    p6.Next = p4
+    p6.Prev = p5
+    val list3 = arrayListOf(p4, p5,p6)
+    assertThat(cyclesValid(list3)).isEqualTo(true)
+
+    val p7 = PolyEdge(Vertex(7), LineSide.LEFT)
+    val p8 = PolyEdge(Vertex(8), LineSide.LEFT)
+    val p9 = PolyEdge(Vertex(9), LineSide.LEFT)
+    p7.Next =p8
+    p7.Prev =p8
+    p8.Next = p9
+    p8.Prev = p7
+    p9.Next = p5
+    p9.Prev = p7
+    val list4 = arrayListOf(p7, p8,p9)
+    assertThat(cyclesValid(list4)).isEqualTo(false)
 
   }
 }

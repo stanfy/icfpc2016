@@ -34,9 +34,9 @@ fun Edge.middle(): Vertex {
   return Vertex(midx, midy)
 }
 
-fun Edge.cross(that:Edge) : Vertex?{
+fun Edge.cross(that: Edge): Vertex? {
   val crossPoint = Line(this).interection(Line(that))
-  if(crossPoint != null) {
+  if (crossPoint != null) {
     val crossed = crossPoint.withinBoundary(this)
 
     if (crossed) {
@@ -47,13 +47,13 @@ fun Edge.cross(that:Edge) : Vertex?{
 }
 
 // distance is nonEuqlidian, but hukares
-fun Vertex.distance(that: Vertex) : Fraction {
+fun Vertex.distance(that: Vertex): Fraction {
   val dx = x.sub(that.x)
   val dy = y.sub(that.y)
   return dx.mul(dx).add(dy.mul(dy))
 }
 
-fun Vertex.signedDistance(edge: Edge) : Fraction {
+fun Vertex.signedDistance(edge: Edge): Fraction {
 
   val x1 = edge.a.x
   val x2 = edge.b.x
@@ -68,7 +68,7 @@ fun Vertex.signedDistance(edge: Edge) : Fraction {
 }
 
 
-fun Vertex.sideOf(edge: Edge) : LineSide {
+fun Vertex.sideOf(edge: Edge): LineSide {
 
   val x1 = edge.a.x
   val x2 = edge.b.x
@@ -77,14 +77,12 @@ fun Vertex.sideOf(edge: Edge) : LineSide {
 
   val d = x.sub(x1).mul(y2.sub(y)).sub(y.sub(y1).mul(x2.sub(x)))
 
-  if(d.geq(Fraction(1,13))){
+  if (d.geq(Fraction(1, 13))) {
     return LineSide.RIGHT
-  } else
-  {
-    if(d.leq(Fraction(-1, 13))){
+  } else {
+    if (d.leq(Fraction(-1, 13))) {
       return LineSide.LEFT
-    }else
-    {
+    } else {
       return LineSide.ON
     }
   }
@@ -94,19 +92,18 @@ enum class LineSide {
   LEFT, RIGHT, ON
 }
 
-data class PolyEdge (val vertex: Vertex, val lineSide: LineSide)
-{
-  var Next : PolyEdge = this       // next polygon in linked list
-  var Prev : PolyEdge = this       // previous polygon in linked list
-  var DistOnLine : Fraction = Fraction(1, 2*3*5*7*13*19)      // distance relative to first point on split line
+data class PolyEdge(val vertex: Vertex, val lineSide: LineSide) {
+  var Next: PolyEdge = this       // next polygon in linked list
+  var Prev: PolyEdge = this       // previous polygon in linked list
+  var DistOnLine: Fraction = Fraction(1, 2 * 3 * 5 * 7 * 13 * 19)      // distance relative to first point on split line
 
-  var Visited : Boolean = false    // for collecting split polygons
+  var Visited: Boolean = false    // for collecting split polygons
 }
 
-fun splitEdges(polygon: Polygon, cuttingEdge: Edge) : Pair<MutableList<PolyEdge>,MutableList<PolyEdge>>{
+fun splitEdges(polygon: Polygon, cuttingEdge: Edge): Pair<MutableList<PolyEdge>, MutableList<PolyEdge>> {
 
-  val splitPoly:MutableList<PolyEdge> = arrayListOf()
-  val edgesOnLine:MutableList<PolyEdge> = arrayListOf()
+  val splitPoly: MutableList<PolyEdge> = arrayListOf()
+  val edgesOnLine: MutableList<PolyEdge> = arrayListOf()
 
 
   val edges = polygon.edges()
@@ -115,51 +112,48 @@ fun splitEdges(polygon: Polygon, cuttingEdge: Edge) : Pair<MutableList<PolyEdge>
     val edgeEndSide = it.b.sideOf(cuttingEdge)
     splitPoly.add(PolyEdge(it.a, edgeStartSide))
 
-    if(edgeStartSide == LineSide.ON){
+    if (edgeStartSide == LineSide.ON) {
       edgesOnLine.add(splitPoly.last())
-    }
-    else
-      if (edgeStartSide != edgeEndSide && edgeEndSide != LineSide.ON)
-      {
+    } else
+      if (edgeStartSide != edgeEndSide && edgeEndSide != LineSide.ON) {
         val crossPoint = cuttingEdge.cross(it)
-        if(crossPoint != null)
-        {
+        if (crossPoint != null) {
           splitPoly.add(PolyEdge(crossPoint, LineSide.ON))
           edgesOnLine.add(splitPoly.last())
         }
       }
 
-   }
+  }
   val length = splitPoly.count() - 1
 
 //  // connect doubly linked list, except
 //  // first->prev and last->next
   splitPoly.forEachIndexed { i, polyEdge ->
-      if(i < length){
-        splitPoly[i].Next = splitPoly[i+1]
-        splitPoly[i+1].Prev = splitPoly[i]
-      }
+    if (i < length) {
+      splitPoly[i].Next = splitPoly[i + 1]
+      splitPoly[i + 1].Prev = splitPoly[i]
     }
+  }
 
 //  // connect first->prev and last->next
 
   splitPoly.last().Next = splitPoly.first()
   splitPoly.first().Prev = splitPoly.last()
 
-  return  Pair(splitPoly, edgesOnLine)
+  return Pair(splitPoly, edgesOnLine)
 }
 
-fun sortEdges(edgesOnLine: MutableList<PolyEdge>, cuttingEdge: Edge) : MutableList<PolyEdge>{
+fun sortEdges(edgesOnLine: MutableList<PolyEdge>, cuttingEdge: Edge): MutableList<PolyEdge> {
 
   edgesOnLine.sortWith(object : Comparator<PolyEdge> {
     override fun compare(x: PolyEdge?, y: PolyEdge?): Int {
-      if(x != null && y != null) {
-    // it's important to take the signed distance here,
-    // because it can happen that the split line starts/ends
-    // inside the polygon. in that case intersection points
-    // can fall on both sides of the split line and taking
-    // an unsigned distance metric will result in wrongly
-    // ordered points in EdgesOnLine.
+      if (x != null && y != null) {
+        // it's important to take the signed distance here,
+        // because it can happen that the split line starts/ends
+        // inside the polygon. in that case intersection points
+        // can fall on both sides of the split line and taking
+        // an unsigned distance metric will result in wrongly
+        // ordered points in EdgesOnLine.
 
         val d1 = x.vertex.signedDistance(cuttingEdge)
         val d2 = y.vertex.signedDistance(cuttingEdge)
@@ -168,9 +162,8 @@ fun sortEdges(edgesOnLine: MutableList<PolyEdge>, cuttingEdge: Edge) : MutableLi
         if (d1.ge(d2))
           return 1
         return 0
-      } else
-      {
-       throw NullPointerException("x or y edges are null")
+      } else {
+        throw NullPointerException("x or y edges are null")
       }
     }
   })
@@ -182,6 +175,40 @@ fun sortEdges(edgesOnLine: MutableList<PolyEdge>, cuttingEdge: Edge) : MutableLi
   return edgesOnLine
 }
 
+fun cyclesValid(list: MutableList<PolyEdge>): Boolean {
+  val start = list.first()
+
+  var current = start.Next
+  var runningCount = 0
+  val totalCount = list.count()
+  while (current != start) {
+    runningCount++
+    if (runningCount > totalCount)
+      return false
+    current = current.Next
+  }
+  return true
+}
+
+fun createBridge(src: PolyEdge, dst: PolyEdge, splitPoly: MutableList<PolyEdge>): MutableList<PolyEdge> {
+
+  splitPoly.add(src)
+
+  val a = splitPoly.last()
+
+  splitPoly.add(dst)
+  val b = splitPoly.last()
+  a.Next = dst
+  a.Prev = src.Prev
+  b.Next = src
+  b.Prev = dst.Prev
+  src.Prev.Next = a
+  src.Prev = b
+  dst.Prev.Next = b
+  dst.Prev = a
+
+  return splitPoly
+}
 
 fun Polygon.fold(by: Edge): List<Polygon> {
 
@@ -193,7 +220,7 @@ fun Polygon.fold(by: Edge): List<Polygon> {
   edges.forEach {
 
     val crossPoint = Line(it).interection(crossLine)
-    if(crossPoint != null) {
+    if (crossPoint != null) {
 
       val crossed = crossPoint.withinBoundary(it)
 
@@ -208,8 +235,7 @@ fun Polygon.fold(by: Edge): List<Polygon> {
         currentPoly = Polygon(currentPoly.vertices.plus(it.a))
 
       }
-    }else
-    {
+    } else {
       currentPoly = Polygon(currentPoly.vertices.plus(it.a))
     }
   }
