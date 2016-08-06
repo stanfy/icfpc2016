@@ -38,7 +38,7 @@ class Visualizer {
         .map { it.sub(centroid) }
         .forEach {
           val xPoints = it.vertices.map { (BITMAP_SIZE / 4 + BITMAP_SIZE / 2 * it.x.toDouble()).toInt() }.toIntArray()
-          val yPoints = it.vertices.map { (BITMAP_SIZE / 4 + BITMAP_SIZE / 2 * it.y.toDouble()).toInt() }.toIntArray()
+          val yPoints = it.vertices.map { BITMAP_SIZE - (BITMAP_SIZE / 4 + BITMAP_SIZE / 2 * it.y.toDouble()).toInt() }.toIntArray()
           val poly = Polygon(xPoints, yPoints, xPoints.size)
           graphics.fillPolygon(poly)
         }
@@ -51,7 +51,7 @@ class Visualizer {
         .map { it.sub(centroid) }
         .forEach {
           val xPoints = it.vertices.map { (BITMAP_SIZE / 4 + BITMAP_SIZE / 2 * it.x.toDouble()).toInt() }.toIntArray()
-          val yPoints = it.vertices.map { (BITMAP_SIZE / 4 + BITMAP_SIZE / 2 * it.y.toDouble()).toInt() }.toIntArray()
+          val yPoints = it.vertices.map { BITMAP_SIZE - (BITMAP_SIZE / 4 + BITMAP_SIZE / 2 * it.y.toDouble()).toInt() }.toIntArray()
           val poly = Polygon(xPoints, yPoints, xPoints.size)
           graphics.fillPolygon(poly)
         }
@@ -94,7 +94,7 @@ class Visualizer {
         .map { it.sub(centroid) }
         .forEach {
           val xPoints = it.vertices.map { (m + (BITMAP_SIZE - 2*m) * it.x.toDouble()).toInt() }.toIntArray()
-          val yPoints = it.vertices.map { (m + (BITMAP_SIZE - 2*m) * it.y.toDouble()).toInt() }.toIntArray()
+          val yPoints = it.vertices.map { BITMAP_SIZE - (m + (BITMAP_SIZE - 2*m) * it.y.toDouble()).toInt() }.toIntArray()
           val poly = Polygon(xPoints, yPoints, xPoints.size)
           graphics.drawPolygon(poly)
         }
