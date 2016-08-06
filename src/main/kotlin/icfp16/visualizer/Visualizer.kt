@@ -60,7 +60,6 @@ class Visualizer {
       val currentFont = graphics.font
       val newFont = currentFont.deriveFont(currentFont.size * 4f)
       graphics.font = newFont
-      graphics.s
       if (resemblance == 1.0) {
       } else if (resemblance > 0.9) {
         graphics.color = Color.YELLOW
