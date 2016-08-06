@@ -159,6 +159,12 @@ fun Polygon.splitSimple(foldingEdge: Edge): List<SplitResult> {
   return arrayListOf(SplitResult(this, false, null, null, 0, null, null))
 }
 
+fun Edge.findSplitPoint(ratioX : Fraction, ratioY:Fraction) : Vertex{
+  val xc = ratioX.mul(b.x.sub(a.x)).add(a.x)
+  val yc = ratioY.mul(b.y.sub(a.y)).add(a.y)
+  return Vertex(xc, yc)
+}
+
 fun ComlexPolygon.splitSimple(foldingEdge: Edge): List<ComlexPolygon> {
   val splitted = final.splitSimple(foldingEdge)
   if(splitted.count() > 1)
