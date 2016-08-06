@@ -92,13 +92,14 @@ fun main(args: Array<String>) {
 
   if (threadsNum == 1) {
     Farm().startSearchingBestSolutions(useFullList, solveUnsolved)
+
   } else {
-    val allFiles = File(FileUtils().getDefaultProblemFileFolder()).list()
-    val batchSize = allFiles.size / threadsNum
+    val problemsToSolve = Farm().listOfProblemFileNamesToSolve(solveUnsolved)
+    val batchSize = problemsToSolve.size / threadsNum
     var index = 0
     val threads = ArrayList<Thread>()
-    while (index < allFiles.size) {
-      val problems = allFiles.toList().subList(index, Math.min(index + batchSize, allFiles.size))
+    while (index < problemsToSolve.size) {
+      val problems = problemsToSolve.toList().subList(index, Math.min(index + batchSize, problemsToSolve.size))
       threads.add(Thread({
         println("Start thread for $problems")
         Farm().startSearchingBestSolutions(false, solveUnsolved, problems)
