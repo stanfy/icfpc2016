@@ -51,6 +51,7 @@ class BetterTranslatorSolver : Solver {
 
 
 class SequenceSolver: Solver {
+
   override fun solve(problem: Problem, problemId: String): IState? {
 
     val vertexes = problem.poligons.flatMap { it.vertices }
@@ -58,67 +59,89 @@ class SequenceSolver: Solver {
     val cache = this.solvedSolutionNamesCache()
     val cachedNames = cache.readCachedSolutionNamesFor(problemId = problemId)
 
-    val allStates = PublicStates.states
-      .flatMap  { s ->
-        // sub S many times
-        val stateCentroid = centroid(s.finalPositions().asList())
-        val translation = problemCentroid.sub(stateCentroid)
-        val translatedState = s.translate(translation)
-        listOf(translatedState, s)
-      }
-      .flatMap { s ->
-        // list of all transformations of state
-        val stateCentroid = centroid(s.finalPositions().asList())
-        listOf<IState>(
-            s,
-            s.rotate90(stateCentroid),
-            s.rotate180(stateCentroid),
-            s.rotate270(stateCentroid),
-            s.rotate(stateCentroid, Triple(3, 4, 5)),
-            s.rotate(stateCentroid, Triple(4, 3, 5)),
-            s.rotate(stateCentroid, Triple(5, 12, 13)),
-            s.rotate(stateCentroid, Triple(12, 5, 13)),
-            s.rotate(stateCentroid, Triple(8, 15, 17)),
-            s.rotate(stateCentroid, Triple(15, 8, 17)),
-            s.rotate(stateCentroid, Triple(7, 24, 25)),
-            s.rotate(stateCentroid, Triple(24, 7, 25)),
-            s.rotate(stateCentroid, Triple(20, 21, 29)),
-            s.rotate(stateCentroid, Triple(21, 20, 29)),
-            s.rotate(stateCentroid, Triple(28, 45, 53)),
-            s.rotate(stateCentroid, Triple(45, 28, 53)),
-            s.rotate(stateCentroid, Triple(11, 60, 61)),
-            s.rotate(stateCentroid, Triple(60, 11, 61)),
-            s.rotate(stateCentroid, Triple(16, 63, 65)),
-            s.rotate(stateCentroid, Triple(63, 16, 65)),
-            s.rotate(stateCentroid, Triple(33, 56, 65)),
-            s.rotate(stateCentroid, Triple(56, 33, 65)),
-            s.rotate(stateCentroid, Triple(48, 55, 73)),
-            s.rotate(stateCentroid, Triple(55, 48, 73)),
-            s.rotate(stateCentroid, Triple(13, 84, 85)),
-            s.rotate(stateCentroid, Triple(84, 13, 85)),
-            s.rotate(stateCentroid, Triple(36, 77, 85)),
-            s.rotate(stateCentroid, Triple(77, 36, 85)),
-            s.rotate(stateCentroid, Triple(39, 80, 89)),
-            s.rotate(stateCentroid, Triple(80, 39, 89)),
-            s.rotate(stateCentroid, Triple(65, 72, 97)),
-            s.rotate(stateCentroid, Triple(72, 65, 97))
-        )
-      }
-      .filter { !cachedNames.contains(it.name) }
-      .filter { it.solution().length <= 5000 }
-      .map { it.to(BitmapEstimator().resemblanceOf(problem, it, quality = 2)) }
-      .sortedBy { it.second }
+    var bestState: IState? = null
+    var bestResemblance: Double = 0.0
 
-    val bestState = if (allStates.isEmpty()) null else allStates.last().first
+    var names = mutableListOf<String>()
+    for (state in PublicStates.states) {
+      println("Working on state $state")
 
-    // cache names
-    val names = allStates.map { it.first.name }
+      val bestPossibleResemblance = BitmapEstimator().bestPossibleResemblanceOf(problem, state, quality = 2)
+      if (bestResemblance != 0.0 && bestResemblance > bestPossibleResemblance) {
+        println(" ... Skipping bestPossibleResemblance $bestPossibleResemblance < $bestResemblance current Resemblance")
+        continue
+      }
+
+      // sub S many times
+      val stateCentroid = centroid(state.finalPositions().asList())
+      val translation = problemCentroid.sub(stateCentroid)
+      val translatedState = state.translate(translation)
+
+      for (s in listOf(translatedState, state)) {
+
+        val translatedCentroid = centroid(s.finalPositions().asList())
+        for (rotated in rotationsList(s, translatedCentroid)) {
+
+          // Make sure we're saving state
+          names.add(rotated.name)
+
+          // filters
+          if (cachedNames.contains(rotated.name)) continue
+          if (rotated.solution().length > 5000) continue
+
+          val resemblance = BitmapEstimator().resemblanceOf(problem, rotated, quality = 2)
+          if (resemblance > bestResemblance) {
+            bestResemblance = resemblance
+            bestState = rotated
+            println("Updating resepmblance to $bestResemblance")
+          }
+        }
+      }
+    }
     if (!names.isEmpty()) {
       cache.cacheSolutionNameToFile(problemId, names)
     }
-
     return bestState
   }
+
+  private fun rotationsList(s: IState, stateCentroid: Vertex): List<IState> {
+    return listOf<IState>(
+        s,
+        s.rotate90(stateCentroid),
+        s.rotate180(stateCentroid),
+        s.rotate270(stateCentroid),
+        s.rotate(stateCentroid, Triple(3, 4, 5)),
+        s.rotate(stateCentroid, Triple(4, 3, 5)),
+        s.rotate(stateCentroid, Triple(5, 12, 13)),
+        s.rotate(stateCentroid, Triple(12, 5, 13)),
+        s.rotate(stateCentroid, Triple(8, 15, 17)),
+        s.rotate(stateCentroid, Triple(15, 8, 17)),
+        s.rotate(stateCentroid, Triple(7, 24, 25)),
+        s.rotate(stateCentroid, Triple(24, 7, 25)),
+        s.rotate(stateCentroid, Triple(20, 21, 29)),
+        s.rotate(stateCentroid, Triple(21, 20, 29)),
+        s.rotate(stateCentroid, Triple(28, 45, 53)),
+        s.rotate(stateCentroid, Triple(45, 28, 53)),
+        s.rotate(stateCentroid, Triple(11, 60, 61)),
+        s.rotate(stateCentroid, Triple(60, 11, 61)),
+        s.rotate(stateCentroid, Triple(16, 63, 65)),
+        s.rotate(stateCentroid, Triple(63, 16, 65)),
+        s.rotate(stateCentroid, Triple(33, 56, 65)),
+        s.rotate(stateCentroid, Triple(56, 33, 65)),
+        s.rotate(stateCentroid, Triple(48, 55, 73)),
+        s.rotate(stateCentroid, Triple(55, 48, 73)),
+        s.rotate(stateCentroid, Triple(13, 84, 85)),
+        s.rotate(stateCentroid, Triple(84, 13, 85)),
+        s.rotate(stateCentroid, Triple(36, 77, 85)),
+        s.rotate(stateCentroid, Triple(77, 36, 85)),
+        s.rotate(stateCentroid, Triple(39, 80, 89)),
+        s.rotate(stateCentroid, Triple(80, 39, 89)),
+        s.rotate(stateCentroid, Triple(65, 72, 97)),
+        s.rotate(stateCentroid, Triple(72, 65, 97))
+    )
+  }
+
+
 }
 
 class BestSolverEver: Solver {
