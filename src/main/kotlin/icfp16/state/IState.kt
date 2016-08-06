@@ -1,9 +1,6 @@
 package icfp16.state
 
-import icfp16.data.Edge
-import icfp16.data.Facet
-import icfp16.data.Polygon
-import icfp16.data.Vertex
+import icfp16.data.*
 
 interface IState {
 
@@ -14,6 +11,7 @@ interface IState {
   fun rotate270(around: Vertex): IState
   fun rotate(around: Vertex, pihagorean: Triple<Int,Int,Int>): IState
   fun fold(foldingEdge: Edge) : IState
+  fun foldStar(foldingEdge: Edge, ratioX: Fraction, ratioY : Fraction, externalVertex: Vertex): IState
 
   fun finalPositions(): Array<Vertex>
   fun vertexes(): Array<Vertex>
