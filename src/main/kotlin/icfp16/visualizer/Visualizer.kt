@@ -26,7 +26,12 @@ class Visualizer {
     graphics.color = originalItemColor
 
     val vertexes = task.poligons.flatMap { it.vertices }
-    val centroid = centroid(vertexes).add(Vertex(Fraction(-1, 2), Fraction(-1, 2)))
+    val centroid = if (task.poligons.isEmpty()) {
+      centroid(state!!.vertexes.toList())
+    } else {
+      centroid(vertexes)
+    }
+        .add(Vertex(Fraction(-1, 2), Fraction(-1, 2)))
 
     task.poligons
         .map { it.translate(centroid) }
