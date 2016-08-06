@@ -64,7 +64,7 @@ data class Vertex(val x: Fraction, val y: Fraction) {
   }
 
   override fun toString(): String {
-    return " ($x, $y) "
+    return "$x,$y"
   }
 
 }
