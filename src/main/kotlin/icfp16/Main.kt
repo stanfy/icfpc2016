@@ -64,9 +64,9 @@ fun main(args: Array<String>) {
 
 
   println("Starting the farm")
-  var useFullList = true
-  var solveUnsolved = true
-  var threadsNum = 4
+  var useFullList = false
+  var solveUnsolved = false
+  var threadsNum = 1
 
   // parse args
   for (arg in args) {
