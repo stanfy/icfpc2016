@@ -13,19 +13,30 @@ import java.io.File
 class Farm {
   val submitter = Submitter()
   val estimatorQuality = 4
+  val shouldShowInvalidPics = false
 
-  val startingId = 1
-  val count = 100
+  val startingId = 90
+  val count = 11
 
-  fun startSearchingBestSolutions() {
+  fun startSearchingBestSolutions(full: Boolean = false) {
 
-    for (problemId in startingId..(startingId + count)) {
+    val problemList = if (full) {
+      File(FileUtils().getDefaultProblemFileFolder()).listFiles()
+          .map { it.name }
+          .filter { !arrayOf("problem_1", "problem_705").contains(it) }
+    } else {
+      (startingId..(startingId + count)).map { "problem_$it.txt" }
+    }
+
+    for (problemFileName in problemList) {
+      //Thread.sleep(1000) // <--- api
+
       println("---------------------------------")
-      println("start searching best solution for problem: $problemId")
-      val solutionContainer = solveAndSubmitSolutionFor(problemId.toString())
+      println("start searching best solution for problem: $problemFileName")
+      val solutionContainer = solveAndSubmitSolutionFor(problemFileName)
 
       // save to files
-      if (solutionContainer != null) {
+      if (solutionContainer != null && (shouldShowInvalidPics || solutionContainer.realResemblance != -1.0)) {
         saveSolutionContainerToFile(solutionContainer)
         saveSolutionImageToFile(solutionContainer)
       }
@@ -34,21 +45,22 @@ class Farm {
   }
 
 
-  fun solveAndSubmitSolutionFor(problemId: String): SolutionContainer? {
-    val problemContainer = ProblemContainersParser().generateProblemContainerForProblemId(problemId) ?: return null
+  fun solveAndSubmitSolutionFor(problemFileName: String): SolutionContainer? {
+    val problemContainer = ProblemContainersParser()
+        .generateProblemContainerFromFile(FileUtils().getDefaultProblemFileFolder() + "/" + problemFileName) ?: return null
 
     val solver = BestSolverEver()
     val state = solver.solve(problem = problemContainer.problem)
     val solution = state.solution()
     println("--------- submitted solution ----\n$solution")
 
-    val resemblance = submitSolution(problemId, solution)
-    println("--------- real resemblance $resemblance for id: $problemId")
+    val resemblance = submitSolution(problemContainer.problemId, solution)
+    println("--------- real resemblance $resemblance for id: ${problemContainer.problemId}")
 
     val estimator = EstimatorFactory().bestEstimatorEver()
     val estimatedResemblance = estimator.resemblanceOf(task = problemContainer.problem,
       state = state, quality = estimatorQuality)
-    println("--------- estimatedResemblance $estimatedResemblance for id: $problemId")
+    println("--------- estimatedResemblance $estimatedResemblance for id: ${problemContainer.problemId}")
 
     return SolutionContainer(problemContainer, state, resemblance, estimatedResemblance)
   }
@@ -64,6 +76,8 @@ class Farm {
 
     println("...saving text solution container to file $filePath")
     File(filePath).bufferedWriter().use { out ->
+      out.write("-------------------------- resemblance --------------------\n")
+      out.write("real res =" + container.realResemblance.toString() + " estimated res =" + container.estimatedResemblance.toString())
       out.write("-------------------------- container --------------------\n")
       out.write(container.toString())
       out.write("\n-------------------------- solution --------------------\n")
@@ -84,6 +98,6 @@ class Farm {
 
     println("...generating image: $filePath")
     Visualizer().visualizedAndSaveImage(container.problemContainer.problem,
-      container.state, estimatorQuality, filePath)
+      container.state, 1, filePath)
   }
 }

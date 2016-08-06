@@ -1,6 +1,7 @@
 package icfp16.solver
 
 import icfp16.data.*
+import icfp16.estimate.BitmapEstimator
 import icfp16.estimate.CompoundEstimator
 import icfp16.state.PublicStates
 import icfp16.state.State
@@ -48,21 +49,59 @@ class SequenceSolver: Solver {
   override fun solve(problem: Problem): State {
 
     val vertexes = problem.poligons.flatMap { it.vertices }
-    val problemCentroid = massCentroid(vertexes)
+    val problemCentroid = centroid(vertexes)
 
     val bestState = PublicStates.states
       .map { s ->
         // translate S many times
-        val stateCentroid = massCentroid(s.finalPositions.asList())
+        val stateCentroid = centroid(s.finalPositions.asList())
         val translation = problemCentroid.sub(stateCentroid)
         val translatedState = s.translate(translation)
         translatedState
       }
       .flatMap { s ->
         // list of all transformations of state
-        listOf<State>(s)
+        val stateCentroid = centroid(s.finalPositions.asList())
+        listOf<State>(
+            s,
+            s.rotate90(stateCentroid),
+            s.rotate180(stateCentroid),
+            s.rotate270(stateCentroid),
+            s.rotate(stateCentroid, Triple(3, 4, 5)),
+            s.rotate(stateCentroid, Triple(4, 3, 5)),
+            s.rotate(stateCentroid, Triple(5, 12, 13)),
+            s.rotate(stateCentroid, Triple(12, 5, 13)),
+            s.rotate(stateCentroid, Triple(8, 15, 17)),
+            s.rotate(stateCentroid, Triple(15, 8, 17)),
+            s.rotate(stateCentroid, Triple(7, 24, 25)),
+            s.rotate(stateCentroid, Triple(24, 7, 25)),
+            s.rotate(stateCentroid, Triple(20, 21, 29)),
+            s.rotate(stateCentroid, Triple(21, 20, 29)),
+            s.rotate(stateCentroid, Triple(13, 35, 29)),
+            s.rotate(stateCentroid, Triple(35, 12, 37)),
+            s.rotate(stateCentroid, Triple(40, 9, 37)),
+            s.rotate(stateCentroid, Triple(9, 40, 41)),
+            s.rotate(stateCentroid, Triple(28, 45, 53)),
+            s.rotate(stateCentroid, Triple(45, 28, 53)),
+            s.rotate(stateCentroid, Triple(11, 60, 61)),
+            s.rotate(stateCentroid, Triple(60, 11, 61)),
+            s.rotate(stateCentroid, Triple(16, 63, 65)),
+            s.rotate(stateCentroid, Triple(63, 16, 65)),
+            s.rotate(stateCentroid, Triple(33, 56, 65)),
+            s.rotate(stateCentroid, Triple(56, 33, 65)),
+            s.rotate(stateCentroid, Triple(48, 55, 73)),
+            s.rotate(stateCentroid, Triple(55, 48, 73)),
+            s.rotate(stateCentroid, Triple(13, 84, 85)),
+            s.rotate(stateCentroid, Triple(84, 13, 85)),
+            s.rotate(stateCentroid, Triple(36, 77, 85)),
+            s.rotate(stateCentroid, Triple(77, 36, 85)),
+            s.rotate(stateCentroid, Triple(39, 80, 89)),
+            s.rotate(stateCentroid, Triple(80, 39, 89)),
+            s.rotate(stateCentroid, Triple(65, 72, 97)),
+            s.rotate(stateCentroid, Triple(72, 65, 97))
+        )
       }
-      .map { it.to(CompoundEstimator().resemblanceOf(problem, it, quality = 4)) }
+      .map { it.to(BitmapEstimator().resemblanceOf(problem, it, quality = 2)) }
       .sortedBy { it.second }
       .last().first
 
@@ -73,10 +112,10 @@ class SequenceSolver: Solver {
 class BestSolverEver: Solver {
 
   override fun solve(problem: Problem): State {
-    val solvers = arrayOf<Solver>(StupidSolver(), TranslatorSolver(), BetterTranslatorSolver(), SequenceSolver())
+    val solvers = arrayOf<Solver>(StupidSolver(), TranslatorSolver(), BetterTranslatorSolver(), SequenceSolver(), Wrapper())
     val states =  solvers
         .map { it.solve(problem) }
-        .map { it.to(CompoundEstimator().resemblanceOf(problem, it, quality = 4)) }
+        .map { it.to(BitmapEstimator().resemblanceOf(problem, it, quality = 2)) }
     val sorted = states.sortedBy { it.second }
     return sorted.last().first
   }

@@ -1,20 +1,14 @@
 package icfp16
 
-import icfp16.api.ContestStatus
-import icfp16.api.Snapshot
-import icfp16.api.SolutionSpec
-import icfp16.api.createApi
 import icfp16.data.Fraction
 import icfp16.data.Polygon
 import icfp16.data.Problem
 import icfp16.data.Vertex
 import icfp16.farm.Farm
 import icfp16.io.ProblemContainersGrabber
-import icfp16.io.ProblemContainersParser
-import icfp16.submitter.Submitter
-import okhttp3.logging.HttpLoggingInterceptor.Level.NONE
-import java.io.File
 import java.math.BigInteger
+import java.time.Instant
+import java.util.concurrent.TimeUnit
 
 var problem = Problem(
     arrayListOf(Polygon(
@@ -32,34 +26,31 @@ var problem = Problem(
 fun main(args: Array<String>) {
   println("ICFP 2016")
 
-//  val rightMost = problem.poligons[0].vertices.maxBy { v -> v.toPoint().first }
-//  println(rightMost)
+  if (args.size > 0 && "grab".equals(args[0])) {
+    println("Grabbing data")
+    ProblemContainersGrabber().grabProblemsAndSaveToFiles()
+    return
+  }
 
-  val submitter = Submitter()
+  // I did not succeed in setting up a periodic task using Macos means (Automator+iCalendar, launcherd, cron).
+  if (args.size > 0 && "automate".equals(args[0])) {
+    val t = Thread({
+      while (true) {
+        val p = Runtime.getRuntime().exec("./get-new-problems.sh")
+        println("${Instant.now()} ${p.waitFor()}")
+        Thread.sleep(TimeUnit.MINUTES.toMillis(15))
+      }
+    }, "grab automator")
+    t.start()
+    t.join()
+    return
+  }
 
-  // submit solution:
-  val string = """
-          4
-          0,0
-          0,1
-          1,1
-          1,0
-          1
-          4 0 1 2 3
-          0,0
-          0,1
-          1,1
-          1,0
-          """.trim()
-
- // println(submitter.submitSolution(problemId = "1", solutionString = string))
-
-  // submit problem
-  //println(submitter.submitProblemOnExactTime(string, "2016-08-06 00:00:00 UTC"))
-
-  // grab problems from server
-  //val problemsGrabber = ProblemContainersGrabber().grabProblemsAndSaveToFiles()
-
-  // farm
-  //Farm().startSearchingBestSolutions()
+  println("Starting the farm")
+  if (args.size == 0) {
+    Farm().startSearchingBestSolutions()
+  } else if ("doit".equals(args[0])) {
+    Farm().startSearchingBestSolutions(true)
+  }
 }
+

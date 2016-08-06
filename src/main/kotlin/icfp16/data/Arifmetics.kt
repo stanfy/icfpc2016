@@ -39,6 +39,16 @@ fun Fraction.mul(that: Fraction): Fraction {
   return Fraction(topPart, bottomPart).simple()
 }
 
+fun Fraction.mul(dbl: Double): Fraction {
+  val orig = (dbl * 1000000000000).toString()
+  val str = orig.filterIndexed { i, c -> i < orig.indexOf(".") }
+  val that = Fraction(BigInteger(str), BigInteger(1000000000000.toString()))
+  val topPart = that.a.multiply(a)
+  val bottomPart = that.b.multiply(b)
+  return Fraction(topPart, bottomPart).simple()
+}
+
+
 fun Fraction.inverse():Fraction{
   return Fraction(b,a)
 }

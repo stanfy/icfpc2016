@@ -1,4 +1,5 @@
--------------------------- container --------------------
+-------------------------- resemblance --------------------
+real res =0.561662 estimated res =0.5616626467843876-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[0,0, 1/2,0, 1/2,1/2, 0,1/2])], skeleton=[Edge(a=0,0, b=1/2,0), Edge(a=0,0, b=0,1/2), Edge(a=1/2,0, b=1/2,1/2), Edge(a=0,1/2, b=1/2,1/2)], rawString=1
 4
 0,0
@@ -10,16 +11,29 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 0,0 0,1/2
 1/2,0 1/2,1/2
 0,1/2 1/2,1/2
-), problemId=8, problemHash=), state=State(vertexes=[0,0, 0,1, 1,1, 1,0], facets=[4 0 1 2 3], finalPositions=[-1/4,-1/4, -1/4,3/4, 3/4,3/4, 3/4,-1/4]), realResemblance=0.25, estimatedResemblance=0.25)
+), problemId=8, problemHash=), state=State(vertexes=[0,0, 0,1/2, 0,1, 1/2,1, 1,1, 1,1/2, 1,0, 1/2,0, 1/2,1/2], facets=[4 0 1 8 7, 4 1 2 3 8, 4 8 3 4 5, 4 7 8 5 6], finalPositions=[149/780,17/780, -49/780,353/780, 149/780,17/780, 97/156,43/156, 149/780,17/780, -49/780,353/780, 149/780,17/780, 97/156,43/156, 287/780,551/780]), realResemblance=0.561662, estimatedResemblance=0.5616626467843876)
 -------------------------- solution --------------------
-4
+9
 0,0
+0,1/2
 0,1
+1/2,1
 1,1
+1,1/2
 1,0
-1
-4 0 1 2 3
--1/4,-1/4
--1/4,3/4
-3/4,3/4
-3/4,-1/4
+1/2,0
+1/2,1/2
+4
+4 0 1 8 7
+4 1 2 3 8
+4 8 3 4 5
+4 7 8 5 6
+149/780,17/780
+-49/780,353/780
+149/780,17/780
+97/156,43/156
+149/780,17/780
+-49/780,353/780
+149/780,17/780
+97/156,43/156
+287/780,551/780

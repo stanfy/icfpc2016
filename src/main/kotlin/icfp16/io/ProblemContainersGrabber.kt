@@ -26,21 +26,24 @@ class ProblemContainersGrabber {
 
     val result = ArrayList<ProblemContainer>()
 
-    problemSpecs.map { p ->
-      // api limitations
-      Thread.sleep(1000)
-      val problem = api.getProblemSpec(hash = p.problem_spec_hash).execute().body()
-
-      val problemContainer = ProblemContainer(problem, p.problem_id, p.problem_spec_hash)
-      result.add(problemContainer)
-
+    problemSpecs.forEach { p ->
       val filePath = FileUtils().getFullPathForProblemId(p.problem_id)
+      var file = File(filePath)
+      if (!file.exists() || file.length() == 0L) {
+        // api limitations
+        Thread.sleep(1000)
+        val problem = api.getProblemSpec(hash = p.problem_spec_hash).execute().body()
 
-      println("...saving problem to file $filePath")
-      File(filePath).bufferedWriter().use { out ->
-        out.write(problem.rawString)
+        val problemContainer = ProblemContainer(problem, p.problem_id, p.problem_spec_hash)
+        result.add(problemContainer)
+
+        println("...saving problem to file $filePath")
+        File(filePath).bufferedWriter().use { out ->
+          out.write(problem.rawString)
+        }
       }
     }
+    println("Dir size: ${File(FileUtils().getFullPathForProblemId("any")).parentFile.listFiles().size}")
     return result
   }
 }

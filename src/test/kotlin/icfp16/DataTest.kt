@@ -148,4 +148,62 @@ class DataTest {
     assertThat(Vertex(5, 2).reflect(Edge(Vertex(3,0), Vertex(3,3)))).isEqualTo(Vertex(1,2))
   }
 
+  @Test
+  fun relativeVector() {
+    assertThat(Vertex(1, 1).relativeVector(Vertex(0, 0))).isEqualTo(Vector(1.0, 1.0))
+    assertThat(Vertex(2, 2).relativeVector(Vertex(1, 1))).isEqualTo(Vector(1.0, 1.0))
+    assertThat(Vertex(Fraction(1, 2), Fraction(1, 2)).relativeVector(Vertex(1, 1))).isEqualTo(Vector(-0.5, -0.5))
+  }
+
+  @Test
+  fun hasPoint() {
+    assertThat(Edge(Vertex(0, 0), Vertex(0, 1)).hasPoint(Vertex(Fraction(0), Fraction(1, 2)))).isTrue()
+    assertThat(Edge(Vertex(0, 1), Vertex(0, 0)).hasPoint(Vertex(Fraction(0), Fraction(1, 2)))).isTrue()
+
+    assertThat(Edge(Vertex(2, 0), Vertex(5, 0)).hasPoint(Vertex(Fraction(5, 2), Fraction(0)))).isTrue()
+    assertThat(Edge(Vertex(5, 0), Vertex(2, 0)).hasPoint(Vertex(Fraction(5, 2), Fraction(0)))).isTrue()
+
+    assertThat(Edge(Vertex(1, 1), Vertex(2, 2)).hasPoint(Vertex(Fraction(3, 2), Fraction(3, 2)))).isTrue()
+    assertThat(Edge(Vertex(2, 2), Vertex(1, 1)).hasPoint(Vertex(Fraction(3, 2), Fraction(3, 2)))).isTrue()
+    assertThat(Edge(Vertex(-1, -1), Vertex(2, 2)).hasPoint(Vertex(Fraction(-1, 2), Fraction(-1, 2)))).isTrue()
+    assertThat(Edge(Vertex(-2, -2), Vertex(2, 2)).hasPoint(Vertex(Fraction(-1, 2), Fraction(-1, 2)))).isTrue()
+
+    assertThat(Edge(Vertex(0, 0), Vertex(0, 1)).hasPoint(Vertex(0, 2))).isFalse()
+    assertThat(Edge(Vertex(0, 1), Vertex(0, 0)).hasPoint(Vertex(0, 2))).isFalse()
+
+    assertThat(Edge(Vertex(0, 0), Vertex(0, 1)).hasPoint(Vertex(1, 0))).isFalse()
+    assertThat(Edge(Vertex(0, 0), Vertex(0, 1)).hasPoint(Vertex(Fraction(1, 2), Fraction(1, 2)))).isFalse()
+    assertThat(Edge(Vertex(0, 1), Vertex(1, 1)).hasPoint(Vertex(0, 0))).isFalse()
+    assertThat(Edge(Vertex(0, 1), Vertex(1, 1)).hasPoint(Vertex(1, 0))).isFalse()
+  }
+
+  @Test
+  fun fullEdges() {
+    val p = Polygon(arrayListOf(Vertex(0, 0), Vertex(0, 1), Vertex(1, 1), Vertex(1, 0)))
+    assertThat(p.edges()).hasSize(3)
+    assertThat(p.fullEdges()).hasSize(4)
+    assertThat(p.fullEdges().last()).isEqualTo(Edge(Vertex(1, 0), Vertex(0, 0)))
+  }
+
+  @Test
+  fun convexIn() {
+    val p = Polygon(arrayListOf(Vertex(0, 0), Vertex(0, 1), Vertex(1, 1), Vertex(1, 0)))
+
+    assertThat(p.convexIn(Vertex(Fraction(1, 2), Fraction(1, 2)))).isTrue()
+    assertThat(p.convexIn(Vertex(Fraction(0), Fraction(1, 2)))).isTrue()
+    assertThat(p.convexIn(Vertex(0, 0))).isTrue()
+    assertThat(p.convexIn(Vertex(1, 1))).isTrue()
+
+    assertThat(p.convexIn(Vertex(Fraction(0), Fraction(1, 2)), false)).isFalse()
+    assertThat(p.convexIn(Vertex(1, 1), false)).isFalse()
+    assertThat(p.convexIn(Vertex(0, 0), false)).isFalse()
+
+    assertThat(p.convexIn(Vertex(-1, -1))).isFalse()
+    assertThat(p.convexIn(Vertex(2, 2))).isFalse()
+    assertThat(p.convexIn(Vertex(Fraction(0), Fraction(3, 2)))).isFalse()
+    assertThat(p.convexIn(Vertex(Fraction(1), Fraction(3, 2)))).isFalse()
+    assertThat(p.convexIn(Vertex(Fraction(0), Fraction(-3, 2)))).isFalse()
+    assertThat(p.convexIn(Vertex(Fraction(1), Fraction(-3, 2)))).isFalse()
+  }
+
 }

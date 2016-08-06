@@ -1,12 +1,10 @@
 package icfp16.api
 
-import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
-import icfp16.*
 import icfp16.data.Fraction
 import icfp16.data.Problem
-import icfp16.problem.ProblemParser
 import icfp16.data.Vertex
+import icfp16.problem.ProblemParser
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
@@ -18,7 +16,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 import java.lang.reflect.Type
 import java.math.BigInteger
-import java.util.*
 
 val API_KEY = "17-04d569ebce709bf6e5482fea22c8acf0"
 
@@ -137,7 +134,7 @@ internal fun parseFraction(s: String): Fraction {
 }
 
 fun createApi(logLevel: Level = Level.BASIC): Api {
-  val logInterceptor = HttpLoggingInterceptor()
+  val logInterceptor = HttpLoggingInterceptor(::println)
   logInterceptor.level = logLevel
 
   val okHttpClient = OkHttpClient.Builder()

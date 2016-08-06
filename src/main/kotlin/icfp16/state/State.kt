@@ -1,7 +1,6 @@
 package icfp16.state
 
 import icfp16.data.*
-import java.math.BigInteger
 
 data class State(val vertexes: Array<Vertex> = emptyArray(),
                  val facets: Array<Facet> = emptyArray(),
@@ -11,6 +10,14 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
     return facets.map { facet ->
       Polygon(facet.indexes.map { index ->
         finalPositions[index]
+      })
+    }.toTypedArray()
+  }
+
+  fun initialPoligons(): Array<Polygon> {
+    return facets.map { facet ->
+      Polygon(facet.indexes.map { index ->
+        vertexes[index]
       })
     }.toTypedArray()
   }
@@ -39,9 +46,58 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
    */
   fun translate(vartex: Vertex) : State {
     val translatedPositions = this.finalPositions.map {
-//      val translatedX = Fraction(it.x.a.add(it.x.b.multiply(vartex.x.a).divide(vartex.x.b)), it.x.b)
-//      val translatedY = Fraction(it.y.a.add(it.y.b.multiply(vartex.y.a).divide(vartex.y.b)), it.y.b)
       it.add(vartex)
+    }.toTypedArray()
+    return State(vertexes = this.vertexes, facets = this.facets, finalPositions = translatedPositions)
+  }
+
+
+  /**
+   *  Rotates around vertex
+   */
+  fun rotate90(around: Vertex): State {
+    val translatedPositions = this.finalPositions.map {
+      val relativePoint = it.sub(around)
+      val related = Vertex(relativePoint.y.neg(), relativePoint.x)
+      val final = related.add(around)
+      final
+    }.toTypedArray()
+    return State(vertexes = this.vertexes, facets = this.facets, finalPositions = translatedPositions)
+  }
+
+  /**
+   *  Rotates around vertex
+   */
+  fun rotate180(around: Vertex): State {
+    return rotate90(around).rotate90(around)
+  }
+
+
+  /**
+   *  Rotates around vertex
+   */
+  fun rotate270(around: Vertex): State {
+    return rotate90(around).rotate90(around).rotate90(around)
+  }
+
+  fun rotate(around: Vertex, pihagorean: Triple<Int,Int,Int>): State {
+    val cos = Fraction(pihagorean.first, pihagorean.third)
+    val sin = Fraction(pihagorean.second, pihagorean.third)
+    val translatedPositions = this.finalPositions.map {
+
+      val center = around
+      val point2 = it
+      val x =
+          center.x
+              .add(point2.x.sub(center.x).mul(cos))
+              .sub(point2.y.sub(center.y).mul(sin))
+
+      val y =
+          center.y
+              .add(point2.x.sub(center.x).mul(sin))
+              .add(point2.y.sub(center.y).mul(cos))
+
+      Vertex(x,y)
     }.toTypedArray()
     return State(vertexes = this.vertexes, facets = this.facets, finalPositions = translatedPositions)
   }

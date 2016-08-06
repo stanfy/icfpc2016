@@ -9,6 +9,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 
 class Submitter {
@@ -18,9 +19,15 @@ class Submitter {
   fun submitSolution(problemId: String, solutionString: String):
     SolutionSubmission? {
 
-    val result: SolutionSubmission? = api.submitSolution(problemId = problemId,
-      problemSolution = SolutionSpec(solutionString)).execute().body()
-    return result
+    var resp = api.submitSolution(problemId, SolutionSpec(solutionString)).execute()
+    var attempt = 0
+    while (resp.code() == 429 && attempt < 5) {
+      Thread.sleep(TimeUnit.SECONDS.toMillis(2))
+      println("retry ${++attempt}")
+      resp = api.submitSolution(problemId, SolutionSpec(solutionString)).execute()
+    }
+
+    return resp.body()
   }
 
   // like "2016-08-06 00:00:00 UTC"
