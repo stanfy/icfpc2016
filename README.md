@@ -11,6 +11,13 @@ To automate solutions submission for all problems: `gw run -PrunArgs=doit`. But 
 To start N parallel Farms that split all the problems set: `gw run -PrunArgs=<N>` (for instance, `gw run -PrunArgs=4`).
 You can add `.ignore` suffix to problem files in order to make Farm ignore it and avoid solving it.
 
+
+```
+./get-and-solve-new-problems.sh
+```
+In addition to features provided by `./get-new-problems.sh` this scrip also initiate Solutions solving by Farm. 
+To automate solutions submissions for all problems: `gw run -PrunArgs=automate-doit`
+
 **Install Java 8!!!**
 Also, please ensure [your global `.gitignore`](https://help.github.com/articles/ignoring-files/#create-a-global-gitignore) 
 file excludes your editor file (like .idea or .eclipse).
