@@ -5,6 +5,7 @@ import icfp16.api.createApi
 import icfp16.data.*
 import icfp16.state.PYTHAGOREAN_TRIPLES
 import icfp16.state.State
+import icfp16.state.solution
 import icfp16.visualizer.Visualizer
 import okhttp3.logging.HttpLoggingInterceptor
 import java.io.File

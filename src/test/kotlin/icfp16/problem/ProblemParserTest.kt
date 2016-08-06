@@ -4,6 +4,7 @@ import icfp16.data.Facet
 import icfp16.data.Fraction
 import icfp16.data.Vertex
 import icfp16.state.State
+import icfp16.state.solution
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 

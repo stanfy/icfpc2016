@@ -54,7 +54,7 @@ class SequenceSolver: Solver {
 
     val bestState = PublicStates.states
       .map { s ->
-        // translate S many times
+        // sub S many times
         val stateCentroid = centroid(s.finalPositions.asList())
         val translation = problemCentroid.sub(stateCentroid)
         val translatedState = s.translate(translation)
@@ -62,7 +62,7 @@ class SequenceSolver: Solver {
       }
       .flatMap { s ->
         // list of all transformations of state
-        val stateCentroid = centroid(s.finalPositions.asList())
+        val stateCentroid = centroid(s.finalPositions().asList())
         listOf<IState>(
             s,
             s.rotate90(stateCentroid),
