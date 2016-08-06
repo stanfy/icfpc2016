@@ -86,6 +86,10 @@ fun main(args: Array<String>) {
     }
   }
 
+  println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+  println("Starting with params: full=$useFullList solveUnsolved=$solveUnsolved threads=$threadsNum")
+  println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
   if (threadsNum == 1) {
     Farm().startSearchingBestSolutions(useFullList, solveUnsolved)
   } else {
