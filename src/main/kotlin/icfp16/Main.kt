@@ -5,7 +5,9 @@ import icfp16.data.Polygon
 import icfp16.data.Problem
 import icfp16.data.Vertex
 import icfp16.farm.Farm
+import icfp16.io.FileUtils
 import icfp16.io.ProblemContainersGrabber
+import java.io.File
 import java.math.BigInteger
 import java.time.Instant
 import java.util.concurrent.TimeUnit
@@ -51,6 +53,11 @@ fun main(args: Array<String>) {
     Farm().startSearchingBestSolutions()
   } else if ("doit".equals(args[0])) {
     Farm().startSearchingBestSolutions(true)
+  } else {
+    val n = Integer.parseInt(args[0])
+    val allFiles = File(FileUtils().getDefaultProblemFileFolder()).list()
+    val batchSize = allFiles.size / n
+
   }
 }
 

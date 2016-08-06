@@ -18,14 +18,16 @@ class Farm {
   val startingId = 90
   val count = 11
 
-  fun startSearchingBestSolutions(full: Boolean = false) {
+  fun startSearchingBestSolutions(full: Boolean = false, problemNames: Array<String> = emptyArray()) {
 
     val problemList = if (full) {
       File(FileUtils().getDefaultProblemFileFolder()).listFiles()
           .map { it.name }
-          .filter { !arrayOf("problem_1", "problem_705").contains(it) }
-    } else {
+          .filter { !it.endsWith(".ignore") }
+    } else if (problemNames.size == 0) {
       (startingId..(startingId + count)).map { "problem_$it.txt" }
+    } else {
+      problemNames.filter { !it.endsWith(".ignore") }
     }
 
     for (problemFileName in problemList) {
