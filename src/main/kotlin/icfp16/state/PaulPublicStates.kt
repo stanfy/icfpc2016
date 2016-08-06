@@ -1,10 +1,6 @@
 package icfp16.state
 
-import icfp16.data.ComplexPolygon
-import icfp16.data.Edge
-import icfp16.data.Fraction
-import icfp16.data.Vertex
-
+import icfp16.data.*
 
 class PaulPublicStates {
   companion object {
@@ -60,15 +56,37 @@ class PaulPublicStates {
                 Vertex(Fraction(1,4), Fraction(0)),
                 Vertex(Fraction(1,5), Fraction(1))
             ))
+            .appendName("Pyaka"),
+        ComplexState()
+            .fold(Edge(
+                Vertex(Fraction(1,2), Fraction(1, 1)),
+                Vertex(Fraction(1,2), Fraction(0, 1))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(1,4), Fraction(1, 1)),
+                Vertex(Fraction(1,4), Fraction(0, 1))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(1,8), Fraction(1, 1)),
+                Vertex(Fraction(1,8), Fraction(0, 1))
+            ))
+
+            .fold(Edge(
+                Vertex(Fraction(1,8), Fraction(2, 8)),
+                Vertex(Fraction(0,8), Fraction(1, 8))
+            ))
+
+            .fold(Edge(
+                Vertex(Fraction(0,8), Fraction(4, 8)),
+                Vertex(Fraction(1,8), Fraction(3, 8))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(0,8), Fraction(5, 8)),
+                Vertex(Fraction(1,8), Fraction(6, 8))
+            ))
+            .appendName("Okolobubl")
+
     )
   }
 }
 
-
-fun f(a: Int, b: Int): Fraction {
-  return Fraction(a, b)
-}
-
-fun v(x: Fraction, y: Fraction): Vertex {
-  return Vertex(x, y)
-}

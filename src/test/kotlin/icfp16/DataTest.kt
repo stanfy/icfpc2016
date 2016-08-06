@@ -178,14 +178,6 @@ class DataTest {
   }
 
   @Test
-  fun fullEdges() {
-    val p = Polygon(arrayListOf(Vertex(0, 0), Vertex(0, 1), Vertex(1, 1), Vertex(1, 0)))
-    assertThat(p.edges()).hasSize(4)
-    assertThat(p.fullEdges()).hasSize(4)
-    assertThat(p.fullEdges().last()).isEqualTo(Edge(Vertex(1, 0), Vertex(0, 0)))
-  }
-
-  @Test
   fun convexIn() {
     val p = Polygon(arrayListOf(Vertex(0, 0), Vertex(0, 1), Vertex(1, 1), Vertex(1, 0)))
 

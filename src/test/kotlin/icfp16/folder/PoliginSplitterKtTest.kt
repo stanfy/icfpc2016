@@ -48,7 +48,7 @@ class PoliginSplitterKtTest {
 
     val translatorR = BitmapEstimator().resemblanceOf(problem, translationSolve)
 
-    Visualizer().visualizedAndSaveImage(problem, translationSolve, filePath = "./translator_FOLD.png")
+    Visualizer().visualizedAndSaveImage(problem, translationSolve, filePath = "./translator_FOLD.png", showGrid = true)
   }
 
   @Test
