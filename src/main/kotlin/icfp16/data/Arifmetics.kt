@@ -62,29 +62,12 @@ fun Fraction.equals(that:Fraction):Boolean{
 
 }
 
-fun Fraction.leq(that:Fraction):Boolean{
-  val thisScaled = this.mul(Fraction(that.b))
-  val thatScaled = that.mul(Fraction(this.b))
-  return  thisScaled.a <= thatScaled.a
-}
+fun Fraction.scaledA(x: BigInteger): BigInteger = this.a.multiply(x)
 
-fun Fraction.le(that:Fraction):Boolean{
-  val thisScaled = this.mul(Fraction(that.b))
-  val thatScaled = that.mul(Fraction(this.b))
-  return  thisScaled.a < thatScaled.a
-}
-
-fun Fraction.geq(that:Fraction):Boolean{
-  val thisScaled = this.mul(Fraction(that.b))
-  val thatScaled = that.mul(Fraction(this.b))
-  return  thisScaled.a >= thatScaled.a
-}
-
-fun Fraction.ge(that:Fraction):Boolean{
-  val thisScaled = this.mul(Fraction(that.b))
-  val thatScaled = that.mul(Fraction(this.b))
-  return  thisScaled.a > thatScaled.a
-}
+fun Fraction.leq(that:Fraction):Boolean = this.scaledA(that.b) <= that.scaledA(this.b)
+fun Fraction.le(that:Fraction):Boolean = this.scaledA(that.b) < that.scaledA(this.b)
+fun Fraction.geq(that:Fraction):Boolean = this.scaledA(that.b) >= that.scaledA(this.b)
+fun Fraction.ge(that:Fraction):Boolean = this.scaledA(that.b) > that.scaledA(this.b)
 
 fun Fraction.max(that:Fraction) : Fraction{
   if(this.geq(that))

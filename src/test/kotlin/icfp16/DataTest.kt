@@ -178,6 +178,15 @@ class DataTest {
   }
 
   @Test
+  fun comparisons() {
+    assertThat(Fraction(1, 56).geq(Fraction(0))).isTrue()
+    assertThat(Fraction(1, 56).leq(Fraction(1, 8))).isTrue()
+    assertThat(Fraction(1, 7).geq(Fraction(1, 8))).isTrue()
+    assertThat(Fraction(1, 7).leq(Fraction(1, 4))).isTrue()
+    assertThat(Fraction(1, 7).leq(Fraction(2, 8))).isTrue()
+  }
+
+  @Test
   fun convexIn() {
     val p = Polygon(arrayListOf(Vertex(0, 0), Vertex(0, 1), Vertex(1, 1), Vertex(1, 0)))
 
