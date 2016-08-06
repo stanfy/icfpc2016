@@ -5,6 +5,8 @@ import icfp16.folder.splitSimple
 
 data class ComplexState(val polys: Array<ComlexPolygon>) : IState {
 
+  override var name: String = ""
+
   override fun finalPositions(): Array<Vertex> {
     // TODO: This is bit comutational hard
     return polys.flatMap { it.initial.vertices.zip(it.final.vertices) }
@@ -43,6 +45,7 @@ data class ComplexState(val polys: Array<ComlexPolygon>) : IState {
           final = poly.final.add(vartex)
       )
     }.toTypedArray())
+        .appendName("Translate ($vartex)")
   }
 
   override fun rotate90(around: Vertex): IState {
@@ -56,15 +59,18 @@ data class ComplexState(val polys: Array<ComlexPolygon>) : IState {
           })
       )
     }.toTypedArray())
+    .appendName("Rotate 90")
   }
 
   override fun rotate180(around: Vertex): IState {
     return rotate90(around).rotate90(around)
+        .appendName("Rotate 180")
   }
 
 
   override fun rotate270(around: Vertex): IState {
     return rotate90(around).rotate90(around).rotate90(around)
+        .appendName("Rotate 270")
   }
 
   override fun split(splitterEdge: Edge): IState {
@@ -101,6 +107,7 @@ data class ComplexState(val polys: Array<ComlexPolygon>) : IState {
           })
       )
     }.toTypedArray())
+        .appendName("Rotate($around, <$pihagorean>)")
   }
 
 }

@@ -22,6 +22,7 @@ interface IState {
   fun poligons(): Array<Polygon>
   fun initialPoligons(): Array<Polygon>
 
+  var name: String
 
 }
 
@@ -42,4 +43,9 @@ fun IState.solution(): String {
   }
 
   return result.joinToString("\n")
+}
+
+fun IState.appendName(s: String): IState {
+  this.name = this.name + " -> " + s
+  return this
 }
