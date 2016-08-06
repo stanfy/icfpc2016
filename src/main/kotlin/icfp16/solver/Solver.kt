@@ -2,7 +2,6 @@ package icfp16.solver
 
 import icfp16.data.*
 import icfp16.estimate.BitmapEstimator
-import icfp16.estimate.CompoundEstimator
 import icfp16.state.IState
 import icfp16.state.PublicStates
 import icfp16.state.State
