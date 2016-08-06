@@ -1,10 +1,6 @@
 package icfp16.state
 
-import icfp16.data.ComplexPolygon
-import icfp16.data.Edge
-import icfp16.data.Fraction
-import icfp16.data.Vertex
-
+import icfp16.data.*
 
 class PaulPublicStates {
   companion object {
@@ -94,11 +90,3 @@ class PaulPublicStates {
   }
 }
 
-
-fun f(a: Int, b: Int): Fraction {
-  return Fraction(a, b)
-}
-
-fun v(x: Fraction, y: Fraction): Vertex {
-  return Vertex(x, y)
-}

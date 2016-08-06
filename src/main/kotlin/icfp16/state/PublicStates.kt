@@ -415,8 +415,7 @@ class PublicStates {
         ).appendName("Cool last phigure")
     )
 
-    val states: Array<IState> = localState.plus(PaulPublicStates.states)
-
+    val states: Array<IState> = localState.plus(PaulPublicStates.states).plus(DimaPublicStates.states)
   }
 
 }
