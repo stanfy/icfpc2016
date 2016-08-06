@@ -1,6 +1,12 @@
 ICFP 2016
 =========
 
+Grab new problems
+-----------------
+```
+./get-new-problems.sh
+```
+
 **Install Java 8!!!**
 Also, please ensure [your global `.gitignore`](https://help.github.com/articles/ignoring-files/#create-a-global-gitignore) 
 file excludes your editor file (like .idea or .eclipse).
