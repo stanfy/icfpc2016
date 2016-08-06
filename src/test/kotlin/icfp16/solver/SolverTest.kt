@@ -38,8 +38,8 @@ class SolverTest {
     val stupidSolve = StupidSolver().solve(problem, "")
     val translationSolve = TranslatorSolver().solve(problem, "")
 
-    val solve1R = BitmapEstimator().resemblanceOf(problem, stupidSolve)
-    val translatorR = BitmapEstimator().resemblanceOf(problem, translationSolve)
+    val solve1R = BitmapEstimator().resemblanceOf(problem, stupidSolve!!)
+    val translatorR = BitmapEstimator().resemblanceOf(problem, translationSolve!!)
 
 //    Visualizer().visualizedAndSaveImage(problem, stupidSolve,filePath = "./stupind.png")
 //    Visualizer().visualizedAndSaveImage(problem, translationSolve,filePath = "./translator.png")
@@ -88,8 +88,8 @@ class SolverTest {
     val stupidSolve = StupidSolver().solve(problem, "")
     val translationSolve = TranslatorSolver().solve(problem, "")
 
-    val solve1R = BitmapEstimator().resemblanceOf(problem, stupidSolve)
-    val translatorR = BitmapEstimator().resemblanceOf(problem, translationSolve)
+    val solve1R = BitmapEstimator().resemblanceOf(problem, stupidSolve!!)
+    val translatorR = BitmapEstimator().resemblanceOf(problem, translationSolve!!)
 
 //    Visualizer().visualizedAndSaveImage(problem, stupidSolve,filePath = "./stupind_19.png")
 //    Visualizer().visualizedAndSaveImage(problem, translationSolve,filePath = "./translator_19.png")
@@ -106,9 +106,9 @@ class SolverTest {
         ProblemContainersParser().generateProblemContainerForProblemId("6")!!.problem.rawString
 
     val problem = parseProblem(problemString)
-    val translationSolve = SequenceSolver().solve(problem)
+    val translationSolve = SequenceSolver().solve(problem , "123")
 
-    val translatorR = BitmapEstimator().resemblanceOf(problem, translationSolve)
+    val translatorR = BitmapEstimator().resemblanceOf(problem, translationSolve!!)
 
     Visualizer().visualizedAndSaveImage(problem, translationSolve,filePath = "./translator_19.png")
   }
