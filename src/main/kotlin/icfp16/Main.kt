@@ -62,8 +62,8 @@ fun main(args: Array<String>) {
   //println(submitter.submitProblemOnExactTime(string, "2016-08-06 00:00:00 UTC"))
 
   // grab problems from server
-  //val problemsGrabber = ProblemContainersGrabber().grabProblemsAndSaveToFiles()
+  val problemsGrabber = ProblemContainersGrabber().grabProblemsAndSaveToFiles()
 
   // farm
-  Farm().startSearchingBestSolutions()
+  //Farm().startSearchingBestSolutions()
 }
