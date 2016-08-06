@@ -57,11 +57,11 @@ class WrapperTest {
     val problem = parseProblem(problemString)
 
     val state = Wrapper().solveWithWrapping(problem, State.initialSquare())
-    val anotherState = BetterTranslatorSolver().solve(problem)
+    val anotherState = BetterTranslatorSolver().solve(problem, "")
 
     val estimator = BitmapEstimator()
     assertThat(estimator.resemblanceOf(problem, state, 4))
-        .isGreaterThan(estimator.resemblanceOf(problem, anotherState, 4))
+        .isGreaterThan(estimator.resemblanceOf(problem, anotherState!!, 4))
   }
 
 }

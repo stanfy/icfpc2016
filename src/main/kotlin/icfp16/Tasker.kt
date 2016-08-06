@@ -3,9 +3,11 @@ package icfp16
 import icfp16.api.SolutionSpec
 import icfp16.api.createApi
 import icfp16.data.*
+import icfp16.state.ComplexState
 import icfp16.state.PYTHAGOREAN_TRIPLES
 import icfp16.state.State
 import icfp16.state.solution
+import icfp16.submitter.Submitter
 import icfp16.visualizer.Visualizer
 import okhttp3.logging.HttpLoggingInterceptor
 import java.io.File
@@ -54,6 +56,80 @@ val vertexes = arrayOf(
 )
 
 val tasks = arrayOf(
+    Pair(
+        Problem( emptyList(), emptyList()),
+        ComplexState()
+            .fold(Edge(
+                Vertex(Fraction(0), Fraction(1, 3)),
+                Vertex(Fraction(1), Fraction(2, 3))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(0), Fraction(1, 4)),
+                Vertex(Fraction(1), Fraction(2, 4))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(0), Fraction(1, 5)),
+                Vertex(Fraction(1), Fraction(7, 10))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(1,4), Fraction(0)),
+                Vertex(Fraction(1,5), Fraction(1))
+            ))
+    ),
+    Pair(
+        Problem( emptyList(), emptyList()),
+        ComplexState()
+            .fold(Edge(
+                Vertex(Fraction(0), Fraction(14, 3)),
+                Vertex(Fraction(1), Fraction(2, 3))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(0), Fraction(1, 4)),
+                Vertex(Fraction(5,100), Fraction(2, 4))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(0), Fraction(1, 5)),
+                Vertex(Fraction(12,79), Fraction(3, 5))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(5,17), Fraction(99,100)),
+                Vertex(Fraction(1,5), Fraction(17,33))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(3,4), Fraction(1)),
+                Vertex(Fraction(5,5), Fraction(0))
+            ))
+    ),
+    Pair(
+        Problem( emptyList(), emptyList()),
+        ComplexState()
+            .fold(Edge(
+                Vertex(Fraction(8,9), Fraction(1)),
+                Vertex(Fraction(5, 7), Fraction(0))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(1,2), Fraction(0)),
+                Vertex(Fraction(29,56), Fraction(1))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(137,1140), Fraction(1)),
+                Vertex(Fraction(111,115), Fraction(0))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(21,47), Fraction(1)),
+                Vertex(Fraction(22,47), Fraction(0))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(23,47), Fraction(1)),
+                Vertex(Fraction(24,47), Fraction(0))
+            ))
+    )
+
+
+)
+
+
+val tasks3 = arrayOf(
 //    // Task 0.
 //    Pair(
 //        Problem(emptyList(), emptyList()),
@@ -335,13 +411,15 @@ var submit = true
 // Our problems: 705, 705, 1141,1481   |   1573, 1574
 
 fun main(args: Array<String>) {
+
+
   if (args.size > 0) {
     submit = true
   }
 
   val dir = File("our_problems")
   dir.mkdirs()
-  val START_TIME = Instant.parse("2016-08-06T00:00:00Z")
+  val START_TIME = Instant.parse("2016-08-06T14:00:00Z")
   var ts = Instant.from(START_TIME)
   val api = createApi(HttpLoggingInterceptor.Level.NONE)
 

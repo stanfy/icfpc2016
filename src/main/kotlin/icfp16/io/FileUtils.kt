@@ -63,6 +63,20 @@ class FileUtils {
     return getDefaultSolutionFileFolder()+"/"+filenameForSolution(problemId)
   }
 
+  // ---------- cached solution names
+
+  fun filenameForCachedSolutionName(problemId: String): String {
+    return "cached_solution_names_$problemId.txt"
+  }
+
+  fun getDefaultCacheSolutionNameFileFolder(): String {
+    return "cached_generated_solution_names"
+  }
+
+  fun getFullPathForCachedSolutionFile(problemId: String): String {
+    return getDefaultCacheSolutionNameFileFolder()+"/"+filenameForCachedSolutionName(problemId)
+  }
+
   // ------------ problems ------------
 
   fun filenameForCustomProblem(problemId: String): String {
