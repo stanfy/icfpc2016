@@ -26,13 +26,29 @@ class DimaPublicStates {
             ).fold(Edge(
             Vertex(Fraction(0), Fraction(2, 3)),
             Vertex(Fraction(1, 3), Fraction(1)))
-        ).appendName("problem_38"),
+        ).appendName("problem_38, 994"),
+
+        ComplexState()
+            .fold(Edge(
+                Vertex(Fraction(0), Fraction(1, 2)),
+                Vertex(Fraction(1, 2), Fraction(1)))
+            ).fold(Edge(
+            Vertex(Fraction(1, 2), Fraction(1)),
+            Vertex(Fraction(1), Fraction(1, 2)))
+        ).appendName("problem_39, 975 (0.9255216693418941)"),
 
         ComplexState()
             .fold(Edge(
                 Vertex(Fraction(1, 2), Fraction(1)),
                 Vertex(Fraction(1), Fraction(1, 2)))
-            ).appendName("problem_158")
+            ).appendName("problem_158 (1.0)"),
+
+        ComplexState()
+            .fold(Edge(
+                Vertex(Fraction(0), Fraction(1, 2)),
+                Vertex(Fraction(1, 2), Fraction(1))
+            ))
+            .appendName("problem_1075 (1.0)")
     )
 
   }
