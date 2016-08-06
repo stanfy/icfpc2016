@@ -1,0 +1,33 @@
+-------------------------- resemblance --------------------
+real res =0.663584 estimated res =0.6622745989251546-------------------------- container --------------------
+SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[0,0, 1,0, 1,1/2, 0,1/2])], skeleton=[Edge(a=1/2,0, b=1,1/2), Edge(a=0,0, b=1,0), Edge(a=0,0, b=0,1/2), Edge(a=1/2,0, b=1/2,1/2), Edge(a=1,0, b=1,1/2), Edge(a=0,1/2, b=1,1/2)], rawString=1
+4
+0,0
+1,0
+1,1/2
+0,1/2
+6
+1/2,0 1,1/2
+0,0 1,0
+0,0 0,1/2
+1/2,0 1/2,1/2
+1,0 1,1/2
+0,1/2 1,1/2
+), problemId=3020, problemHash=), state=(name = ( ->  ->  -> Cool last phigure -> Translate (2/15,1/60) -> Rotate(1/2,1/4, <(45, 28, 53)>)))icfp16.state.State@9f8753a7, realResemblance=0.663584, estimatedResemblance=0.6622745989251546)
+-------------------------- solution --------------------
+6
+0,0
+0,3/4
+0,1
+1,1
+1,1/4
+1,0
+2
+4 0 1 4 5
+4 1 2 3 4
+248/795,-451/3180
+-67/795,787/1590
+-139/795,833/3180
+602/795,-319/3180
+818/795,476/795
+923/795,1229/3180

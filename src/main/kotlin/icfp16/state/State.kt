@@ -95,6 +95,9 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
     throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
 
+  override fun foldStar(foldingEdge: Edge, ratioX: Fraction, ratioY: Fraction, externalVertex: Vertex): IState {
+    throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
   companion object {
     fun initialSquare(): State {
       return State(vertexes = arrayOf(
