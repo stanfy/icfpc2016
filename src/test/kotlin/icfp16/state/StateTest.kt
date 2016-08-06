@@ -135,15 +135,15 @@ class StateTest {
 
     val translatedState = originalState.translate(Vertex(23, 27))
 
-    assertThat(originalState.vertexes).isEqualTo(translatedState.vertexes)
-    assertThat(originalState.facets).isEqualTo(translatedState.facets)
-    assertThat(originalState.finalPositions).isNotEqualTo(translatedState.finalPositions)
+    assertThat(originalState.vertexes).isEqualTo(translatedState.vertexes())
+    assertThat(originalState.facets).isEqualTo(translatedState.facets())
+    assertThat(originalState.finalPositions).isNotEqualTo(translatedState.finalPositions())
     val expectedFinalPositions = originalState.finalPositions.map {
       val translatedX = Fraction(it.x.a.add(it.x.b.multiply(BigInteger("23"))), it.x.b)
       val translatedY = Fraction(it.y.a.add(it.y.b.multiply(BigInteger("27"))), it.y.b)
       Vertex(translatedX, translatedY)
     }.toTypedArray()
-    assertThat(expectedFinalPositions).isEqualTo(translatedState.finalPositions)
+    assertThat(expectedFinalPositions).isEqualTo(translatedState.finalPositions())
 
   }
 

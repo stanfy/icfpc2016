@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.0625 estimated res =0.0625-------------------------- container --------------------
+real res =0.0625 estimated res =0.0625458461051951-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[0,0, 1/8,0, 1/8,1/8, 0,1/8])], skeleton=[Edge(a=0,0, b=1/8,0), Edge(a=0,0, b=0,1/8), Edge(a=1/8,0, b=1/8,1/8), Edge(a=0,1/8, b=1/8,1/8)], rawString=1
 4
 0,0
@@ -11,7 +11,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 0,0 0,1/8
 1/8,0 1/8,1/8
 0,1/8 1/8,1/8
-), problemId=36, problemHash=), state=State(vertexes=[0,0, 0,1/2, 0,1, 1/2,1, 1,1, 1,1/2, 1,0, 1/2,0, 1/2,1/2], facets=[4 0 1 8 7, 4 1 2 3 8, 4 8 3 4 5, 4 7 8 5 6], finalPositions=[575/2928,-385/2928, -865/2928,-121/2928, 575/2928,-385/2928, 839/2928,1055/2928, 575/2928,-385/2928, -865/2928,-121/2928, 575/2928,-385/2928, 839/2928,1055/2928, -601/2928,1319/2928]), realResemblance=0.0625, estimatedResemblance=0.0625)
+), problemId=36, problemHash=), state=State(vertexes=[0,0, 0,1/2, 0,1, 1/2,1, 1,1, 1,1/2, 1,0, 1/2,0, 1/2,1/2], facets=[4 0 1 8 7, 4 1 2 3 8, 4 8 3 4 5, 4 7 8 5 6], finalPositions=[575/2928,-385/2928, -865/2928,-121/2928, 575/2928,-385/2928, 839/2928,1055/2928, 575/2928,-385/2928, -865/2928,-121/2928, 575/2928,-385/2928, 839/2928,1055/2928, -601/2928,1319/2928]), realResemblance=0.0625, estimatedResemblance=0.0625458461051951)
 -------------------------- solution --------------------
 9
 0,0

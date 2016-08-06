@@ -5,6 +5,7 @@ import icfp16.estimate.EstimatorFactory
 import icfp16.io.FileUtils
 import icfp16.io.ProblemContainersParser
 import icfp16.solver.BestSolverEver
+import icfp16.state.solution
 import icfp16.submitter.Submitter
 import icfp16.visualizer.Visualizer
 import java.io.File

@@ -3,12 +3,15 @@ package icfp16
 import icfp16.api.SolutionSpec
 import icfp16.api.createApi
 import icfp16.data.*
+import icfp16.state.PYTHAGOREAN_TRIPLES
 import icfp16.state.State
+import icfp16.state.solution
 import icfp16.visualizer.Visualizer
 import okhttp3.logging.HttpLoggingInterceptor
 import java.io.File
 import java.time.Instant
 import java.time.temporal.ChronoUnit
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 val vertexes = arrayOf(
@@ -51,49 +54,37 @@ val vertexes = arrayOf(
 )
 
 val tasks = arrayOf(
-    // Task 0.
-    Pair(
-        Problem(
-            arrayListOf(
-                Polygon(
-                    arrayListOf(
-                        Vertex(Fraction(0), Fraction(1, 3)),
-                        Vertex(Fraction(0), Fraction(2, 3)),
-                        Vertex(Fraction(1), Fraction(2, 3)),
-                        Vertex(Fraction(1), Fraction(1, 3))
-                    )
-                )
-            ),
-            arrayListOf()
-        ),
-        State(
-            arrayOf(
-                Vertex(0, 0),
-                Vertex(1, 0),
-                Vertex(Fraction(0), Fraction(1, 3)),
-                Vertex(Fraction(1), Fraction(1, 3)),
-                Vertex(Fraction(0), Fraction(2, 3)),
-                Vertex(Fraction(1), Fraction(2, 3)),
-                Vertex(0, 1),
-                Vertex(1, 1)
-            ),
-            arrayOf(
-                Facet(arrayListOf(0, 1, 3, 2)),
-                Facet(arrayListOf(2, 3, 5, 4)),
-                Facet(arrayListOf(4, 5, 7, 6))
-            ),
-            arrayOf(
-                Vertex(Fraction(0), Fraction(2, 3)),
-                Vertex(Fraction(1), Fraction(2, 3)),
-                Vertex(Fraction(0), Fraction(1, 3)),
-                Vertex(Fraction(1), Fraction(1, 3)),
-                Vertex(Fraction(0), Fraction(2, 3)),
-                Vertex(Fraction(1), Fraction(2, 3)),
-                Vertex(Fraction(0), Fraction(1, 3)),
-                Vertex(Fraction(1), Fraction(1, 3))
-            )
-        )
-    ),
+//    // Task 0.
+//    Pair(
+//        Problem(emptyList(), emptyList()),
+//        State(
+//            arrayOf(
+//                Vertex(0, 0),
+//                Vertex(1, 0),
+//                Vertex(Fraction(0), Fraction(1, 3)),
+//                Vertex(Fraction(1), Fraction(1, 3)),
+//                Vertex(Fraction(0), Fraction(2, 3)),
+//                Vertex(Fraction(1), Fraction(2, 3)),
+//                Vertex(0, 1),
+//                Vertex(1, 1)
+//            ),
+//            arrayOf(
+//                Facet(arrayListOf(0, 1, 3, 2)),
+//                Facet(arrayListOf(2, 3, 5, 4)),
+//                Facet(arrayListOf(4, 5, 7, 6))
+//            ),
+//            arrayOf(
+//                Vertex(Fraction(0), Fraction(2, 3)),
+//                Vertex(Fraction(1), Fraction(2, 3)),
+//                Vertex(Fraction(0), Fraction(1, 3)),
+//                Vertex(Fraction(1), Fraction(1, 3)),
+//                Vertex(Fraction(0), Fraction(2, 3)),
+//                Vertex(Fraction(1), Fraction(2, 3)),
+//                Vertex(Fraction(0), Fraction(1, 3)),
+//                Vertex(Fraction(1), Fraction(1, 3))
+//            )
+//        )
+//    ),
 
     // Task 1.
     Pair(
@@ -350,21 +341,63 @@ fun main(args: Array<String>) {
 
   val dir = File("our_problems")
   dir.mkdirs()
-  var ts = Instant.parse("2016-08-06T00:00:00Z")
+  val START_TIME = Instant.parse("2016-08-06T00:00:00Z")
+  var ts = Instant.from(START_TIME)
   val api = createApi(HttpLoggingInterceptor.Level.NONE)
-  tasks.forEachIndexed { i, data ->
+
+  val log = StringBuilder()
+  val logDir = File("submitted_problems_logs")
+  logDir.mkdirs()
+
+  var i = 0
+
+  while (ts.isBefore(START_TIME.plus(48, ChronoUnit.HOURS))) {
+    val data = tasks[i % tasks.size]
+    i++
+
+    val problem = data.first
+    val random = Random()
+    val pivot = Vertex(random.nextInt(), Math.abs(random.nextInt() + 1))
+    val pythagoreanTriple = PYTHAGOREAN_TRIPLES[random.nextInt(PYTHAGOREAN_TRIPLES.size)]
+    val translation = Vertex(
+        Fraction(random.nextLong(), Math.abs(random.nextLong())),
+        Fraction(random.nextLong(), Math.abs(random.nextLong()))
+    )
+    val solution = data.second
+        .rotate(pivot, pythagoreanTriple)
+        .translate(translation)
+
     val visualizer = Visualizer()
-    visualizer.visualizedAndSaveImage(data.first, data.second, 1, "our_problems/task$i.png")
-    visualizer.visualizedAndSaveFolds(data.second, 1, "our_problems/task${i}folds.png")
-    val text = data.second.solution()
+    visualizer.visualizedAndSaveImage(problem, solution, 1, "our_problems/task$i.png")
+    visualizer.visualizedAndSaveFolds(solution, 1, "our_problems/task${i}folds.png")
+    val text = solution.solution()
     File(dir, "task$i.txt").writeText(text)
 
     if (submit) {
       val request = api.submitProblem(SolutionSpec(text), TimeUnit.MILLISECONDS.toSeconds(ts.toEpochMilli())).execute()
-      println("Problem submission #$i is successful: ${request.isSuccessful} id: ${request.body()?.problem_id}")
+      val logStr = "Problem submission #$i $ts is successful: ${request.isSuccessful.toString().toUpperCase()} " +
+          "id: ${request.body()?.problem_id}"
+      println(logStr)
+
+      log.append(logStr)
+      log.append("\n")
+
+      if (!request.isSuccessful) {
+        val errMsg = "Error: ${request.raw().code()} ${request.message()}"
+        println(errMsg)
+        log.append(errMsg)
+      }
+
+      log.append("Pivot: $pivot\n")
+      log.append("Pythagorean triple: $pythagoreanTriple\n")
+      log.append("Translation: $translation\n\n")
+
       Thread.sleep(TimeUnit.SECONDS.toMillis(2))
     }
 
     ts = ts.plus(1, ChronoUnit.HOURS)
   }
+
+  val logFile = File(logDir, "task${Instant.now()}.txt")
+  logFile.writeText(log.toString())
 }

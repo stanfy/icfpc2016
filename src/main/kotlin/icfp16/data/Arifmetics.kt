@@ -1,5 +1,6 @@
 package icfp16.data
 
+import icfp16.state.State
 import java.math.BigInteger
 
 
@@ -182,9 +183,31 @@ fun Vertex.reflect(edge : Edge) : Vertex{
   return Vertex(x2, y2)
 }
 
+fun Vertex.rotate(around: Vertex, pihagorean: Triple<Int, Int, Int>): Vertex {
+  val cos = Fraction(pihagorean.first, pihagorean.third)
+  val sin = Fraction(pihagorean.second, pihagorean.third)
+  val x =
+      around.x
+          .add(this.x.sub(around.x).mul(cos))
+          .sub(this.y.sub(around.y).mul(sin))
+
+  val y =
+      around.y
+          .add(this.x.sub(around.x).mul(sin))
+          .add(this.y.sub(around.y).mul(cos))
+
+  return Vertex(x, y)
+}
+
+
 /// THis is not correct actually
-fun Polygon.translate(v: Vertex): Polygon {
+fun Polygon.sub(v: Vertex): Polygon {
   return Polygon(this.vertices.map { it.add(Vertex(v.x.neg(), v.y.neg())) })
+}
+
+/// THis is not correct actually
+fun Polygon.add(v: Vertex): Polygon {
+  return Polygon(this.vertices.map { it.add(Vertex(v.x, v.y)) })
 }
 
 fun centroid(vertices: List<Vertex>): Vertex {
