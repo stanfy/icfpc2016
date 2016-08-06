@@ -91,7 +91,7 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
     return "(name = ($name))" + super.toString()
   }
 
-  override fun split(splitterEdge: Edge): IState {
+  override fun fold(foldingEdge: Edge): IState {
     throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
 

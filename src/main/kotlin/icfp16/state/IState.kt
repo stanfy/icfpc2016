@@ -13,7 +13,7 @@ interface IState {
   fun rotate90(around: Vertex): IState
   fun rotate270(around: Vertex): IState
   fun rotate(around: Vertex, pihagorean: Triple<Int,Int,Int>): IState
-  fun split(splitterEdge: Edge) : IState
+  fun fold(foldingEdge: Edge) : IState
 
   fun finalPositions(): Array<Vertex>
   fun vertexes(): Array<Vertex>

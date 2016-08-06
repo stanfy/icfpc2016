@@ -1,6 +1,6 @@
 package icfp16.data
 
-data class ComlexPolygon(
+data class ComplexPolygon(
     val initial: Polygon = Polygon(listOf(
         Vertex(Fraction(0), Fraction(0)),
         Vertex(Fraction(0), Fraction(1)),
