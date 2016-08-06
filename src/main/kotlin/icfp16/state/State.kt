@@ -4,9 +4,21 @@ import icfp16.data.*
 
 data class State(val vertexes: Array<Vertex> = emptyArray(),
                  val facets: Array<Facet> = emptyArray(),
-                 val finalPositions: Array<Vertex> = vertexes) {
+                 val finalPositions: Array<Vertex> = vertexes):IState {
 
-  fun poligons(): Array<Polygon> {
+  override fun finalPositions(): Array<Vertex> {
+    return finalPositions
+  }
+
+  override fun vertexes(): Array<Vertex> {
+    return vertexes
+  }
+
+  override fun facets(): Array<Facet> {
+    return facets
+  }
+
+  override fun poligons(): Array<Polygon> {
     return facets.map { facet ->
       Polygon(facet.indexes.map { index ->
         finalPositions[index]
@@ -14,7 +26,7 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
     }.toTypedArray()
   }
 
-  fun initialPoligons(): Array<Polygon> {
+  override fun initialPoligons(): Array<Polygon> {
     return facets.map { facet ->
       Polygon(facet.indexes.map { index ->
         vertexes[index]
@@ -22,40 +34,21 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
     }.toTypedArray()
   }
 
-  fun solution(): String {
-    var result = mutableListOf<String>()
-    result.add("${vertexes.size}")
-    if (vertexes.size > 0 ){
-      result.addAll(vertexes.map { "$it" })
-    }
-
-    result.add("${facets.size}")
-    if (facets.size > 0 ){
-      result.addAll(facets.map { "$it" })
-    }
-
-    if (finalPositions.size > 0 ){
-      result.addAll(finalPositions.map { "$it" })
-    }
-
-    return result.joinToString("\n")
-  }
 
   /**
    * Translates state to another vertex
    */
-  fun translate(vartex: Vertex) : State {
+  override fun translate(vartex: Vertex) : IState {
     val translatedPositions = this.finalPositions.map {
       it.add(vartex)
     }.toTypedArray()
     return State(vertexes = this.vertexes, facets = this.facets, finalPositions = translatedPositions)
   }
 
-
   /**
    *  Rotates around vertex
    */
-  fun rotate90(around: Vertex): State {
+  override fun rotate90(around: Vertex): IState {
     val translatedPositions = this.finalPositions.map {
       val relativePoint = it.sub(around)
       val related = Vertex(relativePoint.y.neg(), relativePoint.x)
@@ -68,36 +61,21 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
   /**
    *  Rotates around vertex
    */
-  fun rotate180(around: Vertex): State {
+  override fun rotate180(around: Vertex): IState {
     return rotate90(around).rotate90(around)
   }
-
 
   /**
    *  Rotates around vertex
    */
-  fun rotate270(around: Vertex): State {
+  override fun rotate270(around: Vertex): IState {
     return rotate90(around).rotate90(around).rotate90(around)
   }
 
-  fun rotate(around: Vertex, pihagorean: Triple<Int,Int,Int>): State {
-    val cos = Fraction(pihagorean.first, pihagorean.third)
-    val sin = Fraction(pihagorean.second, pihagorean.third)
+
+  override fun rotate(around: Vertex, pihagorean: Triple<Int,Int,Int>): State {
     val translatedPositions = this.finalPositions.map {
-
-      val center = around
-      val point2 = it
-      val x =
-          center.x
-              .add(point2.x.sub(center.x).mul(cos))
-              .sub(point2.y.sub(center.y).mul(sin))
-
-      val y =
-          center.y
-              .add(point2.x.sub(center.x).mul(sin))
-              .add(point2.y.sub(center.y).mul(cos))
-
-      Vertex(x,y)
+      it.rotate(around, pihagorean)
     }.toTypedArray()
     return State(vertexes = this.vertexes, facets = this.facets, finalPositions = translatedPositions)
   }

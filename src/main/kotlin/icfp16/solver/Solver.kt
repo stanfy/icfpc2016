@@ -3,11 +3,12 @@ package icfp16.solver
 import icfp16.data.*
 import icfp16.estimate.BitmapEstimator
 import icfp16.estimate.CompoundEstimator
+import icfp16.state.IState
 import icfp16.state.PublicStates
 import icfp16.state.State
 
 interface Solver {
-  fun solve(problem: Problem): State
+  fun solve(problem: Problem): IState
 }
 
 class StupidSolver: Solver {
@@ -17,7 +18,7 @@ class StupidSolver: Solver {
 }
 
 class TranslatorSolver: Solver {
-  override fun solve(problem: Problem): State {
+  override fun solve(problem: Problem): IState {
     // simple centroid  as  sum of all polygon coords
     val vertexes = problem.poligons.flatMap { it.vertices }
     val centroid = centroid(vertexes)
@@ -31,7 +32,7 @@ class TranslatorSolver: Solver {
 
 
 class BetterTranslatorSolver : Solver {
-  override fun solve(problem: Problem): State {
+  override fun solve(problem: Problem): IState {
     // simple centroid  as  sum of all polygon coords
     val vertexes = problem.poligons.flatMap { it.vertices }
     val centroid = massCentroid(vertexes)
@@ -46,14 +47,14 @@ class BetterTranslatorSolver : Solver {
 
 
 class SequenceSolver: Solver {
-  override fun solve(problem: Problem): State {
+  override fun solve(problem: Problem): IState {
 
     val vertexes = problem.poligons.flatMap { it.vertices }
     val problemCentroid = centroid(vertexes)
 
     val bestState = PublicStates.states
       .map { s ->
-        // translate S many times
+        // sub S many times
         val stateCentroid = centroid(s.finalPositions.asList())
         val translation = problemCentroid.sub(stateCentroid)
         val translatedState = s.translate(translation)
@@ -61,8 +62,8 @@ class SequenceSolver: Solver {
       }
       .flatMap { s ->
         // list of all transformations of state
-        val stateCentroid = centroid(s.finalPositions.asList())
-        listOf<State>(
+        val stateCentroid = centroid(s.finalPositions().asList())
+        listOf<IState>(
             s,
             s.rotate90(stateCentroid),
             s.rotate180(stateCentroid),
@@ -111,7 +112,7 @@ class SequenceSolver: Solver {
 
 class BestSolverEver: Solver {
 
-  override fun solve(problem: Problem): State {
+  override fun solve(problem: Problem): IState {
     val solvers = arrayOf<Solver>(StupidSolver(), TranslatorSolver(), BetterTranslatorSolver(), SequenceSolver(), Wrapper())
     val states =  solvers
         .map { it.solve(problem) }

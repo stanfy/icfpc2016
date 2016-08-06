@@ -9,13 +9,14 @@ import java.awt.image.BufferedImage
 import com.vividsolutions.jts.geom.GeometryFactory
 import com.vividsolutions.jts.geom.Coordinate
 import icfp16.problem
+import icfp16.state.IState
 
 interface Estimator {
 
   /***
    * Quality - any int th
    */
-  fun resemblanceOf(task: Problem, state: State, quality: Int = 1) : Double
+  fun resemblanceOf(task: Problem, state: IState, quality: Int = 1) : Double
 }
 
 
@@ -31,7 +32,7 @@ class CompoundEstimator : Estimator {
   val bitmapEstimator = BitmapEstimator()
   val jstEstimator = JSTEstimator()
 
-  override fun resemblanceOf(task: Problem, state: State, quality: Int): Double {
+  override fun resemblanceOf(task: Problem, state: IState, quality: Int): Double {
     try {
       val result = jstEstimator.resemblanceOf(task, state, quality)
       return if (!result.isNaN()) result else bitmapEstimator.resemblanceOf(problem, state, quality)
@@ -42,7 +43,7 @@ class CompoundEstimator : Estimator {
 }
 
 class BitmapEstimator : Estimator {
-  override fun resemblanceOf(task: Problem, state: State, quality: Int): Double {
+  override fun resemblanceOf(task: Problem, state: IState, quality: Int): Double {
     val image = Visualizer().visualizationOf(task, state, quality)
 
     var allSquarePixels = 0
@@ -96,7 +97,7 @@ fun <T : icfp16.data.Polygon> Collection<T>.toJSTMultipolygon(): com.vividsoluti
 
 class JSTEstimator : Estimator {
 
-  override fun resemblanceOf(task: Problem, state: State, quality: Int): Double {
+  override fun resemblanceOf(task: Problem, state: IState, quality: Int): Double {
     val problemPolygon = task.poligons.toJSTMultipolygon()
     val statePolygon = state.poligons().toList().toJSTMultipolygon()
 

@@ -16,6 +16,11 @@ class FileUtils {
     return getDefaultProblemFileFolder()+"/"+filenameForProblemId(problemId)
   }
 
+  fun getFullPathForProblemName(problemNameFile: String): String {
+    return getDefaultProblemFileFolder()+"/"+problemNameFile
+  }
+
+
   // ------------ solution images ------------
 
   fun filenameForSolutionImage(problemId: String): String {

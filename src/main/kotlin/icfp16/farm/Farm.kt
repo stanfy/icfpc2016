@@ -5,6 +5,7 @@ import icfp16.estimate.EstimatorFactory
 import icfp16.io.FileUtils
 import icfp16.io.ProblemContainersParser
 import icfp16.solver.BestSolverEver
+import icfp16.state.solution
 import icfp16.submitter.Submitter
 import icfp16.visualizer.Visualizer
 import java.io.File
@@ -15,8 +16,8 @@ class Farm {
   val estimatorQuality = 4
   val shouldShowInvalidPics = false
 
-  val startingId = 90
-  val count = 11
+  val startingId = 1
+  val count = 1
 
   fun startSearchingBestSolutions(full: Boolean = false, problemNames: List<String> = emptyList()) {
 
@@ -30,17 +31,33 @@ class Farm {
       problemNames.filter { !it.endsWith(".ignore") }
     }
 
+
     for (problemFileName in problemList) {
       //Thread.sleep(1000) // <--- api
 
       println("---------------------------------")
+      if (!File(FileUtils().getFullPathForProblemName(problemFileName)).exists()) {
+        println("no such file, ignoring: $problemFileName")
+        continue
+      }
+
       println("start searching best solution for problem: $problemFileName")
       val solutionContainer = solveAndSubmitSolutionFor(problemFileName)
 
       // save to files
-      if (solutionContainer != null && (shouldShowInvalidPics || solutionContainer.realResemblance != -1.0)) {
-        saveSolutionContainerToFile(solutionContainer)
-        saveSolutionImageToFile(solutionContainer)
+      if (solutionContainer != null) {
+
+        if ((shouldShowInvalidPics || solutionContainer.realResemblance != -1.0)) {
+          saveSolutionContainerToFile(solutionContainer)
+          saveSolutionImageToFile(solutionContainer)
+        }
+
+        // ignore for future
+        if (solutionContainer.realResemblance == 1.0) {
+          println("this problem has realResemblance == 1.0, ignore it for later")
+          val ignoreFileName = FileUtils().getFullPathForProblemName(problemFileName) + ".ignore"
+          File(FileUtils().getFullPathForProblemName(problemFileName)).renameTo(File(ignoreFileName))
+        }
       }
 
     }
@@ -48,8 +65,9 @@ class Farm {
 
 
   fun solveAndSubmitSolutionFor(problemFileName: String): SolutionContainer? {
+    val filePath = FileUtils().getFullPathForProblemName(problemFileName)
     val problemContainer = ProblemContainersParser()
-        .generateProblemContainerFromFile(FileUtils().getDefaultProblemFileFolder() + "/" + problemFileName) ?: return null
+        .generateProblemContainerFromFile(filePath) ?: return null
 
     val solver = BestSolverEver()
     val state = solver.solve(problem = problemContainer.problem)
