@@ -216,7 +216,7 @@ class PoliginSplitterKtTest {
     val res = polygon.splitSimple(edge)
 
     assertThat(res.count()).isEqualTo(2)
-    assertThat(res[0].polygon.vertices.count()).isEqualTo(3)
+    assertThat(res[0].polygon.vertices.count()).isEqualTo(4)
     assertThat(res[1].polygon.vertices.count()).isEqualTo(4)
   }
 

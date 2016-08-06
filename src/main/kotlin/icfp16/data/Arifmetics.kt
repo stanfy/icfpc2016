@@ -64,10 +64,6 @@ fun Fraction.le(that:Fraction):Boolean = this.scaledA(that.b) < that.scaledA(thi
 fun Fraction.geq(that:Fraction):Boolean = this.scaledA(that.b) >= that.scaledA(this.b)
 fun Fraction.ge(that:Fraction):Boolean = this.scaledA(that.b) > that.scaledA(this.b)
 
-fun Fraction.equals(that:Fraction):Boolean {
- return  this.scaledA(that.b) == that.scaledA(this.b)
-}
-
 
 fun Fraction.max(that:Fraction) : Fraction{
   if(this.geq(that))
