@@ -56,11 +56,23 @@ data class SplitResult(val polygon: Polygon,
                        val edgeIndex : Int = 0,
                        val xRatio : Fraction?,
                        val yRatio : Fraction?){
+  fun validated(): SplitResult {
+    if (polygon.vertices.distinct().count() == polygon.vertices.count()) {
+      return this
+    }
+    return this
+  }
 }
 
 fun Polygon.splitSimple(foldingEdge: Edge): List<SplitResult> {
   val linked = this.toLindedEdges()
-  val isCrossed = linked.any { edge -> edge.crosses(foldingEdge) != null}
+  // check if we're trying to splith through one of edges
+  val sameEdge = linked.any { link ->
+           isLeft(link.startVertex, link.endVertex, foldingEdge.a) == 0
+        && isLeft(link.startVertex, link.endVertex, foldingEdge.b) == 0
+  }
+  val isCrossed = !sameEdge && linked.any { edge -> edge.crosses(foldingEdge) != null}
+
   if(isCrossed)
   {
     // find first cross
@@ -81,8 +93,16 @@ fun Polygon.splitSimple(foldingEdge: Edge): List<SplitResult> {
       val secondPolygonPoints: MutableList<Vertex> = arrayListOf()
 
       firstPolygonPoints.add(firstCrossPoint)
+// TODO :  THIS IS NOT WORKING :(
+      if (currentEdge.endVertex == firstCrossPoint)  {
+        currentEdge = currentEdge.Next
+      }
+
       firstPolygonPoints.add(currentEdge.endVertex)
 
+      if (firstPolygonPoints.distinct().count() != firstPolygonPoints.count()) {
+        print(" Not cool :(")
+      }
 
       currentEdge = currentEdge.Next
       while (currentEdge.crosses(foldingEdge) == null)
@@ -154,14 +174,14 @@ fun Polygon.splitSimple(foldingEdge: Edge): List<SplitResult> {
         val secondSplitResult = SplitResult(Polygon(secondPolygonPoints), true, secondCrossPoint,
             secondEdge, secondIndex, secondRatioX, secondRatioY)
 
-        return arrayListOf(firstSplitResult, secondSplitResult)
+        return arrayListOf(firstSplitResult.validated(), secondSplitResult.validated())
 
       }
 
 
     }
   }
-  return arrayListOf(SplitResult(this, false, null, null, 0, null, null))
+  return arrayListOf(SplitResult(this, false, null, null, 0, null, null).validated())
 }
 
 fun Edge.findSplitPoint(ratioX : Fraction, ratioY:Fraction) : Vertex{

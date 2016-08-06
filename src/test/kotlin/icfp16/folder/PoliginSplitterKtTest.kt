@@ -72,7 +72,36 @@ class PoliginSplitterKtTest {
   }
 
   @Test
+  fun debugExTest4()
+  {
+    val edge1 = Edge(
+        Vertex(Fraction(0,8), Fraction(1, 8)),
+        Vertex(Fraction(1,8), Fraction(0, 8)))
+    val edge2 = Edge(
+        Vertex(Fraction(-1,4), Fraction(3, 8)),
+        Vertex(Fraction(1,8), Fraction(3, 8)))
+    val res = edge2.cross(edge1)
+    assertThat(res).isEqualTo(null)
+  }
+  @Test
+  fun debugExTest3()
+  {
+    //[7/8,3/8, 7/8,1, 1,1, 1,1/2] by Edge(a=7/8,1, b=1,1/2)
+    val polygon = Polygon(
+        arrayListOf( Vertex(Fraction(-1,4), Fraction(3,8)),
+            Vertex(Fraction(1,8), Fraction(3,8)),
+            Vertex(Fraction(0), Fraction(1,2)),
+            Vertex(Fraction(-1,8), Fraction(1,2))))
+    val edge = Edge(
+        Vertex(Fraction(0,8), Fraction(1, 8)),
+        Vertex(Fraction(1,8), Fraction(0, 8)))
 
+    val res = polygon.splitSimple(edge)
+    assertThat(res.count()).isEqualTo(1)
+
+  }
+
+  @Test
   fun debugExTest(){
 
     val step1 = ComplexState()

@@ -108,8 +108,16 @@ class PoliginSplitterTest {
   fun polygoSimpleFoldWithoutCross() {
 
     val edge = Edge(Vertex(0, 2), Vertex(1, 3))
+    val e1 = Edge(Vertex(0, 0), Vertex(1, 0))
+    val e2 = Edge(Vertex(1, 0), Vertex(1, 1))
+    val e3 = Edge(Vertex(1, 1), Vertex(0, 1))
+    val e4 = Edge(Vertex(0, 1), Vertex(0, 0))
+    assertThat(e1.cross(edge)).isEqualTo(null)
+    assertThat(e2.cross(edge)).isEqualTo(null)
+    assertThat(e3.cross(edge)).isEqualTo(null)
+    assertThat(e4.cross(edge)).isEqualTo(null)
     val res = poly.splitSimple(edge)
-    assertThat(res.count() == 1)
+    assertThat(res.count()).isEqualTo(1)
 
     assert(res[0].splitted == false)
 
