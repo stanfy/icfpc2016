@@ -1,6 +1,5 @@
 package icfp16.data
 
-import icfp16.state.State
 import java.math.BigInteger
 
 
@@ -55,19 +54,12 @@ fun Fraction.inverse():Fraction{
   return Fraction(b,a)
 }
 
-
-
 fun Fraction.scaledA(x: BigInteger): BigInteger = this.a.multiply(x)
 
 fun Fraction.leq(that:Fraction):Boolean = this.scaledA(that.b) <= that.scaledA(this.b)
 fun Fraction.le(that:Fraction):Boolean = this.scaledA(that.b) < that.scaledA(this.b)
 fun Fraction.geq(that:Fraction):Boolean = this.scaledA(that.b) >= that.scaledA(this.b)
 fun Fraction.ge(that:Fraction):Boolean = this.scaledA(that.b) > that.scaledA(this.b)
-
-fun Fraction.equals(that:Fraction):Boolean {
- return  this.scaledA(that.b) == that.scaledA(this.b)
-}
-
 
 fun Fraction.max(that:Fraction) : Fraction{
   if(this.geq(that))

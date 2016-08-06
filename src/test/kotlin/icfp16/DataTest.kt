@@ -184,6 +184,8 @@ class DataTest {
     assertThat(Fraction(1, 7).geq(Fraction(1, 8))).isTrue()
     assertThat(Fraction(1, 7).leq(Fraction(1, 4))).isTrue()
     assertThat(Fraction(1, 7).leq(Fraction(2, 8))).isTrue()
+
+    assertThat(Fraction(2, 8).equals(Fraction(1, 4))).isTrue()
   }
 
   @Test

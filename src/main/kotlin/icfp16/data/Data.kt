@@ -37,6 +37,12 @@ data class Fraction(val a: BigInteger, val b: BigInteger = BigInteger.ONE) {
     return if (b == BigInteger.ONE) "$a" else "$a/$b"
   }
 
+  override fun equals(other: Any?): Boolean {
+    val that = other as Fraction
+    val simpleThis = this.simple()
+    val simpleThat = that.simple()
+    return simpleThis.a == simpleThat.a && simpleThis.b == simpleThat.b
+  }
 }
 
 fun f(a: Int, b: Int): Fraction {
