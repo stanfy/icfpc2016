@@ -19,6 +19,26 @@ class Farm {
   val startingId = 2200
   val count = 1
 
+
+  fun listOfProblemFileNamesToSolve(solveOnlyNotSolved: Boolean = false): List<String> {
+
+    val list = File(FileUtils().getDefaultProblemFileFolder()).listFiles()
+      .map { it.name }
+      .filter { !it.endsWith(".ignore") }
+      .map { Pair(it, FileUtils().getProblemIdByFileNameWithoutExtension(it)) }
+      .filter { it.second != null}
+      .map { Pair(it.first, it.second!!) }
+      .filter {
+        val (name, problemId) = it
+        val solutionFileName = FileUtils().getFullPathForSolutionFile(problemId)
+        !(solveOnlyNotSolved && File(solutionFileName).exists())
+      }
+      .map { it.first }
+
+    return list
+  }
+
+
   fun startSearchingBestSolutions(full: Boolean = false, solveOnlyNotSolved: Boolean = false,
                                   problemNames: List<String> = emptyList()) {
 
@@ -26,19 +46,7 @@ class Farm {
     // 2. get solution file
     // 3. if solveOnlyNotSolved --> check that solution file doesn't exist yet
     val problemList = if (full) {
-      File(FileUtils().getDefaultProblemFileFolder()).listFiles()
-        .map { it.name }
-        .filter { !it.endsWith(".ignore") }
-        .map { Pair(it, FileUtils().getProblemIdByFileNameWithoutExtension(it)) }
-        .filter { it.second != null}
-        .map { Pair(it.first, it.second!!) }
-        .filter {
-          val (name, problemId) = it
-          val solutionFileName = FileUtils().getFullPathForSolutionFile(problemId)
-          !(solveOnlyNotSolved && File(solutionFileName).exists())
-        }
-        .map { it.first }
-
+      listOfProblemFileNamesToSolve(solveOnlyNotSolved)
     } else if (problemNames.size == 0) {
       (startingId..(startingId + count)).map { "problem_$it.txt" }
     } else {
@@ -48,6 +56,8 @@ class Farm {
     if (problemList.count() == 0) {
       println("Stopping the farm: nothing to solve")
     }
+
+    println("Will solve solutions count = ${problemList.count()}")
 
     for (problemFileName in problemList) {
       //Thread.sleep(1000) // <--- api
