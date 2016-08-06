@@ -167,4 +167,28 @@ class PoliginSplitterTest {
     val le = LinkedEdge(Vertex(Fraction(-1, 4), Fraction(3, 8)), Vertex(Fraction(1, 8), Fraction(3, 8)))
     assertThat(le.crosses(Edge(Vertex(Fraction(0), Fraction(1, 8)), Vertex(Fraction(1, 8), Fraction(0))))).isNull()
   }
+
+  @Test
+  fun crossProblem2() {
+    val e = Edge(Vertex(0, 0), Vertex(Fraction(1, 8), Fraction(1)))
+    assertThat(e.cross(Edge(Vertex(Fraction(0), Fraction(1, 8)), Vertex(Fraction(1, 8), Fraction(2, 8)))))
+      .isNotNull()
+  }
+
+  @Test
+  fun badSplit() {
+    val polygon = Polygon(
+        arrayListOf( Vertex(Fraction(1,8), Fraction(8)),
+            Vertex(Fraction(0), Fraction(1)),
+            Vertex(Fraction(0), Fraction(0)),
+            Vertex(Fraction(1,8), Fraction(1))))
+
+    val edge = Edge(
+        Vertex(Fraction(1,8), Fraction(2, 8)),
+        Vertex(Fraction(0,8), Fraction(1, 8)))
+
+    val res = polygon.splitSimple(edge)
+    assertThat(res.distinct()).isEqualTo(res)
+  }
+
 }
