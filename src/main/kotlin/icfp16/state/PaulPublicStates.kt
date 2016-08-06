@@ -1,6 +1,7 @@
 package icfp16.state
 
 import icfp16.data.ComplexPolygon
+import icfp16.data.Edge
 import icfp16.data.Fraction
 import icfp16.data.Vertex
 
@@ -41,7 +42,24 @@ class PaulPublicStates {
         lineSolution(14),
         lineSolution(15),
         lineSolution(16),
-        lineSolution(32)
+        lineSolution(32),
+        ComplexState()
+            .fold(Edge(
+                Vertex(Fraction(0), Fraction(1, 3)),
+                Vertex(Fraction(1), Fraction(2, 3))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(0), Fraction(1, 4)),
+                Vertex(Fraction(1), Fraction(2, 4))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(0), Fraction(1, 5)),
+                Vertex(Fraction(1), Fraction(7, 10))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(1,4), Fraction(0)),
+                Vertex(Fraction(1,5), Fraction(1))
+            ))
     )
   }
 }
