@@ -33,7 +33,12 @@ class ProblemContainersGrabber {
       if ((!file.exists() || file.length() == 0L) && !File(filePath + ".ignore").exists()) {
         // api limitations
         Thread.sleep(1000)
-        val problem = api.getProblemSpec(hash = p.problem_spec_hash).execute().body()
+        var resp = api.getProblemSpec(hash = p.problem_spec_hash).execute()
+        while (resp.code() == 429) {
+          resp = api.getProblemSpec(hash = p.problem_spec_hash).execute()
+          Thread.sleep(2000)
+        }
+        val problem = resp.body()
 
         val problemContainer = ProblemContainer(problem, p.problem_id, p.problem_spec_hash)
         result.add(problemContainer)
