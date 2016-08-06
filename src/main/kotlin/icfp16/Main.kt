@@ -39,7 +39,7 @@ fun main(args: Array<String>) {
   if (args.size > 0 && "automate".equals(args[0])) {
     val t = Thread({
       while (true) {
-        val p = Runtime.getRuntime().exec("./scripts/get-new-problems.sh")
+        val p = Runtime.getRuntime().exec("./get-new-problems.sh")
         println("${Instant.now()} ${p.waitFor()}")
         Thread.sleep(TimeUnit.MINUTES.toMillis(15))
       }
@@ -52,7 +52,7 @@ fun main(args: Array<String>) {
   if (args.size > 0 && "automate-doit".equals(args[0])) {
     val t = Thread({
       while (true) {
-        val p = Runtime.getRuntime().exec("./scripts/get-and-solve-new-problems.sh")
+        val p = Runtime.getRuntime().exec("./get-and-solve-new-problems.sh")
         println("${Instant.now()} ${p.waitFor()}")
         Thread.sleep(TimeUnit.MINUTES.toMillis(45))
       }
