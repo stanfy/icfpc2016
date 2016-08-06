@@ -35,8 +35,8 @@ class SolverTest {
         """.trimMargin()
 
     val problem = parseProblem(problemString)
-    val stupidSolve = StupidSolver().solve(problem)
-    val translationSolve = TranslatorSolver().solve(problem)
+    val stupidSolve = StupidSolver().solve(problem, "")
+    val translationSolve = TranslatorSolver().solve(problem, "")
 
     val solve1R = BitmapEstimator().resemblanceOf(problem, stupidSolve)
     val translatorR = BitmapEstimator().resemblanceOf(problem, translationSolve)
@@ -85,8 +85,8 @@ class SolverTest {
         """.trimMargin()
 
     val problem = parseProblem(problemString)
-    val stupidSolve = StupidSolver().solve(problem)
-    val translationSolve = TranslatorSolver().solve(problem)
+    val stupidSolve = StupidSolver().solve(problem, "")
+    val translationSolve = TranslatorSolver().solve(problem, "")
 
     val solve1R = BitmapEstimator().resemblanceOf(problem, stupidSolve)
     val translatorR = BitmapEstimator().resemblanceOf(problem, translationSolve)
@@ -95,6 +95,22 @@ class SolverTest {
 //    Visualizer().visualizedAndSaveImage(problem, translationSolve,filePath = "./translator_19.png")
     assertThat(stupidSolve).isNotEqualTo(translationSolve)
     assertThat(translatorR).isGreaterThan(solve1R)
+  }
+
+
+  @Test
+  @Ignore
+  fun task6Solution() {
+
+    val problemString =
+        ProblemContainersParser().generateProblemContainerForProblemId("6")!!.problem.rawString
+
+    val problem = parseProblem(problemString)
+    val translationSolve = SequenceSolver().solve(problem)
+
+    val translatorR = BitmapEstimator().resemblanceOf(problem, translationSolve)
+
+    Visualizer().visualizedAndSaveImage(problem, translationSolve,filePath = "./translator_19.png")
   }
 
 }
