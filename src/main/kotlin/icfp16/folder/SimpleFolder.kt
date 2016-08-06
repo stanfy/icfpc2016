@@ -9,6 +9,7 @@ data class Line(val edge: Edge) {
 
   fun interection(line: Line): Vertex? {
     // https://www.topcoder.com/community/data-science/data-science-tutorials/geometry-concepts-line-intersection-and-its-applications/
+
     val A1 = edge.a.y.sub(edge.b.y)
     val B1 = edge.b.x.sub(edge.a.x)
     val C1 = A1.mul(edge.a.x).add(B1.mul(edge.a.y))
@@ -37,7 +38,7 @@ fun Edge.middle(): Vertex {
 fun Edge.cross(that: Edge): Vertex? {
   val crossPoint = Line(this).interection(Line(that))
   if (crossPoint != null) {
-    val crossed = crossPoint.withinBoundary(this)
+    val crossed = crossPoint.withinBoundary(that)
 
     if (crossed) {
       return crossPoint
