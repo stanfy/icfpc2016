@@ -25,7 +25,7 @@ class Farm {
           .map { it.name }
           .filter { !arrayOf("problem_1", "problem_705").contains(it) }
     } else {
-      (startingId..(startingId + count)).map { "problem_$it" }
+      (startingId..(startingId + count)).map { "problem_$it.txt" }
     }
 
     for (problemFileName in problemList) {

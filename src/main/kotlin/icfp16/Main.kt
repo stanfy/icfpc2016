@@ -36,9 +36,9 @@ fun main(args: Array<String>) {
   if (args.size > 0 && "automate".equals(args[0])) {
     val t = Thread({
       while (true) {
-        Thread.sleep(TimeUnit.MINUTES.toMillis(15))
-        val p = Runtime.getRuntime().exec("./get-new-problems.sh > ./tmp")
+        val p = Runtime.getRuntime().exec("./get-new-problems.sh")
         println("${Instant.now()} ${p.waitFor()}")
+        Thread.sleep(TimeUnit.MINUTES.toMillis(15))
       }
     }, "grab automator")
     t.start()
