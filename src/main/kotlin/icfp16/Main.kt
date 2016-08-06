@@ -39,20 +39,29 @@ fun main(args: Array<String>) {
   if (args.size > 0 && "automate".equals(args[0])) {
     val t = Thread({
       while (true) {
-        val shouldSolve = args.size > 1 && args[1] == "doit"
-        val script = if (shouldSolve) "./get-and-solve-new-problems.sh" else "./get-new-problems.sh"
-
-        val p = Runtime.getRuntime().exec(script)
+        val p = Runtime.getRuntime().exec("./get-new-problems.sh")
         println("${Instant.now()} ${p.waitFor()}")
-
-        val delay: Long = if (shouldSolve) 40 else 15
-        Thread.sleep(TimeUnit.MINUTES.toMillis(delay))
+        Thread.sleep(TimeUnit.MINUTES.toMillis(15))
       }
     }, "grab automator")
     t.start()
     t.join()
     return
   }
+
+  if (args.size > 0 && "automate".equals(args[0])) {
+    val t = Thread({
+      while (true) {
+        val p = Runtime.getRuntime().exec("./get-new-problems.sh")
+        println("${Instant.now()} ${p.waitFor()}")
+        Thread.sleep(TimeUnit.MINUTES.toMillis(15))
+      }
+    }, "grab automator")
+    t.start()
+    t.join()
+    return
+  }
+
 
   println("Starting the farm")
   if (args.size == 0) {
