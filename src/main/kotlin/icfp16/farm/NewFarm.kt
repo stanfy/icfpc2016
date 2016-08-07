@@ -133,15 +133,20 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
               Farm.saveSolutionImageToFile(solutionContainer)
               Farm.saveSolutionContainerToFile(solutionContainer)
 
-              val taskRef = database.getReference("icfp2016/tasks/${it.second}")
+              // check if we need to update
+              if (task.realResemblance < realResemblance) {
+                val taskRef = database.getReference("icfp2016/tasks/${it.second}")
 
-              taskRef.updateChildren(
-                  mapOf(
-                      "solution" to state.solution(),
-                      "realResemblance" to realResemblance,
-                      "estimatedResemblance" to estimatedResemblance
-                  )
-              )
+                taskRef.updateChildren(
+                    mapOf(
+                        "solution" to state.solution(),
+                        "realResemblance" to realResemblance,
+                        "estimatedResemblance" to estimatedResemblance
+                    )
+                )
+              } else {
+                println("Won't update DB Problem ${task.problem_id} Resemblance: $realResemblance is less than we have now ${task.realResemblance}" )
+              }
             } else {
               Thread.sleep(3000)
             }
