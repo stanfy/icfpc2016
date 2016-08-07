@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.668449 estimated res =0.6688193915355648-------------------------- container --------------------
+real res =1.0 estimated res =1.0-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[1/7,1/7, 6/7,1/7, 6/7,6/7, 1/7,6/7])], skeleton=[Edge(a=1/7,1/7, b=1/7,6/7), Edge(a=3/7,1/7, b=3/7,6/7), Edge(a=6/7,1/7, b=6/7,6/7), Edge(a=1/7,1/7, b=6/7,1/7), Edge(a=1/7,3/7, b=6/7,3/7), Edge(a=1/7,6/7, b=6/7,6/7)], rawString=1
 4
 1/7,1/7
@@ -13,24 +13,48 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 1/7,1/7 6/7,1/7
 1/7,3/7 6/7,3/7
 1/7,6/7 6/7,6/7
-), problemId=10, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[0,1/2, 0,1, 1/2,1]), final=Polygon(vertices=[2/35,9/35, 16/35,39/70, 11/70,67/70])), ComplexPolygon(initial=Polygon(vertices=[1/2,1, 1,1, 1,1/2]), final=Polygon(vertices=[11/70,67/70, 16/35,39/70, 6/7,6/7])), ComplexPolygon(initial=Polygon(vertices=[1,1/2, 1,0, 0,0, 0,1/2, 1/2,1]), final=Polygon(vertices=[6/7,6/7, 81/70,16/35, 5/14,-1/7, 2/35,9/35, 11/70,67/70]))]), realResemblance=0.668449, estimatedResemblance=0.6688193915355648)
+), problemId=10, problemHash=0f6a257730c173700166a509ac9c9c921e4bcceb), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[1,6/7, 1,1/7, 6/7,1/7, 6/7,6/7]), final=Polygon(vertices=[5/7,6/7, 5/7,1/7, 6/7,1/7, 6/7,6/7])), ComplexPolygon(initial=Polygon(vertices=[6/7,6/7, 6/7,1, 1,1, 1,6/7]), final=Polygon(vertices=[6/7,6/7, 6/7,5/7, 5/7,5/7, 5/7,6/7])), ComplexPolygon(initial=Polygon(vertices=[1/7,1, 6/7,1, 6/7,6/7, 1/7,6/7]), final=Polygon(vertices=[1/7,5/7, 6/7,5/7, 6/7,6/7, 1/7,6/7])), ComplexPolygon(initial=Polygon(vertices=[1/7,6/7, 0,6/7, 0,1, 1/7,1]), final=Polygon(vertices=[1/7,6/7, 2/7,6/7, 2/7,5/7, 1/7,5/7])), ComplexPolygon(initial=Polygon(vertices=[1/7,1/7, 0,1/7, 0,6/7, 1/7,6/7]), final=Polygon(vertices=[1/7,1/7, 2/7,1/7, 2/7,6/7, 1/7,6/7])), ComplexPolygon(initial=Polygon(vertices=[1/7,6/7, 6/7,6/7, 6/7,1/7, 1/7,1/7]), final=Polygon(vertices=[1/7,6/7, 6/7,6/7, 6/7,1/7, 1/7,1/7])), ComplexPolygon(initial=Polygon(vertices=[1/7,0, 0,0, 0,1/7, 1/7,1/7]), final=Polygon(vertices=[1/7,2/7, 2/7,2/7, 2/7,1/7, 1/7,1/7])), ComplexPolygon(initial=Polygon(vertices=[1/7,1/7, 6/7,1/7, 6/7,0, 1/7,0]), final=Polygon(vertices=[1/7,1/7, 6/7,1/7, 6/7,2/7, 1/7,2/7])), ComplexPolygon(initial=Polygon(vertices=[6/7,1/7, 1,1/7, 1,0, 6/7,0]), final=Polygon(vertices=[6/7,1/7, 5/7,1/7, 5/7,2/7, 6/7,2/7]))]), realResemblance=1.0, estimatedResemblance=1.0)
 -------------------------- solution --------------------
-7
-0,1/2
-0,1
-1/2,1
-1,1
-1,1/2
-1,0
-0,0
-3
-3 0 1 2
-3 2 3 4
-5 4 5 6 0 2
-2/35,9/35
-16/35,39/70
-11/70,67/70
-16/35,39/70
+16
+1,6/7
+1,1/7
+6/7,1/7
 6/7,6/7
-81/70,16/35
-5/14,-1/7
+6/7,1
+1,1
+1/7,1
+1/7,6/7
+0,6/7
+0,1
+1/7,1/7
+0,1/7
+1/7,0
+0,0
+6/7,0
+1,0
+9
+4 0 1 2 3
+4 3 4 5 0
+4 6 4 3 7
+4 7 8 9 6
+4 10 11 8 7
+4 7 3 2 10
+4 12 13 11 10
+4 10 2 14 12
+4 2 1 15 14
+5/7,6/7
+5/7,1/7
+6/7,1/7
+6/7,6/7
+6/7,5/7
+5/7,5/7
+1/7,5/7
+1/7,6/7
+2/7,6/7
+2/7,5/7
+1/7,1/7
+2/7,1/7
+1/7,2/7
+2/7,2/7
+6/7,2/7
+5/7,2/7

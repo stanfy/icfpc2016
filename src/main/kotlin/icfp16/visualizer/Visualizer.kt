@@ -15,6 +15,7 @@ class Visualizer {
   val BITMAP_STEP = 1000
   companion object {
     val originalItemColor = Color.RED
+    val winnerColor = Color.GREEN.darker()
     val solutionColor = Color(0, 0, 255, 32)
   }
 
@@ -24,7 +25,7 @@ class Visualizer {
     val graphics = image.createGraphics()
 
 
-    graphics.color = originalItemColor
+    graphics.color = if (resemblance == 1.0) winnerColor else originalItemColor
 
     val vertexes = task.poligons.flatMap { it.vertices }
     val centroid = if (task.poligons.isEmpty()) {
@@ -116,11 +117,19 @@ class Visualizer {
   fun visualizedAndSaveImage(task: Problem = Problem(emptyList(), emptyList()), state: IState? = null, quality: Int = 1
                              , filePath: String = "output.png", resemblance: Double? = null, showGrid:Boolean=false) {
     val image = visualizationOf(task, state, quality, resemblance,showGrid)
+    val outputFile = File(filePath)
+    if (outputFile.parentFile != null) {
+      outputFile.parentFile.mkdirs()
+    }
     ImageIO.write(image,"png", File(filePath))
   }
 
   fun visualizedAndSaveFolds(state: IState, quality: Int = 1, filePath: String = "fold_output.png") {
     val image = visualizeFolds(state, quality)
+    val outputFile = File(filePath)
+    if (outputFile.parentFile != null) {
+      outputFile.parentFile.mkdirs()
+    }
     ImageIO.write(image,"png", File(filePath))
   }
 

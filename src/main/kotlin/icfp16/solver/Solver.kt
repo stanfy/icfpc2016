@@ -80,6 +80,7 @@ class SequenceSolver: Solver {
 
       for (s in listOf(translatedState, state)) {
 
+        // take N  check if we're food enough, take more
         val translatedCentroid = centroid(s.finalPositions().asList())
         for (rotated in rotationsList(s, translatedCentroid)) {
 
@@ -107,6 +108,7 @@ class SequenceSolver: Solver {
   }
 
   private fun rotationsList(s: IState, stateCentroid: Vertex): List<IState> {
+     // can we fix it more?
     return listOf<IState>(
         s,
         s.rotate90(stateCentroid),
@@ -149,12 +151,30 @@ class SequenceSolver: Solver {
 class BestSolverEver: Solver {
 
   override fun solve(problem: Problem, problemId: String, thresholdResemblance: Double): IState? {
-    //val solvers = arrayOf<Solver>(StupidSolver(), TranslatorSolver(), BetterTranslatorSolver(), SequenceSolver(), Wrapper())
-    val solvers = arrayOf<Solver>(SequenceSolver())
-    val states =  solvers
-        .map { it.solve(problem, problemId, thresholdResemblance) }
-        .filter { it != null }
-        .map { it.to(BitmapEstimator().resemblanceOf(problem, it!!, quality = 2)) }
+
+    //val solvers = arrayOf<Solver>(StupidSolver(), TranslatorSolver(), BetterTranslatorSolver(), SequenceSolver())
+    val solvers = arrayOf<Solver>(Wrapper(), SequenceSolver())
+
+    var bestResemblance = thresholdResemblance
+    val states = mutableListOf<Pair<IState?, Double>>()
+
+    for (solver in solvers) {
+
+      var solution: IState? = null
+      try {
+        solution = solver.solve(problem, problemId, bestResemblance)
+      } catch (e:Exception) {
+        println("I was trying to kill myself")
+      }
+
+      if (solution != null) {
+        val solvedRes = BitmapEstimator().resemblanceOf(problem, solution, quality = 2)
+        if (solvedRes > bestResemblance)  {
+          bestResemblance = solvedRes
+          states.add(Pair(solution, bestResemblance))
+        }
+      }
+    }
 
     if (states.isEmpty()) {
       return null

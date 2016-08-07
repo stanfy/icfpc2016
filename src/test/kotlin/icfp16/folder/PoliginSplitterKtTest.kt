@@ -72,6 +72,45 @@ class PoliginSplitterKtTest {
   }
 
   @Test
+  @Ignore
+  fun trikutz() {
+    val problemString =
+        ProblemContainersParser().generateProblemContainerForProblemId("7")!!.problem.rawString
+
+    val problem = parseProblem(problemString)
+
+    val translationSolve = ComplexState()
+        .fold(Edge(
+            Vertex(Fraction(1, 2), Fraction(1, 1)),
+            Vertex(Fraction(1, 2), Fraction(0, 4))
+        ))
+        .fold(Edge(
+            Vertex(Fraction(0, 2), Fraction(1, 2)),
+            Vertex(Fraction(1, 2), Fraction(1, 2))
+        ))
+
+        .fold(Edge(
+            Vertex(Fraction(1, 2), Fraction(1, 8)),
+            Vertex(Fraction(3, 8), Fraction(0, 8))
+        ))
+        .fold(Edge(
+            Vertex(Fraction(3, 8), Fraction(1, 2)),
+            Vertex(Fraction(1, 2), Fraction(3, 8))
+        ))
+        .fold(Edge(
+            Vertex(Fraction(1, 8), Fraction(0, 2)),
+            Vertex(Fraction(0, 2), Fraction(1, 8))
+        ))
+        .fold(Edge(
+            Vertex(Fraction(0, 2), Fraction(3, 8)),
+            Vertex(Fraction(1, 8), Fraction(1, 2))
+        ))
+
+    Visualizer().visualizedAndSaveImage(problem, translationSolve, filePath = "./translator_FOLD_Trikutz.png", showGrid = true)
+
+  }
+
+  @Test
   fun bubbloTest(){
     val problemString =
         ProblemContainersParser().generateProblemContainerForProblemId("7")!!.problem.rawString
