@@ -28,47 +28,6 @@ fun main(args: Array<String>) {
   importSolutionsFromLocalToFirebase()
 }
 
-private fun importSolutionsFromLocalToFirebase() {
-  initFirebase()
-
-  val database = FirebaseDatabase.getInstance()
-  val storedTasks = getStoredTasks(database)
-  File("generated_solutions").listFiles().forEach {
-    val file = it.readText()
-    val idRes = Regex("problemId=(.*?),").find(file)
-    if (idRes == null) {
-      println("In file ${it.name} id is not found")
-    } else {
-      val taskId = idRes.groups[1]!!.value
-      if (storedTasks.containsKey(taskId)) {
-        val solution = file.split("-------------------------- solution --------------------")[1]
-        val resembl = Regex("real res =([0-9.]*?) estimated res =([0-9.]*?)").find(file)
-
-        if (resembl == null) {
-          println("In file ${it.name} resemblance is not found")
-        } else {
-          val realResembl = resembl.groups[1]!!.value
-          val estResembl = resembl.groups[2]!!.value
-
-          val task = storedTasks[taskId]
-
-          val taskRef = database.getReference("icfp2016/tasks/${task!!.second}")
-
-          taskRef.updateChildren(
-              mapOf(
-                  "solution" to solution,
-                  "realResemblance" to realResembl,
-                  "estimatedResemblance" to estResembl
-              )
-          )
-
-          println("${it.name}: uploaded to firebase")
-        }
-      }
-    }
-  }
-}
-
 private fun initFirebase() {
   val options = FirebaseOptions.Builder()
       .setServiceAccount(FileInputStream("firebase/icfp2016-5417b8234b8e.json"))
@@ -210,6 +169,53 @@ fun printCurrentFirebaseTasks() {
       }
 }
 
+fun importSolutionsFromLocalToFirebase() {
+  initFirebase()
+
+  val database = FirebaseDatabase.getInstance()
+  val storedTasks = getStoredTasks(database)
+  File("generated_solutions").listFiles().forEach {
+    val file = it.readText()
+    val idRes = Regex("problemId=(.*?),").find(file)
+    if (idRes == null) {
+      println("In file ${it.name} id is not found")
+    } else {
+      val taskId = idRes.groups[1]!!.value
+      if (storedTasks.containsKey(taskId)) {
+        val solution = file.split("-------------------------- solution --------------------")[1]
+        val resembl = Regex("real res =([0-9.]*) estimated res =([0-9.]*)").find(file)
+
+        if (resembl == null) {
+          println("In file ${it.name} resemblance is not found")
+        } else {
+          val realResembl = resembl.groups[1]!!.value
+          val estResembl = resembl.groups[2]!!.value
+
+          val task = storedTasks[taskId]
+
+          val taskRef = database.getReference("icfp2016/tasks/${task!!.second}")
+
+          println(mapOf(
+              "solution" to solution,
+              "realResemblance" to if (!realResembl.isEmpty()) realResembl.toDouble() else 0.toDouble(),
+              "estimatedResemblance" to if (!estResembl.isEmpty()) estResembl.toDouble() else 0.toDouble()
+          ))
+
+          taskRef.updateChildren(
+              mapOf(
+                  "solution" to solution,
+                  "realResemblance" to if (!realResembl.isEmpty()) realResembl.toDouble() else 0.toDouble(),
+                  "estimatedResemblance" to if (!estResembl.isEmpty()) estResembl.toDouble() else 0.toDouble()
+              )
+          )
+
+          println("${it.name}: uploaded to firebase")
+        }
+      }
+    }
+  }
+}
+
 private fun getStoredTasks(database: FirebaseDatabase): HashMap<String, Pair<Task, String>> {
   val ref = database.getReference("icfp2016/tasks")
 
@@ -246,8 +252,8 @@ data class Task(
     val time: Long = 0,
     val problem: String = "",
     val solution: String = "",
-    val realResemblance: Double = 0.toDouble(),
-    val estimatedResemblance: Double = 0.toDouble()
+    val realResemblance: Any = 0.toDouble(),
+    val estimatedResemblance: Any = 0.toDouble()
 )
 
 fun <T> Collection<T>.parallelStream(): Stream<T> {
