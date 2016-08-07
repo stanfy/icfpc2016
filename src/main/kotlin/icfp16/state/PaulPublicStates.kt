@@ -27,16 +27,11 @@ class PaulPublicStates {
     }
 
     val states: Array<IState> = arrayOf(
+        lineSolution(2),
+        lineSolution(3),
+        lineSolution(4),
         lineSolution(5),
-        lineSolution(6),
-        lineSolution(7),
         lineSolution(8),
-        lineSolution(9),
-        lineSolution(11),
-        lineSolution(12),
-        lineSolution(13),
-        lineSolution(14),
-        lineSolution(15),
         lineSolution(16),
         lineSolution(32),
         ComplexState()
