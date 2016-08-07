@@ -21,7 +21,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 1/2,1 3/2,1
 5/4,3/4 1,1
 5/4,5/4 1,3/2
-), problemId=1317, problemHash=), state=(name = ( ->  -> Task 1 -> Translate (25/36,11/36)))icfp16.state.State@94eab003, realResemblance=0.539235, estimatedResemblance=0.5392616541892504)
+), problemId=1317, problemHash=), state=(name = ( -> Task 1 -> Translate (25/36,11/36)))icfp16.state.State@94eab003, realResemblance=0.539235, estimatedResemblance=0.5392616541892504)
 -------------------------- solution --------------------
 12
 0,0
