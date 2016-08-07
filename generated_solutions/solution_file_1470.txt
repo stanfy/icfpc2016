@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.634361 estimated res =0.634395664866579-------------------------- container --------------------
+real res =0.688948 estimated res =0.6891072883778717-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[1/6,-1/6, 2/3,-1/6, 2/3,0, 1,0, 1,1/6, 2/3,1/2, 1/6,0])], skeleton=[Edge(a=1/6,-1/6, b=2/3,-1/6), Edge(a=1/6,0, b=2/3,1/2), Edge(a=1/6,0, b=1,0), Edge(a=1/6,-1/6, b=1/6,0), Edge(a=2/3,-1/6, b=2/3,1/2), Edge(a=1,0, b=1,1/6), Edge(a=2/3,1/6, b=1,1/6), Edge(a=1,1/6, b=2/3,1/2)], rawString=1
 7
 1/6,-1/6
@@ -18,29 +18,21 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 1,0 1,1/6
 2/3,1/6 1,1/6
 1,1/6 2/3,1/2
-), problemId=1470, problemHash=), state=State(vertexes=[0,0, 0,1/2, 0,1, 1/2,1, 1,1, 1,1/2, 1,0, 1/2,0, 1/2,1/2], facets=[4 0 1 8 7, 4 1 2 3 8, 4 8 3 4 5, 4 7 8 5 6], finalPositions=[41/70,-13/70, 2/7,3/14, 41/70,-13/70, 69/70,4/35, 41/70,-13/70, 2/7,3/14, 41/70,-13/70, 69/70,4/35, 24/35,18/35]), realResemblance=0.634361, estimatedResemblance=0.634395664866579)
+), problemId=1470, problemHash=), state=(name = ( ->  -> Triangle Twice -> Translate (5/42,-11/210) -> Rotate(13/21,1/21, <(63, 16, 65)>)))icfp16.state.State@eb21be47, realResemblance=0.688948, estimatedResemblance=0.6891072883778717)
 -------------------------- solution --------------------
-9
+5
 0,0
-0,1/2
 0,1
-1/2,1
 1,1
-1,1/2
 1,0
-1/2,0
 1/2,1/2
 4
-4 0 1 8 7
-4 1 2 3 8
-4 8 3 4 5
-4 7 8 5 6
-41/70,-13/70
-2/7,3/14
-41/70,-13/70
-69/70,4/35
-41/70,-13/70
-2/7,3/14
-41/70,-13/70
-69/70,4/35
-24/35,18/35
+3 0 4 1
+3 1 4 2
+3 2 4 3
+3 3 4 0
+167/1050,-181/1050
+15401/13650,1007/13650
+167/1050,-181/1050
+15401/13650,1007/13650
+3553/6825,2971/6825
