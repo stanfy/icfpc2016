@@ -129,6 +129,9 @@ data class Polygon(val vertices: List<Vertex>) {
     return true
   }
 
+  fun equalsToPolygon(other: Polygon): Boolean {
+    return vertices.count() == other.vertices.count() && vertices.toSet().containsAll(other.vertices)
+  }
 }
 
 data class Facet(val indexes: List<Int>) {
