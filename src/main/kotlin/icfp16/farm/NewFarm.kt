@@ -32,11 +32,11 @@ import java.util.stream.Stream
 val PROBLEMS_START_ID = 1
 
 var ourOwnSolutionIds = arrayOf(
-  "705", "706", "1141", "1481", "1573", "1574", "1649", "2997", "1902", "1901", "1903", "1904",
-  "1906", "1907", "1908", "1909", "1910", "1911", "3490", "3546", "3632", "3634", "3636",
+  "705", "706", "1141", "1481", "1573", "1574", "1649", "1853", "1854", "1855", "1902", "1901", "1903", "1904",
+  "1906", "1907", "1908", "1909", "1910", "1911", "2997", "3490", "3546", "3632", "3634", "3636",
   "3637", "3638", "3639", "3641", "3642", "3643", "3645", "3646", "3647", "3649",
   "3651", "3652", "3654", "3655", "3656", "3658", "3659", "3661", "3662", "3663",
-  "3665", "3666", "3669", "3670", "3146", "5031", "5040",
+  "3665", "3666", "3669", "3670", "3805", "3146", "5031", "5040",
   "5356", "5357", "5358", "5359", "5360", "5361", "5362", "5363", "5364", "5365",
   "5366", "5367", "5368", "5369", "5370")
 
@@ -81,7 +81,7 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
   val chunkSize = 10
   var chunkIndex = 0
 
-  val api = createApi(HttpLoggingInterceptor.Level.NONE)
+  val api = createApi(HttpLoggingInterceptor.Level.BODY)
   val database = FirebaseDatabase.getInstance()
   var tasks = hashMapOf<String, Pair<Task, String>>()
 
@@ -148,7 +148,8 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
           println("Problem ${task.problem_id} is not solved")
           "${task.problem_id} - FAIL"
         } else {
-          var retries = 5
+          var maxRetries = 5
+          var retries = maxRetries
 
           do {
             val submission = api.submitSolution(task.problem_id, SolutionSpec(state.solution())).execute()
@@ -181,7 +182,9 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
                 println("Won't update DB Problem ${task.problem_id} Resemblance: $realResemblance is less than we have now ${task.realResemblance}" )
               }
             } else {
-              Thread.sleep(3000)
+              println("Sleeping because I can't submit...")
+              val delay = 3000 * ((maxRetries + 1) - retries).toLong()
+              Thread.sleep(delay)
             }
           } while (!submission.isSuccessful && --retries > 0)
           "${task.problem_id} - OK"

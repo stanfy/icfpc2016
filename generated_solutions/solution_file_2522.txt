@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.648255 estimated res =0.6458844424588445-------------------------- container --------------------
+real res =0.656646 estimated res =0.6566989834666361-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[17/13,-7/13, 75/52,-11/52, 35/26,1/52, 41/26,3/26, 5/4,1/4, 53/52,2/13, 12/13,5/13, 41/52,3/52, 23/26,-9/52, 17/26,-7/26, 51/52,-21/52, 63/52,-4/13])], skeleton=[Edge(a=51/52,-21/52, b=75/52,-11/52), Edge(a=17/13,-7/13, b=75/52,-11/52), Edge(a=17/26,-7/26, b=41/26,3/26), Edge(a=51/52,-21/52, b=5/4,1/4), Edge(a=41/52,3/52, b=12/13,5/13), Edge(a=41/52,3/52, b=5/4,1/4), Edge(a=51/52,-21/52, b=17/26,-7/26), Edge(a=51/52,-21/52, b=41/52,3/52), Edge(a=75/52,-11/52, b=41/52,3/52), Edge(a=17/13,-7/13, b=12/13,5/13), Edge(a=75/52,-11/52, b=5/4,1/4), Edge(a=41/26,3/26, b=5/4,1/4)], rawString=1
 12
 17/13,-7/13
@@ -27,29 +27,58 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 17/13,-7/13 12/13,5/13
 75/52,-11/52 5/4,1/4
 41/26,3/26 5/4,1/4
-), problemId=2522, problemHash=), state=(name = ( ->  ->  -> 3/4 square -> Translate (109/156,-77/156) -> Rotate(29/26,-1/13, <(16, 63, 65)>)))icfp16.state.State@69d8ec03, realResemblance=0.648255, estimatedResemblance=0.6458844424588445)
+), problemId=2522, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[1,7/48, 1,0, 13/17,0, 41/52,3/52]), final=Polygon(vertices=[1,7/48, 1,0, 13/17,0, 41/52,3/52])), ComplexPolygon(initial=Polygon(vertices=[41/52,3/52, 1,4/7, 1,7/48]), final=Polygon(vertices=[41/52,3/52, 237/182,-2/13, 1,7/48])), ComplexPolygon(initial=Polygon(vertices=[19/48,1, 7/17,1, 21/52,51/52]), final=Polygon(vertices=[21/26,41/624, 21/26,11/221, 41/52,3/52])), ComplexPolygon(initial=Polygon(vertices=[21/52,51/52, 5/14,1, 19/48,1]), final=Polygon(vertices=[41/52,3/52, 76/91,1/26, 21/26,41/624])), ComplexPolygon(initial=Polygon(vertices=[21/52,51/52, 7/52,17/52, 0,13/20, 0,13/16]), final=Polygon(vertices=[41/52,3/52, 75/52,-11/52, 17/13,29/260, 31/26,47/208])), ComplexPolygon(initial=Polygon(vertices=[0,13/16, 0,1, 5/14,1, 21/52,51/52]), final=Polygon(vertices=[31/26,47/208, 31/26,1/26, 76/91,1/26, 41/52,3/52])), ComplexPolygon(initial=Polygon(vertices=[7/52,17/52, 0,0, 0,13/20]), final=Polygon(vertices=[75/52,-11/52, 17/13,-7/13, 17/13,29/260])), ComplexPolygon(initial=Polygon(vertices=[41/52,3/52, 13/17,0, 0,0, 7/52,17/52, 31/52,27/52]), final=Polygon(vertices=[41/52,3/52, 13/17,0, 17/13,-7/13, 75/52,-11/52, 5/4,1/4])), ComplexPolygon(initial=Polygon(vertices=[31/52,27/52, 1,11/16, 1,4/7, 41/52,3/52]), final=Polygon(vertices=[5/4,1/4, 295/208,-2/13, 237/182,-2/13, 41/52,3/52])), ComplexPolygon(initial=Polygon(vertices=[21/52,51/52, 7/17,1, 9/20,1]), final=Polygon(vertices=[41/52,3/52, 21/26,11/221, 217/260,1/13])), ComplexPolygon(initial=Polygon(vertices=[9/20,1, 1,1, 1,25/34, 21/52,51/52]), final=Polygon(vertices=[217/260,1/13, 18/13,1/13, 18/13,-83/442, 41/52,3/52])), ComplexPolygon(initial=Polygon(vertices=[31/52,27/52, 7/52,17/52, 21/52,51/52]), final=Polygon(vertices=[5/4,1/4, 75/52,-11/52, 41/52,3/52])), ComplexPolygon(initial=Polygon(vertices=[21/52,51/52, 1,25/34, 1,11/16, 31/52,27/52]), final=Polygon(vertices=[41/52,3/52, 18/13,-83/442, 295/208,-2/13, 5/4,1/4]))]), realResemblance=0.656646, estimatedResemblance=0.6566989834666361)
 -------------------------- solution --------------------
-9
-0,0
-0,3/4
-0,1
-3/4,1
-1,1
-1,3/4
+19
+1,7/48
 1,0
-3/4,0
-3/4,3/4
-4
-4 0 1 8 7
-4 1 2 3 8
-4 8 3 4 5
-4 7 8 5 6
-17/12,-7/12
-269/390,-311/780
-727/780,-359/780
-67/60,4/15
-823/780,19/780
-317/390,67/780
-1201/780,-77/780
-1249/780,28/195
-341/390,64/195
+13/17,0
+41/52,3/52
+1,4/7
+19/48,1
+7/17,1
+21/52,51/52
+5/14,1
+7/52,17/52
+0,13/20
+0,13/16
+0,1
+0,0
+31/52,27/52
+1,11/16
+9/20,1
+1,1
+1,25/34
+13
+4 0 1 2 3
+3 3 4 0
+3 5 6 7
+3 7 8 5
+4 7 9 10 11
+4 11 12 8 7
+3 9 13 10
+5 3 2 13 9 14
+4 14 15 4 3
+3 7 6 16
+4 16 17 18 7
+3 14 9 7
+4 7 18 15 14
+1,7/48
+1,0
+13/17,0
+41/52,3/52
+237/182,-2/13
+21/26,41/624
+21/26,11/221
+41/52,3/52
+76/91,1/26
+75/52,-11/52
+17/13,29/260
+31/26,47/208
+31/26,1/26
+17/13,-7/13
+5/4,1/4
+295/208,-2/13
+217/260,1/13
+18/13,1/13
+18/13,-83/442
