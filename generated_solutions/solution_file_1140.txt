@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.677979 estimated res =0.6775328535148103-------------------------- container --------------------
+real res =0.848797 estimated res =0.8486160774117458-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[3/5,-1/5, 9/13,-1/13, 21/25,-3/25, 7/8,0, 1,0, 1,1/4, 1/2,1/2, 0,1/4, 0,0, 1/3,0])], skeleton=[Edge(a=3/5,-1/5, b=21/22,3/11), Edge(a=3/5,-1/20, b=1,1/4), Edge(a=21/25,-3/25, b=21/22,3/11), Edge(a=0,0, b=1,0), Edge(a=0,0, b=0,1/4), Edge(a=1,0, b=1,1/4), Edge(a=3/5,-1/20, b=1/2,1/2), Edge(a=21/25,-3/25, b=3/5,-1/20), Edge(a=3/5,-1/5, b=0,1/4), Edge(a=0,1/4, b=1/2,1/2), Edge(a=1,1/4, b=1/2,1/2)], rawString=1
 10
 3/5,-1/5
@@ -24,21 +24,29 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 3/5,-1/5 0,1/4
 0,1/4 1/2,1/2
 1,1/4 1/2,1/2
-), problemId=1140, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[0,1/2, 0,1, 1,1, 1,1/2]), final=Polygon(vertices=[6557/78000,1919/4875, 6557/78000,-1037/9750, 84557/78000,-1037/9750, 84557/78000,1919/4875])), ComplexPolygon(initial=Polygon(vertices=[1,1/2, 1,0, 0,0, 0,1/2]), final=Polygon(vertices=[84557/78000,1919/4875, 84557/78000,-1037/9750, 6557/78000,-1037/9750, 6557/78000,1919/4875]))]), realResemblance=0.677979, estimatedResemblance=0.6775328535148103)
+), problemId=1140, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[9/22,1, 1,1, 1,1/4, 1/2,1/2]), final=Polygon(vertices=[1/22,3/11, 2/5,-1/5, 1,1/4, 1/2,1/2])), ComplexPolygon(initial=Polygon(vertices=[1/2,1/2, 0,3/4, 0,1, 9/22,1]), final=Polygon(vertices=[1/2,1/2, 2/5,-1/20, 4/25,-3/25, 1/22,3/11])), ComplexPolygon(initial=Polygon(vertices=[0,1/4, 0,3/4, 1/2,1/2]), final=Polygon(vertices=[0,1/4, 2/5,-1/20, 1/2,1/2])), ComplexPolygon(initial=Polygon(vertices=[1/2,1/2, 1,1/4, 1,0, 0,0, 0,1/4]), final=Polygon(vertices=[1/2,1/2, 1,1/4, 1,0, 0,0, 0,1/4]))]), realResemblance=0.848797, estimatedResemblance=0.8486160774117458)
 -------------------------- solution --------------------
-6
-0,1/2
-0,1
+9
+9/22,1
 1,1
-1,1/2
+1,1/4
+1/2,1/2
+0,3/4
+0,1
+0,1/4
 1,0
 0,0
-2
+4
 4 0 1 2 3
 4 3 4 5 0
-6557/78000,1919/4875
-6557/78000,-1037/9750
-84557/78000,-1037/9750
-84557/78000,1919/4875
-84557/78000,-1037/9750
-6557/78000,-1037/9750
+3 6 4 3
+5 3 2 7 8 6
+1/22,3/11
+2/5,-1/5
+1,1/4
+1/2,1/2
+2/5,-1/20
+4/25,-3/25
+0,1/4
+1,0
+0,0
