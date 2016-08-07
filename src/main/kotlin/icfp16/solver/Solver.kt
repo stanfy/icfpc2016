@@ -151,13 +151,22 @@ class SequenceSolver: Solver {
 class BestSolverEver: Solver {
 
   override fun solve(problem: Problem, problemId: String, thresholdResemblance: Double): IState? {
+
     //val solvers = arrayOf<Solver>(StupidSolver(), TranslatorSolver(), BetterTranslatorSolver(), SequenceSolver(), Wrapper())
     val solvers = arrayOf<Solver>(Wrapper(), SequenceSolver())
-    val states =  solvers
+    var states = emptyList<Pair<IState?, Double>>()
+
+    try {
+      states = solvers
         .map { it.solve(problem, problemId, thresholdResemblance) }
         .filter { it != null }
         .map { it.to(BitmapEstimator().resemblanceOf(problem, it!!, quality = 2)) }
         .filter { it.second > thresholdResemblance } // Dot' even return everytib for wrapper
+
+    } catch (e: Exception) {
+
+      println("I was trying to kill myself")
+    }
 
     if (states.isEmpty()) {
       return null
