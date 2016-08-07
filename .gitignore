@@ -2,6 +2,7 @@ build
 .gradle
 
 .idea/
-our_problems
+our_problems/
+wrapper/
 
 tmp/

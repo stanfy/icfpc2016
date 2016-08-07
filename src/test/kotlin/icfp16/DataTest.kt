@@ -209,4 +209,22 @@ class DataTest {
     assertThat(p.convexIn(Vertex(Fraction(1), Fraction(-3, 2)))).isFalse()
   }
 
+  @Test
+  fun transformations() {
+    val reflect = ReflectTransform(Edge(Vertex(0, 0), Vertex(1, 1)))
+    val point = Vertex(Fraction(123, 124), Fraction(5, 4))
+    assertThat(reflect.apply(reflect.apply(point)))
+        .isEqualTo(point)
+        .isEqualTo(reflect.reverse(reflect.apply(point)))
+
+    val translate = TranslateTransform(Vertex(1, 1))
+    assertThat(translate.reverse(translate.apply(point))).isEqualTo(point)
+
+    val compose = TranslateTransform(Vertex(1, 1)).compose(reflect)
+    assertThat(compose.reverse(compose.apply(point))).isEqualTo(point)
+
+    val rot = Rotate90Transform(Vertex(-2, 1))
+    assertThat(rot.reverse(rot.apply(point))).isEqualTo(point)
+  }
+
 }
