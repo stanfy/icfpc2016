@@ -80,6 +80,7 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
   // ----------- start loop -----------
   do {
     println("Get already stored tasks... chunkSize=$chunkSize  chunkIndex=$chunkIndex")
+    chunkIndex++
     tasks = getStoredTasks(database)
 
     val taskValues = ArrayList(tasks.values)
