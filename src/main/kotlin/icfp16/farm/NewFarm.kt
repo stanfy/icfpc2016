@@ -48,9 +48,13 @@ fun main(args: Array<String>) {
 //  val startingId = 1
 //  val count = 100
 //  problemsIds = (startingId..(startingId + count)).map { "$it" }
+//
+//  problemsIds = (1001..1301).map { it.toString() }
+//  icfp16.farm.startSolving(problemIds = problemsIds)
 
-  problemsIds = (1001..1301).map { it.toString() }
-  icfp16.farm.startSolving(problemIds = problemsIds)
+  //updateTasksDb()
+
+  //startSolving()
 }
 
 private fun initFirebase() {
@@ -66,53 +70,65 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
   println("Init Firebase")
   initFirebase()
 
+  val chunkSize = 10
+  val chunkIndex = 0
+
   val api = createApi(HttpLoggingInterceptor.Level.NONE)
-
   val database = FirebaseDatabase.getInstance()
-  println("Get already stored tasks")
-  val tasks = getStoredTasks(database)
+  var tasks = hashMapOf<String, Pair<Task, String>>()
 
-  val taskValues = ArrayList(tasks.values)
-  Collections.shuffle(taskValues)
+  // ----------- start loop -----------
+  do {
+    println("Get already stored tasks... chunkSize=$chunkSize  chunkIndex=$chunkIndex")
+    tasks = getStoredTasks(database)
 
-  // three modes:
-  // 0. do not solve our own solutions
-  //    1. recalculate all problems where res < 1.0
-  // OR 2. set 'problemsIds' --> re-calculate all these problems
-  // OR 3. re-calculate only not solved
+    val taskValues = ArrayList(tasks.values)
+    Collections.shuffle(taskValues)
 
-  var filteredValues = taskValues.toList()
-    .filterNot { ourOwnSolutionIds.contains(it.component1().problem_id)  }
+    // three modes:
+    // 0. do not solve our own solutions
+    //    split by chunks
+    //
+    //    1. recalculate all problems where res < 1.0
+    // OR 2. set 'problemsIds' --> re-calculate all these problems
+    // OR 3. re-calculate only not solved
 
-  if (recalculateAll) {
-    filteredValues =
-      filteredValues
-        .filter { it.component1().realResemblance != 1.0 }
+    var filteredValues = taskValues.toList()
+      .filterNot { ourOwnSolutionIds.contains(it.component1().problem_id)  }
 
-  } else if (problemIds.isNotEmpty()) {
-    filteredValues =
-      filteredValues
+    if (recalculateAll) {
+      filteredValues =
+        filteredValues
+          .filter { it.component1().realResemblance != 1.0 }
+
+    } else if (problemIds.isNotEmpty()) {
+      filteredValues =
+        filteredValues
           .filter { problemIds.contains(it.component1().problem_id) }
           .filter { it.component1().realResemblance != 1.0 }
           .sortedBy { Integer.parseInt(it.first.problem_id) }
 
-  } else {
-    filteredValues =
-      filteredValues
-        .filter { it.component1().solution.isEmpty() }
-  }
+    } else {
+      filteredValues =
+        filteredValues
+          .filter { it.component1().solution.isEmpty() }
+    }
 
-  val count = filteredValues.count()
-  var index = 0
+    // chunking
+    println("I need to solve ${filteredValues.count()} tasks, but first I'll solve $chunkSize tasks")
+    filteredValues = filteredValues.take(chunkSize)
 
-  filteredValues
+    val count = filteredValues.count()
+    var index = 0
+
+    filteredValues
       .parallelStream()
       .forEach {
         val task = it.first
         val problem = parseProblem(task.problem)
 
         index++
-        println("Start solving problem #${task.problem_id}  index = $index from $count")
+        println("Start solving problem #${task.problem_id}  index = $index from $count tasks")
 
         val resemblance = task.realResemblance
         val solver = BestSolverEver()
@@ -144,11 +160,11 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
                 val taskRef = database.getReference("icfp2016/tasks/${it.second}")
 
                 taskRef.updateChildren(
-                    mapOf(
-                        "solution" to state.solution(),
-                        "realResemblance" to realResemblance,
-                        "estimatedResemblance" to estimatedResemblance
-                    )
+                  mapOf(
+                    "solution" to state.solution(),
+                    "realResemblance" to realResemblance,
+                    "estimatedResemblance" to estimatedResemblance
+                  )
                 )
               } else {
                 println("Won't update DB Problem ${task.problem_id} Resemblance: $realResemblance is less than we have now ${task.realResemblance}" )
@@ -161,7 +177,9 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
         }
       }
 
-  println("Stop NEW FARM solver (Something wrong with Firebase - program finalization takes time, so wait a minute :)")
+    println("Stop NEW FARM solver (Something wrong with Firebase - program finalization takes time, so wait a minute :)")
+
+  } while (tasks.count() > 0)
 }
 
 
