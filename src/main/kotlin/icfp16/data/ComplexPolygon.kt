@@ -55,7 +55,7 @@ class TranslateTransform(val t: Vertex) : Transform() {
 
 class RotateTransform(val v: Vertex, val t: Triple<Int, Int, Int>) : Transform() {
   override fun apply(point: Vertex): Vertex = point.rotate(v, t)
-  override fun reverse(point: Vertex): Vertex = throw UnsupportedOperationException("TODO")
+  override fun reverse(point: Vertex): Vertex = point.rotateBack(v, t)
 }
 
 class Rotate90Transform(val v: Vertex) : Transform() {
