@@ -8,6 +8,7 @@ import icfp16.visualizer.Visualizer
 
 import icfp16.data.*
 import icfp16.state.ComplexState
+import icfp16.state.PaulPublicStates
 import icfp16.state.appendName
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Ignore
@@ -157,6 +158,29 @@ class PoliginSplitterKtTest {
     Visualizer().visualizedAndSaveImage(problem, b5, filePath = "./translator_FOLD_Bubl5.png")
     Visualizer().visualizedAndSaveImage(problem, b6, filePath = "./translator_FOLD_Bubl6.png")
   }
+
+  @Test
+  @Ignore
+  fun linerTest(){
+
+    val problem = ProblemContainersParser().generateProblemContainerForProblemId("7")!!.problem
+
+    Visualizer().visualizedAndSaveImage(problem, PaulPublicStates.foldedLineSolution(2), filePath = "./translator_LINE_2.png")
+    Visualizer().visualizedAndSaveImage(problem, PaulPublicStates.foldedLineSolution(3), filePath = "./translator_LINE_3.png")
+    Visualizer().visualizedAndSaveImage(problem, PaulPublicStates.foldedLineSolution(4), filePath = "./translator_LINE_4.png")
+    Visualizer().visualizedAndSaveImage(problem, PaulPublicStates.foldedLineSolution(8), filePath = "./translator_LINE_8.png")
+    Visualizer().visualizedAndSaveImage(problem, PaulPublicStates.foldedLineSolution(16), filePath = "./translator_LINE_16.png")
+    Visualizer().visualizedAndSaveImage(problem, PaulPublicStates.foldedLineSolution(32), filePath = "./translator_LINE_32.png")
+
+    Visualizer().visualizedAndSaveImage(problem, PaulPublicStates.foldedLine3Solution(2), filePath = "./translator_LINE_3x2.png", showGrid = true )
+    Visualizer().visualizedAndSaveImage(problem, PaulPublicStates.foldedLine3Solution(3), filePath = "./translator_LINE_3x3.png", showGrid = true)
+    Visualizer().visualizedAndSaveImage(problem, PaulPublicStates.foldedLine3Solution(4), filePath = "./translator_LINE_3x4.png", showGrid = true)
+    Visualizer().visualizedAndSaveImage(problem, PaulPublicStates.foldedLine3Solution(8), filePath = "./translator_LINE_3x8.png", showGrid = true)
+    Visualizer().visualizedAndSaveImage(problem, PaulPublicStates.foldedLine3Solution(16), filePath = "./translator_LINE_3x16.png", showGrid = true)
+    Visualizer().visualizedAndSaveImage(problem, PaulPublicStates.foldedLine3Solution(32), filePath = "./translator_LINE_3x32.png", showGrid = true)
+
+  }
+
 
   @Test
   fun debugExTest7()
