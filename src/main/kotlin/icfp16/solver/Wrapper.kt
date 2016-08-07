@@ -175,7 +175,12 @@ class Wrapper(private val debug: Boolean = false, val prefix : String = ""): Sol
     // TODO
 
     // Wrap.
-    return solveWithWrapping(problem, ComplexState(), 0)
+    val startState = ComplexState()
+    val state = solveWithWrapping(problem, startState, 0)
+    if (state.solution().replace("\\s+".toRegex(), "").length > 5000) {
+      return startState
+    }
+    return state
   }
 
 }
