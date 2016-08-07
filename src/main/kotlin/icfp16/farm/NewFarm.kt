@@ -59,7 +59,7 @@ fun startSolving() {
 
         println("Start solving problem #${task.problem_id}")
 
-          val resemblance = task.realResemblance as Double
+          val resemblance = task.realResemblance
         val solver = BestSolverEver()
         val state = solver.solve(problem, task.problem_id, resemblance)
 
@@ -262,8 +262,8 @@ data class Task(
     val time: Long = 0,
     val problem: String = "",
     val solution: String = "",
-    val realResemblance: Any = 0.toDouble(),
-    val estimatedResemblance: Any = 0.toDouble()
+    val realResemblance: Double = 0.toDouble(),
+    val estimatedResemblance: Double = 0.toDouble()
 )
 
 fun <T> Collection<T>.parallelStream(): Stream<T> {
