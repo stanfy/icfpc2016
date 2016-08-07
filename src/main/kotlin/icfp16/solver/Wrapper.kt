@@ -19,13 +19,13 @@ fun wrappingEdges(envelop: Polygon, target: Polygon): List<Edge> {
       .sortedByDescending { it.comparativeValue() }
 }
 
-class Wrapper: Solver {
+class Wrapper(private val debug: Boolean = false): Solver {
 
   fun solveWithWrapping(problem: Problem, startState: IState): IState {
-    // We know that we have one polygon at the moment.
-    val p = startState.poligons().first()
-
-    val we = wrappingEdges(p, problem.poligons[0])
+    val we = startState.poligons().flatMap { wrappingEdges(it, problem.poligons[0]) }
+    if (debug) {
+      println("Candidates: $we")
+    }
     if (we.isEmpty()) {
       // Nothing to do! We should be done.
       return startState
@@ -35,23 +35,35 @@ class Wrapper: Solver {
 
     // fold currently requires edge points to cross poly edges...
     val foldingLine = Line(we.first())
-    val vertexes = state.poligons().first().edges()
-        .map { it.to(Line(it).interection(foldingLine)) }
-        .filter { it.second != null && it.first.hasPoint(it.second!!) }
-        .map { it.second!! }
+    val vertexes = state.poligons()
+        .flatMap {
+          it.edges()
+              .map { it.to(Line(it).interection(foldingLine)) }
+              .filter { it.second != null && it.first.hasPoint(it.second!!) }
+              .map { it.second!! }
+        }
         .sortedWith(boundaryComparator)
     if (vertexes.size < 2) {
       throw IllegalArgumentException("TODO: Looks like we cannot make it... Approximate?")
     }
     val foldingEdge = Edge(vertexes.first(), vertexes.last())
 
+    if (debug) {
+      println("folding edge: $foldingEdge")
+    }
     // Now we have a correct edge to do the fold. Do it.
     val newState = startState.fold(foldingEdge) as ComplexState
     if (newState.polys.size > state.polys.size) {
       // Fold successful. Let's continue our adventure.
+      if (debug) {
+        println("continue")
+      }
       return solveWithWrapping(problem, newState)
     } else {
       // We failed, return last valid state.
+      if (debug) {
+        println("failure")
+      }
       return startState
     }
   }
@@ -78,6 +90,7 @@ class Wrapper: Solver {
   override fun solve(problem: Problem, problemId: String): IState? {
     // Identify the initial state. If something is on the edge - wrap it.
     // If not, translate first.
+    //
 
     // TODO
 
