@@ -49,7 +49,7 @@ fun main(args: Array<String>) {
   val count = 100
   problemsIds = (startingId..(startingId + count)).map { "$it" }
 
-  //val problemsIds = listOf<String>("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
+//  problemsIds = (100..400).map { it.toString() }
   icfp16.farm.startSolving(problemIds = problemsIds)
 }
 
@@ -92,8 +92,9 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
   } else if (problemIds.isNotEmpty()) {
     filteredValues =
       filteredValues
-        .filter { problemIds.contains(it.component1().problem_id) }
-        .sortedBy { Integer.parseInt(it.first.problem_id) }
+          .filter { problemIds.contains(it.component1().problem_id) }
+          .filter { it.component1().realResemblance != 1.0 }
+          .sortedBy { Integer.parseInt(it.first.problem_id) }
 
   } else {
     filteredValues =

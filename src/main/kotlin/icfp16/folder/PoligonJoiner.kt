@@ -24,6 +24,10 @@ fun LinkedEdge.eq(that:LinkedEdge) : Boolean{
   return sameOrder || differentOrder
 }
 
+fun LinkedEdge.hasVertex(vertex: Vertex) : Boolean{
+  return startVertex.eq(vertex) || endVertex.eq(vertex)
+}
+
 fun Polygon.join(that:Polygon) : Polygon? {
   val linkedThis = this.toLindedEdges()
   val linkedThat = that.toLindedEdges()
@@ -74,6 +78,14 @@ fun Polygon.join(that:Polygon) : Polygon? {
     }
 
     currentEdge = currentEdge.Next
+    // now we sould check if we're going in right direction
+    // if current edge have used point, we should change our movement strategy
+    var back = false
+    if(!currentEdge.hasVertex(usedVertex)){
+      back = true
+      currentEdge = currentEdge.Prev.Prev
+    }
+
 
     // while not returned
     // add current edge endpoint to res
@@ -81,8 +93,14 @@ fun Polygon.join(that:Polygon) : Polygon? {
     while (!currentEdge.eq(commonEdge as LinkedEdge))
     {
 
-      res.add(currentEdge.endVertex)
-      currentEdge = currentEdge.Next
+      if(back) {
+        res.add(currentEdge.startVertex)
+        currentEdge = currentEdge.Prev
+      }else
+      {
+        res.add(currentEdge.endVertex)
+        currentEdge = currentEdge.Next
+      }
 
     }
 
