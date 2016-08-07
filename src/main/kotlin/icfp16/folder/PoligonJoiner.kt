@@ -3,7 +3,7 @@ package icfp16.folder
 import icfp16.data.Edge
 import icfp16.data.Polygon
 import icfp16.data.Vertex
-import icfp16.data.equals
+//import icfp16.data.equals
 
 fun Vertex.eq(that:Vertex) :Boolean{
   return this.x.equals(that.x) && this.y.equals(that.y)
