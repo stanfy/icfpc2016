@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.670181 estimated res =0.6703776567771065-------------------------- container --------------------
+real res =0.826086 estimated res =0.8262407241065253-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[0,0, 1/2,0, 1,1/4, 1,1/2, 2/3,1/2, 2/5,7/10, 1/4,1/2, 0,1/2])], skeleton=[Edge(a=1/2,0, b=1,1/4), Edge(a=0,0, b=1/2,0), Edge(a=0,0, b=0,1/2), Edge(a=1/2,0, b=1/2,1/2), Edge(a=1,1/4, b=1,1/2), Edge(a=1/4,1/2, b=2/5,7/10), Edge(a=1/2,0, b=1/4,1/2), Edge(a=0,1/2, b=1,1/2), Edge(a=1,1/4, b=2/5,7/10)], rawString=1
 8
 0,0
@@ -20,29 +20,30 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 1/2,0 1/4,1/2
 0,1/2 1,1/2
 1,1/4 2/5,7/10
-), problemId=163, problemHash=), state=State(vertexes=[0,0, 0,3/4, 0,1, 3/4,1, 1,1, 1,3/4, 1,0, 3/4,0, 3/4,3/4], facets=[4 0 1 8 7, 4 1 2 3 8, 4 8 3 4 5, 4 7 8 5 6], finalPositions=[6039/11680,-7679/35040, -561/11680,9601/35040, 1639/11680,3841/35040, 7399/11680,23641/35040, 5479/11680,17041/35040, 3279/11680,22801/35040, 9879/11680,5521/35040, 11799/11680,12121/35040, 5199/11680,29401/35040]), realResemblance=0.670181, estimatedResemblance=0.6703776567771065)
+), problemId=163, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[1,1/4, 1,0, 1/2,0]), final=Polygon(vertices=[1,1/4, 4/5,2/5, 1/2,0])), ComplexPolygon(initial=Polygon(vertices=[25/48,1, 1,1, 1,1/4, 2/3,1/2]), final=Polygon(vertices=[7/48,1/2, 7/25,1/25, 1,1/4, 2/3,1/2])), ComplexPolygon(initial=Polygon(vertices=[2/3,1/2, 0,1, 25/48,1]), final=Polygon(vertices=[2/3,1/2, 0,0, 7/48,1/2])), ComplexPolygon(initial=Polygon(vertices=[0,1/2, 0,1, 2/3,1/2]), final=Polygon(vertices=[0,1/2, 0,0, 2/3,1/2])), ComplexPolygon(initial=Polygon(vertices=[2/3,1/2, 1,1/4, 1/2,0, 0,0, 0,1/2]), final=Polygon(vertices=[2/3,1/2, 1,1/4, 1/2,0, 0,0, 0,1/2]))]), realResemblance=0.826086, estimatedResemblance=0.8262407241065253)
 -------------------------- solution --------------------
 9
-0,0
-0,3/4
-0,1
-3/4,1
-1,1
-1,3/4
+1,1/4
 1,0
-3/4,0
-3/4,3/4
-4
-4 0 1 8 7
-4 1 2 3 8
-4 8 3 4 5
-4 7 8 5 6
-6039/11680,-7679/35040
--561/11680,9601/35040
-1639/11680,3841/35040
-7399/11680,23641/35040
-5479/11680,17041/35040
-3279/11680,22801/35040
-9879/11680,5521/35040
-11799/11680,12121/35040
-5199/11680,29401/35040
+1/2,0
+25/48,1
+1,1
+2/3,1/2
+0,1
+0,1/2
+0,0
+5
+3 0 1 2
+4 3 4 0 5
+3 5 6 3
+3 7 6 5
+5 5 0 2 8 7
+1,1/4
+4/5,2/5
+1/2,0
+7/48,1/2
+7/25,1/25
+2/3,1/2
+0,0
+0,1/2
+0,0
