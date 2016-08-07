@@ -24,17 +24,25 @@ class UnfoldingSolver : Solver {
       0 -> emptyList()
       1 -> polygons
       else -> {
-        val output = mutableListOf(polygons.first())
-        for (index in 1..polygons.count() - 1) {
-          for (lhs in output) {
-            val rhs = polygons[index]
-            if (!lhs.equalsToPolygon(rhs)) {
-              output.add(rhs)
+        val invalidIndexes: MutableSet<Int> = mutableSetOf() // haha
+
+        for (i in polygons.indices) {
+          if (invalidIndexes.contains(i)) {
+            continue
+          }
+
+          val lhs = polygons[i]
+
+          for (j in i + 1 until polygons.count()) {
+            val rhs = polygons[j]
+
+            if (lhs.equalsToPolygon(rhs)) {
+              invalidIndexes.add(j)
             }
           }
         }
 
-        output
+        polygons.filterIndexed { i, polygon -> !invalidIndexes.contains(i) }
       }
     }
   }
@@ -51,23 +59,6 @@ class UnfoldingSolver : Solver {
 
   fun findAdjoinedEdges(vertex: Vertex, visitedEdges: Array<Edge>, potentialEdges: List<Edge>): List<Edge> {
     return potentialEdges.filter { (it.hasPoint(vertex)) && !visitedEdges.contains(it) }
-  }
-
-  fun polygonFromEdges(edges: Array<Edge>): Polygon {
-    val uniqueVertices: MutableSet<Vertex> = mutableSetOf()
-    val polygonVertices: MutableList<Vertex> = mutableListOf()
-
-    edges.forEach {
-      if (uniqueVertices.add(it.a)) {
-        polygonVertices.add(it.a)
-      }
-
-      if (uniqueVertices.add(it.b)) {
-        polygonVertices.add(it.b)
-      }
-    }
-
-    return Polygon(polygonVertices)
   }
 
   fun nearestClosingPolygon(initialVertex: Vertex, visitedEdges: Array<Edge>): Polygon {
@@ -94,11 +85,14 @@ class UnfoldingSolver : Solver {
   }
 
   fun visitVertex(vertex: Vertex, visitedEdges: Array<Edge>, availableEdges: List<Edge>): List<Polygon> {
-    val adjoinedEdges = findAdjoinedEdges(vertex, visitedEdges, availableEdges)
+    var adjoinedEdges = findAdjoinedEdges(vertex, visitedEdges, availableEdges)
+    if (adjoinedEdges.count() == 2 && visitedEdges.count() == 0) {
+      adjoinedEdges = adjoinedEdges.minus(adjoinedEdges.last())
+    }
 
     return when (adjoinedEdges.count()) {
       0 -> {
-        if (visitedEdges.count() > 3) {
+        if (visitedEdges.count() > 1) {
           val polygon = nearestClosingPolygon(vertex, visitedEdges)
           listOf(polygon)
         } else {
