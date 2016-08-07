@@ -124,6 +124,7 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
               val problemContainer = ProblemContainer(problem, problemId = task.problem_id, problemHash = task.hash)
               val solutionContainer = SolutionContainer(problemContainer, state, resemblance, estimatedResemblance)
               Farm.saveSolutionImageToFile(solutionContainer)
+              Farm.saveSolutionContainerToFile(solutionContainer)
 
               val taskRef = database.getReference("icfp2016/tasks/${it.second}")
 
