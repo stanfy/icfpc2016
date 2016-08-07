@@ -165,6 +165,7 @@ class BestSolverEver: Solver {
         solution = solver.solve(problem, problemId, bestResemblance)
       } catch (e:Exception) {
         println("I was trying to kill myself")
+        e.printStackTrace()
       }
 
       if (solution != null) {

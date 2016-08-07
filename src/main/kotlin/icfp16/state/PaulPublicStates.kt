@@ -7,13 +7,13 @@ class PaulPublicStates {
     fun lineSolution(folds: Int): IState {
       val polygons = (0..folds - 1).map { idx ->
         ComplexPolygon(
-
             initial = listOf(
                 v(f(idx, folds), f(0, 1)),
                 v(f(idx, folds), f(1, 1)),
                 v(f(idx + 1, folds), f(1, 1)),
                 v(f(idx + 1, folds), f(0, 1))
             ),
+            transform = TRANSFORM_IDENTITY, // FIXME: What should be here? What is the transform from initial to final?
             final = listOf(
                 v(f(idx % 2, folds), f(0, 1)),
                 v(f(idx % 2, folds), f(1, 1)),

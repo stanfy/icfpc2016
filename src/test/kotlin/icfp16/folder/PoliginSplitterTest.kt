@@ -45,12 +45,7 @@ class PoliginSplitterTest {
     assertThat(res[1].crossEdge).isEqualTo(Edge(Vertex(0,1), Vertex(0, 0)))
     assertThat(res[0].edgeIndex).isEqualTo(1)
     assertThat(res[1].edgeIndex).isEqualTo(3)
-    // DIstance is non euqlidian !! to get euqliidan one you should make sqrt, but sqrt doesn't work on fractions
-    assertThat(res[0].xRatio).isEqualTo(Fraction(1))
-    assertThat(res[0].yRatio).isEqualTo(Fraction(1,2))
-    assertThat(res[1].xRatio).isEqualTo(Fraction(1))
-    assertThat(res[1].yRatio).isEqualTo(Fraction(1,2))
-
+    assertThat(res[0].foldingEdge).isSameAs(res[1].foldingEdge).isSameAs(edge)
   }
 
 
@@ -84,10 +79,7 @@ class PoliginSplitterTest {
     assertThat(res[1].crossVertex).isEqualTo(Vertex(3,1))
     assertThat(res[0].crossEdge).isEqualTo(Edge(Vertex(0,0), Vertex(2, 2)))
     assertThat(res[1].crossEdge).isEqualTo(Edge(Vertex(2,2), Vertex(4, 0)))
-    assertThat(res[0].xRatio).isEqualTo(Fraction(1,2))
-    assertThat(res[0].yRatio).isEqualTo(Fraction(1,2))
-    assertThat(res[1].xRatio).isEqualTo(Fraction(1,2))
-    assertThat(res[1].yRatio).isEqualTo(Fraction(1,2))
+    assertThat(res[0].foldingEdge).isSameAs(res[1].foldingEdge).isSameAs(edge)
   }
 
   @Test
@@ -103,8 +95,7 @@ class PoliginSplitterTest {
     assertThat(res[0].splitted).isEqualTo(false)
     assertThat(res[0].crossVertex).isEqualTo(null)
     assertThat(res[0].crossEdge).isEqualTo(null)
-    assertThat(res[0].xRatio).isEqualTo(null)
-    assertThat(res[0].yRatio).isEqualTo(null)
+    assertThat(res[0].foldingEdge).isSameAs(edge)
   }
 
 
