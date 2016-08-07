@@ -36,23 +36,13 @@ fun main(args: Array<String>) {
 
   var problemsIds = listOf<String>()
 
-//  problemsIds = (1001..1301).map { it.toString() }
-//  icfp16.farm.startSolving(problemIds = problemsIds)
-//  val startingId = 1
-//  val count = 100
-//  problemsIds = (startingId..(startingId + count)).map { "$it" }
-//
+  problemsIds = listOf(
+    "5375", "5376", "5377", "5378", "5379", "5380", "5381", "5382"
+    //"5531", "4725"
+  )
 
-//  problemsIds = listOf(
-//    "521", "523", "524", "287", "288","289", "531", "586", "588"
-//  )
 ////  problemsIds = (500..600).map { it.toString() }
 //  icfp16.farm.startSolving(problemIds = problemsIds)
-
-  //updateTasksDb()
-
-  //startSolving()
-
 }
 
 
@@ -282,6 +272,29 @@ fun understandIdsDifference() {
 //  ownMinusDifference.removeAll(mutableSet)
 //  println("difference ids: count=${ownMinusDifference.count()}")
 //  println(ownMinusDifference)
+}
+
+fun printUnsolved() {
+  println("Checking Firebase...")
+  initFirebase()
+
+  val database = FirebaseDatabase.getInstance()
+  println("Getting tasks...")
+
+  val tasks = getStoredTasks(database)
+  val ourOwnSolutionIds = OwnSolutionsStorage.updatedOwnSolutions().toTypedArray()
+
+  val taskValues = ArrayList(tasks.values)
+
+  val unsolved = taskValues
+    .filterNot { ourOwnSolutionIds.contains(it.component1().problem_id)  }
+    .filter { it.component1().solution.isEmpty()}
+    .forEach { t ->
+      println("-------------------------------")
+      printTaskBeautiful(t.component1())
+      println("-------------------------------")
+      println("")
+    }
 }
 
 
