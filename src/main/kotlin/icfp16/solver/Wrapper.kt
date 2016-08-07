@@ -23,23 +23,14 @@ fun wrappingEdges(envelop: Polygon, target: Polygon): List<Edge> {
 
 class Wrapper(private val debug: Boolean = false): Solver {
 
-  private fun retState(problem: Problem, state: IState, depth: Int): IState {
-    if (!debug) {
-      return state
-    }
-    Visualizer().visualizedAndSaveImage(problem, state, 1, "wrapper-$depth.png")
-    return state
-  }
-
   fun solveWithWrapping(problem: Problem, startState: IState, depth: Int): IState {
     val we = startState.poligons().flatMap { wrappingEdges(it, problem.poligons[0]) }
-    if (debug) {
-      println("$depth ------------------------")
-      println("Candidates: $we")
-    }
+
+    debugPrintCandidates(depth, problem, startState, we)
+
     if (we.isEmpty()) {
       // Nothing to do! We should be done.
-      return retState(problem, startState, depth)
+      return startState
     }
 
     val state = startState as ComplexState
@@ -59,24 +50,54 @@ class Wrapper(private val debug: Boolean = false): Solver {
     }
     val foldingEdge = Edge(vertexes.first(), vertexes.last())
 
-    if (debug) {
-      println("folding edge: $foldingEdge")
-    }
+    debugMessage("folding edge: $foldingEdge")
+
     // Now we have a correct edge to do the fold. Do it.
     val newState = startState.fold(foldingEdge) as ComplexState
     if (newState.polys.size > state.polys.size) {
+
       // Fold successful. Let's continue our adventure.
-      if (debug) {
-        println("continue")
-        println(newState.solution())
-      }
-      return retState(problem, solveWithWrapping(problem, newState, depth + 1), depth)
+      debugContinuesWithState(newState)
+      // Dumping visual state if needed
+      debugDumpState(problem, newState, depth)
+
+      return solveWithWrapping(problem, newState, depth + 1)
     } else {
       // We failed, return last valid state.
-      if (debug) {
-        println("failure")
+      debugMessage("Failure")
+
+      return startState
+    }
+  }
+
+  private fun debugMessage(message: String) {
+    if (debug) {
+      println(message)
+    }
+  }
+
+  private fun debugContinuesWithState(newState: ComplexState) {
+    if (debug) {
+      println("continue")
+      println(newState.solution())
+    }
+  }
+
+  private fun debugDumpState(problem: Problem, state: IState, depth: Int) {
+    if (!debug) {
+      return
+    }
+    Visualizer().visualizedAndSaveImage(problem, state, 1, "wrapper/wrapper-$depth.png")
+  }
+
+
+  private fun debugPrintCandidates(depth: Int, problem: Problem, startState: IState, we: List<Edge>) {
+    if (debug) {
+      println("$depth ------------------------")
+      println("Candidates: $we")
+      if (depth == 0) {
+        debugDumpState(problem, startState, -1)
       }
-      return retState(problem, startState, depth)
     }
   }
 
