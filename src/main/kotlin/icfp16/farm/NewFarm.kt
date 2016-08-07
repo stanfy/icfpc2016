@@ -146,6 +146,12 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
 
           do {
             val submission = api.submitSolution(task.problem_id, SolutionSpec(state.solution())).execute()
+
+            // own solution, save for later
+            if (submission.code() == 403) {
+              OwnSolutionsStorage.addNewOwnSolutionId(task.problem_id)
+            }
+
             ourOwnSolutionIds = OwnSolutionsStorage.updatedOwnSolutions().toTypedArray()
 
             if (ourOwnSolutionIds.contains(task.problem_id)) {
