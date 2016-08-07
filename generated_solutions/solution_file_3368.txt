@@ -1,0 +1,83 @@
+-------------------------- resemblance --------------------
+real res =0.785624 estimated res =0.7855215274924062-------------------------- container --------------------
+SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[1/5,0, 3/8,1/40, 7/20,1/5, 1/2,2/5, 9/20,3/4, 3/10,11/20, 11/40,29/40, 1/10,7/10, -1/20,1/2, 3/20,7/20, 0,3/20])], skeleton=[Edge(a=1/5,0, b=1/2,2/5), Edge(a=1/5,0, b=3/8,1/40), Edge(a=1/5,0, b=1/10,7/10), Edge(a=3/8,1/40, b=11/40,29/40), Edge(a=0,3/20, b=9/20,3/4), Edge(a=1/2,2/5, b=9/20,3/4), Edge(a=1/5,0, b=0,3/20), Edge(a=-1/20,1/2, b=1/10,7/10), Edge(a=7/20,1/5, b=-1/20,1/2), Edge(a=3/20,7/20, b=1/2,2/5), Edge(a=1/2,2/5, b=1/10,7/10), Edge(a=1/10,7/10, b=11/40,29/40)], rawString=1
+11
+1/5,0
+3/8,1/40
+7/20,1/5
+1/2,2/5
+9/20,3/4
+3/10,11/20
+11/40,29/40
+1/10,7/10
+-1/20,1/2
+3/20,7/20
+0,3/20
+12
+1/5,0 1/2,2/5
+1/5,0 3/8,1/40
+1/5,0 1/10,7/10
+3/8,1/40 11/40,29/40
+0,3/20 9/20,3/4
+1/2,2/5 9/20,3/4
+1/5,0 0,3/20
+-1/20,1/2 1/10,7/10
+7/20,1/5 -1/20,1/2
+3/20,7/20 1/2,2/5
+1/2,2/5 1/10,7/10
+1/10,7/10 11/40,29/40
+), problemId=3368, problemHash=1ec143cbf97a72293e7f2f348a48d78f6f180202), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[32/35,0, 1/5,0, 9/10,1/10]), final=Polygon(vertices=[1/5,5/7, 1/5,0, 1/10,7/10])), ComplexPolygon(initial=Polygon(vertices=[9/10,1/10, 1,4/35, 1,0, 32/35,0]), final=Polygon(vertices=[1/10,7/10, 4/35,3/5, 28/125,79/125, 1/5,5/7])), ComplexPolygon(initial=Polygon(vertices=[27/35,1, 1,1, 1,29/35, 4/5,4/5]), final=Polygon(vertices=[3/10,51/70, 3/10,1/2, 9/70,1/2, 1/10,7/10])), ComplexPolygon(initial=Polygon(vertices=[4/5,4/5, 8/15,1, 27/35,1]), final=Polygon(vertices=[1/10,7/10, 11/30,1/2, 3/10,51/70])), ComplexPolygon(initial=Polygon(vertices=[9/20,3/4, 0,24/35, 0,1, 29/70,1]), final=Polygon(vertices=[9/20,3/4, 0,24/35, 11/125,48/125, 17/35,1/2])), ComplexPolygon(initial=Polygon(vertices=[29/70,1, 8/15,1, 4/5,4/5, 9/20,3/4]), final=Polygon(vertices=[17/35,1/2, 11/30,1/2, 1/10,7/10, 9/20,3/4])), ComplexPolygon(initial=Polygon(vertices=[9/20,3/4, 4/5,4/5, 1/2,2/5]), final=Polygon(vertices=[9/20,3/4, 1/10,7/10, 1/2,2/5])), ComplexPolygon(initial=Polygon(vertices=[1/2,2/5, 1/5,0, 0,3/20, 0,24/35, 9/20,3/4]), final=Polygon(vertices=[1/2,2/5, 1/5,0, 0,3/20, 0,24/35, 9/20,3/4])), ComplexPolygon(initial=Polygon(vertices=[1,33/70, 1,4/35, 9/10,1/10, 17/20,9/20]), final=Polygon(vertices=[33/70,3/5, 4/35,3/5, 1/10,7/10, 9/20,3/4])), ComplexPolygon(initial=Polygon(vertices=[17/20,9/20, 4/5,4/5, 1,29/35, 1,33/70]), final=Polygon(vertices=[9/20,3/4, 1/10,7/10, 9/70,1/2, 33/70,3/5])), ComplexPolygon(initial=Polygon(vertices=[1/2,2/5, 4/5,4/5, 17/20,9/20]), final=Polygon(vertices=[1/2,2/5, 1/10,7/10, 9/20,3/4])), ComplexPolygon(initial=Polygon(vertices=[17/20,9/20, 9/10,1/10, 1/5,0, 1/2,2/5]), final=Polygon(vertices=[9/20,3/4, 1/10,7/10, 1/5,0, 1/2,2/5])), ComplexPolygon(initial=Polygon(vertices=[1/5,0, 0,0, 0,3/20]), final=Polygon(vertices=[1/5,0, 18/125,24/125, 0,3/20]))]), realResemblance=0.785624, estimatedResemblance=0.7855215274924062)
+-------------------------- solution --------------------
+19
+32/35,0
+1/5,0
+9/10,1/10
+1,4/35
+1,0
+27/35,1
+1,1
+1,29/35
+4/5,4/5
+8/15,1
+9/20,3/4
+0,24/35
+0,1
+29/70,1
+1/2,2/5
+0,3/20
+1,33/70
+17/20,9/20
+0,0
+13
+3 0 1 2
+4 2 3 4 0
+4 5 6 7 8
+3 8 9 5
+4 10 11 12 13
+4 13 9 8 10
+3 10 8 14
+5 14 1 15 11 10
+4 16 3 2 17
+4 17 8 7 16
+3 14 8 17
+4 17 2 1 14
+3 1 18 15
+1/5,5/7
+1/5,0
+1/10,7/10
+4/35,3/5
+28/125,79/125
+3/10,51/70
+3/10,1/2
+9/70,1/2
+1/10,7/10
+11/30,1/2
+9/20,3/4
+0,24/35
+11/125,48/125
+17/35,1/2
+1/2,2/5
+0,3/20
+33/70,3/5
+9/20,3/4
+18/125,24/125

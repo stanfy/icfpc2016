@@ -14,6 +14,7 @@ import icfp16.data.Problem
 import icfp16.data.ProblemContainer
 import icfp16.data.SolutionContainer
 import icfp16.estimate.EstimatorFactory
+import icfp16.io.FileUtils
 import icfp16.solver.BestSolverEver
 import icfp16.state.solution
 import okhttp3.logging.HttpLoggingInterceptor
@@ -22,22 +23,22 @@ import java.io.File
 import java.io.FileInputStream
 import java.nio.file.Files
 import java.nio.file.attribute.BasicFileAttributes
-import java.text.DateFormat
 import java.util.*
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
+import java.util.stream.Collectors
 import java.util.stream.Stream
 
-val PROBLEMS_START_ID = 3831
+val PROBLEMS_START_ID = 1
 
 var ourOwnSolutionIds = arrayOf(
-  "705", "1141", "1481", "1573", "1574", "3490", "1902", "1901", "1903", "1904",
-  "1906", "1907", "1908", "1909", "1910", "1911", "3546", "3632", "3634", "3636",
+  "705", "706", "1141", "1481", "1573", "1574", "1649", "2997", "1902", "1901", "1903", "1904",
+  "1906", "1907", "1908", "1909", "1910", "1911", "3490", "3546", "3632", "3634", "3636",
   "3637", "3638", "3639", "3641", "3642", "3643", "3645", "3646", "3647", "3649",
   "3651", "3652", "3654", "3655", "3656", "3658", "3659", "3661", "3662", "3663",
-  "3665", "3666", "3669", "3670", "1649", "2997", "706", "3146", "5031", "5040",
+  "3665", "3666", "3669", "3670", "3146", "5031", "5040",
   "5356", "5357", "5358", "5359", "5360", "5361", "5362", "5363", "5364", "5365",
-  "5366", "5367", "5368", "5369", "5370" )
+  "5366", "5367", "5368", "5369", "5370")
 
 
 fun main(args: Array<String>) {
@@ -45,13 +46,24 @@ fun main(args: Array<String>) {
 
   var problemsIds = listOf<String>()
 
+//  problemsIds = (1001..1301).map { it.toString() }
+//  icfp16.farm.startSolving(problemIds = problemsIds)
 //  val startingId = 1
 //  val count = 100
 //  problemsIds = (startingId..(startingId + count)).map { "$it" }
+//
 
-  problemsIds = (1001..1301).map { it.toString() }
-  icfp16.farm.startSolving(problemIds = problemsIds)
+//  problemsIds = listOf(
+//    "521", "523", "524", "287", "288","289", "531", "586", "588"
+//  )
+////  problemsIds = (500..600).map { it.toString() }
+//  icfp16.farm.startSolving(problemIds = problemsIds)
+
+  //updateTasksDb()
+
+  //startSolving()
 }
+
 
 private fun initFirebase() {
   val options = FirebaseOptions.Builder()
@@ -66,53 +78,67 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
   println("Init Firebase")
   initFirebase()
 
-  val api = createApi(HttpLoggingInterceptor.Level.NONE)
+  val chunkSize = 10
+  var chunkIndex = 0
 
+  val api = createApi(HttpLoggingInterceptor.Level.BODY)
   val database = FirebaseDatabase.getInstance()
-  println("Get already stored tasks")
-  val tasks = getStoredTasks(database)
+  var tasks = hashMapOf<String, Pair<Task, String>>()
 
-  val taskValues = ArrayList(tasks.values)
-  Collections.shuffle(taskValues)
+  // ----------- start loop -----------
+  do {
+    println("Get already stored tasks... chunkSize=$chunkSize  chunkIndex=$chunkIndex")
+    chunkIndex++
+    tasks = getStoredTasks(database)
 
-  // three modes:
-  // 0. do not solve our own solutions
-  //    1. recalculate all problems where res < 1.0
-  // OR 2. set 'problemsIds' --> re-calculate all these problems
-  // OR 3. re-calculate only not solved
+    val taskValues = ArrayList(tasks.values)
+    Collections.shuffle(taskValues)
 
-  var filteredValues = taskValues.toList()
-    .filterNot { ourOwnSolutionIds.contains(it.component1().problem_id)  }
+    // three modes:
+    // 0. do not solve our own solutions
+    //    split by chunks
+    //
+    //    1. recalculate all problems where res < 1.0
+    // OR 2. set 'problemsIds' --> re-calculate all these problems
+    // OR 3. re-calculate only not solved
 
-  if (recalculateAll) {
-    filteredValues =
-      filteredValues
-        .filter { it.component1().realResemblance != 1.0 }
+    var filteredValues = taskValues.toList()
+      .filterNot { ourOwnSolutionIds.contains(it.component1().problem_id)  }
 
-  } else if (problemIds.isNotEmpty()) {
-    filteredValues =
-      filteredValues
+    if (recalculateAll) {
+      filteredValues =
+        filteredValues
+          .filter { it.component1().realResemblance != 1.0 }
+
+    } else if (problemIds.isNotEmpty()) {
+      filteredValues =
+        filteredValues
           .filter { problemIds.contains(it.component1().problem_id) }
           .filter { it.component1().realResemblance != 1.0 }
           .sortedBy { Integer.parseInt(it.first.problem_id) }
 
-  } else {
-    filteredValues =
-      filteredValues
-        .filter { it.component1().solution.isEmpty() }
-  }
+    } else {
+      filteredValues =
+        filteredValues
+          .filter { it.component1().solution.isEmpty() }
+    }
 
-  val count = filteredValues.count()
-  var index = 0
+    // chunking
+    println("I need to solve ${filteredValues.count()} tasks, but first I'll solve $chunkSize tasks")
+    filteredValues = filteredValues.take(chunkSize)
 
-  filteredValues
+    val count = filteredValues.count()
+    var index = 0
+
+    val result =
+    filteredValues
       .parallelStream()
-      .forEach {
+      .map {
         val task = it.first
         val problem = parseProblem(task.problem)
 
         index++
-        println("Start solving problem #${task.problem_id}  index = $index from $count")
+        println("Start solving problem #${task.problem_id}  index = $index from $count tasks")
 
         val resemblance = task.realResemblance
         val solver = BestSolverEver()
@@ -120,8 +146,9 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
 
         if (state == null) {
           println("Problem ${task.problem_id} is not solved")
+          "${task.problem_id} - FAIL"
         } else {
-          var retries = 5
+          var retries = 10
 
           do {
             val submission = api.submitSolution(task.problem_id, SolutionSpec(state.solution())).execute()
@@ -144,24 +171,29 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
                 val taskRef = database.getReference("icfp2016/tasks/${it.second}")
 
                 taskRef.updateChildren(
-                    mapOf(
-                        "solution" to state.solution(),
-                        "realResemblance" to realResemblance,
-                        "estimatedResemblance" to estimatedResemblance
-                    )
+                  mapOf(
+                    "solution" to state.solution(),
+                    "realResemblance" to realResemblance,
+                    "estimatedResemblance" to estimatedResemblance
+                  )
                 )
               } else {
                 println("Won't update DB Problem ${task.problem_id} Resemblance: $realResemblance is less than we have now ${task.realResemblance}" )
               }
             } else {
+              println("Sleeping because I can't submit...")
               Thread.sleep(3000)
             }
           } while (!submission.isSuccessful && --retries > 0)
-
+          "${task.problem_id} - OK"
         }
       }
+      .collect(Collectors.toList())
 
-  println("Stop NEW FARM solver (Something wrong with Firebase - program finalization takes time, so wait a minute :)")
+    println("These are results: $result")
+    println("Stop NEW FARM solver (Something wrong with Firebase - program finalization takes time, so wait a minute :)")
+
+  } while (tasks.count() > 0)
 }
 
 
@@ -177,7 +209,6 @@ fun newFarmMonitoring() {
   val taskValues = ArrayList(tasks.values)
 
   val overall = taskValues
-    .filterNot { ourOwnSolutionIds.contains(it.component1().problem_id)  }
     .count()
 
   val ourOwn = taskValues
@@ -222,7 +253,30 @@ fun newFarmMonitoring() {
 }
 
 
-fun getAllTasksIds() {
+fun understandIdsDifference() {
+  val tasksFromServer: List<String> = getAllTasksIdsFromFireBase().map { it.problem_id }
+
+  val localTasksIds: List<String> = File(FileUtils().getDefaultProblemFileFolder()).listFiles()
+    .map { FileUtils().getProblemIdByFileNameWithoutExtension(it.name)!! }
+
+  println("tasks from server = ${tasksFromServer.count()}, local tasks = ${localTasksIds.count()}")
+
+  println(" our own solutions \n${ourOwnSolutionIds.sortedBy { Integer.parseInt(it) }}")
+
+
+  val mutableSet = localTasksIds.toMutableSet()
+  mutableSet.removeAll(tasksFromServer)
+  println(" local-server \n${mutableSet.sortedBy { Integer.parseInt(it) }}")
+
+
+  val ownMinusDifference = ourOwnSolutionIds.toMutableSet()
+  ownMinusDifference.removeAll(mutableSet)
+  println("difference ids: count=${ownMinusDifference.count()}")
+  println(ownMinusDifference)
+}
+
+
+fun getAllTasksIdsFromFireBase(): List<Task> {
   println("Checking Firebase...")
   initFirebase()
 
@@ -233,23 +287,11 @@ fun getAllTasksIds() {
 
   val taskValues = ArrayList(tasks.values)
 
-  val unsolved = taskValues
-    .filter { it.component1().solution.isEmpty()}
-
-  println("")
-  println("-------------------- Unsolved tasks ----------------- ")
-
-  taskValues
+  val result = taskValues
     .sortedBy { Integer.parseInt(it.first.problem_id) }
-    .forEach { pair ->
-      val task = pair.first
-      //println("------------------------------------------------- ")
-      println(task.problem_id)
-      //println("------------------------------------------------- ")
-    }
+    .map { it.first }
 
-  println("")
-  println("")
+  return result
 }
 
 
@@ -273,7 +315,7 @@ fun updateTasksDb() {
   val latest = snapshots.reduce { a: Snapshot, b: Snapshot -> if (a.time > b.time) a else b }
   println("Latest snapshot " + latest)
 
-  Thread.sleep(1200)
+  Thread.sleep(1100)
 
   val problemSpecsReq = api.getContestStatus(latest.snapshot_hash).execute()
   if (!problemSpecsReq.isSuccessful) {
@@ -282,7 +324,7 @@ fun updateTasksDb() {
   }
   val problemSpecs = problemSpecsReq.body().problems
 
-  Thread.sleep(1200)
+  Thread.sleep(1100)
 
   val tasks = getStoredTasks(database)
 
@@ -300,7 +342,7 @@ fun updateTasksDb() {
             println("Got spec for problem #${it.problem_id}")
           }
 
-          Thread.sleep(3000)
+          Thread.sleep(1100)
         } while (!resp.isSuccessful)
 
         val problem = resp.body()

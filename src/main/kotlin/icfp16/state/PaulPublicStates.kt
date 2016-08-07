@@ -26,6 +26,35 @@ class PaulPublicStates {
           .setName("Line(x$folds}")
     }
 
+    fun foldedLineSolution(folds: Int): IState {
+      return lineSolution(folds)
+          .translate(Vertex(
+              Fraction(-1,folds*2),Fraction(0)
+          ))
+          .fold(Edge(
+              Vertex(Fraction(-1,2), Fraction(0, 1)),
+              Vertex(Fraction(1,2), Fraction(1, 1))
+          ))
+          .setName("Line(x$folds}-Folded")
+    }
+
+    fun foldedLine3Solution(folds: Int): IState {
+      return lineSolution(folds)
+          .translate(Vertex(
+              Fraction(-1,folds*2),Fraction(0)
+          ))
+          .fold(Edge(
+              Vertex(Fraction(2,3), Fraction(1, 1)),
+              Vertex(Fraction(-1,3), Fraction(0, 1))
+          ))
+          .fold(Edge(
+              Vertex(Fraction(2,3), Fraction(0, 1)),
+              Vertex(Fraction(-1,3), Fraction(1, 1))
+          ))
+          .setName("Line(x$folds}-Folded2")
+    }
+
+
     val states: Array<IState> = arrayOf(
         lineSolution(2),
         lineSolution(3),
@@ -34,6 +63,21 @@ class PaulPublicStates {
         lineSolution(8),
         lineSolution(16),
         lineSolution(32),
+//        foldedLineSolution(2),
+//        foldedLineSolution(3),
+//        foldedLineSolution(4),
+//        foldedLineSolution(5),
+//        foldedLineSolution(8),
+//        foldedLineSolution(16),
+//        foldedLineSolution(32),
+//        foldedLine3Solution(2),
+//        foldedLine3Solution(3),
+//        foldedLine3Solution(4),
+//        foldedLine3Solution(5),
+//        foldedLine3Solution(8),
+//        foldedLine3Solution(16),
+//        foldedLine3Solution(32),
+
         ComplexState()
             .fold(Edge(
                 Vertex(Fraction(0), Fraction(1, 3)),
