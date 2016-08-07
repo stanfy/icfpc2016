@@ -45,9 +45,9 @@ fun main(args: Array<String>) {
 
   var problemsIds = listOf<String>()
 
-  val startingId = 1
-  val count = 100
-  problemsIds = (startingId..(startingId + count)).map { "$it" }
+//  val startingId = 1
+//  val count = 100
+//  problemsIds = (startingId..(startingId + count)).map { "$it" }
 
   //val problemsIds = listOf<String>("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
   icfp16.farm.startSolving(problemIds = problemsIds)
