@@ -167,6 +167,7 @@ class BestSolverEver: Solver {
         println("Solution by $solver in ${System.currentTimeMillis() - startTime}")
       } catch (e:Exception) {
         println("I was trying to kill myself")
+        e.printStackTrace()
       }
 
       if (solution != null) {

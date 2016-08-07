@@ -56,6 +56,18 @@ class WrapperTest {
     assertThat(estimator.resemblanceOf(problem, state, 4)).isEqualTo(1.0)
   }
 
+  private fun assertWrap(problem: Problem, prefix: String ="") {
+    val state = Wrapper(true, prefix).solve(problem, "any")
+
+    println(state!!.solution())
+    if (images) {
+      Visualizer().visualizedAndSaveImage(problem, state, 1, "test.png")
+    }
+
+    val estimator = BitmapEstimator()
+    assertThat(estimator.resemblanceOf(problem, state, 4)).isGreaterThan(0.3)
+  }
+
   @Test
   fun wrapSimpleConvex() {
     val problemString =
@@ -122,6 +134,18 @@ class WrapperTest {
   fun wrap101() {
     val problem = ProblemContainersParser().generateProblemContainerForProblemId("101")!!.problem
     assertExactWrap(problem, "101")
+  }
+
+  @Test
+  fun wrap3585() {
+    val problem = ProblemContainersParser().generateProblemContainerForProblemId("3585")!!.problem
+    assertWrap(problem, "3585")
+  }
+
+  @Test
+  fun wrap5796() {
+    val problem = ProblemContainersParser().generateProblemContainerForProblemId("5796")!!.problem
+    assertWrap(problem, "5796")
   }
 
 }

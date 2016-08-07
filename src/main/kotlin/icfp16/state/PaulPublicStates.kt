@@ -1,68 +1,70 @@
 package icfp16.state
 
-import icfp16.data.*
+import icfp16.data.Edge
+import icfp16.data.Fraction
+import icfp16.data.Vertex
 
 class PaulPublicStates {
   companion object {
-    fun lineSolution(folds: Int): IState {
-      val polygons = (0..folds - 1).map { idx ->
-        ComplexPolygon(
-
-            initial = listOf(
-                v(f(idx, folds), f(0, 1)),
-                v(f(idx, folds), f(1, 1)),
-                v(f(idx + 1, folds), f(1, 1)),
-                v(f(idx + 1, folds), f(0, 1))
-            ),
-            final = listOf(
-                v(f(idx % 2, folds), f(0, 1)),
-                v(f(idx % 2, folds), f(1, 1)),
-                v(f((idx + 1) % 2, folds), f(1, 1)),
-                v(f((idx + 1) % 2, folds), f(0, 1))
-            )
-        )
-      }
-      return ComplexState(polygons.toTypedArray())
-          .setName("Line(x$folds}")
-    }
-
-    fun foldedLineSolution(folds: Int): IState {
-      return lineSolution(folds)
-          .translate(Vertex(
-              Fraction(-1,folds*2),Fraction(0)
-          ))
-          .fold(Edge(
-              Vertex(Fraction(-1,2), Fraction(0, 1)),
-              Vertex(Fraction(1,2), Fraction(1, 1))
-          ))
-          .setName("Line(x$folds}-Folded")
-    }
-
-    fun foldedLine3Solution(folds: Int): IState {
-      return lineSolution(folds)
-          .translate(Vertex(
-              Fraction(-1,folds*2),Fraction(0)
-          ))
-          .fold(Edge(
-              Vertex(Fraction(2,3), Fraction(1, 1)),
-              Vertex(Fraction(-1,3), Fraction(0, 1))
-          ))
-          .fold(Edge(
-              Vertex(Fraction(2,3), Fraction(0, 1)),
-              Vertex(Fraction(-1,3), Fraction(1, 1))
-          ))
-          .setName("Line(x$folds}-Folded2")
-    }
+//    fun lineSolution(folds: Int): IState {
+//      val polygons = (0..folds - 1).map { idx ->
+//        ComplexPolygon(
+//            initial = listOf(
+//                v(f(idx, folds), f(0, 1)),
+//                v(f(idx, folds), f(1, 1)),
+//                v(f(idx + 1, folds), f(1, 1)),
+//                v(f(idx + 1, folds), f(0, 1))
+//            ),
+//            transform = TRANSFORM_IDENTITY, // FIXME: What should be here? What is the transform from initial to final?
+//            final = listOf(
+//                v(f(idx % 2, folds), f(0, 1)),
+//                v(f(idx % 2, folds), f(1, 1)),
+//                v(f((idx + 1) % 2, folds), f(1, 1)),
+//                v(f((idx + 1) % 2, folds), f(0, 1))
+//            )
+//        )
+//      }
+//      return ComplexState(polygons.toTypedArray())
+//          .setName("Line(x$folds}")
+//    }
+//
+//    fun foldedLineSolution(folds: Int): IState {
+//      return lineSolution(folds)
+//          .translate(Vertex(
+//              Fraction(-1,folds*2),Fraction(0)
+//          ))
+//          .fold(Edge(
+//              Vertex(Fraction(-1,2), Fraction(0, 1)),
+//              Vertex(Fraction(1,2), Fraction(1, 1))
+//          ))
+//          .setName("Line(x$folds}-Folded")
+//    }
+//
+//    fun foldedLine3Solution(folds: Int): IState {
+//      return lineSolution(folds)
+//          .translate(Vertex(
+//              Fraction(-1,folds*2),Fraction(0)
+//          ))
+//          .fold(Edge(
+//              Vertex(Fraction(2,3), Fraction(1, 1)),
+//              Vertex(Fraction(-1,3), Fraction(0, 1))
+//          ))
+//          .fold(Edge(
+//              Vertex(Fraction(2,3), Fraction(0, 1)),
+//              Vertex(Fraction(-1,3), Fraction(1, 1))
+//          ))
+//          .setName("Line(x$folds}-Folded2")
+//    }
 
 
     val states: Array<IState> = arrayOf(
-        lineSolution(2),
-        lineSolution(3),
-        lineSolution(4),
-        lineSolution(5),
-        lineSolution(8),
-        lineSolution(16),
-        lineSolution(32),
+//        lineSolution(2),
+//        lineSolution(3),
+//        lineSolution(4),
+//        lineSolution(5),
+//        lineSolution(8),
+//        lineSolution(16),
+//        lineSolution(32),
         //        foldedLineSolution(2),
 //        foldedLineSolution(3),
 //        foldedLineSolution(4),

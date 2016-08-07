@@ -1,18 +1,15 @@
 package icfp16.utils
 
 import icfp16.api.parseProblem
-import icfp16.data.*
-import icfp16.estimate.BitmapEstimator
-import icfp16.io.ProblemContainersParser
+import icfp16.data.ComplexPolygon
+import icfp16.data.Fraction
+import icfp16.data.TRANSFORM_IDENTITY
+import icfp16.data.Vertex
 import icfp16.state.ComplexState
-import icfp16.utils.PolygonComposer
 import icfp16.visualizer.Visualizer
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Ignore
-import org.junit.Rule
 import org.junit.Test
-import org.junit.rules.Timeout
-import java.util.concurrent.TimeUnit
 
 class PolygonsComposerTest {
 
@@ -139,9 +136,9 @@ class PolygonsComposerTest {
 
     assertThat(polygons.count()).isEqualTo(3)
 
-    Visualizer().visualizedAndSaveFolds(ComplexState(arrayOf(ComplexPolygon(polygons[0].vertices, polygons.flatMap { it.vertices }))), filePath = "tmp/folds0.png")
-    Visualizer().visualizedAndSaveFolds(ComplexState(arrayOf(ComplexPolygon(polygons[1].vertices, polygons.flatMap { it.vertices }))), filePath = "tmp/folds1.png")
-    Visualizer().visualizedAndSaveFolds(ComplexState(arrayOf(ComplexPolygon(polygons[2].vertices, polygons.flatMap { it.vertices }))), filePath = "tmp/folds2.png")
+    Visualizer().visualizedAndSaveFolds(ComplexState(arrayOf(ComplexPolygon(polygons[0].vertices, TRANSFORM_IDENTITY, polygons.flatMap { it.vertices }))), filePath = "tmp/folds0.png")
+    Visualizer().visualizedAndSaveFolds(ComplexState(arrayOf(ComplexPolygon(polygons[1].vertices, TRANSFORM_IDENTITY, polygons.flatMap { it.vertices }))), filePath = "tmp/folds1.png")
+    Visualizer().visualizedAndSaveFolds(ComplexState(arrayOf(ComplexPolygon(polygons[2].vertices, TRANSFORM_IDENTITY, polygons.flatMap { it.vertices }))), filePath = "tmp/folds2.png")
 
     val p0 = polygons[0]
     assertThat(p0.vertices.count()).isEqualTo(3)
