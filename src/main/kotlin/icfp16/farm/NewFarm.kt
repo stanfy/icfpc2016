@@ -62,25 +62,31 @@ fun startSolving() {
         if (state == null) {
           println("Problem ${task.problem_id} is not solved")
         } else {
-          val submission = api.submitSolution(task.problem_id, SolutionSpec(state.solution())).execute()
+          var retries = 5
 
-          if (submission.isSuccessful) {
-            val realResemblance = submission.body().resemblance
-            println("Problem ${task.problem_id} is solved. Resemblance: $realResemblance")
+          do {
+            val submission = api.submitSolution(task.problem_id, SolutionSpec(state.solution())).execute()
 
-            val estimator = EstimatorFactory().bestEstimatorEver()
-            val estimatedResemblance = estimator.resemblanceOf(problem, state, 4)
+            if (submission.isSuccessful) {
+              val realResemblance = submission.body().resemblance
+              println("Problem ${task.problem_id} is solved. Resemblance: $realResemblance")
 
-            val taskRef = database.getReference("icfp2016/tasks/${it.second}")
+              val estimator = EstimatorFactory().bestEstimatorEver()
+              val estimatedResemblance = estimator.resemblanceOf(problem, state, 4)
 
-            taskRef.updateChildren(
-                mapOf(
-                    "solution" to state.solution(),
-                    "realResemblance" to realResemblance,
-                    "estimatedResemblance" to estimatedResemblance
-                )
-            )
-          }
+              val taskRef = database.getReference("icfp2016/tasks/${it.second}")
+
+              taskRef.updateChildren(
+                  mapOf(
+                      "solution" to state.solution(),
+                      "realResemblance" to realResemblance,
+                      "estimatedResemblance" to estimatedResemblance
+                  )
+              )
+            } else {
+              Thread.sleep(3000)
+            }
+          } while (!submission.isSuccessful && --retries > 0)
 
         }
       }
