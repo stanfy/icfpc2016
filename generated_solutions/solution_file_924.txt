@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.93952 estimated res =0.9396571882750491-------------------------- container --------------------
+real res =0.940037 estimated res =0.9402579153399554-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[241/530,-287/530, 287/530,241/530, -241/530,287/530, -287/530,-241/530])], skeleton=[Edge(a=241/530,-287/530, b=-287/530,-241/530), Edge(a=241/530,-287/530, b=287/530,241/530), Edge(a=-287/530,-241/530, b=-241/530,287/530), Edge(a=287/530,241/530, b=-241/530,287/530)], rawString=1
 4
 241/530,-287/530
@@ -11,16 +11,26 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 241/530,-287/530 287/530,241/530
 -287/530,-241/530 -241/530,287/530
 287/530,241/530 -241/530,287/530
-), problemId=924, problemHash=), state=State(vertexes=[0,0, 0,1, 1,1, 1,0], facets=[4 0 1 2 3], finalPositions=[71/170,-97/170, -97/170,-71/170, -71/170,97/170, 97/170,71/170]), realResemblance=0.93952, estimatedResemblance=0.9396571882750491)
+), problemId=924, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[41/42,1, 1,1, 1,41/42]), final=Polygon(vertices=[-752/1785,93/170, -142/357,194/357, -67/170,1012/1785])), ComplexPolygon(initial=Polygon(vertices=[1,41/42, 1,0, 1/42,0, 0,1/42, 0,1, 41/42,1]), final=Polygon(vertices=[-67/170,1012/1785, 97/170,71/170, 752/1785,-93/170, 67/170,-1012/1785, -97/170,-71/170, -752/1785,93/170])), ComplexPolygon(initial=Polygon(vertices=[1/42,0, 0,0, 0,1/42]), final=Polygon(vertices=[752/1785,-93/170, 142/357,-194/357, 67/170,-1012/1785]))]), realResemblance=0.940037, estimatedResemblance=0.9402579153399554)
 -------------------------- solution --------------------
-4
-0,0
-0,1
+8
+41/42,1
 1,1
+1,41/42
 1,0
-1
-4 0 1 2 3
-71/170,-97/170
--97/170,-71/170
--71/170,97/170
+1/42,0
+0,1/42
+0,1
+0,0
+3
+3 0 1 2
+6 2 3 4 5 6 0
+3 4 7 5
+-752/1785,93/170
+-142/357,194/357
+-67/170,1012/1785
 97/170,71/170
+752/1785,-93/170
+67/170,-1012/1785
+-97/170,-71/170
+142/357,-194/357
