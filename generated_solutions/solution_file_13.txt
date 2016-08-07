@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.711889 estimated res =0.7119542991047784-------------------------- container --------------------
+real res =0.711889 estimated res =0.8316270858983328-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[0,0, 1,0, 31/25,8/25, 11/25,23/25, -4/25,3/25])], skeleton=[Edge(a=1,0, b=31/25,8/25), Edge(a=0,0, b=1,0), Edge(a=0,0, b=16/25,12/25), Edge(a=0,0, b=-4/25,3/25), Edge(a=-4/25,3/25, b=11/25,23/25), Edge(a=1,0, b=16/25,12/25), Edge(a=31/25,8/25, b=11/25,23/25)], rawString=1
 5
 0,0
@@ -15,16 +15,21 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 -4/25,3/25 11/25,23/25
 1,0 16/25,12/25
 31/25,8/25 11/25,23/25
-), problemId=13, problemHash=), state=(name = ( ->  ->  -> Square -> Translate (1/250,-57/250) -> Rotate(63/125,34/125, <(48, 55, 73)>)))icfp16.state.State@6182b3a0, realResemblance=0.711889, estimatedResemblance=0.7119542991047784)
+), problemId=13, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[0,3/4, 0,1, 1,1, 1,0, 3/4,0]), final=Polygon(vertices=[-281/54750,-6341/109500, -21187/109500,11659/109500, 50813/109500,94159/109500, 133313/109500,22159/109500, 115313/109500,767/54750])), ComplexPolygon(initial=Polygon(vertices=[3/4,0, 0,0, 0,3/4]), final=Polygon(vertices=[115313/109500,767/54750, 26719/54750,27767/54750, -281/54750,-6341/109500]))]), realResemblance=0.711889, estimatedResemblance=0.8316270858983328)
 -------------------------- solution --------------------
-4
-0,0
+6
+0,3/4
 0,1
 1,1
 1,0
-1
-4 0 1 2 3
-10073/18250,-7911/18250
--3677/18250,4089/18250
-8323/18250,17839/18250
-22073/18250,5839/18250
+3/4,0
+0,0
+2
+5 0 1 2 3 4
+3 4 5 0
+-281/54750,-6341/109500
+-21187/109500,11659/109500
+50813/109500,94159/109500
+133313/109500,22159/109500
+115313/109500,767/54750
+26719/54750,27767/54750
