@@ -75,22 +75,6 @@ class WrapperTest {
   }
 
   @Test
-  fun wrapSmallSquare() {
-    val problemString =
-        """1
-          |4
-          |1/4,3/4
-          |3/4,3/4
-          |3/4,1/4
-          |1/4,1/4
-          |1
-          |0,0 1,0
-        """.trimMargin()
-
-    assertExactWrap(parseProblem(problemString))
-  }
-
-  @Test
   fun wrapSquare() {
     val problemString =
         """1
@@ -104,6 +88,22 @@ class WrapperTest {
           |0,0 0,1
           |1,0 1,1
           |0,1 1,1
+        """.trimMargin()
+
+    assertExactWrap(parseProblem(problemString))
+  }
+
+  @Test
+  fun wrapSmallSquare() {
+    val problemString =
+        """1
+          |4
+          |1/4,3/4
+          |3/4,3/4
+          |3/4,1/4
+          |1/4,1/4
+          |1
+          |0,0 1,0
         """.trimMargin()
 
     assertExactWrap(parseProblem(problemString))

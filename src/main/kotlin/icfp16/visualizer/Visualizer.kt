@@ -116,11 +116,19 @@ class Visualizer {
   fun visualizedAndSaveImage(task: Problem = Problem(emptyList(), emptyList()), state: IState? = null, quality: Int = 1
                              , filePath: String = "output.png", resemblance: Double? = null, showGrid:Boolean=false) {
     val image = visualizationOf(task, state, quality, resemblance,showGrid)
+    val outputFile = File(filePath)
+    if (outputFile.parentFile != null) {
+      outputFile.parentFile.mkdirs()
+    }
     ImageIO.write(image,"png", File(filePath))
   }
 
   fun visualizedAndSaveFolds(state: IState, quality: Int = 1, filePath: String = "fold_output.png") {
     val image = visualizeFolds(state, quality)
+    val outputFile = File(filePath)
+    if (outputFile.parentFile != null) {
+      outputFile.parentFile.mkdirs()
+    }
     ImageIO.write(image,"png", File(filePath))
   }
 
