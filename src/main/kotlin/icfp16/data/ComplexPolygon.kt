@@ -1,26 +1,24 @@
 package icfp16.data
 
 data class ComplexPolygon(
-    val initial: Polygon = Polygon(listOf(
+    val transform: Transform = TRANSFORM_IDENTITY,
+    val final: Polygon = Polygon(listOf(
         Vertex(Fraction(0), Fraction(0)),
         Vertex(Fraction(0), Fraction(1)),
         Vertex(Fraction(1), Fraction(1)),
         Vertex(Fraction(1), Fraction(0))
-    )),
-    val transform: Transform = TRANSFORM_IDENTITY,
-    val final: Polygon = initial
+    ))
 ) {
 
-  constructor(initial: List<Vertex>, transform: Transform, final: List<Vertex>) : this(
-      Polygon(initial), transform, Polygon(final)
-  )
-
-  init {
-    if (final.vertices.size != initial.vertices.size) {
-      throw IllegalStateException("Lazha: initial $initial vs final $final")
-    }
+  private val initial: Lazy<Polygon> = lazy {
+    Polygon(final.vertices.map { transform.reverse(it) })
   }
 
+  constructor(transform: Transform, final: List<Vertex>) : this(
+      transform, Polygon(final)
+  )
+
+  fun initial(): Polygon = initial.value
 }
 
 abstract class Transform {

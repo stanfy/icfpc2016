@@ -11,7 +11,7 @@ data class ComplexState(val polys: Array<ComplexPolygon> = arrayOf(ComplexPolygo
 
   override fun finalPositions(): Array<Vertex> {
     // TODO: This is bit comutational hard
-    return polys.flatMap { it.initial.vertices.zip(it.final.vertices) }
+    return polys.flatMap { it.initial().vertices.zip(it.final.vertices) }
         .distinctBy { it.first }
         .map { it.second }
         .toTypedArray()
@@ -20,14 +20,14 @@ data class ComplexState(val polys: Array<ComplexPolygon> = arrayOf(ComplexPolygo
   // It's actually original positions
   override fun vertexes(): Array<Vertex> {
     // TODO: This is a bit complex but
-    return polys.flatMap { it.initial.vertices }.distinctBy{ it }.toTypedArray()
+    return polys.flatMap { it.initial().vertices }.distinctBy{ it }.toTypedArray()
   }
 
   override fun facets(): Array<Facet> {
     // TODO: This is bit comutational hard
     val vert = vertexes()
     return polys.map {
-      Facet(it.initial.vertices.map { vertx ->
+      Facet(it.initial().vertices.map { vertx ->
         vert.indexOf(vertx)
       })
     }.toTypedArray()
@@ -38,13 +38,12 @@ data class ComplexState(val polys: Array<ComplexPolygon> = arrayOf(ComplexPolygo
   }
 
   override fun initialPoligons(): Array<Polygon> {
-    return polys.map { it.initial }.toTypedArray()
+    return polys.map { it.initial() }.toTypedArray()
   }
 
   fun apply(t: Transform, name: String): IState {
     val polys = polys.map { poly ->
       ComplexPolygon(
-          poly.initial,
           poly.transform.compose(t),
           poly.final.apply(t)
       )
