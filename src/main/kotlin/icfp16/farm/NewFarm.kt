@@ -28,7 +28,7 @@ import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.stream.Stream
 
-val PROBLEMS_START_ID = 3831
+val PROBLEMS_START_ID = 1
 
 var ourOwnSolutionIds = arrayOf(
   "705", "1141", "1481", "1573", "1574", "3490", "1902", "1901", "1903", "1904",
@@ -273,7 +273,7 @@ fun updateTasksDb() {
   val latest = snapshots.reduce { a: Snapshot, b: Snapshot -> if (a.time > b.time) a else b }
   println("Latest snapshot " + latest)
 
-  Thread.sleep(1200)
+  Thread.sleep(1100)
 
   val problemSpecsReq = api.getContestStatus(latest.snapshot_hash).execute()
   if (!problemSpecsReq.isSuccessful) {
@@ -282,7 +282,7 @@ fun updateTasksDb() {
   }
   val problemSpecs = problemSpecsReq.body().problems
 
-  Thread.sleep(1200)
+  Thread.sleep(1100)
 
   val tasks = getStoredTasks(database)
 
@@ -300,7 +300,7 @@ fun updateTasksDb() {
             println("Got spec for problem #${it.problem_id}")
           }
 
-          Thread.sleep(3000)
+          Thread.sleep(1100)
         } while (!resp.isSuccessful)
 
         val problem = resp.body()
