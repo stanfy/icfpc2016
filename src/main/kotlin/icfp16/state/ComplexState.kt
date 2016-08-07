@@ -4,6 +4,7 @@ import icfp16.data.*
 import icfp16.folder.foldMountainVAlley
 import icfp16.folder.foldSimple
 import icfp16.folder.foldStar
+import icfp16.folder.splitSimple
 
 data class ComplexState(val polys: Array<ComplexPolygon> = arrayOf(ComplexPolygon())) : IState {
 
@@ -41,25 +42,29 @@ data class ComplexState(val polys: Array<ComplexPolygon> = arrayOf(ComplexPolygo
     return polys.map { it.initial }.toTypedArray()
   }
 
-  fun apply(t: Transform, name: String): IState {
-    val polys = polys.map { poly ->
-      ComplexPolygon(
-          poly.initial,
-          poly.transform.compose(t),
-          poly.final.apply(t)
-      )
-    }
-    return ComplexState(polys.toTypedArray())
-        .appendName(this.name)
-        .appendName(name)
-  }
-
   override fun translate(vartex: Vertex): IState {
-    return apply(TranslateTransform(vartex), "Translate ($vartex)")
+    return ComplexState(polys.map { poly ->
+      ComplexPolygon(initial = poly.initial,
+          final = poly.final.add(vartex)
+      )
+    }.toTypedArray())
+        .appendName(this.name)
+        .appendName("Translate ($vartex)")
   }
 
   override fun rotate90(around: Vertex): IState {
-    return apply(Rotate90Transform(around), "Rotate 90")
+    return ComplexState(polys.map { poly ->
+      ComplexPolygon(initial = poly.initial,
+          final = Polygon(poly.final.vertices.map {
+            val relativePoint = it.sub(around)
+            val related = Vertex(relativePoint.y.neg(), relativePoint.x)
+            val final = related.add(around)
+            final
+          })
+      )
+    }.toTypedArray())
+        .appendName(this.name)
+        .appendName("Rotate 90")
   }
 
   override fun rotate180(around: Vertex): IState {
@@ -101,7 +106,15 @@ data class ComplexState(val polys: Array<ComplexPolygon> = arrayOf(ComplexPolygo
    * Piphagorean triple is a triple with wich we can make pryamougolniy triangle
    */
   override fun rotate(around: Vertex, pihagorean: Triple<Int, Int, Int>): IState {
-    return apply(RotateTransform(around, pihagorean), "Rotate($around, <$pihagorean>)")
+    return ComplexState(polys.map { poly ->
+      ComplexPolygon(initial = poly.initial,
+          final = Polygon(poly.final.vertices.map {
+            it.rotate(around, pihagorean)
+          })
+      )
+    }.toTypedArray())
+        .appendName(this.name)
+        .appendName("Rotate($around, <$pihagorean>)")
   }
 
 }
