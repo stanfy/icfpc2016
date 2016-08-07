@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.59499 estimated res =0.5953387188613168-------------------------- container --------------------
+real res =0.653225 estimated res =0.6532306655879417-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[5/4,9/2, 3/2,9/2, 2,5, 1,5, 5/4,19/4])], skeleton=[Edge(a=5/4,9/2, b=5/4,5), Edge(a=3/2,9/2, b=3/2,5), Edge(a=3/2,9/2, b=2,5), Edge(a=3/2,9/2, b=1,5), Edge(a=5/4,9/2, b=3/2,9/2), Edge(a=1,5, b=2,5)], rawString=1
 5
 5/4,9/2
@@ -14,29 +14,27 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 3/2,9/2 1,5
 5/4,9/2 3/2,9/2
 1,5 2,5
-), problemId=1623, problemHash=), state=State(vertexes=[0,0, 0,1/2, 0,1, 1/2,1, 1,1, 1,1/2, 1,0, 1/2,0, 1/2,1/2], facets=[4 0 1 8 7, 4 1 2 3 8, 4 8 3 4 5, 4 7 8 5 6], finalPositions=[679/510,923/204, 559/510,1013/204, 679/510,923/204, 452/255,971/204, 679/510,923/204, 559/510,1013/204, 679/510,923/204, 452/255,971/204, 392/255,1061/204]), realResemblance=0.59499, estimatedResemblance=0.5953387188613168)
+), problemId=1623, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[1,1/2, 1,0, 1/2,0]), final=Polygon(vertices=[81/40,5, 1929/1160,135/29, 1529/1160,291/58])), ComplexPolygon(initial=Polygon(vertices=[1/2,1, 1,1, 1,1/2]), final=Polygon(vertices=[1529/1160,291/58, 1929/1160,135/29, 81/40,5])), ComplexPolygon(initial=Polygon(vertices=[1,1/2, 1/2,0, 0,0, 0,1/2]), final=Polygon(vertices=[81/40,5, 1529/1160,291/58, 1109/1160,271/58, 1509/1160,125/29])), ComplexPolygon(initial=Polygon(vertices=[0,1/2, 0,1, 1/2,1, 1,1/2]), final=Polygon(vertices=[1509/1160,125/29, 1109/1160,271/58, 1529/1160,291/58, 81/40,5]))]), realResemblance=0.653225, estimatedResemblance=0.6532306655879417)
 -------------------------- solution --------------------
-9
-0,0
-0,1/2
-0,1
-1/2,1
-1,1
+8
 1,1/2
 1,0
 1/2,0
-1/2,1/2
+1/2,1
+1,1
+0,0
+0,1/2
+0,1
 4
-4 0 1 8 7
-4 1 2 3 8
-4 8 3 4 5
-4 7 8 5 6
-679/510,923/204
-559/510,1013/204
-679/510,923/204
-452/255,971/204
-679/510,923/204
-559/510,1013/204
-679/510,923/204
-452/255,971/204
-392/255,1061/204
+3 0 1 2
+3 3 4 0
+4 0 2 5 6
+4 6 7 3 0
+81/40,5
+1929/1160,135/29
+1529/1160,291/58
+1529/1160,291/58
+1929/1160,135/29
+1109/1160,271/58
+1509/1160,125/29
+1109/1160,271/58
