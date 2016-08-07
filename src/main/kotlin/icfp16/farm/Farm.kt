@@ -128,29 +128,6 @@ class Farm {
     return submittedResponse.resemblance
   }
 
-  private fun saveSolutionContainerToFile(container: SolutionContainer) {
-    val filePath = FileUtils().getFullPathForSolutionFile(container.problemContainer.problemId)
-
-    println("...saving text solution container to file $filePath")
-    File(filePath).bufferedWriter().use { out ->
-      out.write("-------------------------- resemblance --------------------\n")
-      out.write("real res =" + container.realResemblance.toString() + " estimated res =" + container.estimatedResemblance.toString())
-      out.write("-------------------------- container --------------------\n")
-      out.write(container.toString())
-      out.write("\n-------------------------- solution --------------------\n")
-      out.write(container.state.solution().toString())
-    }
-
-    // json saving & reading
-//    val g = Gson()
-//    val jsonString = g.toJson(container)
-//    println("output = \n" + jsonString)
-//
-//    val outputObj = g.fromJson(jsonString, SolutionContainer::class.java)
-//    assert(outputObj.equals(container))
-  }
-
-
   companion object {
     fun saveSolutionImageToFile(container: SolutionContainer) {
       val filePath = FileUtils().getFullPathForSolutionImage(container.problemContainer.problemId)
@@ -164,6 +141,28 @@ class Farm {
       println("this problem has realResemblance == 1.0, ignore it for later")
       val ignoreFileName = FileUtils().getFullPathForProblemName(problemFileName) + ".ignore"
       File(FileUtils().getFullPathForProblemName(problemFileName)).renameTo(File(ignoreFileName))
+    }
+
+    fun saveSolutionContainerToFile(container: SolutionContainer) {
+      val filePath = FileUtils().getFullPathForSolutionFile(container.problemContainer.problemId)
+
+      println("...saving text solution container to file $filePath")
+      File(filePath).bufferedWriter().use { out ->
+        out.write("-------------------------- resemblance --------------------\n")
+        out.write("real res =" + container.realResemblance.toString() + " estimated res =" + container.estimatedResemblance.toString())
+        out.write("-------------------------- container --------------------\n")
+        out.write(container.toString())
+        out.write("\n-------------------------- solution --------------------\n")
+        out.write(container.state.solution().toString())
+      }
+
+      // json saving & reading
+//    val g = Gson()
+//    val jsonString = g.toJson(container)
+//    println("output = \n" + jsonString)
+//
+//    val outputObj = g.fromJson(jsonString, SolutionContainer::class.java)
+//    assert(outputObj.equals(container))
     }
   }
 
