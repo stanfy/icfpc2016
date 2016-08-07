@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.571333 estimated res =0.5711045039890198-------------------------- container --------------------
+real res =0.637148 estimated res =0.6369965835131349-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[5/7,4/7, 6/7,4/7, 22/21,6/7, 8/7,6/7, 8/7,1, 6/7,25/21, 6/7,9/7, 5/7,9/7, 11/21,1, 3/7,1, 3/7,6/7, 5/7,2/3])], skeleton=[Edge(a=6/7,4/7, b=8/7,1), Edge(a=3/7,6/7, b=3/7,1), Edge(a=5/7,4/7, b=5/7,9/7), Edge(a=6/7,4/7, b=6/7,9/7), Edge(a=8/7,6/7, b=8/7,1), Edge(a=3/7,6/7, b=5/7,9/7), Edge(a=5/7,4/7, b=6/7,4/7), Edge(a=6/7,4/7, b=3/7,6/7), Edge(a=3/7,6/7, b=8/7,6/7), Edge(a=3/7,1, b=8/7,1), Edge(a=8/7,1, b=5/7,9/7), Edge(a=5/7,9/7, b=6/7,9/7)], rawString=1
 12
 5/7,4/7
@@ -27,29 +27,27 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 3/7,1 8/7,1
 8/7,1 5/7,9/7
 5/7,9/7 6/7,9/7
-), problemId=21, problemHash=), state=(name = ( ->  ->  -> Square F4Parts -> Translate (13/21,16/21) -> Rotate(11/14,13/14, <(24, 7, 25)>)))icfp16.state.State@4f52587f, realResemblance=0.571333, estimatedResemblance=0.5711045039890198)
+), problemId=21, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[1,1/2, 1,0, 1/2,0]), final=Polygon(vertices=[3849/2716,6311/5432, 2841/2716,4491/5432, 1931/2716,6507/5432])), ComplexPolygon(initial=Polygon(vertices=[1/2,1, 1,1, 1,1/2]), final=Polygon(vertices=[1931/2716,6507/5432, 2841/2716,4491/5432, 3849/2716,6311/5432])), ComplexPolygon(initial=Polygon(vertices=[1,1/2, 1/2,0, 0,0, 0,1/2]), final=Polygon(vertices=[3849/2716,6311/5432, 1931/2716,6507/5432, 923/2716,4687/5432, 1833/2716,2671/5432])), ComplexPolygon(initial=Polygon(vertices=[0,1/2, 0,1, 1/2,1, 1,1/2]), final=Polygon(vertices=[1833/2716,2671/5432, 923/2716,4687/5432, 1931/2716,6507/5432, 3849/2716,6311/5432]))]), realResemblance=0.637148, estimatedResemblance=0.6369965835131349)
 -------------------------- solution --------------------
-9
-0,0
-0,1/2
-0,1
-1/2,1
-1,1
+8
 1,1/2
 1,0
 1/2,0
-1/2,1/2
+1/2,1
+1,1
+0,0
+0,1/2
+0,1
 4
-4 0 1 8 7
-4 1 2 3 8
-4 8 3 4 5
-4 7 8 5 6
-353/525,379/525
-559/1050,631/525
-353/525,379/525
-121/105,181/210
-353/525,379/525
-559/1050,631/525
-353/525,379/525
-121/105,181/210
-1063/1050,1409/1050
+3 0 1 2
+3 3 4 0
+4 0 2 5 6
+4 6 7 3 0
+3849/2716,6311/5432
+2841/2716,4491/5432
+1931/2716,6507/5432
+1931/2716,6507/5432
+2841/2716,4491/5432
+923/2716,4687/5432
+1833/2716,2671/5432
+923/2716,4687/5432
