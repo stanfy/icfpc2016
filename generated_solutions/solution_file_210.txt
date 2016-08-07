@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.901011 estimated res =0.9014629138015589-------------------------- container --------------------
+real res =0.996162 estimated res =0.9961750622515037-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[0,0, 9/10,0, 9/10,1/39, 38/39,1/39, 38/39,361/390, 9/10,361/390, 0,1/39])], skeleton=[Edge(a=0,0, b=9/10,0), Edge(a=0,0, b=0,1/39), Edge(a=4/5,0, b=4/5,161/195), Edge(a=9/10,0, b=9/10,361/390), Edge(a=38/39,1/39, b=38/39,361/390), Edge(a=0,1/39, b=9/10,361/390), Edge(a=0,1/39, b=38/39,1/39), Edge(a=4/5,161/195, b=38/39,161/195), Edge(a=9/10,361/390, b=38/39,361/390)], rawString=1
 7
 0,0
@@ -19,17 +19,37 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 0,1/39 38/39,1/39
 4/5,161/195 38/39,161/195
 9/10,361/390 38/39,361/390
-), problemId=210, problemHash=), state=(name = ( -> Triangle))icfp16.state.State@72c8bea3, realResemblance=0.901011, estimatedResemblance=0.9014629138015589)
+), problemId=210, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[1,361/390, 1,0, 38/39,0, 38/39,361/390]), final=Polygon(vertices=[37/39,361/390, 37/39,0, 38/39,0, 38/39,361/390])), ComplexPolygon(initial=Polygon(vertices=[38/39,361/390, 38/39,1, 1,1, 1,361/390]), final=Polygon(vertices=[38/39,361/390, 38/39,166/195, 37/39,166/195, 37/39,361/390])), ComplexPolygon(initial=Polygon(vertices=[161/195,1, 38/39,1, 38/39,361/390, 9/10,361/390]), final=Polygon(vertices=[161/195,166/195, 38/39,166/195, 38/39,361/390, 9/10,361/390])), ComplexPolygon(initial=Polygon(vertices=[9/10,361/390, 0,361/390, 0,1, 161/195,1]), final=Polygon(vertices=[9/10,361/390, 9/10,1/39, 161/195,1/39, 161/195,166/195])), ComplexPolygon(initial=Polygon(vertices=[0,1/39, 0,361/390, 9/10,361/390]), final=Polygon(vertices=[0,1/39, 9/10,1/39, 9/10,361/390])), ComplexPolygon(initial=Polygon(vertices=[9/10,361/390, 38/39,361/390, 38/39,0, 0,0, 0,1/39]), final=Polygon(vertices=[9/10,361/390, 38/39,361/390, 38/39,0, 0,0, 0,1/39]))]), realResemblance=0.996162, estimatedResemblance=0.9961750622515037)
 -------------------------- solution --------------------
-4
-0,0
+12
+1,361/390
+1,0
+38/39,0
+38/39,361/390
+38/39,1
+1,1
+161/195,1
+9/10,361/390
+0,361/390
 0,1
-1,1
-1,0
-2
-3 0 1 2
-3 0 2 3
+0,1/39
 0,0
-1,0
-1,1
-1,0
+6
+4 0 1 2 3
+4 3 4 5 0
+4 6 4 3 7
+4 7 8 9 6
+3 10 8 7
+5 7 3 2 11 10
+37/39,361/390
+37/39,0
+38/39,0
+38/39,361/390
+38/39,166/195
+37/39,166/195
+161/195,166/195
+9/10,361/390
+9/10,1/39
+161/195,1/39
+0,1/39
+0,0
