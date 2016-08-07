@@ -129,7 +129,7 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
 
               // save to file
               val problemContainer = ProblemContainer(problem, problemId = task.problem_id, problemHash = task.hash)
-              val solutionContainer = SolutionContainer(problemContainer, state, resemblance, estimatedResemblance)
+              val solutionContainer = SolutionContainer(problemContainer, state, realResemblance, estimatedResemblance)
               Farm.saveSolutionImageToFile(solutionContainer)
               Farm.saveSolutionContainerToFile(solutionContainer)
 
