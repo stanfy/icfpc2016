@@ -5,9 +5,10 @@ import icfp16.data.Polygon
 import icfp16.data.Problem
 import icfp16.data.Vertex
 import icfp16.farm.Farm
-import icfp16.io.FileUtils
+import icfp16.farm.printCurrentFirebaseTasks
+import icfp16.farm.startSolving
+import icfp16.farm.updateTasksDb
 import icfp16.io.ProblemContainersGrabber
-import java.io.File
 import java.math.BigInteger
 import java.time.Instant
 import java.util.*
@@ -28,6 +29,21 @@ var problem = Problem(
 
 fun main(args: Array<String>) {
   println("ICFP 2016")
+
+  if (args.size > 0 && "updateFirebase".equals(args[0])) {
+    updateTasksDb()
+    return
+  }
+
+  if (args.size > 0 && "startNewFarm".equals(args[0])) {
+    startSolving()
+    return
+  }
+
+  if (args.size > 0 && "printNewFarmTasks".equals(args[0])) {
+    printCurrentFirebaseTasks()
+    return
+  }
 
   if (args.size > 0 && "grab".equals(args[0])) {
     println("Grabbing data")
