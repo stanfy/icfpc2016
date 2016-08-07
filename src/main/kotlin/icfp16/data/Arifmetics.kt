@@ -175,6 +175,21 @@ fun Vertex.rotate(around: Vertex, pihagorean: Triple<Int, Int, Int>): Vertex {
   return Vertex(x, y)
 }
 
+fun Vertex.rotateBack(around: Vertex, pihagorean: Triple<Int, Int, Int>): Vertex {
+  val cos = Fraction(pihagorean.first, pihagorean.third)
+  val sin = Fraction(pihagorean.second, pihagorean.third)
+  val x =
+      around.x
+          .add(this.x.sub(around.x).mul(cos))
+          .add(this.y.sub(around.y).mul(sin))
+
+  val y =
+      around.y
+          .sub(this.x.sub(around.x).mul(sin))
+          .add(this.y.sub(around.y).mul(cos))
+
+  return Vertex(x, y)
+}
 
 fun Polygon.apply(t: Transform): Polygon {
   return Polygon(vertices.map { t.apply(it) })

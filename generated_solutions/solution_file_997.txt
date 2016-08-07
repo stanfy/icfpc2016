@@ -1,0 +1,26 @@
+-------------------------- resemblance --------------------
+real res =1.0 estimated res =1.0-------------------------- container --------------------
+SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[-7/26,-17/26, 17/26,-7/26, 7/26,17/26, -17/26,7/26])], skeleton=[Edge(a=-7/26,-17/26, b=17/26,-7/26), Edge(a=-7/26,-17/26, b=-17/26,7/26), Edge(a=17/26,-7/26, b=7/26,17/26), Edge(a=-17/26,7/26, b=7/26,17/26)], rawString=1
+4
+-7/26,-17/26
+17/26,-7/26
+7/26,17/26
+-17/26,7/26
+4
+-7/26,-17/26 17/26,-7/26
+-7/26,-17/26 -17/26,7/26
+17/26,-7/26 7/26,17/26
+-17/26,7/26 7/26,17/26
+), problemId=997, problemHash=8eb1832dffbd36a7241b88b059deecefe554f957), state=(name = ( ->  -> Square -> Translate (-1/2,-1/2) -> Rotate(0,0, <(12, 5, 13)>)))icfp16.state.State@66593420, realResemblance=1.0, estimatedResemblance=1.0)
+-------------------------- solution --------------------
+4
+0,0
+0,1
+1,1
+1,0
+1
+4 0 1 2 3
+-7/26,-17/26
+-17/26,7/26
+7/26,17/26
+17/26,-7/26

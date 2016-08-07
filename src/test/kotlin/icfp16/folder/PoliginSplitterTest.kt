@@ -220,7 +220,7 @@ class PoliginSplitterTest {
 
     val cState = state as ComplexState
     val triangles = cState.polys.filter { it.splitSimple(edge).size == 2 }
-        .filter { it.splitSimple(edge).any { it.initial.vertices.size == 3 } }
+        .filter { it.splitSimple(edge).any { it.initial().vertices.size == 3 } }
     triangles.forEach { // DEBUG them!
       it.splitSimple(edge, true)
     }

@@ -223,7 +223,9 @@ class DataTest {
     val compose = TranslateTransform(Vertex(1, 1)).compose(reflect)
     assertThat(compose.reverse(compose.apply(point))).isEqualTo(point)
 
-    val rot = Rotate90Transform(Vertex(-2, 1))
+    var rot: Transform = Rotate90Transform(Vertex(-2, 1))
+    assertThat(rot.reverse(rot.apply(point))).isEqualTo(point)
+    rot = RotateTransform(Vertex(-2, 1), Triple(3, 4, 5))
     assertThat(rot.reverse(rot.apply(point))).isEqualTo(point)
   }
 
