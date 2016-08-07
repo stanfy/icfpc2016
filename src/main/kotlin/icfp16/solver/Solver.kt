@@ -162,7 +162,9 @@ class BestSolverEver: Solver {
 
       var solution: IState? = null
       try {
+        val startTime = System.currentTimeMillis()
         solution = solver.solve(problem, problemId, bestResemblance)
+        println("Solution by $solver in ${System.currentTimeMillis() - startTime}")
       } catch (e:Exception) {
         println("I was trying to kill myself")
       }
