@@ -1,0 +1,36 @@
+-------------------------- resemblance --------------------
+real res =0.999433 estimated res =0.9989877221949782-------------------------- container --------------------
+SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[-1/10,-7/10, 7/10,-1/10, 1/10,7/10, -7/10,1/10])], skeleton=[Edge(a=-1/10,-7/10, b=7/10,-1/10), Edge(a=-1/10,-7/10, b=-7/10,1/10), Edge(a=7/10,-1/10, b=1/10,7/10), Edge(a=-7/10,1/10, b=1/10,7/10)], rawString=1
+4
+-1/10,-7/10
+7/10,-1/10
+1/10,7/10
+-7/10,1/10
+4
+-1/10,-7/10 7/10,-1/10
+-1/10,-7/10 -7/10,1/10
+7/10,-1/10 1/10,7/10
+-7/10,1/10 1/10,7/10
+), problemId=967, problemHash=3061199972aeebb1e1e982c79d2a34211e389f39), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[41/42,1, 1,1, 1,41/42]), final=Polygon(vertices=[17/210,24/35, 2/21,2/3, 4/35,143/210])), ComplexPolygon(initial=Polygon(vertices=[1,41/42, 1,0, 1/42,0, 0,1/42, 0,1, 41/42,1]), final=Polygon(vertices=[4/35,143/210, 7/10,-1/10, -17/210,-24/35, -4/35,-143/210, -7/10,1/10, 17/210,24/35])), ComplexPolygon(initial=Polygon(vertices=[1/42,0, 0,0, 0,1/42]), final=Polygon(vertices=[-17/210,-24/35, -2/21,-2/3, -4/35,-143/210]))]), realResemblance=0.999433, estimatedResemblance=0.9989877221949782)
+-------------------------- solution --------------------
+8
+41/42,1
+1,1
+1,41/42
+1,0
+1/42,0
+0,1/42
+0,1
+0,0
+3
+3 0 1 2
+6 2 3 4 5 6 0
+3 4 7 5
+17/210,24/35
+2/21,2/3
+4/35,143/210
+7/10,-1/10
+-17/210,-24/35
+-4/35,-143/210
+-7/10,1/10
+-2/21,-2/3
