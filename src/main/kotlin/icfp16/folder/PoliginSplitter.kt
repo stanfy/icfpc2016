@@ -276,6 +276,26 @@ fun ComplexPolygon.foldSimple(foldingEdge: Edge): List<ComplexPolygon> {
   return result
 }
 
+fun ComplexPolygon.foldMountainVAlley(foldingEdge: Edge, foldingEdge2: Edge): List<ComplexPolygon> {
+  val splitted = this.splitSimple(foldingEdge)
+  val result = splitted.flatMap {
+    if (it.final.vertices.any { point -> isLeft(foldingEdge.a, foldingEdge.b, point) > 0 }) {
+      val folded2 = it.foldSimple(foldingEdge2)
+      folded2.map {
+        ComplexPolygon(it.initial,
+            Polygon(it.final.vertices.map {
+              it.reflect(foldingEdge)
+            })
+        )
+      }
+    } else {
+      listOf(it)
+    }
+  }
+  return result
+}
+
+
 fun ComplexPolygon.foldStar(foldingEdge: Edge, ratioX: Fraction, ratioY : Fraction, externalVertex: Vertex): List<ComplexPolygon> {
   val firstFold = this.foldSimple(foldingEdge)
   val crossPoint = foldingEdge.findSplitPoint(ratioX, ratioY)
