@@ -152,19 +152,32 @@ class BestSolverEver: Solver {
 
   override fun solve(problem: Problem, problemId: String, thresholdResemblance: Double): IState? {
 
-    //val solvers = arrayOf<Solver>(StupidSolver(), TranslatorSolver(), BetterTranslatorSolver(), SequenceSolver(), Wrapper())
-    val solvers = arrayOf<Solver>(Wrapper(), SequenceSolver())
+    var bestResemblance = thresholdResemblance
+
+    // solve by wrapper
+    val wrapperSolution = Wrapper()
+      .solve(problem, problemId, thresholdResemblance)
+
+    // check res
+    if (wrapperSolution != null) {
+      val wrappedResemblance = BitmapEstimator().resemblanceOf(problem, wrapperSolution, quality = 2)
+      bestResemblance = if (wrappedResemblance > bestResemblance) wrappedResemblance else bestResemblance
+    }
+
+    // other solvers
+
+    //val solvers = arrayOf<Solver>(StupidSolver(), TranslatorSolver(), BetterTranslatorSolver(), SequenceSolver())
+    val solvers = arrayOf<Solver>(SequenceSolver())
     var states = emptyList<Pair<IState?, Double>>()
 
     try {
       states = solvers
-        .map { it.solve(problem, problemId, thresholdResemblance) }
+        .map { it.solve(problem, problemId, bestResemblance) }
         .filter { it != null }
         .map { it.to(BitmapEstimator().resemblanceOf(problem, it!!, quality = 2)) }
         .filter { it.second > thresholdResemblance } // Dot' even return everytib for wrapper
 
     } catch (e: Exception) {
-
       println("I was trying to kill myself")
     }
 
