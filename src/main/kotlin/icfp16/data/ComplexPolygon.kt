@@ -61,16 +61,8 @@ class RotateTransform(val v: Vertex, val t: Triple<Int, Int, Int>) : Transform()
 }
 
 class Rotate90Transform(val v: Vertex) : Transform() {
-  override fun apply(point: Vertex): Vertex {
-    val relativePoint = point.sub(v)
-    val related = Vertex(relativePoint.y.neg(), relativePoint.x)
-    return related.add(v)
-  }
-  override fun reverse(point: Vertex): Vertex {
-    val relativePoint = point.sub(v)
-    val related = Vertex(relativePoint.y, relativePoint.x.neg())
-    return related.add(v)
-  }
+  override fun apply(point: Vertex): Vertex = Vertex(point.y, point.x)
+  override fun reverse(point: Vertex): Vertex = apply(point)
 }
 
 class ReverseTransform(val t: Transform) : Transform() {
