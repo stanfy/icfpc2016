@@ -71,7 +71,7 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
   initFirebase()
 
   val chunkSize = 10
-  val chunkIndex = 0
+  var chunkIndex = 0
 
   val api = createApi(HttpLoggingInterceptor.Level.NONE)
   val database = FirebaseDatabase.getInstance()
