@@ -95,6 +95,10 @@ data class State(val vertexes: Array<Vertex> = emptyArray(),
     throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
 
+  override fun foldMountainVAlley(foldingEdge: Edge, foldingEdge2: Edge): IState {
+    throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
   override fun foldStar(foldingEdge: Edge, ratioX: Fraction, ratioY: Fraction, externalVertex: Vertex): IState {
     throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
