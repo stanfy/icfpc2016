@@ -8,7 +8,7 @@ import icfp16.state.State
 import icfp16.state.solution
 
 interface Solver {
-  fun solve(problem: Problem, problemId: String): IState?
+  fun solve(problem: Problem, problemId: String = "", thresholdResemblance: Double = 0.0): IState?
 
   fun solvedSolutionNamesCache(): SolvedSolutionNamesCacher {
     return SolvedSolutionNamesCacher()
@@ -16,13 +16,13 @@ interface Solver {
 }
 
 class StupidSolver: Solver {
-  override fun solve(problem: Problem, problemId: String): IState? {
+  override fun solve(problem: Problem, problemId: String, thresholdResemblance: Double): IState? {
     return State.initialSquare()
   }
 }
 
 class TranslatorSolver: Solver {
-  override fun solve(problem: Problem, problemId: String): IState? {
+  override fun solve(problem: Problem, problemId: String, thresholdResemblance: Double): IState? {
     // simple centroid  as  sum of all polygon coords
     val vertexes = problem.poligons.flatMap { it.vertices }
     val centroid = centroid(vertexes)
@@ -36,7 +36,7 @@ class TranslatorSolver: Solver {
 
 
 class BetterTranslatorSolver : Solver {
-  override fun solve(problem: Problem, problemId: String): IState? {
+  override fun solve(problem: Problem, problemId: String, thresholdResemblance: Double): IState? {
     // simple centroid  as  sum of all polygon coords
     val vertexes = problem.poligons.flatMap { it.vertices }
     val centroid = massCentroid(vertexes)
@@ -52,7 +52,7 @@ class BetterTranslatorSolver : Solver {
 
 class SequenceSolver: Solver {
 
-  override fun solve(problem: Problem, problemId: String): IState? {
+  override fun solve(problem: Problem, problemId: String, thresholdResemblance: Double): IState? {
 
     val vertexes = problem.poligons.flatMap { it.vertices }
     val problemCentroid = centroid(vertexes)
@@ -60,7 +60,7 @@ class SequenceSolver: Solver {
     val cachedNames = cache.readCachedSolutionNamesFor(problemId = problemId)
 
     var bestState: IState? = null
-    var bestResemblance: Double = 0.0
+    var bestResemblance: Double = thresholdResemblance
 
     var names = mutableListOf<String>()
     val allStates = PublicStates.states
@@ -148,11 +148,11 @@ class SequenceSolver: Solver {
 
 class BestSolverEver: Solver {
 
-  override fun solve(problem: Problem, problemId: String): IState? {
+  override fun solve(problem: Problem, problemId: String, thresholdResemblance: Double): IState? {
     //val solvers = arrayOf<Solver>(StupidSolver(), TranslatorSolver(), BetterTranslatorSolver(), SequenceSolver(), Wrapper())
     val solvers = arrayOf<Solver>(SequenceSolver())
     val states =  solvers
-        .map { it.solve(problem, problemId) }
+        .map { it.solve(problem, problemId, thresholdResemblance) }
         .filter { it != null }
         .map { it.to(BitmapEstimator().resemblanceOf(problem, it!!, quality = 2)) }
 

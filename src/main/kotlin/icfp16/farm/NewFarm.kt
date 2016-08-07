@@ -59,8 +59,9 @@ fun startSolving() {
 
         println("Start solving problem #${task.problem_id}")
 
+          val resemblance = task.realResemblance as Double
         val solver = BestSolverEver()
-        val state = solver.solve(problem, task.problem_id)
+        val state = solver.solve(problem, task.problem_id, resemblance)
 
         if (state == null) {
           println("Problem ${task.problem_id} is not solved")
