@@ -1,0 +1,50 @@
+-------------------------- resemblance --------------------
+real res =0.664739 estimated res =0.6651839382332625-------------------------- container --------------------
+SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[-1/8,1/4, 1/8,1/4, 1/8,3/8, 1/4,1/2, 1/4,1, -1/4,1, -1/4,1/2, -1/8,3/8])], skeleton=[Edge(a=-1/4,1/2, b=-1/4,1), Edge(a=-1/8,1/4, b=-1/8,3/8), Edge(a=0,1/4, b=0,1/2), Edge(a=1/8,1/4, b=1/8,3/8), Edge(a=1/4,1/2, b=1/4,1), Edge(a=0,1/4, b=1/4,1/2), Edge(a=0,1/4, b=-1/4,1/2), Edge(a=-1/8,3/8, b=0,1/2), Edge(a=-1/8,1/4, b=1/8,1/4), Edge(a=1/8,3/8, b=0,1/2), Edge(a=-1/8,3/8, b=1/8,3/8), Edge(a=-1/4,1/2, b=1/4,1/2), Edge(a=-1/4,1, b=1/4,1)], rawString=1
+8
+-1/8,1/4
+1/8,1/4
+1/8,3/8
+1/4,1/2
+1/4,1
+-1/4,1
+-1/4,1/2
+-1/8,3/8
+13
+-1/4,1/2 -1/4,1
+-1/8,1/4 -1/8,3/8
+0,1/4 0,1/2
+1/8,1/4 1/8,3/8
+1/4,1/2 1/4,1
+0,1/4 1/4,1/2
+0,1/4 -1/4,1/2
+-1/8,3/8 0,1/2
+-1/8,1/4 1/8,1/4
+1/8,3/8 0,1/2
+-1/8,3/8 1/8,3/8
+-1/4,1/2 1/4,1/2
+-1/4,1 1/4,1
+), problemId=5838, problemHash=33dd8b9dfeac1bcae0759da2e66c1eec71221a33), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[1,1/2, 1,0, 1/2,0]), final=Polygon(vertices=[-1/4,-3/32, -1/4,13/32, 1/4,13/32])), ComplexPolygon(initial=Polygon(vertices=[1/2,1, 1,1, 1,1/2]), final=Polygon(vertices=[1/4,13/32, -1/4,13/32, -1/4,-3/32])), ComplexPolygon(initial=Polygon(vertices=[1,1/2, 1/2,0, 0,0, 0,1/2]), final=Polygon(vertices=[-1/4,-3/32, 1/4,13/32, 1/4,29/32, -1/4,29/32])), ComplexPolygon(initial=Polygon(vertices=[0,1/2, 0,1, 1/2,1, 1,1/2]), final=Polygon(vertices=[-1/4,29/32, 1/4,29/32, 1/4,13/32, -1/4,-3/32]))]), realResemblance=0.664739, estimatedResemblance=0.6651839382332625)
+-------------------------- solution --------------------
+8
+1,1/2
+1,0
+1/2,0
+1/2,1
+1,1
+0,0
+0,1/2
+0,1
+4
+3 0 1 2
+3 3 4 0
+4 0 2 5 6
+4 6 7 3 0
+-1/4,-3/32
+-1/4,13/32
+1/4,13/32
+1/4,13/32
+-1/4,13/32
+1/4,29/32
+-1/4,29/32
+1/4,29/32

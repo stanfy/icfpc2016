@@ -40,8 +40,34 @@ class Wrapper(private val debug: Boolean = false, val prefix : String = ""): Sol
 
     val state = startState as ComplexState
 
-    // fold currently requires edge points to cross poly edges...
-    val foldingLine = Line(we.first())
+    val bestNextState = bestNextStateFromFoldingLines(problem, state, we.map { Line(it) })
+    if (bestNextState != null) {
+      // Fold successful. Let's continue our adventure.
+      debugContinuesWithState(bestNextState)
+      // Dumping visual state if needed
+      debugDumpState(problem, bestNextState, depth, prefix)
+
+      return solveWithWrapping(problem, bestNextState, depth + 1)
+    } else {
+      // We failed, return last valid state.
+      debugMessage("We're done here")
+
+      return startState
+    }
+  }
+
+  private fun bestNextStateFromFoldingLines(problem: Problem, state: ComplexState, foldingLines: List<Line>): IState? {
+    return foldingLines
+        .map {
+          bestNextStateFromFoldingSimpleLine(problem, state, it)
+        }
+        .filterNotNull()
+        .sortedBy { it.second }
+        .map { it.first }
+        .firstOrNull()
+  }
+
+  private fun bestNextStateFromFoldingSimpleLine(problem: Problem, state: ComplexState, foldingLine: Line): Pair<IState, Double>? {
     val vertexes = state.poligons()
         .flatMap {
           it.edges()
@@ -58,13 +84,13 @@ class Wrapper(private val debug: Boolean = false, val prefix : String = ""): Sol
     val foldingEdge = Edge(vertexes.first(), vertexes.last())
     val inversedFold = foldingEdge.copy(foldingEdge.b, foldingEdge.a)
 
-    val normalState = startState.fold(foldingEdge) as ComplexState
-    val mirrorState = startState.fold(inversedFold) as ComplexState
+    val normalState = state.fold(foldingEdge) as ComplexState
+    val mirrorState = state.fold(inversedFold) as ComplexState
 
     // check which one is better
     // TODO: WE can check it faster, right? :)
     debugMessage("folding edge: $foldingEdge and $mirrorState")
-    val startStateResemblance = BitmapEstimator().resemblanceOf(problem, startState)
+    val startStateResemblance = BitmapEstimator().resemblanceOf(problem, state)
     val normalStateResembalnce = BitmapEstimator().resemblanceOf(problem, normalState)
     val mirrorStateResembalnce = BitmapEstimator().resemblanceOf(problem, mirrorState)
 
@@ -72,27 +98,24 @@ class Wrapper(private val debug: Boolean = false, val prefix : String = ""): Sol
       // We failed, return last valid state.
       debugMessage("Failure")
 
-      return startState
+      return null
     }
 
-    val newState = if (normalStateResembalnce > mirrorStateResembalnce) normalState else  mirrorState
+    val newState = if (normalStateResembalnce > mirrorStateResembalnce) normalState else mirrorState
+    val newResemblance = if (normalStateResembalnce > mirrorStateResembalnce) normalStateResembalnce else mirrorStateResembalnce
 
     // Now we have a correct edge to do the fold. Do it.
     if (newState.polys.size > state.polys.size) {
-
-      // Fold successful. Let's continue our adventure.
-      debugContinuesWithState(newState)
-      // Dumping visual state if needed
-      debugDumpState(problem, newState, depth, prefix)
-
-      return solveWithWrapping(problem, newState, depth + 1)
+      return Pair(newState, newResemblance)
     } else {
       // We failed, return last valid state.
       debugMessage("Failure")
 
-      return startState
+      return null
     }
+
   }
+
 
   private fun debugMessage(message: String) {
     if (debug) {
@@ -100,7 +123,7 @@ class Wrapper(private val debug: Boolean = false, val prefix : String = ""): Sol
     }
   }
 
-  private fun debugContinuesWithState(newState: ComplexState) {
+  private fun debugContinuesWithState(newState: IState) {
     if (debug) {
       println("continue")
       println(newState.solution())
