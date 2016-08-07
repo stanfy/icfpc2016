@@ -19,7 +19,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 2/17,83/68 -29/136,95/68
 -21/136,205/136 -9/34,213/136
 -13/34,183/136 -29/136,95/68
-), problemId=2895, problemHash=), state=(name = ( ->  ->  -> Very small square -> Translate (-23/80,97/80) -> Rotate 90))icfp16.state.State@fe76edfd, realResemblance=0.395332, estimatedResemblance=0.39545876348451453)
+), problemId=2895, problemHash=), state=(name = ( ->  -> Very small square -> Translate (-23/80,97/80) -> Rotate 90))icfp16.state.State@fe76edfd, realResemblance=0.395332, estimatedResemblance=0.39545876348451453)
 -------------------------- solution --------------------
 25
 0,0
