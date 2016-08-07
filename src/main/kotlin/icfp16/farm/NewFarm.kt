@@ -11,6 +11,8 @@ import icfp16.api.SolutionSpec
 import icfp16.api.createApi
 import icfp16.api.parseProblem
 import icfp16.data.Problem
+import icfp16.data.ProblemContainer
+import icfp16.data.SolutionContainer
 import icfp16.estimate.EstimatorFactory
 import icfp16.solver.BestSolverEver
 import icfp16.state.solution
@@ -27,9 +29,22 @@ import java.util.stream.Stream
 
 val PROBLEMS_START_ID = 3831
 
+var ourOwnSolutionIds = arrayOf(
+  "705", "1141", "1481", "1573", "1574", "3490", "1902", "1901", "1903", "1904",
+  "1906", "1907", "1908", "1909", "1910", "1911", "3546", "3632", "3634", "3636",
+  "3637", "3638", "3639", "3641", "3642", "3643", "3645", "3646", "3647", "3649",
+  "3651", "3652", "3654", "3655", "3656", "3658", "3659", "3661", "3662", "3663",
+  "3665", "3666", "3669", "3670", "1649", "2997", "706", "3146", "5031", "5040",
+  "5356", "5357", "5358", "5359", "5360", "5361", "5362", "5363", "5364", "5365",
+  "5366", "5367", "5368", "5369", "5370" )
+
+
 fun main(args: Array<String>) {
-  importSolutionsFromLocalToFirebase()
-//  icfp16.farm.startSolving()
+  // TODO: force solving of only these problems
+
+  val problemsIds = emptyList<String>()
+  //val problemsIds = listOf<String>("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
+  icfp16.farm.startSolving(problemIds = problemsIds)
 }
 
 private fun initFirebase() {
@@ -39,7 +54,7 @@ private fun initFirebase() {
   FirebaseApp.initializeApp(options)
 }
 
-fun startSolving() {
+fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean = false) {
   println("Start NEW FARM solver")
 
   println("Init Firebase")
@@ -53,9 +68,33 @@ fun startSolving() {
 
   val taskValues = ArrayList(tasks.values)
   Collections.shuffle(taskValues)
-  taskValues
+
+  // three modes:
+  // 0. do not solve our own solutions
+  //    1. recalculate all problems where res < 1.0
+  // OR 2. set 'problemsIds' --> re-calculate all these problems
+  // OR 3. re-calculate only not solved
+
+  var filteredValues = taskValues.toList()
+    .filterNot { ourOwnSolutionIds.contains(it.component1().problem_id)  }
+
+  if (recalculateAll) {
+    filteredValues =
+      filteredValues
+        .filter { it.component1().realResemblance != 1.0 }
+
+  } else if (problemIds.isNotEmpty()) {
+    filteredValues =
+      filteredValues
+        .filter { problemIds.contains(it.component1().problem_id) }
+
+  } else {
+    filteredValues =
+      filteredValues
+        .filter { it.component1().solution.isEmpty() }
+  }
+  filteredValues
       .parallelStream()
-      .filter { it.component1().solution.isEmpty() }
       .forEach {
         val task = it.first
         val problem = parseProblem(task.problem)
@@ -80,6 +119,11 @@ fun startSolving() {
 
               val estimator = EstimatorFactory().bestEstimatorEver()
               val estimatedResemblance = estimator.resemblanceOf(problem, state, 4)
+
+              // save to file
+              val problemContainer = ProblemContainer(problem, problemId = task.problem_id, problemHash = task.hash)
+              val solutionContainer = SolutionContainer(problemContainer, state, resemblance, estimatedResemblance)
+              Farm.saveSolutionImageToFile(solutionContainer)
 
               val taskRef = database.getReference("icfp2016/tasks/${it.second}")
 

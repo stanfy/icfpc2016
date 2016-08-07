@@ -65,7 +65,7 @@ class SequenceSolver: Solver {
     var names = mutableListOf<String>()
     val allStates = PublicStates.states
     for (state in allStates) {
-      println("Working on state ${allStates.indexOf(state)}(${state.name.substring(0, Math.min(state.name.length, 10))}) of ${allStates.size}")
+      println("Working on state ${allStates.indexOf(state)} of ${allStates.size}")
 
       val bestPossibleResemblance = BitmapEstimator().bestPossibleResemblanceOf(problem, state, quality = 2)
       if (bestResemblance != 0.0 && bestResemblance > bestPossibleResemblance) {
