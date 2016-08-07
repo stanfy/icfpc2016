@@ -27,7 +27,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 -597/1924,1399/1924 123/1924,2037/1924
 761/1924,1317/1924 -597/1924,1399/1924
 123/1924,2037/1924 -139/481,1039/962
-), problemId=3788, problemHash=), state=(name = ( ->  ->  -> 3/4 square -> Translate (-2159/5772,1669/5772) -> Rotate(41/962,679/962, <(11, 60, 61)>)))icfp16.state.State@b412f59b, realResemblance=0.648364, estimatedResemblance=0.6483175116848626)
+), problemId=3788, problemHash=), state=(name = ( ->  -> 3/4 square -> Translate (-2159/5772,1669/5772) -> Rotate(41/962,679/962, <(11, 60, 61)>)))icfp16.state.State@b412f59b, realResemblance=0.648364, estimatedResemblance=0.6483175116848626)
 -------------------------- solution --------------------
 9
 0,0

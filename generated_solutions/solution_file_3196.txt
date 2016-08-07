@@ -17,7 +17,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 0,5/12 1/6,7/12
 0,5/12 7/12,5/12
 1/6,7/12 7/12,7/12
-), problemId=3196, problemHash=), state=(name = ( ->  ->  ->  -> Task 1 -> Translate (-2/21,-9/28) -> Rotate 90 -> Rotate 90 -> Rotate 180))icfp16.state.State@7fd4ffc3, realResemblance=0.528169, estimatedResemblance=0.5292078614523354)
+), problemId=3196, problemHash=), state=(name = ( ->  ->  -> Task 1 -> Translate (-2/21,-9/28) -> Rotate 90 -> Rotate 90 -> Rotate 180))icfp16.state.State@7fd4ffc3, realResemblance=0.528169, estimatedResemblance=0.5292078614523354)
 -------------------------- solution --------------------
 12
 0,0
