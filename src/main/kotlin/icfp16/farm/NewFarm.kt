@@ -49,7 +49,7 @@ fun main(args: Array<String>) {
 //  val count = 100
 //  problemsIds = (startingId..(startingId + count)).map { "$it" }
 
-//  problemsIds = (100..400).map { it.toString() }
+  problemsIds = (1001..1301).map { it.toString() }
   icfp16.farm.startSolving(problemIds = problemsIds)
 }
 
