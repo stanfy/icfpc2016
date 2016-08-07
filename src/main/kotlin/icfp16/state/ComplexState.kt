@@ -59,19 +59,7 @@ data class ComplexState(val polys: Array<ComplexPolygon> = arrayOf(ComplexPolygo
   }
 
   override fun rotate90(around: Vertex): IState {
-//    return ComplexState(polys.map { poly ->
-//      ComplexPolygon(initial = poly.initial,
-//          final = Polygon(poly.final.vertices.map {
-//            val relativePoint = it.sub(around)
-//            val related = Vertex(relativePoint.y.neg(), relativePoint.x)
-//            val final = related.add(around)
-//            final
-//          })
-//      )
-//    }.toTypedArray())
-//        .appendName(this.name)
-//        .appendName("Rotate 90")
-    throw UnsupportedOperationException("TODO")
+    return apply(Rotate90Transform(around), "Rotate 90")
   }
 
   override fun rotate180(around: Vertex): IState {
