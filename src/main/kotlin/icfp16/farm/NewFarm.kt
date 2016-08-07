@@ -82,7 +82,7 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
     chunkIndex++
     tasks = getStoredTasks(database)
 
-    val ourOwnSolutionIds = OwnSolutionsStorage.updatedOwnSolutions().toTypedArray()
+    var ourOwnSolutionIds = OwnSolutionsStorage.updatedOwnSolutions().toTypedArray()
 
     val taskValues = ArrayList(tasks.values)
     Collections.shuffle(taskValues)
@@ -146,6 +146,12 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
 
           do {
             val submission = api.submitSolution(task.problem_id, SolutionSpec(state.solution())).execute()
+            ourOwnSolutionIds = OwnSolutionsStorage.updatedOwnSolutions().toTypedArray()
+
+            if (ourOwnSolutionIds.contains(task.problem_id)) {
+              println("We're smart now we won't re-submit our own problem!")
+              break
+            }
 
             if (submission.isSuccessful) {
               val realResemblance = submission.body().resemblance
