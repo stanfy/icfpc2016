@@ -7,6 +7,8 @@ import icfp16.data.Vertex
 import icfp16.folder.Line
 import icfp16.state.ComplexState
 import icfp16.state.IState
+import icfp16.state.solution
+import icfp16.visualizer.Visualizer
 import java.util.*
 
 fun wrappingEdges(envelop: Polygon, target: Polygon): List<Edge> {
@@ -21,14 +23,23 @@ fun wrappingEdges(envelop: Polygon, target: Polygon): List<Edge> {
 
 class Wrapper(private val debug: Boolean = false): Solver {
 
-  fun solveWithWrapping(problem: Problem, startState: IState): IState {
+  private fun retState(problem: Problem, state: IState, depth: Int): IState {
+    if (!debug) {
+      return state
+    }
+    Visualizer().visualizedAndSaveImage(problem, state, 1, "wrapper-$depth.png")
+    return state
+  }
+
+  fun solveWithWrapping(problem: Problem, startState: IState, depth: Int): IState {
     val we = startState.poligons().flatMap { wrappingEdges(it, problem.poligons[0]) }
     if (debug) {
+      println("$depth ------------------------")
       println("Candidates: $we")
     }
     if (we.isEmpty()) {
       // Nothing to do! We should be done.
-      return startState
+      return retState(problem, startState, depth)
     }
 
     val state = startState as ComplexState
@@ -57,14 +68,15 @@ class Wrapper(private val debug: Boolean = false): Solver {
       // Fold successful. Let's continue our adventure.
       if (debug) {
         println("continue")
+        println(newState.solution())
       }
-      return solveWithWrapping(problem, newState)
+      return retState(problem, solveWithWrapping(problem, newState, depth + 1), depth)
     } else {
       // We failed, return last valid state.
       if (debug) {
         println("failure")
       }
-      return startState
+      return retState(problem, startState, depth)
     }
   }
 
@@ -95,7 +107,7 @@ class Wrapper(private val debug: Boolean = false): Solver {
     // TODO
 
     // Wrap.
-    return solveWithWrapping(problem, ComplexState())
+    return solveWithWrapping(problem, ComplexState(), 0)
   }
 
 }
