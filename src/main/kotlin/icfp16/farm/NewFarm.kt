@@ -105,7 +105,12 @@ fun updateTasksDb() {
 
   Thread.sleep(1200)
 
-  val problemSpecs = api.getContestStatus(latest.snapshot_hash).execute().body().problems
+  val problemSpecsReq = api.getContestStatus(latest.snapshot_hash).execute()
+  if (!problemSpecsReq.isSuccessful) {
+    println("Can not get problem specs: ${problemSpecsReq.message()}")
+    return
+  }
+  val problemSpecs = problemSpecsReq.body().problems
 
   Thread.sleep(1200)
 
