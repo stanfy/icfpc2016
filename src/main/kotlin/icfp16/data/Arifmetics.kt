@@ -176,14 +176,16 @@ fun Vertex.rotate(around: Vertex, pihagorean: Triple<Int, Int, Int>): Vertex {
 }
 
 
-/// THis is not correct actually
-fun Polygon.sub(v: Vertex): Polygon {
-  return Polygon(this.vertices.map { it.add(Vertex(v.x.neg(), v.y.neg())) })
+fun Polygon.apply(t: Transform): Polygon {
+  return Polygon(vertices.map { t.apply(it) })
 }
 
-/// THis is not correct actually
+fun Polygon.sub(v: Vertex): Polygon {
+  return this.add(Vertex(v.x.neg(), v.y.neg()))
+}
+
 fun Polygon.add(v: Vertex): Polygon {
-  return Polygon(this.vertices.map { it.add(Vertex(v.x, v.y)) })
+  return this.apply(TranslateTransform(v))
 }
 
 fun centroid(vertices: List<Vertex>): Vertex {

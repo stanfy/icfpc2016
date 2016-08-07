@@ -153,7 +153,7 @@ class BestSolverEver: Solver {
   override fun solve(problem: Problem, problemId: String, thresholdResemblance: Double): IState? {
 
     //val solvers = arrayOf<Solver>(StupidSolver(), TranslatorSolver(), BetterTranslatorSolver(), SequenceSolver())
-    val solvers = arrayOf<Solver>(/*Wrapper(),*/ SequenceSolver())
+    val solvers = arrayOf<Solver>(Wrapper(), SequenceSolver())
 
     var bestResemblance = thresholdResemblance
     val states = mutableListOf<Pair<IState?, Double>>()
@@ -167,6 +167,7 @@ class BestSolverEver: Solver {
         println("Solution by $solver in ${System.currentTimeMillis() - startTime}")
       } catch (e:Exception) {
         println("I was trying to kill myself")
+        e.printStackTrace()
       }
 
       if (solution != null) {
