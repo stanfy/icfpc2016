@@ -47,6 +47,12 @@ fun main(args: Array<String>) {
     importSolutionsFromLocalToFirebase()
     return
   }
+
+  // to run FB farm with all problems
+  if (args.size > 0 && "recalculateAll".equals(args[0])) {
+    startSolving(emptyList(), recalculateAll = true)
+    return
+  }
   //=========================================================
 
   if (args.size > 0 && "grab".equals(args[0])) {

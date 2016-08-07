@@ -80,6 +80,7 @@ class SequenceSolver: Solver {
 
       for (s in listOf(translatedState, state)) {
 
+        // take N  check if we're food enough, take more
         val translatedCentroid = centroid(s.finalPositions().asList())
         for (rotated in rotationsList(s, translatedCentroid)) {
 
@@ -107,6 +108,7 @@ class SequenceSolver: Solver {
   }
 
   private fun rotationsList(s: IState, stateCentroid: Vertex): List<IState> {
+     // can we fix it more?
     return listOf<IState>(
         s,
         s.rotate90(stateCentroid),

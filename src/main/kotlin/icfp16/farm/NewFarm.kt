@@ -11,6 +11,8 @@ import icfp16.api.SolutionSpec
 import icfp16.api.createApi
 import icfp16.api.parseProblem
 import icfp16.data.Problem
+import icfp16.data.ProblemContainer
+import icfp16.data.SolutionContainer
 import icfp16.estimate.EstimatorFactory
 import icfp16.solver.BestSolverEver
 import icfp16.state.solution
@@ -18,15 +20,31 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import java.io.File
 import java.io.FileInputStream
+import java.nio.file.Files
+import java.nio.file.attribute.BasicFileAttributes
 import java.util.*
 import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 import java.util.stream.Stream
 
 val PROBLEMS_START_ID = 3831
 
+var ourOwnSolutionIds = arrayOf(
+  "705", "1141", "1481", "1573", "1574", "3490", "1902", "1901", "1903", "1904",
+  "1906", "1907", "1908", "1909", "1910", "1911", "3546", "3632", "3634", "3636",
+  "3637", "3638", "3639", "3641", "3642", "3643", "3645", "3646", "3647", "3649",
+  "3651", "3652", "3654", "3655", "3656", "3658", "3659", "3661", "3662", "3663",
+  "3665", "3666", "3669", "3670", "1649", "2997", "706", "3146", "5031", "5040",
+  "5356", "5357", "5358", "5359", "5360", "5361", "5362", "5363", "5364", "5365",
+  "5366", "5367", "5368", "5369", "5370" )
+
+
 fun main(args: Array<String>) {
-//  importSolutionsFromLocalToFirebase()
-  icfp16.farm.startSolving()
+  // TODO: force solving of only these problems
+
+  val problemsIds = emptyList<String>()
+  //val problemsIds = listOf<String>("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
+  icfp16.farm.startSolving(problemIds = problemsIds)
 }
 
 private fun initFirebase() {
@@ -36,7 +54,7 @@ private fun initFirebase() {
   FirebaseApp.initializeApp(options)
 }
 
-fun startSolving() {
+fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean = false) {
   println("Start NEW FARM solver")
 
   println("Init Firebase")
@@ -50,9 +68,33 @@ fun startSolving() {
 
   val taskValues = ArrayList(tasks.values)
   Collections.shuffle(taskValues)
-  taskValues
+
+  // three modes:
+  // 0. do not solve our own solutions
+  //    1. recalculate all problems where res < 1.0
+  // OR 2. set 'problemsIds' --> re-calculate all these problems
+  // OR 3. re-calculate only not solved
+
+  var filteredValues = taskValues.toList()
+    .filterNot { ourOwnSolutionIds.contains(it.component1().problem_id)  }
+
+  if (recalculateAll) {
+    filteredValues =
+      filteredValues
+        .filter { it.component1().realResemblance != 1.0 }
+
+  } else if (problemIds.isNotEmpty()) {
+    filteredValues =
+      filteredValues
+        .filter { problemIds.contains(it.component1().problem_id) }
+
+  } else {
+    filteredValues =
+      filteredValues
+        .filter { it.component1().solution.isEmpty() }
+  }
+  filteredValues
       .parallelStream()
-      .filter { it.component1().solution.isEmpty() }
       .forEach {
         val task = it.first
         val problem = parseProblem(task.problem)
@@ -77,6 +119,11 @@ fun startSolving() {
 
               val estimator = EstimatorFactory().bestEstimatorEver()
               val estimatedResemblance = estimator.resemblanceOf(problem, state, 4)
+
+              // save to file
+              val problemContainer = ProblemContainer(problem, problemId = task.problem_id, problemHash = task.hash)
+              val solutionContainer = SolutionContainer(problemContainer, state, resemblance, estimatedResemblance)
+              Farm.saveSolutionImageToFile(solutionContainer)
 
               val taskRef = database.getReference("icfp2016/tasks/${it.second}")
 
@@ -184,6 +231,10 @@ fun importSolutionsFromLocalToFirebase() {
 
   val database = FirebaseDatabase.getInstance()
   val storedTasks = getStoredTasks(database)
+  val ref = database.getReference("icfp2016").child("tasks")
+
+  val addedTasks = HashSet<String>()
+
   File("generated_solutions").listFiles().forEach {
     val file = it.readText()
     val idRes = Regex("problemId=(.*?),").find(file)
@@ -191,36 +242,44 @@ fun importSolutionsFromLocalToFirebase() {
       println("In file ${it.name} id is not found")
     } else {
       val taskId = idRes.groups[1]!!.value
-      if (storedTasks.containsKey(taskId)) {
-        val solution = file.split("-------------------------- solution --------------------")[1]
-        val resembl = Regex("real res =([0-9.]*) estimated res =([0-9.]*)").find(file)
 
-        if (resembl == null) {
-          println("In file ${it.name} resemblance is not found")
-        } else {
-          val realResembl = resembl.groups[1]!!.value
-          val estResembl = resembl.groups[2]!!.value
+      val solution = file.split("-------------------------- solution --------------------")[1]
+      val resemblanceStr = Regex("real res =([0-9.]*) estimated res =([0-9.]*)").find(file)
 
-          val task = storedTasks[taskId]
+      if (resemblanceStr == null) {
+        println("In file ${it.name} resemblance is not found")
+      } else {
+        val rR = resemblanceStr.groups[1]!!.value
+        val eR = resemblanceStr.groups[2]!!.value
+        val realResemblance = if (!rR.isEmpty()) rR.toDouble() else 0.toDouble()
+        val estResemblance = if (!eR.isEmpty()) eR.toDouble() else 0.toDouble()
 
+        val task = storedTasks[taskId]
+
+        if (storedTasks.containsKey(taskId) || addedTasks.contains(taskId)) {
           val taskRef = database.getReference("icfp2016/tasks/${task!!.second}")
-
-          println(mapOf(
-              "solution" to solution,
-              "realResemblance" to if (!realResembl.isEmpty()) realResembl.toDouble() else 0.toDouble(),
-              "estimatedResemblance" to if (!estResembl.isEmpty()) estResembl.toDouble() else 0.toDouble()
-          ))
-
           taskRef.updateChildren(
               mapOf(
                   "solution" to solution,
-                  "realResemblance" to if (!realResembl.isEmpty()) realResembl.toDouble() else 0.toDouble(),
-                  "estimatedResemblance" to if (!estResembl.isEmpty()) estResembl.toDouble() else 0.toDouble()
+                  "realResemblance" to realResemblance,
+                  "estimatedResemblance" to estResemblance
               )
           )
+          println("Task #$taskId is updated")
+        } else {
+          val problemStart = file.indexOf("rawString=") + "rawString=".length
+          val problemEnd = file.indexOf(")", problemStart) - 1
 
-          println("${it.name}: uploaded to firebase")
+          val problem = file.substring(problemStart..problemEnd)
+
+          val attrs = Files.readAttributes(it.toPath(), BasicFileAttributes::class.java)
+          ref.push().setValue(Task(taskId, "", attrs.creationTime().to(TimeUnit.SECONDS), problem, solution,
+              realResemblance, estResemblance))
+          println("Task #$taskId is added to FB")
+          addedTasks.add(taskId)
         }
+
+        println("${it.name}: uploaded to firebase")
       }
     }
   }
