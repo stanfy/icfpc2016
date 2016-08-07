@@ -49,7 +49,7 @@ fun main(args: Array<String>) {
 //  val count = 100
 //  problemsIds = (startingId..(startingId + count)).map { "$it" }
 
-//  problemsIds = (100..400).map { it.toString() }
+  problemsIds = (1001..1301).map { it.toString() }
   icfp16.farm.startSolving(problemIds = problemsIds)
 }
 
@@ -101,15 +101,20 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
       filteredValues
         .filter { it.component1().solution.isEmpty() }
   }
+
+  val count = filteredValues.count()
+  var index = 0
+
   filteredValues
       .parallelStream()
       .forEach {
         val task = it.first
         val problem = parseProblem(task.problem)
 
-        println("Start solving problem #${task.problem_id}")
+        index++
+        println("Start solving problem #${task.problem_id}  index = $index from $count")
 
-          val resemblance = task.realResemblance
+        val resemblance = task.realResemblance
         val solver = BestSolverEver()
         val state = solver.solve(problem, task.problem_id, resemblance)
 
