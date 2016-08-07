@@ -45,9 +45,9 @@ fun main(args: Array<String>) {
 
   var problemsIds = listOf<String>()
 
-//  val startingId = 1
-//  val count = 100
-//  problemsIds = (startingId..(startingId + count)).map { "$it" }
+  val startingId = 1
+  val count = 100
+  problemsIds = (startingId..(startingId + count)).map { "$it" }
 
   //val problemsIds = listOf<String>("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
   icfp16.farm.startSolving(problemIds = problemsIds)
@@ -129,19 +129,24 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
 
               // save to file
               val problemContainer = ProblemContainer(problem, problemId = task.problem_id, problemHash = task.hash)
-              val solutionContainer = SolutionContainer(problemContainer, state, resemblance, estimatedResemblance)
+              val solutionContainer = SolutionContainer(problemContainer, state, realResemblance, estimatedResemblance)
               Farm.saveSolutionImageToFile(solutionContainer)
               Farm.saveSolutionContainerToFile(solutionContainer)
 
-              val taskRef = database.getReference("icfp2016/tasks/${it.second}")
+              // check if we need to update
+              if (task.realResemblance < realResemblance) {
+                val taskRef = database.getReference("icfp2016/tasks/${it.second}")
 
-              taskRef.updateChildren(
-                  mapOf(
-                      "solution" to state.solution(),
-                      "realResemblance" to realResemblance,
-                      "estimatedResemblance" to estimatedResemblance
-                  )
-              )
+                taskRef.updateChildren(
+                    mapOf(
+                        "solution" to state.solution(),
+                        "realResemblance" to realResemblance,
+                        "estimatedResemblance" to estimatedResemblance
+                    )
+                )
+              } else {
+                println("Won't update DB Problem ${task.problem_id} Resemblance: $realResemblance is less than we have now ${task.realResemblance}" )
+              }
             } else {
               Thread.sleep(3000)
             }
