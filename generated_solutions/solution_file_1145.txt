@@ -11,7 +11,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 0,0 0,1
 1,0 1,1
 0,1 1,1
-), problemId=1145, problemHash=), state=State(vertexes=[0,0, 0,1, 1,1, 1,0], facets=[4 0 1 2 3], finalPositions=[0,0, 0,1, 1,1, 1,0]), realResemblance=1.0, estimatedResemblance=1.0)
+), problemId=1145, problemHash=), state=(name = ( ->  -> Square -> Translate (0,0)))icfp16.state.State@72ac8be0, realResemblance=1.0, estimatedResemblance=1.0)
 -------------------------- solution --------------------
 4
 0,0
