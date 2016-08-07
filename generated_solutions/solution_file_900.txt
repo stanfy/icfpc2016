@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.094674 estimated res =0.09375187732036798-------------------------- container --------------------
+real res =1.0 estimated res =1.0-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])], skeleton=[Edge(a=0,0, b=1/13,0), Edge(a=0,0, b=0,1/13), Edge(a=1/13,0, b=1/13,1/13), Edge(a=0,1/13, b=1/13,1/13)], rawString=1
 4
 0,0
@@ -11,73 +11,568 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 0,0 0,1/13
 1/13,0 1/13,1/13
 0,1/13 1/13,1/13
-), problemId=900, problemHash=), state=(name = ( ->  ->  -> Very small square -> Translate (-4/65,-4/65) -> Rotate(1/26,1/26, <(16, 63, 65)>)))icfp16.state.State@e0aef736, realResemblance=0.094674, estimatedResemblance=0.09375187732036798)
+), problemId=900, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[2/13,0, 1/13,0, 1/13,1/13, 2/13,1/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[12/13,1/13, 1,1/13, 1,0, 12/13,0]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[12/13,0, 11/13,0, 11/13,1/13, 12/13,1/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[11/13,0, 10/13,0, 10/13,1/13, 11/13,1/13]), final=Polygon(vertices=[1/13,0, 0,0, 0,1/13, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[10/13,0, 9/13,0, 9/13,1/13, 10/13,1/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[9/13,0, 8/13,0, 8/13,1/13, 9/13,1/13]), final=Polygon(vertices=[1/13,0, 0,0, 0,1/13, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[8/13,0, 7/13,0, 7/13,1/13, 8/13,1/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[7/13,0, 6/13,0, 6/13,1/13, 7/13,1/13]), final=Polygon(vertices=[1/13,0, 0,0, 0,1/13, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[6/13,0, 5/13,0, 5/13,1/13, 6/13,1/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[5/13,0, 4/13,0, 4/13,1/13, 5/13,1/13]), final=Polygon(vertices=[1/13,0, 0,0, 0,1/13, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[4/13,0, 3/13,0, 3/13,1/13, 4/13,1/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[3/13,0, 2/13,0, 2/13,1/13, 3/13,1/13]), final=Polygon(vertices=[1/13,0, 0,0, 0,1/13, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[3/13,1/13, 2/13,1/13, 2/13,2/13, 3/13,2/13]), final=Polygon(vertices=[1/13,1/13, 0,1/13, 0,0, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[12/13,2/13, 1,2/13, 1,1/13, 12/13,1/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[12/13,1/13, 11/13,1/13, 11/13,2/13, 12/13,2/13]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[11/13,1/13, 10/13,1/13, 10/13,2/13, 11/13,2/13]), final=Polygon(vertices=[1/13,1/13, 0,1/13, 0,0, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[10/13,1/13, 9/13,1/13, 9/13,2/13, 10/13,2/13]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[9/13,1/13, 8/13,1/13, 8/13,2/13, 9/13,2/13]), final=Polygon(vertices=[1/13,1/13, 0,1/13, 0,0, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[8/13,1/13, 7/13,1/13, 7/13,2/13, 8/13,2/13]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[7/13,1/13, 6/13,1/13, 6/13,2/13, 7/13,2/13]), final=Polygon(vertices=[1/13,1/13, 0,1/13, 0,0, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[6/13,1/13, 5/13,1/13, 5/13,2/13, 6/13,2/13]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[5/13,1/13, 4/13,1/13, 4/13,2/13, 5/13,2/13]), final=Polygon(vertices=[1/13,1/13, 0,1/13, 0,0, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[4/13,1/13, 3/13,1/13, 3/13,2/13, 4/13,2/13]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[4/13,2/13, 3/13,2/13, 3/13,3/13, 4/13,3/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[12/13,3/13, 1,3/13, 1,2/13, 12/13,2/13]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[12/13,2/13, 11/13,2/13, 11/13,3/13, 12/13,3/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[11/13,2/13, 10/13,2/13, 10/13,3/13, 11/13,3/13]), final=Polygon(vertices=[1/13,0, 0,0, 0,1/13, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[10/13,2/13, 9/13,2/13, 9/13,3/13, 10/13,3/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[9/13,2/13, 8/13,2/13, 8/13,3/13, 9/13,3/13]), final=Polygon(vertices=[1/13,0, 0,0, 0,1/13, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[8/13,2/13, 7/13,2/13, 7/13,3/13, 8/13,3/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[7/13,2/13, 6/13,2/13, 6/13,3/13, 7/13,3/13]), final=Polygon(vertices=[1/13,0, 0,0, 0,1/13, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[6/13,2/13, 5/13,2/13, 5/13,3/13, 6/13,3/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[5/13,2/13, 4/13,2/13, 4/13,3/13, 5/13,3/13]), final=Polygon(vertices=[1/13,0, 0,0, 0,1/13, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[5/13,3/13, 4/13,3/13, 4/13,4/13, 5/13,4/13]), final=Polygon(vertices=[1/13,1/13, 0,1/13, 0,0, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[12/13,4/13, 1,4/13, 1,3/13, 12/13,3/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[12/13,3/13, 11/13,3/13, 11/13,4/13, 12/13,4/13]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[11/13,3/13, 10/13,3/13, 10/13,4/13, 11/13,4/13]), final=Polygon(vertices=[1/13,1/13, 0,1/13, 0,0, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[10/13,3/13, 9/13,3/13, 9/13,4/13, 10/13,4/13]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[9/13,3/13, 8/13,3/13, 8/13,4/13, 9/13,4/13]), final=Polygon(vertices=[1/13,1/13, 0,1/13, 0,0, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[8/13,3/13, 7/13,3/13, 7/13,4/13, 8/13,4/13]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[7/13,3/13, 6/13,3/13, 6/13,4/13, 7/13,4/13]), final=Polygon(vertices=[1/13,1/13, 0,1/13, 0,0, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[6/13,3/13, 5/13,3/13, 5/13,4/13, 6/13,4/13]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[6/13,4/13, 5/13,4/13, 5/13,5/13, 6/13,5/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[12/13,5/13, 1,5/13, 1,4/13, 12/13,4/13]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[12/13,4/13, 11/13,4/13, 11/13,5/13, 12/13,5/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[11/13,4/13, 10/13,4/13, 10/13,5/13, 11/13,5/13]), final=Polygon(vertices=[1/13,0, 0,0, 0,1/13, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[10/13,4/13, 9/13,4/13, 9/13,5/13, 10/13,5/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[9/13,4/13, 8/13,4/13, 8/13,5/13, 9/13,5/13]), final=Polygon(vertices=[1/13,0, 0,0, 0,1/13, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[8/13,4/13, 7/13,4/13, 7/13,5/13, 8/13,5/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[7/13,4/13, 6/13,4/13, 6/13,5/13, 7/13,5/13]), final=Polygon(vertices=[1/13,0, 0,0, 0,1/13, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[7/13,5/13, 6/13,5/13, 6/13,6/13, 7/13,6/13]), final=Polygon(vertices=[1/13,1/13, 0,1/13, 0,0, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[12/13,6/13, 1,6/13, 1,5/13, 12/13,5/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[12/13,5/13, 11/13,5/13, 11/13,6/13, 12/13,6/13]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[11/13,5/13, 10/13,5/13, 10/13,6/13, 11/13,6/13]), final=Polygon(vertices=[1/13,1/13, 0,1/13, 0,0, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[10/13,5/13, 9/13,5/13, 9/13,6/13, 10/13,6/13]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[9/13,5/13, 8/13,5/13, 8/13,6/13, 9/13,6/13]), final=Polygon(vertices=[1/13,1/13, 0,1/13, 0,0, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[8/13,5/13, 7/13,5/13, 7/13,6/13, 8/13,6/13]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[8/13,6/13, 7/13,6/13, 7/13,7/13, 8/13,7/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[12/13,7/13, 1,7/13, 1,6/13, 12/13,6/13]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[12/13,6/13, 11/13,6/13, 11/13,7/13, 12/13,7/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[11/13,6/13, 10/13,6/13, 10/13,7/13, 11/13,7/13]), final=Polygon(vertices=[1/13,0, 0,0, 0,1/13, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[10/13,6/13, 9/13,6/13, 9/13,7/13, 10/13,7/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[9/13,6/13, 8/13,6/13, 8/13,7/13, 9/13,7/13]), final=Polygon(vertices=[1/13,0, 0,0, 0,1/13, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[9/13,7/13, 8/13,7/13, 8/13,8/13, 9/13,8/13]), final=Polygon(vertices=[1/13,1/13, 0,1/13, 0,0, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[12/13,8/13, 1,8/13, 1,7/13, 12/13,7/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[12/13,7/13, 11/13,7/13, 11/13,8/13, 12/13,8/13]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[11/13,7/13, 10/13,7/13, 10/13,8/13, 11/13,8/13]), final=Polygon(vertices=[1/13,1/13, 0,1/13, 0,0, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[10/13,7/13, 9/13,7/13, 9/13,8/13, 10/13,8/13]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[10/13,8/13, 9/13,8/13, 9/13,9/13, 10/13,9/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[12/13,9/13, 1,9/13, 1,8/13, 12/13,8/13]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[12/13,8/13, 11/13,8/13, 11/13,9/13, 12/13,9/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[11/13,8/13, 10/13,8/13, 10/13,9/13, 11/13,9/13]), final=Polygon(vertices=[1/13,0, 0,0, 0,1/13, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[11/13,9/13, 10/13,9/13, 10/13,10/13, 11/13,10/13]), final=Polygon(vertices=[1/13,1/13, 0,1/13, 0,0, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[12/13,10/13, 1,10/13, 1,9/13, 12/13,9/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[12/13,9/13, 11/13,9/13, 11/13,10/13, 12/13,10/13]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[12/13,10/13, 11/13,10/13, 11/13,11/13, 12/13,11/13]), final=Polygon(vertices=[0,0, 1/13,0, 1/13,1/13, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[12/13,11/13, 1,11/13, 1,10/13, 12/13,10/13]), final=Polygon(vertices=[0,1/13, 1/13,1/13, 1/13,0, 0,0])), ComplexPolygon(initial=Polygon(vertices=[1,12/13, 1,11/13, 12/13,11/13, 12/13,12/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[12/13,12/13, 12/13,1, 1,1, 1,12/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[11/13,12/13, 11/13,1, 12/13,1, 12/13,12/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[12/13,12/13, 12/13,11/13, 11/13,11/13, 11/13,12/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[10/13,12/13, 10/13,1, 11/13,1, 11/13,12/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[11/13,12/13, 11/13,11/13, 10/13,11/13, 10/13,12/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[11/13,11/13, 11/13,10/13, 10/13,10/13, 10/13,11/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[9/13,12/13, 9/13,1, 10/13,1, 10/13,12/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[10/13,12/13, 10/13,11/13, 9/13,11/13, 9/13,12/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[10/13,11/13, 10/13,10/13, 9/13,10/13, 9/13,11/13]), final=Polygon(vertices=[0,1/13, 0,0, 1/13,0, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[10/13,10/13, 10/13,9/13, 9/13,9/13, 9/13,10/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[8/13,12/13, 8/13,1, 9/13,1, 9/13,12/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[9/13,12/13, 9/13,11/13, 8/13,11/13, 8/13,12/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[9/13,11/13, 9/13,10/13, 8/13,10/13, 8/13,11/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[9/13,10/13, 9/13,9/13, 8/13,9/13, 8/13,10/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[9/13,9/13, 9/13,8/13, 8/13,8/13, 8/13,9/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[7/13,12/13, 7/13,1, 8/13,1, 8/13,12/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[8/13,12/13, 8/13,11/13, 7/13,11/13, 7/13,12/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[8/13,11/13, 8/13,10/13, 7/13,10/13, 7/13,11/13]), final=Polygon(vertices=[0,1/13, 0,0, 1/13,0, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[8/13,10/13, 8/13,9/13, 7/13,9/13, 7/13,10/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[8/13,9/13, 8/13,8/13, 7/13,8/13, 7/13,9/13]), final=Polygon(vertices=[0,1/13, 0,0, 1/13,0, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[8/13,8/13, 8/13,7/13, 7/13,7/13, 7/13,8/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[6/13,12/13, 6/13,1, 7/13,1, 7/13,12/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[7/13,12/13, 7/13,11/13, 6/13,11/13, 6/13,12/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[7/13,11/13, 7/13,10/13, 6/13,10/13, 6/13,11/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[7/13,10/13, 7/13,9/13, 6/13,9/13, 6/13,10/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[7/13,9/13, 7/13,8/13, 6/13,8/13, 6/13,9/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[7/13,8/13, 7/13,7/13, 6/13,7/13, 6/13,8/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[7/13,7/13, 7/13,6/13, 6/13,6/13, 6/13,7/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[5/13,12/13, 5/13,1, 6/13,1, 6/13,12/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[6/13,12/13, 6/13,11/13, 5/13,11/13, 5/13,12/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[6/13,11/13, 6/13,10/13, 5/13,10/13, 5/13,11/13]), final=Polygon(vertices=[0,1/13, 0,0, 1/13,0, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[6/13,10/13, 6/13,9/13, 5/13,9/13, 5/13,10/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[6/13,9/13, 6/13,8/13, 5/13,8/13, 5/13,9/13]), final=Polygon(vertices=[0,1/13, 0,0, 1/13,0, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[6/13,8/13, 6/13,7/13, 5/13,7/13, 5/13,8/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[6/13,7/13, 6/13,6/13, 5/13,6/13, 5/13,7/13]), final=Polygon(vertices=[0,1/13, 0,0, 1/13,0, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[6/13,6/13, 6/13,5/13, 5/13,5/13, 5/13,6/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[4/13,12/13, 4/13,1, 5/13,1, 5/13,12/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[5/13,12/13, 5/13,11/13, 4/13,11/13, 4/13,12/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[5/13,11/13, 5/13,10/13, 4/13,10/13, 4/13,11/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[5/13,10/13, 5/13,9/13, 4/13,9/13, 4/13,10/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[5/13,9/13, 5/13,8/13, 4/13,8/13, 4/13,9/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[5/13,8/13, 5/13,7/13, 4/13,7/13, 4/13,8/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[5/13,7/13, 5/13,6/13, 4/13,6/13, 4/13,7/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[5/13,6/13, 5/13,5/13, 4/13,5/13, 4/13,6/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[5/13,5/13, 5/13,4/13, 4/13,4/13, 4/13,5/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[3/13,12/13, 3/13,1, 4/13,1, 4/13,12/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[4/13,12/13, 4/13,11/13, 3/13,11/13, 3/13,12/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[4/13,11/13, 4/13,10/13, 3/13,10/13, 3/13,11/13]), final=Polygon(vertices=[0,1/13, 0,0, 1/13,0, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[4/13,10/13, 4/13,9/13, 3/13,9/13, 3/13,10/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[4/13,9/13, 4/13,8/13, 3/13,8/13, 3/13,9/13]), final=Polygon(vertices=[0,1/13, 0,0, 1/13,0, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[4/13,8/13, 4/13,7/13, 3/13,7/13, 3/13,8/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[4/13,7/13, 4/13,6/13, 3/13,6/13, 3/13,7/13]), final=Polygon(vertices=[0,1/13, 0,0, 1/13,0, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[4/13,6/13, 4/13,5/13, 3/13,5/13, 3/13,6/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[4/13,5/13, 4/13,4/13, 3/13,4/13, 3/13,5/13]), final=Polygon(vertices=[0,1/13, 0,0, 1/13,0, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[4/13,4/13, 4/13,3/13, 3/13,3/13, 3/13,4/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[2/13,12/13, 2/13,1, 3/13,1, 3/13,12/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[3/13,12/13, 3/13,11/13, 2/13,11/13, 2/13,12/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[3/13,11/13, 3/13,10/13, 2/13,10/13, 2/13,11/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[3/13,10/13, 3/13,9/13, 2/13,9/13, 2/13,10/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[3/13,9/13, 3/13,8/13, 2/13,8/13, 2/13,9/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[3/13,8/13, 3/13,7/13, 2/13,7/13, 2/13,8/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[3/13,7/13, 3/13,6/13, 2/13,6/13, 2/13,7/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[3/13,6/13, 3/13,5/13, 2/13,5/13, 2/13,6/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[3/13,5/13, 3/13,4/13, 2/13,4/13, 2/13,5/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[3/13,4/13, 3/13,3/13, 2/13,3/13, 2/13,4/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[3/13,3/13, 3/13,2/13, 2/13,2/13, 2/13,3/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[1/13,12/13, 1/13,1, 2/13,1, 2/13,12/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[2/13,12/13, 2/13,11/13, 1/13,11/13, 1/13,12/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[2/13,11/13, 2/13,10/13, 1/13,10/13, 1/13,11/13]), final=Polygon(vertices=[0,1/13, 0,0, 1/13,0, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[2/13,10/13, 2/13,9/13, 1/13,9/13, 1/13,10/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[2/13,9/13, 2/13,8/13, 1/13,8/13, 1/13,9/13]), final=Polygon(vertices=[0,1/13, 0,0, 1/13,0, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[2/13,8/13, 2/13,7/13, 1/13,7/13, 1/13,8/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[2/13,7/13, 2/13,6/13, 1/13,6/13, 1/13,7/13]), final=Polygon(vertices=[0,1/13, 0,0, 1/13,0, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[2/13,6/13, 2/13,5/13, 1/13,5/13, 1/13,6/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[2/13,5/13, 2/13,4/13, 1/13,4/13, 1/13,5/13]), final=Polygon(vertices=[0,1/13, 0,0, 1/13,0, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[2/13,4/13, 2/13,3/13, 1/13,3/13, 1/13,4/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[2/13,3/13, 2/13,2/13, 1/13,2/13, 1/13,3/13]), final=Polygon(vertices=[0,1/13, 0,0, 1/13,0, 1/13,1/13])), ComplexPolygon(initial=Polygon(vertices=[2/13,2/13, 2/13,1/13, 1/13,1/13, 1/13,2/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[0,12/13, 0,1, 1/13,1, 1/13,12/13]), final=Polygon(vertices=[0,0, 0,1/13, 1/13,1/13, 1/13,0])), ComplexPolygon(initial=Polygon(vertices=[1/13,12/13, 1/13,11/13, 0,11/13, 0,12/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[1/13,11/13, 1/13,10/13, 0,10/13, 0,11/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[1/13,10/13, 1/13,9/13, 0,9/13, 0,10/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[1/13,9/13, 1/13,8/13, 0,8/13, 0,9/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[1/13,8/13, 1/13,7/13, 0,7/13, 0,8/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[1/13,7/13, 1/13,6/13, 0,6/13, 0,7/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[1/13,6/13, 1/13,5/13, 0,5/13, 0,6/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[1/13,5/13, 1/13,4/13, 0,4/13, 0,5/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[1/13,4/13, 1/13,3/13, 0,3/13, 0,4/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[1/13,3/13, 1/13,2/13, 0,2/13, 0,3/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13])), ComplexPolygon(initial=Polygon(vertices=[1/13,2/13, 1/13,1/13, 0,1/13, 0,2/13]), final=Polygon(vertices=[1/13,0, 1/13,1/13, 0,1/13, 0,0])), ComplexPolygon(initial=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13]), final=Polygon(vertices=[1/13,1/13, 1/13,0, 0,0, 0,1/13]))]), realResemblance=1.0, estimatedResemblance=1.0)
 -------------------------- solution --------------------
-25
-0,0
-0,1/4
-0,1/2
-0,3/4
-0,1
-1/4,1
-1/2,1
-3/4,1
-1,1
-1,3/4
-1,1/2
-1,1/4
+196
+2/13,0
+1/13,0
+1/13,1/13
+2/13,1/13
+12/13,1/13
+1,1/13
 1,0
-3/4,0
-1/2,0
-1/4,0
-1/4,1/4
-1/4,1/2
-1/4,3/4
-1/2,3/4
-3/4,3/4
-3/4,1/2
-3/4,1/4
-1/2,1/4
-1/2,1/2
-16
-4 0 1 16 15
-4 1 2 17 16
-4 2 3 18 17
-4 3 4 5 18
-4 18 5 6 19
-4 19 6 7 20
-4 20 7 8 9
-4 21 20 9 10
-4 22 21 10 11
-4 13 22 11 12
-4 14 23 22 13
-4 15 16 23 14
-4 16 17 24 23
-4 17 18 19 24
-4 24 19 20 21
-4 23 24 21 22
-36/325,-27/325
--171/1300,-7/325
-36/325,-27/325
--171/1300,-7/325
-36/325,-27/325
-56/325,207/1300
-36/325,-27/325
-56/325,207/1300
-36/325,-27/325
--171/1300,-7/325
-36/325,-27/325
--171/1300,-7/325
-36/325,-27/325
-56/325,207/1300
-36/325,-27/325
-56/325,207/1300
--7/100,287/1300
-56/325,207/1300
--7/100,287/1300
--171/1300,-7/325
--7/100,287/1300
-56/325,207/1300
--7/100,287/1300
--171/1300,-7/325
-36/325,-27/325
+12/13,0
+11/13,0
+11/13,1/13
+10/13,0
+10/13,1/13
+9/13,0
+9/13,1/13
+8/13,0
+8/13,1/13
+7/13,0
+7/13,1/13
+6/13,0
+6/13,1/13
+5/13,0
+5/13,1/13
+4/13,0
+4/13,1/13
+3/13,0
+3/13,1/13
+2/13,2/13
+3/13,2/13
+12/13,2/13
+1,2/13
+11/13,2/13
+10/13,2/13
+9/13,2/13
+8/13,2/13
+7/13,2/13
+6/13,2/13
+5/13,2/13
+4/13,2/13
+3/13,3/13
+4/13,3/13
+12/13,3/13
+1,3/13
+11/13,3/13
+10/13,3/13
+9/13,3/13
+8/13,3/13
+7/13,3/13
+6/13,3/13
+5/13,3/13
+4/13,4/13
+5/13,4/13
+12/13,4/13
+1,4/13
+11/13,4/13
+10/13,4/13
+9/13,4/13
+8/13,4/13
+7/13,4/13
+6/13,4/13
+5/13,5/13
+6/13,5/13
+12/13,5/13
+1,5/13
+11/13,5/13
+10/13,5/13
+9/13,5/13
+8/13,5/13
+7/13,5/13
+6/13,6/13
+7/13,6/13
+12/13,6/13
+1,6/13
+11/13,6/13
+10/13,6/13
+9/13,6/13
+8/13,6/13
+7/13,7/13
+8/13,7/13
+12/13,7/13
+1,7/13
+11/13,7/13
+10/13,7/13
+9/13,7/13
+8/13,8/13
+9/13,8/13
+12/13,8/13
+1,8/13
+11/13,8/13
+10/13,8/13
+9/13,9/13
+10/13,9/13
+12/13,9/13
+1,9/13
+11/13,9/13
+10/13,10/13
+11/13,10/13
+12/13,10/13
+1,10/13
+11/13,11/13
+12/13,11/13
+1,11/13
+1,12/13
+12/13,12/13
+12/13,1
+1,1
+11/13,12/13
+11/13,1
+10/13,12/13
+10/13,1
+10/13,11/13
+9/13,12/13
+9/13,1
+9/13,11/13
+9/13,10/13
+8/13,12/13
+8/13,1
+8/13,11/13
+8/13,10/13
+8/13,9/13
+7/13,12/13
+7/13,1
+7/13,11/13
+7/13,10/13
+7/13,9/13
+7/13,8/13
+6/13,12/13
+6/13,1
+6/13,11/13
+6/13,10/13
+6/13,9/13
+6/13,8/13
+6/13,7/13
+5/13,12/13
+5/13,1
+5/13,11/13
+5/13,10/13
+5/13,9/13
+5/13,8/13
+5/13,7/13
+5/13,6/13
+4/13,12/13
+4/13,1
+4/13,11/13
+4/13,10/13
+4/13,9/13
+4/13,8/13
+4/13,7/13
+4/13,6/13
+4/13,5/13
+3/13,12/13
+3/13,1
+3/13,11/13
+3/13,10/13
+3/13,9/13
+3/13,8/13
+3/13,7/13
+3/13,6/13
+3/13,5/13
+3/13,4/13
+2/13,12/13
+2/13,1
+2/13,11/13
+2/13,10/13
+2/13,9/13
+2/13,8/13
+2/13,7/13
+2/13,6/13
+2/13,5/13
+2/13,4/13
+2/13,3/13
+1/13,12/13
+1/13,1
+1/13,11/13
+1/13,10/13
+1/13,9/13
+1/13,8/13
+1/13,7/13
+1/13,6/13
+1/13,5/13
+1/13,4/13
+1/13,3/13
+1/13,2/13
+0,12/13
+0,1
+0,11/13
+0,10/13
+0,9/13
+0,8/13
+0,7/13
+0,6/13
+0,5/13
+0,4/13
+0,3/13
+0,2/13
+0,1/13
+0,0
+169
+4 0 1 2 3
+4 4 5 6 7
+4 7 8 9 4
+4 8 10 11 9
+4 10 12 13 11
+4 12 14 15 13
+4 14 16 17 15
+4 16 18 19 17
+4 18 20 21 19
+4 20 22 23 21
+4 22 24 25 23
+4 24 0 3 25
+4 25 3 26 27
+4 28 29 5 4
+4 4 9 30 28
+4 9 11 31 30
+4 11 13 32 31
+4 13 15 33 32
+4 15 17 34 33
+4 17 19 35 34
+4 19 21 36 35
+4 21 23 37 36
+4 23 25 27 37
+4 37 27 38 39
+4 40 41 29 28
+4 28 30 42 40
+4 30 31 43 42
+4 31 32 44 43
+4 32 33 45 44
+4 33 34 46 45
+4 34 35 47 46
+4 35 36 48 47
+4 36 37 39 48
+4 48 39 49 50
+4 51 52 41 40
+4 40 42 53 51
+4 42 43 54 53
+4 43 44 55 54
+4 44 45 56 55
+4 45 46 57 56
+4 46 47 58 57
+4 47 48 50 58
+4 58 50 59 60
+4 61 62 52 51
+4 51 53 63 61
+4 53 54 64 63
+4 54 55 65 64
+4 55 56 66 65
+4 56 57 67 66
+4 57 58 60 67
+4 67 60 68 69
+4 70 71 62 61
+4 61 63 72 70
+4 63 64 73 72
+4 64 65 74 73
+4 65 66 75 74
+4 66 67 69 75
+4 75 69 76 77
+4 78 79 71 70
+4 70 72 80 78
+4 72 73 81 80
+4 73 74 82 81
+4 74 75 77 82
+4 82 77 83 84
+4 85 86 79 78
+4 78 80 87 85
+4 80 81 88 87
+4 81 82 84 88
+4 88 84 89 90
+4 91 92 86 85
+4 85 87 93 91
+4 87 88 90 93
+4 93 90 94 95
+4 96 97 92 91
+4 91 93 95 96
+4 96 95 98 99
+4 99 100 97 96
+4 101 100 99 102
+4 102 103 104 101
+4 105 106 103 102
+4 102 99 98 105
+4 107 108 106 105
+4 105 98 109 107
+4 98 95 94 109
+4 110 111 108 107
+4 107 109 112 110
+4 109 94 113 112
+4 94 90 89 113
+4 114 115 111 110
+4 110 112 116 114
+4 112 113 117 116
+4 113 89 118 117
+4 89 84 83 118
+4 119 120 115 114
+4 114 116 121 119
+4 116 117 122 121
+4 117 118 123 122
+4 118 83 124 123
+4 83 77 76 124
+4 125 126 120 119
+4 119 121 127 125
+4 121 122 128 127
+4 122 123 129 128
+4 123 124 130 129
+4 124 76 131 130
+4 76 69 68 131
+4 132 133 126 125
+4 125 127 134 132
+4 127 128 135 134
+4 128 129 136 135
+4 129 130 137 136
+4 130 131 138 137
+4 131 68 139 138
+4 68 60 59 139
+4 140 141 133 132
+4 132 134 142 140
+4 134 135 143 142
+4 135 136 144 143
+4 136 137 145 144
+4 137 138 146 145
+4 138 139 147 146
+4 139 59 148 147
+4 59 50 49 148
+4 149 150 141 140
+4 140 142 151 149
+4 142 143 152 151
+4 143 144 153 152
+4 144 145 154 153
+4 145 146 155 154
+4 146 147 156 155
+4 147 148 157 156
+4 148 49 158 157
+4 49 39 38 158
+4 159 160 150 149
+4 149 151 161 159
+4 151 152 162 161
+4 152 153 163 162
+4 153 154 164 163
+4 154 155 165 164
+4 155 156 166 165
+4 156 157 167 166
+4 157 158 168 167
+4 158 38 169 168
+4 38 27 26 169
+4 170 171 160 159
+4 159 161 172 170
+4 161 162 173 172
+4 162 163 174 173
+4 163 164 175 174
+4 164 165 176 175
+4 165 166 177 176
+4 166 167 178 177
+4 167 168 179 178
+4 168 169 180 179
+4 169 26 181 180
+4 26 3 2 181
+4 182 183 171 170
+4 170 172 184 182
+4 172 173 185 184
+4 173 174 186 185
+4 174 175 187 186
+4 175 176 188 187
+4 176 177 189 188
+4 177 178 190 189
+4 178 179 191 190
+4 179 180 192 191
+4 180 181 193 192
+4 181 2 194 193
+4 2 1 195 194
+0,0
+1/13,0
+1/13,1/13
+0,1/13
+0,1/13
+1/13,1/13
+1/13,0
+0,0
+1/13,0
+1/13,1/13
+0,0
+0,1/13
+1/13,0
+1/13,1/13
+0,0
+0,1/13
+1/13,0
+1/13,1/13
+0,0
+0,1/13
+1/13,0
+1/13,1/13
+0,0
+0,1/13
+1/13,0
+1/13,1/13
+0,0
+1/13,0
+0,0
+1/13,0
+1/13,0
+0,0
+1/13,0
+0,0
+1/13,0
+0,0
+1/13,0
+0,0
+1/13,1/13
+0,1/13
+0,1/13
+1/13,1/13
+1/13,1/13
+0,1/13
+1/13,1/13
+0,1/13
+1/13,1/13
+0,1/13
+1/13,1/13
+0,0
+1/13,0
+0,0
+1/13,0
+1/13,0
+0,0
+1/13,0
+0,0
+1/13,0
+0,0
+1/13,1/13
+0,1/13
+0,1/13
+1/13,1/13
+1/13,1/13
+0,1/13
+1/13,1/13
+0,1/13
+1/13,1/13
+0,0
+1/13,0
+0,0
+1/13,0
+1/13,0
+0,0
+1/13,0
+0,0
+1/13,1/13
+0,1/13
+0,1/13
+1/13,1/13
+1/13,1/13
+0,1/13
+1/13,1/13
+0,0
+1/13,0
+0,0
+1/13,0
+1/13,0
+0,0
+1/13,1/13
+0,1/13
+0,1/13
+1/13,1/13
+1/13,1/13
+0,0
+1/13,0
+0,0
+1/13,0
+1/13,1/13
+0,1/13
+1/13,1/13
+1/13,0
+0,0
+0,1/13
+1/13,1/13
+1/13,0
+1/13,1/13
+0,0
+0,1/13
+0,1/13
+1/13,0
+1/13,1/13
+1/13,1/13
+1/13,0
+0,0
+0,1/13
+0,1/13
+0,0
+0,1/13
+1/13,0
+1/13,1/13
+1/13,1/13
+1/13,0
+1/13,1/13
+1/13,0
+0,0
+0,1/13
+0,1/13
+0,0
+0,1/13
+0,0
+0,1/13
+1/13,0
+1/13,1/13
+1/13,1/13
+1/13,0
+1/13,1/13
+1/13,0
+1/13,1/13
+1/13,0
+0,0
+0,1/13
+0,1/13
+0,0
+0,1/13
+0,0
+0,1/13
+0,0
+0,1/13
+1/13,0
+1/13,1/13
+1/13,1/13
+1/13,0
+1/13,1/13
+1/13,0
+1/13,1/13
+1/13,0
+1/13,1/13
+1/13,0
+0,0
+0,1/13
+0,1/13
+0,0
+0,1/13
+0,0
+0,1/13
+0,0
+0,1/13
+0,0
+0,1/13
+1/13,0
+1/13,1/13
+1/13,1/13
+1/13,0
+1/13,1/13
+1/13,0
+1/13,1/13
+1/13,0
+1/13,1/13
+1/13,0
+1/13,1/13
+1/13,0
+0,0
+0,1/13
+0,1/13
+0,0
+0,1/13
+0,0
+0,1/13
+0,0
+0,1/13
+0,0
+0,1/13
+0,0
+0,1/13
+0,0
