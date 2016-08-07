@@ -23,7 +23,7 @@ class PaulPublicStates {
         )
       }
       return ComplexState(polygons.toTypedArray())
-          .appendName("Line(x$folds}")
+          .setName("Line(x$folds}")
     }
 
     val states: Array<IState> = arrayOf(
@@ -51,7 +51,7 @@ class PaulPublicStates {
                 Vertex(Fraction(1,4), Fraction(0)),
                 Vertex(Fraction(1,5), Fraction(1))
             ))
-            .appendName("Pyaka"),
+            .setName("Pyaka"),
 
         ComplexState()
             .fold(Edge(
@@ -80,7 +80,7 @@ class PaulPublicStates {
                 Vertex(Fraction(0,8), Fraction(5, 8)),
                 Vertex(Fraction(1,8), Fraction(6, 8))
             ))
-            .appendName("Okolobubl"),
+            .setName("Okolobubl"),
 
         ComplexState()
             .fold(Edge(
@@ -111,10 +111,72 @@ class PaulPublicStates {
                 Vertex(Fraction(-1, 4), Fraction(1, 4)),
                 Vertex(Fraction(-1, 8), Fraction(1, 8))
             ))
-            .appendName("Bubloid")
+            .setName("Bubloid"),
 
+        ComplexState()
+            .fold(Edge(
+                Vertex(Fraction(3, 4), Fraction(1, 1)),
+                Vertex(Fraction(0, 4), Fraction(1, 4))
+            ))
+            .setName("Trikutz"),
 
+        ComplexState()
+            .fold(Edge(
+                Vertex(Fraction(3, 4), Fraction(1, 1)),
+                Vertex(Fraction(0, 4), Fraction(1, 4))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(3, 4), Fraction(1, 1)),
+                Vertex(Fraction(0, 4), Fraction(1, 4))
+            ))
+            .setName("TrikutzHalf4"),
 
+        ComplexState()
+            .fold(Edge(
+                Vertex(Fraction(1, 1), Fraction(1, 4)),
+                Vertex(Fraction(3, 4), Fraction(0, 4))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(3, 4), Fraction(1, 1)),
+                Vertex(Fraction(1, 1), Fraction(3, 4))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(1, 4), Fraction(0, 1)),
+                Vertex(Fraction(0, 1), Fraction(1, 4))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(0, 1), Fraction(3, 4)),
+                Vertex(Fraction(1, 4), Fraction(1, 1))
+            ))
+            .setName("Quadruz"),
+
+        ComplexState()
+            .fold(Edge(
+                Vertex(Fraction(1, 2), Fraction(1, 1)),
+                Vertex(Fraction(1, 2), Fraction(0, 4))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(0, 2), Fraction(1, 2)),
+                Vertex(Fraction(1, 2), Fraction(1, 2))
+            ))
+
+            .fold(Edge(
+                Vertex(Fraction(1, 2), Fraction(1, 8)),
+                Vertex(Fraction(3, 8), Fraction(0, 8))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(3, 8), Fraction(1, 2)),
+                Vertex(Fraction(1, 2), Fraction(3, 8))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(1, 8), Fraction(0, 2)),
+                Vertex(Fraction(0, 2), Fraction(1, 8))
+            ))
+            .fold(Edge(
+                Vertex(Fraction(0, 2), Fraction(3, 8)),
+                Vertex(Fraction(1, 8), Fraction(1, 2))
+            ))
+         .setName("Small Quadruz")
     )
   }
 }

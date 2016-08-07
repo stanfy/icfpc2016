@@ -65,7 +65,7 @@ class SequenceSolver: Solver {
     var names = mutableListOf<String>()
     val allStates = PublicStates.states
     for (state in allStates) {
-      println("Working on state ${allStates.indexOf(state)} of ${allStates.size}")
+      println("Working on state ${allStates.indexOf(state)}(${state.name.substring(0, Math.min(state.name.length, 10))}) of ${allStates.size}")
 
       val bestPossibleResemblance = BitmapEstimator().bestPossibleResemblanceOf(problem, state, quality = 2)
       if (bestResemblance != 0.0 && bestResemblance > bestPossibleResemblance) {
@@ -80,6 +80,7 @@ class SequenceSolver: Solver {
 
       for (s in listOf(translatedState, state)) {
 
+        // take N  check if we're food enough, take more
         val translatedCentroid = centroid(s.finalPositions().asList())
         for (rotated in rotationsList(s, translatedCentroid)) {
 
@@ -107,6 +108,7 @@ class SequenceSolver: Solver {
   }
 
   private fun rotationsList(s: IState, stateCentroid: Vertex): List<IState> {
+     // can we fix it more?
     return listOf<IState>(
         s,
         s.rotate90(stateCentroid),

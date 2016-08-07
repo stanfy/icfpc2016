@@ -49,6 +49,11 @@ fun IState.appendName(s: String): IState {
   return this
 }
 
+fun IState.setName(s: String): IState {
+  this.name = s
+  return this
+}
+
 
 fun IState.isValid():Boolean {
   return this.facets().all { f ->
