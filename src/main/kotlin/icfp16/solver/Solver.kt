@@ -65,6 +65,10 @@ class SequenceSolver: Solver {
     var names = mutableListOf<String>()
     val allStates = PublicStates.states
     for (state in allStates) {
+      if (bestResemblance == 1.0) {
+        println("Skip everything. We found a gem")
+        break
+      }
       println("Working on state ${allStates.indexOf(state)} of ${allStates.size}")
 
       val bestPossibleResemblance = BitmapEstimator().bestPossibleResemblanceOf(problem, state, quality = 2)

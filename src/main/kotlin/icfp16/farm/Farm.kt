@@ -151,18 +151,20 @@ class Farm {
   }
 
 
-  private fun saveSolutionImageToFile(container: SolutionContainer) {
-    val filePath = FileUtils().getFullPathForSolutionImage(container.problemContainer.problemId)
+  companion object {
+    fun saveSolutionImageToFile(container: SolutionContainer) {
+      val filePath = FileUtils().getFullPathForSolutionImage(container.problemContainer.problemId)
 
-    println("...generating image: $filePath")
-    Visualizer().visualizedAndSaveImage(container.problemContainer.problem,
-      container.state, 1, filePath, resemblance =  container.realResemblance)
-  }
+      println("...generating image: $filePath")
+      Visualizer().visualizedAndSaveImage(container.problemContainer.problem,
+        container.state, 1, filePath, resemblance = container.realResemblance)
+    }
 
-  private fun addIgnoreToFileName(problemFileName: String) {
-    println("this problem has realResemblance == 1.0, ignore it for later")
-    val ignoreFileName = FileUtils().getFullPathForProblemName(problemFileName) + ".ignore"
-    File(FileUtils().getFullPathForProblemName(problemFileName)).renameTo(File(ignoreFileName))
+    fun addIgnoreToFileName(problemFileName: String) {
+      println("this problem has realResemblance == 1.0, ignore it for later")
+      val ignoreFileName = FileUtils().getFullPathForProblemName(problemFileName) + ".ignore"
+      File(FileUtils().getFullPathForProblemName(problemFileName)).renameTo(File(ignoreFileName))
+    }
   }
 
 }
