@@ -16,12 +16,58 @@ import icfp16.solver.BestSolverEver
 import icfp16.state.solution
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
+import java.io.File
 import java.io.FileInputStream
 import java.util.*
 import java.util.concurrent.CountDownLatch
 import java.util.stream.Stream
 
 val PROBLEMS_START_ID = 3831
+
+fun main(args: Array<String>) {
+  importSolutionsFromLocalToFirebase()
+}
+
+private fun importSolutionsFromLocalToFirebase() {
+  initFirebase()
+
+  val database = FirebaseDatabase.getInstance()
+  val storedTasks = getStoredTasks(database)
+  File("generated_solutions").listFiles().forEach {
+    val file = it.readText()
+    val idRes = Regex("problemId=(.*?),").find(file)
+    if (idRes == null) {
+      println("In file ${it.name} id is not found")
+    } else {
+      val taskId = idRes.groups[1]!!.value
+      if (storedTasks.containsKey(taskId)) {
+        val solution = file.split("-------------------------- solution --------------------")[1]
+        val resembl = Regex("real res =([0-9.]*?) estimated res =([0-9.]*?)").find(file)
+
+        if (resembl == null) {
+          println("In file ${it.name} resemblance is not found")
+        } else {
+          val realResembl = resembl.groups[1]!!.value
+          val estResembl = resembl.groups[2]!!.value
+
+          val task = storedTasks[taskId]
+
+          val taskRef = database.getReference("icfp2016/tasks/${task!!.second}")
+
+          taskRef.updateChildren(
+              mapOf(
+                  "solution" to solution,
+                  "realResemblance" to realResembl,
+                  "estimatedResemblance" to estResembl
+              )
+          )
+
+          println("${it.name}: uploaded to firebase")
+        }
+      }
+    }
+  }
+}
 
 private fun initFirebase() {
   val options = FirebaseOptions.Builder()
