@@ -40,10 +40,10 @@ val tasks = arrayOf(
                 Vertex(Fraction(0,8), Fraction(4, 8)),
                 Vertex(Fraction(1,8), Fraction(3, 8))
             ))
-//            .fold(Edge(
-//                Vertex(Fraction(0,8), Fraction(5, 8)),
-//                Vertex(Fraction(1,8), Fraction(6, 8))
-//            ))
+            .fold(Edge(
+                Vertex(Fraction(-1,4), Fraction(3, 8)),
+                Vertex(Fraction(-1,8), Fraction(1, 2))
+            ))
             .appendName("Okolobubl")
     ),
     Pair(
@@ -64,36 +64,6 @@ val tasks = arrayOf(
             .fold(Edge(
                 Vertex(Fraction(1,4), Fraction(0)),
                 Vertex(Fraction(1,5), Fraction(1))
-            ))
-    ),
-    Pair(
-        Problem(emptyList(), emptyList()),
-        ComplexState()
-            .fold(Edge(
-                Vertex(Fraction(1,2), Fraction(1, 1)),
-                Vertex(Fraction(1,2), Fraction(0, 1))
-            ))
-            .fold(Edge(
-                Vertex(Fraction(1,4), Fraction(1, 1)),
-                Vertex(Fraction(1,4), Fraction(0, 1))
-            ))
-            .fold(Edge(
-                Vertex(Fraction(1,8), Fraction(1, 1)),
-                Vertex(Fraction(1,8), Fraction(0, 1))
-            ))
-
-            .fold(Edge(
-                Vertex(Fraction(1,8), Fraction(2, 8)),
-                Vertex(Fraction(0,8), Fraction(1, 8))
-            ))
-
-            .fold(Edge(
-                Vertex(Fraction(0,8), Fraction(4, 8)),
-                Vertex(Fraction(1,8), Fraction(3, 8))
-            ))
-            .fold(Edge(
-                Vertex(Fraction(0,8), Fraction(5, 8)),
-                Vertex(Fraction(1,8), Fraction(6, 8))
             ))
     ),
     Pair(
@@ -159,7 +129,7 @@ fun main(args: Array<String>) {
 
   val dir = File("our_problems")
   dir.mkdirs()
-  val START_TIME = Instant.parse("2016-08-06T19:00:00Z")
+  val START_TIME = Instant.parse("2016-08-07T05:00:00Z")
   var ts = Instant.from(START_TIME)
   val api = createApi(HttpLoggingInterceptor.Level.NONE)
 
@@ -185,7 +155,7 @@ fun main(args: Array<String>) {
         Fraction(random.nextLong(), Math.abs(random.nextLong()))
     )
     val solution = data.second
-        //.rotate(pivot, pythagoreanTriple)
+        .rotate(pivot, pythagoreanTriple)
         //.translate(translation) Gets too big size.
 
     val visualizer = Visualizer()

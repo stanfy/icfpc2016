@@ -1,8 +1,12 @@
 package icfp16.folder
 
-import icfp16.data.*
+import icfp16.data.Edge
+import icfp16.data.Fraction
+import icfp16.data.Polygon
+import icfp16.data.Vertex
+import icfp16.state.ComplexState
+import icfp16.state.appendName
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Ignore
 import org.junit.Test
 
 
@@ -189,6 +193,55 @@ class PoliginSplitterTest {
 
     val res = polygon.splitSimple(edge)
     assertThat(res.distinct()).isEqualTo(res)
+  }
+
+  @Test
+  fun badSplit2() {
+    val state = ComplexState()
+        .fold(Edge(
+            Vertex(Fraction(1,2), Fraction(1, 1)),
+            Vertex(Fraction(1,2), Fraction(0, 1))
+        ))
+        .fold(Edge(
+            Vertex(Fraction(1,4), Fraction(1, 1)),
+            Vertex(Fraction(1,4), Fraction(0, 1))
+        ))
+        .fold(Edge(
+            Vertex(Fraction(1,8), Fraction(1, 1)),
+            Vertex(Fraction(1,8), Fraction(0, 1))
+        ))
+
+        .fold(Edge(
+            Vertex(Fraction(1,8), Fraction(2, 8)),
+            Vertex(Fraction(0,8), Fraction(1, 8))
+        ))
+
+        .fold(Edge(
+            Vertex(Fraction(0,8), Fraction(4, 8)),
+            Vertex(Fraction(1,8), Fraction(3, 8))
+        ))
+        .appendName("Okolobubl")
+
+    val edge = Edge(
+        Vertex(Fraction(-1,4), Fraction(3, 8)),
+        Vertex(Fraction(-1,8), Fraction(1, 2))
+    )
+
+    val cState = state as ComplexState
+    val triangles = cState.polys.filter { it.splitSimple(edge).size == 2 }
+        .filter { it.splitSimple(edge).any { it.initial.vertices.size == 3 } }
+    triangles.forEach { // DEBUG them!
+      it.splitSimple(edge, true)
+    }
+    assertThat(triangles).isEmpty()
+  }
+
+  @Test
+  fun ratioUseBug() {
+    val e = Edge(Vertex(Fraction(1, 4), Fraction(1, 2)), Vertex(Fraction(1, 4), Fraction(1)))
+    val ratioX = Fraction(1, 4)
+    val ratioY = Fraction(1)
+    assertThat(e.findSplitPoint(ratioY, ratioX)).isEqualTo(Vertex(Fraction(1, 4), Fraction(5, 8)))
   }
 
 }
