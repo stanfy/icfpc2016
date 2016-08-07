@@ -26,6 +26,7 @@ import java.nio.file.attribute.BasicFileAttributes
 import java.util.*
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
+import java.util.stream.Collectors
 import java.util.stream.Stream
 
 val PROBLEMS_START_ID = 1
@@ -47,6 +48,20 @@ fun main(args: Array<String>) {
 
 //  problemsIds = (1001..1301).map { it.toString() }
 //  icfp16.farm.startSolving(problemIds = problemsIds)
+//  val startingId = 1
+//  val count = 100
+//  problemsIds = (startingId..(startingId + count)).map { "$it" }
+//
+
+//  problemsIds = listOf(
+//    "521", "523", "524", "287", "288","289", "531", "586", "588"
+//  )
+////  problemsIds = (500..600).map { it.toString() }
+//  icfp16.farm.startSolving(problemIds = problemsIds)
+
+  //updateTasksDb()
+
+  //startSolving()
 }
 
 
@@ -115,9 +130,10 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
     val count = filteredValues.count()
     var index = 0
 
+    val result =
     filteredValues
       .parallelStream()
-      .forEach {
+      .map {
         val task = it.first
         val problem = parseProblem(task.problem)
 
@@ -130,6 +146,7 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
 
         if (state == null) {
           println("Problem ${task.problem_id} is not solved")
+          "${task.problem_id} - FAIL"
         } else {
           var retries = 5
 
@@ -167,10 +184,12 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
               Thread.sleep(3000)
             }
           } while (!submission.isSuccessful && --retries > 0)
-
+          "${task.problem_id} - OK"
         }
       }
+      .collect(Collectors.toList())
 
+    println("These are results: $result")
     println("Stop NEW FARM solver (Something wrong with Firebase - program finalization takes time, so wait a minute :)")
 
   } while (tasks.count() > 0)
