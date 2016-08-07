@@ -29,7 +29,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 149/195,49/65 64/89,665/801
 4/9,5/9 7/12,5/9
 48/65,479/585 64/89,665/801
-), problemId=3836, problemHash=), state=(name = ( ->  -> Task 0 -> Rotate(1/2,1/2, <(39, 80, 89)>)))icfp16.state.State@8756e83a, realResemblance=0.258643, estimatedResemblance=0.25874696761313554)
+), problemId=3836, problemHash=68e41292e0a49932cdea4bec4c5277f4f070afe1), state=(name = ( -> Task 0 -> Rotate(1/2,1/2, <(39, 80, 89)>)))icfp16.state.State@8756e83a, realResemblance=0.258643, estimatedResemblance=0.25874696761313554)
 -------------------------- solution --------------------
 8
 0,0
