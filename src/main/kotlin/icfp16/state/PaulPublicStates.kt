@@ -63,7 +63,7 @@ class PaulPublicStates {
         lineSolution(8),
         lineSolution(16),
         lineSolution(32),
-//        foldedLineSolution(2),
+        //        foldedLineSolution(2),
 //        foldedLineSolution(3),
 //        foldedLineSolution(4),
 //        foldedLineSolution(5),
@@ -92,37 +92,37 @@ class PaulPublicStates {
                 Vertex(Fraction(1), Fraction(7, 10))
             ))
             .fold(Edge(
-                Vertex(Fraction(1,4), Fraction(0)),
-                Vertex(Fraction(1,5), Fraction(1))
+                Vertex(Fraction(1, 4), Fraction(0)),
+                Vertex(Fraction(1, 5), Fraction(1))
             ))
             .setName("Pyaka"),
 
         ComplexState()
             .fold(Edge(
-                Vertex(Fraction(1,2), Fraction(1, 1)),
-                Vertex(Fraction(1,2), Fraction(0, 1))
+                Vertex(Fraction(1, 2), Fraction(1, 1)),
+                Vertex(Fraction(1, 2), Fraction(0, 1))
             ))
             .fold(Edge(
-                Vertex(Fraction(1,4), Fraction(1, 1)),
-                Vertex(Fraction(1,4), Fraction(0, 1))
+                Vertex(Fraction(1, 4), Fraction(1, 1)),
+                Vertex(Fraction(1, 4), Fraction(0, 1))
             ))
             .fold(Edge(
-                Vertex(Fraction(1,8), Fraction(1, 1)),
-                Vertex(Fraction(1,8), Fraction(0, 1))
-            ))
-
-            .fold(Edge(
-                Vertex(Fraction(1,8), Fraction(2, 8)),
-                Vertex(Fraction(0,8), Fraction(1, 8))
+                Vertex(Fraction(1, 8), Fraction(1, 1)),
+                Vertex(Fraction(1, 8), Fraction(0, 1))
             ))
 
             .fold(Edge(
-                Vertex(Fraction(0,8), Fraction(4, 8)),
-                Vertex(Fraction(1,8), Fraction(3, 8))
+                Vertex(Fraction(1, 8), Fraction(2, 8)),
+                Vertex(Fraction(0, 8), Fraction(1, 8))
+            ))
+
+            .fold(Edge(
+                Vertex(Fraction(0, 8), Fraction(4, 8)),
+                Vertex(Fraction(1, 8), Fraction(3, 8))
             ))
             .fold(Edge(
-                Vertex(Fraction(0,8), Fraction(5, 8)),
-                Vertex(Fraction(1,8), Fraction(6, 8))
+                Vertex(Fraction(0, 8), Fraction(5, 8)),
+                Vertex(Fraction(1, 8), Fraction(6, 8))
             ))
             .setName("Okolobubl"),
 
@@ -220,7 +220,118 @@ class PaulPublicStates {
                 Vertex(Fraction(0, 2), Fraction(3, 8)),
                 Vertex(Fraction(1, 8), Fraction(1, 2))
             ))
-         .setName("Small Quadruz")
+            .setName("Small Quadruz"),
+
+        ComplexState()
+            .foldMountainVAlley(
+                Edge(
+                    Vertex(Fraction(4, 8), Fraction(0, 8)),
+                    Vertex(Fraction(0, 8), Fraction(4, 8))
+                ),
+                Edge(
+                    Vertex(Fraction(3, 8), Fraction(0, 8)),
+                    Vertex(Fraction(0, 8), Fraction(3, 8))
+                )
+            )
+            .foldMountainVAlley(
+                Edge(
+                    Vertex(Fraction(4, 8), Fraction(8, 8)),
+                    Vertex(Fraction(8, 8), Fraction(4, 8))
+                ),
+                Edge(
+                    Vertex(Fraction(5, 8), Fraction(8, 8)),
+                    Vertex(Fraction(8, 8), Fraction(5, 8))
+                )
+            )
+            .foldMountainVAlley(
+                Edge(
+                    Vertex(Fraction(0, 8), Fraction(4, 8)),
+                    Vertex(Fraction(4, 8), Fraction(8, 8))
+                ),
+                Edge(
+                    Vertex(Fraction(0, 8), Fraction(5, 8)),
+                    Vertex(Fraction(3, 8), Fraction(8, 8))
+                )
+            )
+            .foldMountainVAlley(
+                Edge(
+                    Vertex(Fraction(8, 8), Fraction(4, 8)),
+                    Vertex(Fraction(4, 8), Fraction(0, 8))
+                ),
+                Edge(
+                    Vertex(Fraction(8, 8), Fraction(3, 8)),
+                    Vertex(Fraction(5, 8), Fraction(0, 8))
+                )
+            )
+            .setName("Quaruka4"),
+        ComplexState()
+            .foldMountainVAlley(
+                Edge(
+                    Vertex(Fraction(4, 8), Fraction(0, 8)),
+                    Vertex(Fraction(0, 8), Fraction(4, 8))
+                ),
+                Edge(
+                    Vertex(Fraction(3, 8), Fraction(0, 8)),
+                    Vertex(Fraction(0, 8), Fraction(3, 8))
+                )
+            )
+            .foldMountainVAlley(
+                Edge(
+                    Vertex(Fraction(4, 8), Fraction(8, 8)),
+                    Vertex(Fraction(8, 8), Fraction(4, 8))
+                ),
+                Edge(
+                    Vertex(Fraction(5, 8), Fraction(8, 8)),
+                    Vertex(Fraction(8, 8), Fraction(5, 8))
+                )
+            )
+            .foldMountainVAlley(
+                Edge(
+                    Vertex(Fraction(0, 8), Fraction(4, 8)),
+                    Vertex(Fraction(4, 8), Fraction(8, 8))
+                ),
+                Edge(
+                    Vertex(Fraction(0, 8), Fraction(5, 8)),
+                    Vertex(Fraction(3, 8), Fraction(8, 8))
+                )
+            )
+            .setName("Quaruka3"),
+        ComplexState()
+            .foldMountainVAlley(
+                Edge(
+                    Vertex(Fraction(4, 8), Fraction(0, 8)),
+                    Vertex(Fraction(0, 8), Fraction(4, 8))
+                ),
+                Edge(
+                    Vertex(Fraction(3, 8), Fraction(0, 8)),
+                    Vertex(Fraction(0, 8), Fraction(3, 8))
+                )
+            )
+            .foldMountainVAlley(
+                Edge(
+                    Vertex(Fraction(4, 8), Fraction(8, 8)),
+                    Vertex(Fraction(8, 8), Fraction(4, 8))
+                ),
+                Edge(
+                    Vertex(Fraction(5, 8), Fraction(8, 8)),
+                    Vertex(Fraction(8, 8), Fraction(5, 8))
+                )
+            )
+            .setName("Quaruka2"),
+        ComplexState()
+            .foldMountainVAlley(
+                Edge(
+                    Vertex(Fraction(4, 8), Fraction(0, 8)),
+                    Vertex(Fraction(0, 8), Fraction(4, 8))
+                ),
+                Edge(
+                    Vertex(Fraction(3, 8), Fraction(0, 8)),
+                    Vertex(Fraction(0, 8), Fraction(3, 8))
+                )
+            )
+            .setName("Quaruka1")
+
+
     )
   }
 }

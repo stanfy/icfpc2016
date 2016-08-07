@@ -181,6 +181,61 @@ class PoliginSplitterKtTest {
 
   }
 
+  @Test
+  @Ignore
+  fun starTest(){
+
+    val problem = ProblemContainersParser().generateProblemContainerForProblemId("7")!!.problem
+
+    val state = ComplexState()
+        .foldMountainVAlley(
+            Edge(
+                Vertex(Fraction(4, 8), Fraction(0, 8)),
+                Vertex(Fraction(0, 8), Fraction(4, 8))
+            ),
+            Edge(
+                Vertex(Fraction(3, 8), Fraction(0, 8)),
+                Vertex(Fraction(0, 8), Fraction(3, 8))
+            )
+        )
+        .foldMountainVAlley(
+            Edge(
+                Vertex(Fraction(4, 8), Fraction(8, 8)),
+                Vertex(Fraction(8, 8), Fraction(4, 8))
+            ),
+            Edge(
+                Vertex(Fraction(5, 8), Fraction(8, 8)),
+                Vertex(Fraction(8, 8), Fraction(5, 8))
+            )
+        )
+        .foldMountainVAlley(
+            Edge(
+                Vertex(Fraction(0, 8), Fraction(4, 8)),
+                Vertex(Fraction(4, 8), Fraction(8, 8))
+            ),
+            Edge(
+                Vertex(Fraction(0, 8), Fraction(5, 8)),
+                Vertex(Fraction(3, 8), Fraction(8, 8))
+            )
+        )
+        .foldMountainVAlley(
+            Edge(
+                Vertex(Fraction(8, 8), Fraction(4, 8)),
+                Vertex(Fraction(4, 8), Fraction(0, 8))
+            ),
+            Edge(
+                Vertex(Fraction(8, 8), Fraction(3, 8)),
+                Vertex(Fraction(5, 8), Fraction(0, 8))
+            )
+        )
+
+
+
+
+    Visualizer().visualizedAndSaveImage(problem, state, filePath = "./translator_STAR.png")
+
+  }
+
 
   @Test
   fun debugExTest7()
