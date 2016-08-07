@@ -141,19 +141,6 @@ fun Polygon.splitSimple(foldingEdge: Edge): List<SplitResult> {
         var secondEdge = Edge(secondCrossEdge.startVertex, secondCrossEdge.endVertex)
         val secondIndex = edges().indexOf(secondEdge)
 
-        var secondRatioX= Fraction(1)
-        val secondDx = secondEdge.b.x.sub(secondEdge.a.x)
-        if(!secondDx.isZero()){
-          secondRatioX = secondCrossPoint.x.sub(secondEdge.a.x).divFrac(secondDx)
-        }
-
-
-        var secondRatioY= Fraction(1)
-        val secondDy = secondEdge.b.y.sub(secondEdge.a.y)
-        if(!secondDy.isZero()){
-          secondRatioY = secondCrossPoint.y.sub(secondEdge.a.y).divFrac(secondDy)
-        }
-
         val secondSplitResult = SplitResult(Polygon(secondPolygonPoints), true, secondCrossPoint,
             secondEdge, secondIndex, foldingEdge)
 
@@ -183,34 +170,13 @@ fun ComplexPolygon.splitSimple(foldingEdge: Edge, debug: Boolean = false): List<
     val final2 = split2.polygon
 
     if (debug) {
-      println("My initial size ${initial.vertices.size} ${final.vertices.size}")
       println("foldingEdge: ${split1.foldingEdge} and ${split2.foldingEdge}")
     }
 
-    // now we need split initial poly
-    if (split1.crossEdge != null) {
-      val initEdge = Edge(transform.reverse(split1.foldingEdge.a), transform.reverse(split1.foldingEdge.b))
-      val splittedInit = initial.splitSimple(initEdge)
-      if (debug) {
-        println("final: $final")
-        println("edge: $foldingEdge")
-        println("initial: $initial")
-        println("edge: $initEdge")
-        splittedInit.forEach {
-          println(it.polygon.vertices)
-        }
-      }
-      if(splittedInit.count() >1)
-      {
-        val initial1 = splittedInit.first().polygon
-        val initial2 = splittedInit.last().polygon
-        val res1 = ComplexPolygon(initial1, transform, final1)
-        val res2 = ComplexPolygon(initial2, transform, final2)
+    val res1 = ComplexPolygon(transform, final1)
+    val res2 = ComplexPolygon(transform, final2)
 
-        return arrayListOf(res1, res2)
-      }
-    }
-    return arrayListOf(this)
+    return arrayListOf(res1, res2)
   }else
   {
     return arrayListOf(this)
@@ -227,7 +193,7 @@ fun ComplexPolygon.foldSimple(foldingEdge: Edge): List<ComplexPolygon> {
   val result = splitted.map {
     if (it.final.vertices.any { point -> isLeft(foldingEdge.a, foldingEdge.b, point) > 0 }) {
       val t = ReflectTransform(foldingEdge)
-      ComplexPolygon(it.initial, this.transform.compose(t), it.final.apply(t))
+      ComplexPolygon(this.transform.compose(t), it.final.apply(t))
     } else {
       it
     }
@@ -242,7 +208,7 @@ fun ComplexPolygon.foldMountainVAlley(foldingEdge: Edge, foldingEdge2: Edge): Li
       val folded2 = it.foldSimple(foldingEdge2)
       folded2.map {
         val t = ReflectTransform(foldingEdge)
-        ComplexPolygon(it.initial, this.transform.compose(t), it.final.apply(t))
+        ComplexPolygon(this.transform.compose(t), it.final.apply(t))
       }
     } else {
       listOf(it)

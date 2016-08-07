@@ -1,14 +1,15 @@
 package icfp16.state
 
 import icfp16.data.*
-import org.junit.Test
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Ignore
+import org.junit.Test
 
 class ComplexStateTest {
 
   fun testComplexPolygon(): ComplexPolygon {
     return ComplexPolygon(
+        TRANSFORM_IDENTITY,
         Polygon(listOf(Vertex(1, 1), Vertex(1, 2), Vertex(2, 1)))
     )
   }
@@ -39,7 +40,7 @@ class ComplexStateTest {
   @Test
   fun initialPoligons() {
     val state = ComplexState(arrayOf(testComplexPolygon()))
-    assertThat(state.poligons().toList()).isEqualTo(state.polys.map { it.initial })
+    assertThat(state.poligons().toList()).isEqualTo(state.polys.map { it.initial() })
   }
 
   @Test

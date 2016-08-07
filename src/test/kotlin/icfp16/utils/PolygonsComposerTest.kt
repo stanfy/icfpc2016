@@ -136,9 +136,10 @@ class PolygonsComposerTest {
 
     assertThat(polygons.count()).isEqualTo(3)
 
-    Visualizer().visualizedAndSaveFolds(ComplexState(arrayOf(ComplexPolygon(polygons[0].vertices, TRANSFORM_IDENTITY, polygons.flatMap { it.vertices }))), filePath = "tmp/folds0.png")
-    Visualizer().visualizedAndSaveFolds(ComplexState(arrayOf(ComplexPolygon(polygons[1].vertices, TRANSFORM_IDENTITY, polygons.flatMap { it.vertices }))), filePath = "tmp/folds1.png")
-    Visualizer().visualizedAndSaveFolds(ComplexState(arrayOf(ComplexPolygon(polygons[2].vertices, TRANSFORM_IDENTITY, polygons.flatMap { it.vertices }))), filePath = "tmp/folds2.png")
+    // FIXME: It's nit identity transform, right?
+    Visualizer().visualizedAndSaveFolds(ComplexState(arrayOf(ComplexPolygon(TRANSFORM_IDENTITY, polygons.flatMap { it.vertices }))), filePath = "tmp/folds0.png")
+    Visualizer().visualizedAndSaveFolds(ComplexState(arrayOf(ComplexPolygon(TRANSFORM_IDENTITY, polygons.flatMap { it.vertices }))), filePath = "tmp/folds1.png")
+    Visualizer().visualizedAndSaveFolds(ComplexState(arrayOf(ComplexPolygon(TRANSFORM_IDENTITY, polygons.flatMap { it.vertices }))), filePath = "tmp/folds2.png")
 
     val p0 = polygons[0]
     assertThat(p0.vertices.count()).isEqualTo(3)
