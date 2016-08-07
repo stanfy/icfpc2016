@@ -1,6 +1,7 @@
 package icfp16.state
 
 import icfp16.data.*
+import icfp16.folder.foldMountainVAlley
 import icfp16.folder.foldSimple
 import icfp16.folder.foldStar
 import icfp16.folder.splitSimple
@@ -80,6 +81,14 @@ data class ComplexState(val polys: Array<ComplexPolygon> = arrayOf(ComplexPolygo
   override fun fold(foldingEdge: Edge): IState {
     return ComplexState(polys.flatMap { poly ->
       poly.foldSimple(foldingEdge)
+    }.toTypedArray())
+        .appendName(this.name)
+        .appendName("Folded over $foldingEdge")
+  }
+
+  override fun foldMountainVAlley(foldingEdge: Edge, foldingEdge2: Edge): IState {
+    return ComplexState(polys.flatMap { poly ->
+      poly.foldMountainVAlley(foldingEdge, foldingEdge2)
     }.toTypedArray())
         .appendName(this.name)
         .appendName("Folded over $foldingEdge")
