@@ -157,6 +157,7 @@ class BestSolverEver: Solver {
         .map { it.solve(problem, problemId, thresholdResemblance) }
         .filter { it != null }
         .map { it.to(BitmapEstimator().resemblanceOf(problem, it!!, quality = 2)) }
+        .filter { it.second > thresholdResemblance } // Dot' even return everytib for wrapper
 
     if (states.isEmpty()) {
       return null
