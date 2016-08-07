@@ -8,6 +8,9 @@ import java.awt.Polygon
 import java.awt.image.BufferedImage
 import icfp16.problem
 import icfp16.state.IState
+import java.io.File
+import java.io.IOException
+import javax.imageio.ImageIO
 
 interface Estimator {
 
@@ -26,6 +29,9 @@ class EstimatorFactory {
 }
 
 class BitmapEstimator : Estimator {
+  // useful in tests to check outcome: BitmapEstimator().apply { debug = true }
+  var debug: Boolean = false
+
   override fun resemblanceOf(task: Problem, state: IState, quality: Int): Double {
     val image = Visualizer().visualizationOf(task, state, quality)
 
@@ -49,19 +55,21 @@ class BitmapEstimator : Estimator {
       }
     }
 
-//    try {
-//      ImageIO.write(image, "png", File("./output_image.png"))
-//      System.out.println("-- save")
-//    } catch (e: IOException) {=
-//      e.printStackTrace()
-//    }
+    if (debug) {
+      try {
+        ImageIO.write(image, "png", File("./output_image.png"))
+        System.out.println("-- save")
+      } catch (e: IOException) {
+        e.printStackTrace()
+      }
+    }
 //    val matchedParts = allSquarePixels - noncoveredPixels
 //    System.out.println("Matched $matchedParts")
 //    System.out.println("NonMatcher ${noncoveredPixels}")
 //    System.out.println("Total ${allSquarePixels}")
 //    System.out.println("Covered ${coveredPixels}")
     val resemblance = coveredPixels.toDouble() / allSquarePixels.toDouble()
-//    System.out.println("Resemlense ${resemblence}")
+//    System.out.println("Resemlense ${resemblance}")
     return resemblance
   }
 

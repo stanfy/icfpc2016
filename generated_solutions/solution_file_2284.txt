@@ -33,7 +33,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 83/140,-11/70 23/60,0
 71/140,-3/70 9/20,0
 5/8,-1/5 19/40,0
-), problemId=2284, problemHash=), state=(name = ( ->  ->  -> Task 1 -> Translate (-37/10500,-2446/2625) -> Rotate(3463/10500,-232/875, <(16, 63, 65)>)))icfp16.state.State@fe8c772b, realResemblance=0.615491, estimatedResemblance=0.6154901846309792)
+), problemId=2284, problemHash=), state=(name = ( ->  -> Task 1 -> Translate (-37/10500,-2446/2625) -> Rotate(3463/10500,-232/875, <(16, 63, 65)>)))icfp16.state.State@fe8c772b, realResemblance=0.615491, estimatedResemblance=0.6154901846309792)
 -------------------------- solution --------------------
 12
 0,0

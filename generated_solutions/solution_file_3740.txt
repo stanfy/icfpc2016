@@ -9,7 +9,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 20/9,11/9 20/9,20/9
 20/9,11/9 11/9,20/9
 11/9,20/9 20/9,20/9
-), problemId=3740, problemHash=), state=(name = ( ->  -> 3/4 square -> Translate (53/36,53/36)))icfp16.state.State@d2bd06f1, realResemblance=0.7, estimatedResemblance=0.7000599880023995)
+), problemId=3740, problemHash=), state=(name = ( -> 3/4 square -> Translate (53/36,53/36)))icfp16.state.State@d2bd06f1, realResemblance=0.7, estimatedResemblance=0.7000599880023995)
 -------------------------- solution --------------------
 9
 0,0

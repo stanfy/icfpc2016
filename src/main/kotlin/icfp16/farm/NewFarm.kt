@@ -49,7 +49,7 @@ fun main(args: Array<String>) {
 //  val count = 100
 //  problemsIds = (startingId..(startingId + count)).map { "$it" }
 
-//  problemsIds = (100..400).map { it.toString() }
+  problemsIds = (1001..1301).map { it.toString() }
   icfp16.farm.startSolving(problemIds = problemsIds)
 }
 
@@ -176,7 +176,18 @@ fun newFarmMonitoring() {
 
   val taskValues = ArrayList(tasks.values)
 
-  val overall = taskValues.count()
+  val overall = taskValues
+    .filterNot { ourOwnSolutionIds.contains(it.component1().problem_id)  }
+    .count()
+
+  val ourOwn = taskValues
+    .filter { ourOwnSolutionIds.contains(it.component1().problem_id)  }
+    .count()
+
+  val unsolved = taskValues
+    .filterNot { ourOwnSolutionIds.contains(it.component1().problem_id)  }
+    .filter { it.component1().solution.isEmpty()}
+    .count()
 
   val gems = taskValues
     .filter { it.component1().realResemblance == 1.0 }
@@ -194,14 +205,11 @@ fun newFarmMonitoring() {
     .filter { it.component1().realResemblance <= 0.3 }
     .count()
 
-  val unsolved = taskValues
-    .filter { it.component1().solution.isEmpty()}
-    .count()
-
   println("")
   println("-------------------- Firebase current status ----------------- ")
   println("date " + Date())
   println("- overall tasks count = " + overall)
+  println("- our own tasks count = " + ourOwn)
   println("- unsolved tasks count = " + unsolved)
   println("")
   println("gems: r == 1.0 tasks count = " + gems)
@@ -214,7 +222,7 @@ fun newFarmMonitoring() {
 }
 
 
-fun getUnsolvedTasks() {
+fun getAllTasksIds() {
   println("Checking Firebase...")
   initFirebase()
 
@@ -231,13 +239,13 @@ fun getUnsolvedTasks() {
   println("")
   println("-------------------- Unsolved tasks ----------------- ")
 
-  unsolved
+  taskValues
     .sortedBy { Integer.parseInt(it.first.problem_id) }
     .forEach { pair ->
       val task = pair.first
-      println("------------------------------------------------- ")
-      printTaskBeautiful(task)
-      println("------------------------------------------------- ")
+      //println("------------------------------------------------- ")
+      println(task.problem_id)
+      //println("------------------------------------------------- ")
     }
 
   println("")
