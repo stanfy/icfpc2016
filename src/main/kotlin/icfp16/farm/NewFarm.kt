@@ -45,9 +45,9 @@ fun main(args: Array<String>) {
 
   var problemsIds = listOf<String>()
 
-  val startingId = 1
-  val count = 100
-  problemsIds = (startingId..(startingId + count)).map { "$it" }
+//  val startingId = 1
+//  val count = 100
+//  problemsIds = (startingId..(startingId + count)).map { "$it" }
 
 //  problemsIds = (100..400).map { it.toString() }
   icfp16.farm.startSolving(problemIds = problemsIds)
@@ -101,15 +101,20 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
       filteredValues
         .filter { it.component1().solution.isEmpty() }
   }
+
+  val count = filteredValues.count()
+  var index = 0
+
   filteredValues
       .parallelStream()
       .forEach {
         val task = it.first
         val problem = parseProblem(task.problem)
 
-        println("Start solving problem #${task.problem_id}")
+        index++
+        println("Start solving problem #${task.problem_id}  index = $index from $count")
 
-          val resemblance = task.realResemblance
+        val resemblance = task.realResemblance
         val solver = BestSolverEver()
         val state = solver.solve(problem, task.problem_id, resemblance)
 
@@ -161,7 +166,7 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
 
 
 fun newFarmMonitoring() {
-  println("Cheching Firebase...")
+  println("Checking Firebase...")
   initFirebase()
 
   val database = FirebaseDatabase.getInstance()
@@ -204,6 +209,37 @@ fun newFarmMonitoring() {
   println("ok: r in [0.5 .. 0.8) tasks count = " + betterThanNothing)
   println("bad: r =< 0.3 count = " + veryBad)
   println("-------------------------------------------------------------- ")
+  println("")
+  println("")
+}
+
+
+fun getUnsolvedTasks() {
+  println("Checking Firebase...")
+  initFirebase()
+
+  val database = FirebaseDatabase.getInstance()
+  println("Getting tasks...")
+
+  val tasks = getStoredTasks(database)
+
+  val taskValues = ArrayList(tasks.values)
+
+  val unsolved = taskValues
+    .filter { it.component1().solution.isEmpty()}
+
+  println("")
+  println("-------------------- Unsolved tasks ----------------- ")
+
+  unsolved
+    .sortedBy { Integer.parseInt(it.first.problem_id) }
+    .forEach { pair ->
+      val task = pair.first
+      println("------------------------------------------------- ")
+      printTaskBeautiful(task)
+      println("------------------------------------------------- ")
+    }
+
   println("")
   println("")
 }
@@ -277,17 +313,20 @@ fun printCurrentFirebaseTasks() {
       .sortedBy { Integer.parseInt(it.first.problem_id) }
       .forEach { pair ->
         val task = pair.first
-
-        println("PROBLEM_ID: ${task.problem_id}")
-        println("hash: ${task.hash}")
-        println("time: ${task.time}")
-        println("problem: ${task.problem}")
-        println("solution: ${task.solution}")
-        println("realResemblance: ${task.realResemblance}")
-        println("estimatedResemblance: ${task.estimatedResemblance}")
-        println("")
-        println("")
+        printTaskBeautiful(task)
       }
+}
+
+fun printTaskBeautiful(task: Task) {
+  println("PROBLEM_ID: ${task.problem_id}")
+  println("hash: ${task.hash}")
+  println("time: ${task.time}")
+  println("problem: ${task.problem}")
+  println("solution: ${task.solution}")
+  println("realResemblance: ${task.realResemblance}")
+  println("estimatedResemblance: ${task.estimatedResemblance}")
+  println("")
+  println("")
 }
 
 fun importSolutionsFromLocalToFirebase() {
