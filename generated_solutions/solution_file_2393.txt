@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.799882 estimated res =0.7989205149563533-------------------------- container --------------------
+real res =1.0 estimated res =1.0-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[1/2,0, 1,1/2, 1/2,1, 0,1/2])], skeleton=[Edge(a=1/2,0, b=1,1/2), Edge(a=1/2,0, b=1/2,1), Edge(a=0,1/2, b=1/2,1), Edge(a=1/2,0, b=0,1/2), Edge(a=0,1/2, b=1,1/2), Edge(a=1,1/2, b=1/2,1)], rawString=1
 4
 1/2,0
@@ -13,29 +13,28 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 1/2,0 0,1/2
 0,1/2 1,1/2
 1,1/2 1/2,1
-), problemId=2393, problemHash=), state=(name = ( ->  ->  -> 3/4 square -> Translate (1/12,1/12) -> Rotate(1/2,1/2, <(48, 55, 73)>)))icfp16.state.State@7f76a405, realResemblance=0.799882, estimatedResemblance=0.7989205149563533)
+), problemId=2393, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[1,1/2, 1,0, 1/2,0]), final=Polygon(vertices=[1,1/2, 1/2,1/2, 1/2,0])), ComplexPolygon(initial=Polygon(vertices=[1/2,0, 0,0, 0,1/2]), final=Polygon(vertices=[1/2,0, 1/2,1/2, 0,1/2])), ComplexPolygon(initial=Polygon(vertices=[1/2,1, 1,1, 1,1/2]), final=Polygon(vertices=[1/2,1, 1/2,1/2, 1,1/2])), ComplexPolygon(initial=Polygon(vertices=[0,1/2, 0,1, 1/2,1]), final=Polygon(vertices=[0,1/2, 1/2,1/2, 1/2,1])), ComplexPolygon(initial=Polygon(vertices=[1/2,1, 1,1/2, 1/2,0, 0,1/2]), final=Polygon(vertices=[1/2,1, 1,1/2, 1/2,0, 0,1/2]))]), realResemblance=1.0, estimatedResemblance=1.0)
 -------------------------- solution --------------------
-9
-0,0
-0,3/4
-0,1
-3/4,1
-1,1
-1,3/4
+8
+1,1/2
 1,0
-3/4,0
-3/4,3/4
-4
-4 0 1 8 7
-4 1 2 3 8
-4 8 3 4 5
-4 7 8 5 6
-473/876,-77/876
--11/438,355/876
-143/876,211/876
-575/876,353/438
-431/876,541/876
-133/438,685/876
-761/876,253/876
-905/876,209/438
-205/438,425/438
+1/2,0
+0,0
+0,1/2
+1/2,1
+1,1
+0,1
+5
+3 0 1 2
+3 2 3 4
+3 5 6 0
+3 4 7 5
+4 5 0 2 4
+1,1/2
+1/2,1/2
+1/2,0
+1/2,1/2
+0,1/2
+1/2,1
+1/2,1/2
+1/2,1/2
