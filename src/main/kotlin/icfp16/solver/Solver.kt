@@ -153,7 +153,7 @@ class BestSolverEver: Solver {
   override fun solve(problem: Problem, problemId: String, thresholdResemblance: Double): IState? {
 
     //val solvers = arrayOf<Solver>(StupidSolver(), TranslatorSolver(), BetterTranslatorSolver(), SequenceSolver())
-    val solvers = arrayOf<Solver>(Wrapper(), SequenceSolver())
+    val solvers = arrayOf<Solver>(/*Wrapper(),*/ SequenceSolver())
 
     var bestResemblance = thresholdResemblance
     val states = mutableListOf<Pair<IState?, Double>>()
