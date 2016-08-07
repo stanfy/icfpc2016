@@ -12,7 +12,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 0,1/256 1,1/256
 0,1/128 1,1/128
 0,1 1,1
-), problemId=2740, problemHash=), state=(name = ( -> Square))icfp16.state.State@72ac8be0, realResemblance=0.996093, estimatedResemblance=0.9965)
+), problemId=2740, problemHash=), state=(name = ( -> Square -> Translate (0,1/512)))icfp16.state.State@749aeb40, realResemblance=0.996093, estimatedResemblance=0.9965)
 -------------------------- solution --------------------
 4
 0,0
@@ -21,7 +21,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 1,0
 1
 4 0 1 2 3
-0,0
-0,1
-1,1
-1,0
+0,1/512
+0,513/512
+1,513/512
+1,1/512
