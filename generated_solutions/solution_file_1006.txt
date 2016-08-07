@@ -21,7 +21,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 0,1/2 1/2,1/2
 3/4,7/12 7/12,3/4
 0,3/4 7/12,3/4
-), problemId=1006, problemHash=), state=(name = ( -> 3/4 square))icfp16.state.State@6c27e4b1, realResemblance=0.753086, estimatedResemblance=0.753284)
+), problemId=1006, problemHash=), state=(name = (3/4 square))icfp16.state.State@6c27e4b1, realResemblance=0.753086, estimatedResemblance=0.753284)
 -------------------------- solution --------------------
 9
 0,0

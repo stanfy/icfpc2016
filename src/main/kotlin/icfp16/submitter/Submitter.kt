@@ -4,6 +4,7 @@ import icfp16.api.ProblemSubmission
 import icfp16.api.SolutionSpec
 import icfp16.api.SolutionSubmission
 import icfp16.api.createApi
+import icfp16.farm.OwnSolutionsStorage
 import icfp16.io.FileUtils
 import okhttp3.logging.HttpLoggingInterceptor
 import java.io.File
@@ -25,6 +26,11 @@ class Submitter {
       Thread.sleep(TimeUnit.SECONDS.toMillis(2))
       println("retry ${++attempt}")
       resp = api.submitSolution(problemId, SolutionSpec(solutionString)).execute()
+    }
+
+    // own solution, save for later
+    if (resp.code() == 403) {
+      OwnSolutionsStorage.addNewOwnSolutionId(problemId)
     }
 
     return resp.body()
