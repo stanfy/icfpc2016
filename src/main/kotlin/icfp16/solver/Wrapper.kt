@@ -99,7 +99,7 @@ class Wrapper(private val debug: Boolean = false): Solver {
     }
   }
 
-  override fun solve(problem: Problem, problemId: String): IState? {
+  override fun solve(problem: Problem, problemId: String, thresholdResemblance: Double): IState? {
     // Identify the initial state. If something is on the edge - wrap it.
     // If not, translate first.
     //
