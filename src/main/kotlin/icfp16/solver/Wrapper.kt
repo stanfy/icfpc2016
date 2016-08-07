@@ -47,7 +47,11 @@ class Wrapper(private val debug: Boolean = false, val prefix : String = ""): Sol
       // Dumping visual state if needed
       debugDumpState(problem, bestNextState, depth, prefix)
 
-      return solveWithWrapping(problem, bestNextState, depth + 1)
+      val res = solveWithWrapping(problem, bestNextState, depth + 1) as ComplexState
+      if (res.solution().length < 4000) {
+        return res
+      }
+      return startState
     } else {
       // We failed, return last valid state.
       debugMessage("We're done here")
@@ -176,11 +180,7 @@ class Wrapper(private val debug: Boolean = false, val prefix : String = ""): Sol
 
     // Wrap.
     val startState = ComplexState()
-    val state = solveWithWrapping(problem, startState, 0)
-    if (state.solution().replace("\\s+".toRegex(), "").length > 5000) {
-      return startState
-    }
-    return state
+    return solveWithWrapping(problem, startState, 0)
   }
 
 }
