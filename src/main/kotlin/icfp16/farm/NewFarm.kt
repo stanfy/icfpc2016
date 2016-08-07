@@ -148,7 +148,7 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
           println("Problem ${task.problem_id} is not solved")
           "${task.problem_id} - FAIL"
         } else {
-          var retries = 5
+          var retries = 10
 
           do {
             val submission = api.submitSolution(task.problem_id, SolutionSpec(state.solution())).execute()
