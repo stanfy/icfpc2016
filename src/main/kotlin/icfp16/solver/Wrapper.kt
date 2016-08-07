@@ -26,7 +26,7 @@ fun wrappingEdges(envelop: Polygon, target: Polygon): List<Edge> {
       .sortedByDescending { it.comparativeValue() }
 }
 
-class Wrapper(private val debug: Boolean = false): Solver {
+class Wrapper(private val debug: Boolean = false, val prefix : String = ""): Solver {
 
   fun solveWithWrapping(problem: Problem, startState: IState, depth: Int): IState {
     val we = startState.poligons().flatMap { wrappingEdges(it, problem.poligons[0]) }
@@ -62,10 +62,18 @@ class Wrapper(private val debug: Boolean = false): Solver {
     val mirrorState = startState.fold(inversedFold) as ComplexState
 
     // check which one is better
+    // TODO: WE can check it faster, right? :)
     debugMessage("folding edge: $foldingEdge and $mirrorState")
     val startStateResemblance = BitmapEstimator().resemblanceOf(problem, startState)
     val normalStateResembalnce = BitmapEstimator().resemblanceOf(problem, normalState)
     val mirrorStateResembalnce = BitmapEstimator().resemblanceOf(problem, mirrorState)
+
+    if (normalStateResembalnce <= startStateResemblance && mirrorStateResembalnce <= startStateResemblance) {
+      // We failed, return last valid state.
+      debugMessage("Failure")
+
+      return startState
+    }
 
     val newState = if (normalStateResembalnce > mirrorStateResembalnce) normalState else  mirrorState
 
@@ -75,7 +83,7 @@ class Wrapper(private val debug: Boolean = false): Solver {
       // Fold successful. Let's continue our adventure.
       debugContinuesWithState(newState)
       // Dumping visual state if needed
-      debugDumpState(problem, newState, depth)
+      debugDumpState(problem, newState, depth, prefix)
 
       return solveWithWrapping(problem, newState, depth + 1)
     } else {
@@ -99,11 +107,11 @@ class Wrapper(private val debug: Boolean = false): Solver {
     }
   }
 
-  private fun debugDumpState(problem: Problem, state: IState, depth: Int) {
+  private fun debugDumpState(problem: Problem, state: IState, depth: Int, prefix: String) {
     if (!debug) {
       return
     }
-    Visualizer().visualizedAndSaveImage(problem, state, 1, "wrapper/wrapper-$depth.png")
+    Visualizer().visualizedAndSaveImage(problem, state, 1, "wrapper/wrapper-$prefix-$depth.png")
   }
 
 
@@ -112,7 +120,7 @@ class Wrapper(private val debug: Boolean = false): Solver {
       println("$depth ------------------------")
       println("Candidates: $we")
       if (depth == 0) {
-        debugDumpState(problem, startState, -1)
+        debugDumpState(problem, startState, -1, prefix)
       }
     }
   }

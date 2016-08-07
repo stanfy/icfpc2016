@@ -6,10 +6,12 @@ import icfp16.data.Fraction
 import icfp16.data.Problem
 import icfp16.data.Vertex
 import icfp16.estimate.BitmapEstimator
+import icfp16.io.ProblemContainersParser
 import icfp16.state.State
 import icfp16.state.solution
 import icfp16.visualizer.Visualizer
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.Ignore
 import org.junit.Test
 
 class WrapperTest {
@@ -42,8 +44,8 @@ class WrapperTest {
     )
   }
 
-  private fun assertExactWrap(problem: Problem) {
-    val state = Wrapper(true).solve(problem, "any")
+  private fun assertExactWrap(problem: Problem, prefix: String ="") {
+    val state = Wrapper(true, prefix).solve(problem, "any")
 
     println(state!!.solution())
     if (images) {
@@ -107,6 +109,19 @@ class WrapperTest {
         """.trimMargin()
 
     assertExactWrap(parseProblem(problemString))
+  }
+
+  @Test
+  fun wrap12() {
+    val problem = ProblemContainersParser().generateProblemContainerForProblemId("12")!!.problem
+    assertExactWrap(problem, "12")
+  }
+
+  @Ignore
+  @Test
+  fun wrap101() {
+    val problem = ProblemContainersParser().generateProblemContainerForProblemId("101")!!.problem
+    assertExactWrap(problem, "101")
   }
 
 }
