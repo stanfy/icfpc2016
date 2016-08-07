@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.36923 estimated res =0.36942815322599465-------------------------- container --------------------
+real res =1.0 estimated res =1.0-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[67/78,1/5, 121/78,1/5, 121/78,2/5, 67/78,2/5])], skeleton=[Edge(a=67/78,1/5, b=67/78,2/5), Edge(a=7/6,1/5, b=7/6,2/5), Edge(a=121/78,1/5, b=121/78,2/5), Edge(a=67/78,1/5, b=121/78,1/5), Edge(a=67/78,1/4, b=121/78,1/4), Edge(a=67/78,11/40, b=121/78,11/40), Edge(a=67/78,1/3, b=121/78,1/3), Edge(a=67/78,3/8, b=121/78,3/8), Edge(a=67/78,23/60, b=121/78,23/60), Edge(a=67/78,19/48, b=121/78,19/48), Edge(a=67/78,2/5, b=121/78,2/5)], rawString=1
 4
 67/78,1/5
@@ -18,27 +18,70 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 67/78,23/60 121/78,23/60
 67/78,19/48 121/78,19/48
 67/78,2/5 121/78,2/5
-), problemId=3810, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[1,1/2, 1,0, 1/2,0]), final=Polygon(vertices=[293/156,161/520, 17/12,61/520, 191/156,301/520])), ComplexPolygon(initial=Polygon(vertices=[1/2,1, 1,1, 1,1/2]), final=Polygon(vertices=[191/156,301/520, 17/12,61/520, 293/156,161/520])), ComplexPolygon(initial=Polygon(vertices=[1,1/2, 1/2,0, 0,0, 0,1/2]), final=Polygon(vertices=[293/156,161/520, 191/156,301/520, 119/156,201/520, 149/156,-3/40])), ComplexPolygon(initial=Polygon(vertices=[0,1/2, 0,1, 1/2,1, 1,1/2]), final=Polygon(vertices=[149/156,-3/40, 119/156,201/520, 191/156,301/520, 293/156,161/520]))]), realResemblance=0.36923, estimatedResemblance=0.36942815322599465)
+), problemId=3810, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[1,1/5, 1,0, 67/78,0, 67/78,1/5]), final=Polygon(vertices=[1,1/5, 1,2/5, 67/78,2/5, 67/78,1/5])), ComplexPolygon(initial=Polygon(vertices=[67/78,4/5, 67/78,1, 1,1, 1,4/5]), final=Polygon(vertices=[67/78,2/5, 67/78,1/5, 1,1/5, 1,2/5])), ComplexPolygon(initial=Polygon(vertices=[1,4/5, 1,3/5, 67/78,3/5, 67/78,4/5]), final=Polygon(vertices=[1,2/5, 1,1/5, 67/78,1/5, 67/78,2/5])), ComplexPolygon(initial=Polygon(vertices=[1,3/5, 1,2/5, 67/78,2/5, 67/78,3/5]), final=Polygon(vertices=[1,1/5, 1,2/5, 67/78,2/5, 67/78,1/5])), ComplexPolygon(initial=Polygon(vertices=[1,2/5, 1,1/5, 67/78,1/5, 67/78,2/5]), final=Polygon(vertices=[1,2/5, 1,1/5, 67/78,1/5, 67/78,2/5])), ComplexPolygon(initial=Polygon(vertices=[0,4/5, 0,1, 1/6,1, 1/6,4/5]), final=Polygon(vertices=[18/13,2/5, 18/13,1/5, 121/78,1/5, 121/78,2/5])), ComplexPolygon(initial=Polygon(vertices=[1/6,4/5, 1/6,3/5, 0,3/5, 0,4/5]), final=Polygon(vertices=[121/78,2/5, 121/78,1/5, 18/13,1/5, 18/13,2/5])), ComplexPolygon(initial=Polygon(vertices=[1/6,3/5, 1/6,2/5, 0,2/5, 0,3/5]), final=Polygon(vertices=[121/78,1/5, 121/78,2/5, 18/13,2/5, 18/13,1/5])), ComplexPolygon(initial=Polygon(vertices=[1/6,2/5, 1/6,1/5, 0,1/5, 0,2/5]), final=Polygon(vertices=[121/78,2/5, 121/78,1/5, 18/13,1/5, 18/13,2/5])), ComplexPolygon(initial=Polygon(vertices=[1/6,1/5, 1/6,0, 0,0, 0,1/5]), final=Polygon(vertices=[121/78,1/5, 121/78,2/5, 18/13,2/5, 18/13,1/5])), ComplexPolygon(initial=Polygon(vertices=[67/78,1/5, 67/78,0, 1/6,0, 1/6,1/5]), final=Polygon(vertices=[67/78,1/5, 67/78,2/5, 121/78,2/5, 121/78,1/5])), ComplexPolygon(initial=Polygon(vertices=[1/6,4/5, 1/6,1, 67/78,1, 67/78,4/5]), final=Polygon(vertices=[121/78,2/5, 121/78,1/5, 67/78,1/5, 67/78,2/5])), ComplexPolygon(initial=Polygon(vertices=[67/78,4/5, 67/78,3/5, 1/6,3/5, 1/6,4/5]), final=Polygon(vertices=[67/78,2/5, 67/78,1/5, 121/78,1/5, 121/78,2/5])), ComplexPolygon(initial=Polygon(vertices=[67/78,3/5, 67/78,2/5, 1/6,2/5, 1/6,3/5]), final=Polygon(vertices=[67/78,1/5, 67/78,2/5, 121/78,2/5, 121/78,1/5])), ComplexPolygon(initial=Polygon(vertices=[67/78,2/5, 67/78,1/5, 1/6,1/5, 1/6,2/5]), final=Polygon(vertices=[67/78,2/5, 67/78,1/5, 121/78,1/5, 121/78,2/5]))]), realResemblance=1.0, estimatedResemblance=1.0)
 -------------------------- solution --------------------
-8
-1,1/2
+24
+1,1/5
 1,0
-1/2,0
-1/2,1
+67/78,0
+67/78,1/5
+67/78,4/5
+67/78,1
 1,1
-0,0
-0,1/2
+1,4/5
+1,3/5
+67/78,3/5
+1,2/5
+67/78,2/5
+0,4/5
 0,1
-4
-3 0 1 2
-3 3 4 0
-4 0 2 5 6
-4 6 7 3 0
-293/156,161/520
-17/12,61/520
-191/156,301/520
-191/156,301/520
-17/12,61/520
-119/156,201/520
-149/156,-3/40
-119/156,201/520
+1/6,1
+1/6,4/5
+1/6,3/5
+0,3/5
+1/6,2/5
+0,2/5
+1/6,1/5
+0,1/5
+1/6,0
+0,0
+15
+4 0 1 2 3
+4 4 5 6 7
+4 7 8 9 4
+4 8 10 11 9
+4 10 0 3 11
+4 12 13 14 15
+4 15 16 17 12
+4 16 18 19 17
+4 18 20 21 19
+4 20 22 23 21
+4 3 2 22 20
+4 15 14 5 4
+4 4 9 16 15
+4 9 11 18 16
+4 11 3 20 18
+1,1/5
+1,2/5
+67/78,2/5
+67/78,1/5
+67/78,2/5
+67/78,1/5
+1,1/5
+1,2/5
+1,1/5
+67/78,1/5
+1,2/5
+67/78,2/5
+18/13,2/5
+18/13,1/5
+121/78,1/5
+121/78,2/5
+121/78,1/5
+18/13,1/5
+121/78,2/5
+18/13,2/5
+121/78,1/5
+18/13,1/5
+121/78,2/5
+18/13,2/5
