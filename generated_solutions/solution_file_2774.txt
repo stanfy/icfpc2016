@@ -19,7 +19,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 0,1/4 3/4,1/4
 0,1/2 1/2,1/2
 3/4,1/4 3/8,5/8
-), problemId=2774, problemHash=), state=(name = ( -> problem 8, 567, 569, 583, 773, 1094, 1558, 1606, 1610, 1705, 1778, 1779, 1780, 1781, 1782, 1783, 1784, 2421, 2424, 2425, 2426, 2427, 2531, 2670, 2780, 2802))icfp16.state.State@984bb8b1, realResemblance=0.736842, estimatedResemblance=0.737363100252738)
+), problemId=2774, problemHash=), state=(name = (problem 8, 567, 569, 583, 773, 1094, 1558, 1606, 1610, 1705, 1778, 1779, 1780, 1781, 1782, 1783, 1784, 2421, 2424, 2425, 2426, 2427, 2531, 2670, 2780, 2802))icfp16.state.State@984bb8b1, realResemblance=0.736842, estimatedResemblance=0.737363100252738)
 -------------------------- solution --------------------
 9
 0,0
