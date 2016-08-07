@@ -11,7 +11,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 -233/634,-383/634 -383/634,233/634
 383/634,-233/634 233/634,383/634
 -383/634,233/634 233/634,383/634
-), problemId=908, problemHash=), state=State(vertexes=[0,0, 0,1, 1,1, 1,0], facets=[4 0 1 2 3], finalPositions=[-47/130,-79/130, -79/130,47/130, 47/130,79/130, 79/130,-47/130]), realResemblance=0.990291, estimatedResemblance=0.9903212203129553)
+), problemId=908, problemHash=), state=(name = ( ->  -> Square -> Translate (-1/2,-1/2) -> Rotate(0,0, <(63, 16, 65)>)))icfp16.state.State@21856320, realResemblance=0.990291, estimatedResemblance=0.9903212203129553)
 -------------------------- solution --------------------
 4
 0,0

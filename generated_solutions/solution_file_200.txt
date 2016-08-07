@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.871605 estimated res =0.8715054231363629-------------------------- container --------------------
+real res =0.995456 estimated res =0.9954535372023787-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[0,0, 9/10,0, 9/10,1/29, 28/29,1/29, 28/29,271/290, 9/10,271/290, 0,1/29])], skeleton=[Edge(a=0,0, b=9/10,0), Edge(a=0,0, b=0,1/29), Edge(a=4/5,0, b=4/5,121/145), Edge(a=9/10,0, b=9/10,271/290), Edge(a=28/29,1/29, b=28/29,271/290), Edge(a=0,1/29, b=9/10,271/290), Edge(a=0,1/29, b=28/29,1/29), Edge(a=4/5,121/145, b=28/29,121/145), Edge(a=9/10,271/290, b=28/29,271/290)], rawString=1
 7
 0,0
@@ -19,17 +19,37 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 0,1/29 28/29,1/29
 4/5,121/145 28/29,121/145
 9/10,271/290 28/29,271/290
-), problemId=200, problemHash=), state=(name = ( -> Triangle))icfp16.state.State@72c8bea3, realResemblance=0.871605, estimatedResemblance=0.8715054231363629)
+), problemId=200, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[1,271/290, 1,0, 28/29,0, 28/29,271/290]), final=Polygon(vertices=[27/29,271/290, 27/29,0, 28/29,0, 28/29,271/290])), ComplexPolygon(initial=Polygon(vertices=[28/29,271/290, 28/29,1, 1,1, 1,271/290]), final=Polygon(vertices=[28/29,271/290, 28/29,126/145, 27/29,126/145, 27/29,271/290])), ComplexPolygon(initial=Polygon(vertices=[121/145,1, 28/29,1, 28/29,271/290, 9/10,271/290]), final=Polygon(vertices=[121/145,126/145, 28/29,126/145, 28/29,271/290, 9/10,271/290])), ComplexPolygon(initial=Polygon(vertices=[9/10,271/290, 0,271/290, 0,1, 121/145,1]), final=Polygon(vertices=[9/10,271/290, 9/10,1/29, 121/145,1/29, 121/145,126/145])), ComplexPolygon(initial=Polygon(vertices=[0,1/29, 0,271/290, 9/10,271/290]), final=Polygon(vertices=[0,1/29, 9/10,1/29, 9/10,271/290])), ComplexPolygon(initial=Polygon(vertices=[9/10,271/290, 28/29,271/290, 28/29,0, 0,0, 0,1/29]), final=Polygon(vertices=[9/10,271/290, 28/29,271/290, 28/29,0, 0,0, 0,1/29]))]), realResemblance=0.995456, estimatedResemblance=0.9954535372023787)
 -------------------------- solution --------------------
-4
-0,0
+12
+1,271/290
+1,0
+28/29,0
+28/29,271/290
+28/29,1
+1,1
+121/145,1
+9/10,271/290
+0,271/290
 0,1
-1,1
-1,0
-2
-3 0 1 2
-3 0 2 3
+0,1/29
 0,0
-1,0
-1,1
-1,0
+6
+4 0 1 2 3
+4 3 4 5 0
+4 6 4 3 7
+4 7 8 9 6
+3 10 8 7
+5 7 3 2 11 10
+27/29,271/290
+27/29,0
+28/29,0
+28/29,271/290
+28/29,126/145
+27/29,126/145
+121/145,126/145
+9/10,271/290
+9/10,1/29
+121/145,1/29
+0,1/29
+0,0
