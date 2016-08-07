@@ -4,7 +4,9 @@ import icfp16.data.Edge
 import icfp16.data.Polygon
 import icfp16.data.Problem
 import icfp16.data.Vertex
+import icfp16.estimate.BitmapEstimator
 import icfp16.folder.Line
+import icfp16.folder.isLeft
 import icfp16.state.ComplexState
 import icfp16.state.IState
 import icfp16.state.solution
@@ -17,7 +19,10 @@ fun wrappingEdges(envelop: Polygon, target: Polygon): List<Edge> {
       .filter { envelop.convexIn(it.a) && envelop.convexIn(it.b) }
       // Remove edges that match our boundaries.
       .filter { e -> !envelop.edges().any { it.hasPoint(e.a) && it.hasPoint(e.b) } }
-      // Sort by length.
+      // Filter items that leaves us with all points on one side
+      .filterNot { e -> envelop.vertices.all { isLeft(e.a, e.b, it) >=0 } }
+      .filterNot { e -> envelop.vertices.all { isLeft(e.a, e.b, it) <= 0 } }
+      // Sort by length. // This one is not actually the bes idea
       .sortedByDescending { it.comparativeValue() }
 }
 
@@ -48,12 +53,23 @@ class Wrapper(private val debug: Boolean = false): Solver {
     if (vertexes.size < 2) {
       throw IllegalArgumentException("TODO: Looks like we cannot make it... Approximate?")
     }
-    val foldingEdge = Edge(vertexes.first(), vertexes.last())
 
-    debugMessage("folding edge: $foldingEdge")
+    // This one now actually true because we need  direction hre so we could have two
+    val foldingEdge = Edge(vertexes.first(), vertexes.last())
+    val inversedFold = foldingEdge.copy(foldingEdge.b, foldingEdge.a)
+
+    val normalState = startState.fold(foldingEdge) as ComplexState
+    val mirrorState = startState.fold(inversedFold) as ComplexState
+
+    // check which one is better
+    debugMessage("folding edge: $foldingEdge and $mirrorState")
+    val startStateResemblance = BitmapEstimator().resemblanceOf(problem, startState)
+    val normalStateResembalnce = BitmapEstimator().resemblanceOf(problem, normalState)
+    val mirrorStateResembalnce = BitmapEstimator().resemblanceOf(problem, mirrorState)
+
+    val newState = if (normalStateResembalnce > mirrorStateResembalnce) normalState else  mirrorState
 
     // Now we have a correct edge to do the fold. Do it.
-    val newState = startState.fold(foldingEdge) as ComplexState
     if (newState.polys.size > state.polys.size) {
 
       // Fold successful. Let's continue our adventure.
