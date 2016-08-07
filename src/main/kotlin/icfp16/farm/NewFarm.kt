@@ -181,6 +181,7 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
                 println("Won't update DB Problem ${task.problem_id} Resemblance: $realResemblance is less than we have now ${task.realResemblance}" )
               }
             } else {
+              println("Sleeping because I can't submit...")
               Thread.sleep(3000)
             }
           } while (!submission.isSuccessful && --retries > 0)
