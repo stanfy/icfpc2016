@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.632653 estimated res =0.632726381971095-------------------------- container --------------------
+real res =1.0 estimated res =1.0-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[1/2,0, 1,0, 1,1/2, 1/2,1/2])], skeleton=[Edge(a=1/2,0, b=1,0), Edge(a=1/2,0, b=1/2,1/2), Edge(a=1,0, b=1,1/2), Edge(a=1/2,1/2, b=1,1/2)], rawString=1
 4
 1/2,0
@@ -11,27 +11,29 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 1/2,0 1/2,1/2
 1,0 1,1/2
 1/2,1/2 1,1/2
-), problemId=2780, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[1,1/2, 1,0, 1/2,0]), final=Polygon(vertices=[11/8,0, 7/8,0, 7/8,1/2])), ComplexPolygon(initial=Polygon(vertices=[1/2,1, 1,1, 1,1/2]), final=Polygon(vertices=[7/8,1/2, 7/8,0, 11/8,0])), ComplexPolygon(initial=Polygon(vertices=[1,1/2, 1/2,0, 0,0, 0,1/2]), final=Polygon(vertices=[11/8,0, 7/8,1/2, 3/8,1/2, 3/8,0])), ComplexPolygon(initial=Polygon(vertices=[0,1/2, 0,1, 1/2,1, 1,1/2]), final=Polygon(vertices=[3/8,0, 3/8,1/2, 7/8,1/2, 11/8,0]))]), realResemblance=0.632653, estimatedResemblance=0.632726381971095)
+), problemId=2780, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[1/2,1, 1,1, 1,1/2, 1/2,1/2]), final=Polygon(vertices=[1/2,0, 1,0, 1,1/2, 1/2,1/2])), ComplexPolygon(initial=Polygon(vertices=[1/2,1/2, 0,1/2, 0,1, 1/2,1]), final=Polygon(vertices=[1/2,1/2, 1,1/2, 1,0, 1/2,0])), ComplexPolygon(initial=Polygon(vertices=[1/2,0, 0,0, 0,1/2, 1/2,1/2]), final=Polygon(vertices=[1/2,0, 1,0, 1,1/2, 1/2,1/2])), ComplexPolygon(initial=Polygon(vertices=[1/2,1/2, 1,1/2, 1,0, 1/2,0]), final=Polygon(vertices=[1/2,1/2, 1,1/2, 1,0, 1/2,0]))]), realResemblance=1.0, estimatedResemblance=1.0)
 -------------------------- solution --------------------
-8
+9
+1/2,1
+1,1
+1,1/2
+1/2,1/2
+0,1/2
+0,1
+1/2,0
+0,0
+1,0
+4
+4 0 1 2 3
+4 3 4 5 0
+4 6 7 4 3
+4 3 2 8 6
+1/2,0
+1,0
+1,1/2
+1/2,1/2
 1,1/2
 1,0
 1/2,0
-1/2,1
-1,1
-0,0
-0,1/2
-0,1
-4
-3 0 1 2
-3 3 4 0
-4 0 2 5 6
-4 6 7 3 0
-11/8,0
-7/8,0
-7/8,1/2
-7/8,1/2
-7/8,0
-3/8,1/2
-3/8,0
-3/8,1/2
+1,0
+1,0
