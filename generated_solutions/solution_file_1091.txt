@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.576926 estimated res =0.575663264341687-------------------------- container --------------------
+real res =0.653444 estimated res =0.6521127691669721-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[1/2,-1, 1,-1, 3/4,-3/4, 1,-1/2, 1,0, 1/2,-1/2])], skeleton=[Edge(a=1/2,-1, b=1,-1), Edge(a=1/2,-1, b=1,-1/2), Edge(a=1/2,-1/2, b=1,-1/2), Edge(a=1/2,-1/2, b=1,0), Edge(a=1,-1, b=1/2,-1/2), Edge(a=1/2,-1, b=1/2,-1/2), Edge(a=1,-1/2, b=1,0)], rawString=1
 6
 1/2,-1
@@ -16,26 +16,27 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 1,-1 1/2,-1/2
 1/2,-1 1/2,-1/2
 1,-1/2 1,0
-), problemId=1091, problemHash=), state=State(vertexes=[0,0, 1,0, 0,1/3, 1,1/3, 0,2/3, 1,2/3, 0,1, 1,1], facets=[4 0 1 3 2, 4 2 3 5 4, 4 4 5 7 6], finalPositions=[59/120,-127/120, 463/600,-59/600, 487/600,-691/600, 131/120,-23/120, 59/120,-127/120, 463/600,-59/600, 487/600,-691/600, 131/120,-23/120]), realResemblance=0.576926, estimatedResemblance=0.575663264341687)
+), problemId=1091, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[1,1/2, 1,0, 1/2,0]), final=Polygon(vertices=[25/24,0, 25/24,-1/2, 13/24,-1/2])), ComplexPolygon(initial=Polygon(vertices=[1/2,1, 1,1, 1,1/2]), final=Polygon(vertices=[13/24,-1/2, 25/24,-1/2, 25/24,0])), ComplexPolygon(initial=Polygon(vertices=[1,1/2, 1/2,0, 0,0, 0,1/2]), final=Polygon(vertices=[25/24,0, 13/24,-1/2, 13/24,-1, 25/24,-1])), ComplexPolygon(initial=Polygon(vertices=[0,1/2, 0,1, 1/2,1, 1,1/2]), final=Polygon(vertices=[25/24,-1, 13/24,-1, 13/24,-1/2, 25/24,0]))]), realResemblance=0.653444, estimatedResemblance=0.6521127691669721)
 -------------------------- solution --------------------
 8
-0,0
+1,1/2
 1,0
-0,1/3
-1,1/3
-0,2/3
-1,2/3
-0,1
+1/2,0
+1/2,1
 1,1
-3
-4 0 1 3 2
-4 2 3 5 4
-4 4 5 7 6
-59/120,-127/120
-463/600,-59/600
-487/600,-691/600
-131/120,-23/120
-59/120,-127/120
-463/600,-59/600
-487/600,-691/600
-131/120,-23/120
+0,0
+0,1/2
+0,1
+4
+3 0 1 2
+3 3 4 0
+4 0 2 5 6
+4 6 7 3 0
+25/24,0
+25/24,-1/2
+13/24,-1/2
+13/24,-1/2
+25/24,-1/2
+13/24,-1
+25/24,-1
+13/24,-1

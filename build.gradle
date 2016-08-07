@@ -28,6 +28,7 @@ dependencies {
   compile group: 'com.squareup.retrofit2', name: 'converter-scalars', version: '2.1.0'
   compile 'net.wuerl.kotlin:assertj-core-kotlin:0.1.1'
   compile group: 'com.miglayout', name: 'miglayout-swing', version: '5.0'
+  compile 'com.google.firebase:firebase-server-sdk:[3.0.0,)'
 
 
   testCompile 'junit:junit:4.12'
