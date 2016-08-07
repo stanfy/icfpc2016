@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.59267 estimated res =0.592784087387532-------------------------- container --------------------
+real res =0.823464 estimated res =0.8231992946451017-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[11/65,191/364, 129/260,60/91, 179/260,102/91, 119/260,443/364, 47/130,359/364, 9/260,155/182, -51/260,345/364, -19/65,261/364])], skeleton=[Edge(a=129/260,60/91, b=179/260,102/91), Edge(a=11/65,191/364, b=119/260,443/364), Edge(a=-4/65,113/182, b=9/260,155/182), Edge(a=11/65,191/364, b=9/260,155/182), Edge(a=-19/65,261/364, b=-51/260,345/364), Edge(a=129/260,60/91, b=47/130,359/364), Edge(a=11/65,191/364, b=129/260,60/91), Edge(a=11/65,191/364, b=-19/65,261/364), Edge(a=-19/65,261/364, b=179/260,102/91), Edge(a=129/260,60/91, b=-51/260,345/364), Edge(a=77/130,81/91, b=47/130,359/364), Edge(a=179/260,102/91, b=119/260,443/364)], rawString=1
 8
 11/65,191/364
@@ -23,27 +23,61 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 129/260,60/91 -51/260,345/364
 77/130,81/91 47/130,359/364
 179/260,102/91 119/260,443/364
-), problemId=3570, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[1,1/2, 1,0, 1/2,0]), final=Polygon(vertices=[49883/60320,97813/84448, 29083/60320,67237/84448, 7243/60320,96357/84448])), ComplexPolygon(initial=Polygon(vertices=[1/2,1, 1,1, 1,1/2]), final=Polygon(vertices=[7243/60320,96357/84448, 29083/60320,67237/84448, 49883/60320,97813/84448])), ComplexPolygon(initial=Polygon(vertices=[1,1/2, 1/2,0, 0,0, 0,1/2]), final=Polygon(vertices=[49883/60320,97813/84448, 7243/60320,96357/84448, -13557/60320,65781/84448, 8283/60320,36661/84448])), ComplexPolygon(initial=Polygon(vertices=[0,1/2, 0,1, 1/2,1, 1,1/2]), final=Polygon(vertices=[8283/60320,36661/84448, -13557/60320,65781/84448, 7243/60320,96357/84448, 49883/60320,97813/84448]))]), realResemblance=0.59267, estimatedResemblance=0.592784087387532)
+), problemId=3570, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[0,1993/2380, 0,1, 387/980,1]), transform=icfp16.data.ReflectTransform@5032960, final=Polygon(vertices=[0,1993/2380, 387/3380,17081/23660, 387/980,1])), ComplexPolygon(initial=Polygon(vertices=[0,83/700, 0,1083/2380, 11/65,191/364]), transform=icfp16.data.ComposedTransform@469bae1a, final=Polygon(vertices=[-77/325,1263/1820, 22/221,1263/1820, 11/65,191/364])), ComplexPolygon(initial=Polygon(vertices=[1,51/140, 1,0, 641/840,0, 249/260,85/182]), transform=icfp16.data.ComposedTransform@2e0ebf32, final=Polygon(vertices=[41/70,151/140, 3869/11830,1945/2366, 5393/10920,17/26, 179/260,102/91])), ComplexPolygon(initial=Polygon(vertices=[249/260,85/182, 1,199/350, 1,151/336]), transform=icfp16.data.ComposedTransform@13b54a57, final=Polygon(vertices=[179/260,102/91, 763/1300,2117/1820, 161/240,151/140])), ComplexPolygon(initial=Polygon(vertices=[1,151/336, 1,51/140, 249/260,85/182]), transform=icfp16.data.ComposedTransform@7b3f4263, final=Polygon(vertices=[161/240,151/140, 41/70,151/140, 179/260,102/91])), ComplexPolygon(initial=Polygon(vertices=[129/260,60/91, 1,2063/2380, 1,199/350, 249/260,85/182]), transform=icfp16.data.ComposedTransform@6ff4e135, final=Polygon(vertices=[129/260,60/91, 319/1105,2117/1820, 763/1300,2117/1820, 179/260,102/91])), ComplexPolygon(initial=Polygon(vertices=[249/260,85/182, 0,173/2380, 0,83/700, 11/65,191/364, 129/260,60/91]), transform=icfp16.data.ReflectTransform@57a5aea6, final=Polygon(vertices=[179/260,102/91, -7/26,22479/30940, -77/325,1263/1820, 11/65,191/364, 129/260,60/91])), ComplexPolygon(initial=Polygon(vertices=[249/260,85/182, 641/840,0, 0,0, 0,173/2380]), transform=icfp16.data.ComposedTransform@3596efd6, final=Polygon(vertices=[179/260,102/91, 5393/10920,17/26, -7/26,17/26, -7/26,22479/30940])), ComplexPolygon(initial=Polygon(vertices=[137/140,1, 1,1, 1,111/112]), transform=icfp16.data.ComposedTransform@6e3a2179, final=Polygon(vertices=[145/364,113/91, 49/130,113/91, 49/130,1821/1456])), ComplexPolygon(initial=Polygon(vertices=[129/260,60/91, 11/65,191/364, 0,25/42, 0,1993/2380, 387/980,1, 67/105,1]), transform=icfp16.data.ComplexPolygonKt$TRANSFORM_IDENTITY$1@6099e7af, final=Polygon(vertices=[129/260,60/91, 11/65,191/364, 0,25/42, 0,1993/2380, 387/980,1, 67/105,1])), ComplexPolygon(initial=Polygon(vertices=[67/105,1, 137/140,1, 1,111/112, 1,2063/2380, 129/260,60/91]), transform=icfp16.data.ReflectTransform@5764291b, final=Polygon(vertices=[67/105,1, 145/364,113/91, 49/130,1821/1456, 319/1105,2117/1820, 129/260,60/91])), ComplexPolygon(initial=Polygon(vertices=[11/65,191/364, 0,1083/2380, 0,25/42]), transform=icfp16.data.ReflectTransform@497adb8a, final=Polygon(vertices=[11/65,191/364, 22/221,1263/1820, 0,25/42]))]), realResemblance=0.823464, estimatedResemblance=0.8231992946451017)
 -------------------------- solution --------------------
-8
-1,1/2
-1,0
-1/2,0
-1/2,1
-1,1
-0,0
-0,1/2
+21
+0,1993/2380
 0,1
-4
+387/980,1
+0,83/700
+0,1083/2380
+11/65,191/364
+1,51/140
+1,0
+641/840,0
+249/260,85/182
+1,199/350
+1,151/336
+129/260,60/91
+1,2063/2380
+0,173/2380
+0,0
+137/140,1
+1,1
+1,111/112
+0,25/42
+67/105,1
+12
 3 0 1 2
-3 3 4 0
-4 0 2 5 6
-4 6 7 3 0
-49883/60320,97813/84448
-29083/60320,67237/84448
-7243/60320,96357/84448
-7243/60320,96357/84448
-29083/60320,67237/84448
--13557/60320,65781/84448
-8283/60320,36661/84448
--13557/60320,65781/84448
+3 3 4 5
+4 6 7 8 9
+3 9 10 11
+3 11 6 9
+4 12 13 10 9
+5 9 14 3 5 12
+4 9 8 15 14
+3 16 17 18
+6 12 5 19 0 2 20
+5 20 16 18 13 12
+3 5 4 19
+0,1993/2380
+387/3380,17081/23660
+387/980,1
+-77/325,1263/1820
+22/221,1263/1820
+11/65,191/364
+41/70,151/140
+3869/11830,1945/2366
+5393/10920,17/26
+179/260,102/91
+763/1300,2117/1820
+161/240,151/140
+129/260,60/91
+319/1105,2117/1820
+-7/26,22479/30940
+-7/26,17/26
+145/364,113/91
+49/130,113/91
+49/130,1821/1456
+0,25/42
+67/105,1

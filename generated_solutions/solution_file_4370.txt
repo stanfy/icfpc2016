@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.607142 estimated res =0.606959245995945-------------------------- container --------------------
+real res =0.636363 estimated res =0.6364005574488364-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[0,0, 2/3,0, 2/3,1/3, 5/6,1/2, 2/3,2/3])], skeleton=[Edge(a=2/3,1/3, b=5/6,1/2), Edge(a=0,0, b=2/3,0), Edge(a=0,0, b=2/3,2/3), Edge(a=1/3,0, b=1/3,1/3), Edge(a=2/3,0, b=2/3,2/3), Edge(a=1/3,1/3, b=2/3,1/3), Edge(a=5/6,1/2, b=2/3,2/3)], rawString=1
 5
 0,0
@@ -15,27 +15,21 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 2/3,0 2/3,2/3
 1/3,1/3 2/3,1/3
 5/6,1/2 2/3,2/3
-), problemId=4370, problemHash=), state=(name = ( -> Kolbaska diagonal))icfp16.state.State@7cb37079, realResemblance=0.607142, estimatedResemblance=0.606959245995945)
+), problemId=4370, problemHash=d4b4841a904083e4478fb927dcae9108d49b689a), state=(name = (Triangle Twice))icfp16.state.State@58c52c9b, realResemblance=0.636363, estimatedResemblance=0.6364005574488364)
 -------------------------- solution --------------------
-8
+5
 0,0
-0,1/2
 0,1
-1/2,1
 1,1
-1,1/2
 1,0
-1/2,0
+1/2,1/2
 4
-4 0 1 3 4
-4 0 4 5 7
-3 1 2 3
-3 7 5 6
+3 0 4 1
+3 1 4 2
+3 2 4 3
+3 3 4 0
 0,0
-1/2,0
+1,0
+0,0
+1,0
 1/2,1/2
-1,1/2
-1,1
-1,1/2
-1/2,1/2
-1/2,0

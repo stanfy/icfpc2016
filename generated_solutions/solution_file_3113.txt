@@ -44,7 +44,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 16/21,5/21 3/4,1/4
 14/19,9/38 794/1203,721/2406
 37/68,39/68 7/34,23/34
-), problemId=3113, problemHash=), state=(name = ( ->  ->  -> Task 3 -> Translate (-7432168059/137301087928,-52316304869/1235709791352) -> Rotate(41623122931/102975815946,257025341417/617854895676, <(20, 21, 29)>)))icfp16.state.State@bdcae7a1, realResemblance=0.543607, estimatedResemblance=0.5437352966617839)
+), problemId=3113, problemHash=), state=(name = ( ->  -> Task 3 -> Translate (-7432168059/137301087928,-52316304869/1235709791352) -> Rotate(41623122931/102975815946,257025341417/617854895676, <(20, 21, 29)>)))icfp16.state.State@bdcae7a1, realResemblance=0.543607, estimatedResemblance=0.5437352966617839)
 -------------------------- solution --------------------
 8
 0,0
