@@ -5,7 +5,9 @@ import icfp16.data.Edge
 import icfp16.data.Fraction
 import icfp16.data.Vertex
 import icfp16.estimate.BitmapEstimator
+import icfp16.state.ComplexState
 import icfp16.state.State
+import icfp16.state.solution
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
@@ -38,7 +40,7 @@ class WrapperTest {
   }
 
   @Test
-  fun wrapConvex() {
+  fun wrapSimpleConvex() {
     val problemString =
         """1
           |4
@@ -56,12 +58,12 @@ class WrapperTest {
 
     val problem = parseProblem(problemString)
 
-    val state = Wrapper().solveWithWrapping(problem, State.initialSquare())
-    val anotherState = BetterTranslatorSolver().solve(problem, "")
+    val state = Wrapper().solve(problem, "any")
+
+    println(state!!.solution())
 
     val estimator = BitmapEstimator()
-    assertThat(estimator.resemblanceOf(problem, state, 4))
-        .isGreaterThan(estimator.resemblanceOf(problem, anotherState!!, 4))
+    assertThat(estimator.resemblanceOf(problem, state, 4)).isEqualTo(1.0)
   }
 
 }

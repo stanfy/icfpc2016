@@ -1,8 +1,11 @@
 package icfp16.solver
 
 import icfp16.data.*
+import icfp16.folder.Line
+import icfp16.state.ComplexState
 import icfp16.state.IState
 import icfp16.state.State
+import java.util.*
 
 fun wrappingEdges(envelop: Polygon, target: Polygon): List<Edge> {
   return target.edges()
@@ -18,36 +21,59 @@ class Wrapper: Solver {
 
   fun solveWithWrapping(problem: Problem, startState: IState): IState {
     // We know that we have one polygon at the moment.
-    val p = startState.poligons()[0]
+    val p = startState.poligons().first()
 
     val we = wrappingEdges(p, problem.poligons[0])
     if (we.isEmpty()) {
+      // Nothing to do! We should be done.
       return startState
     }
 
-    val affineSegment = we[0].b.relativeVector(we[0].a)
-    var reflectedPoints = p.vertices
-        .filter { affineSegment.side(it.relativeVector(we[0].a)) == VectorSide.LEFT }
-    println(reflectedPoints)
-    reflectedPoints = reflectedPoints
-        .map { it.reflect(we[0]) }
+    val state = startState as ComplexState
 
-    println(reflectedPoints)
+    // fold currently requires edge points to cross poly edges...
+    val foldingLine = Line(we.first())
+    val vertexes = state.poligons().first().edges()
+        .map { it.to(Line(it).interection(foldingLine)) }
+        .filter { it.second != null && it.first.hasPoint(it.second!!) }
+        .map { it.second!! }
+        .sortedWith(boundaryComparator)
+    if (vertexes.size < 2) {
+      throw IllegalArgumentException("TODO: Looks like we cannot make it... Approximate?")
+    }
+    val foldingEdge = Edge(vertexes.first(), vertexes.last())
 
-
-    // TODO: Commented to avoid slowing down solutions.
-//    problem.poligons.forEach {
-//      println(wrappingEdges(p, it))
-//    }
-
-    // TODO
-    return State.initialSquare()
+    // Now we have a correct edge to do the fold. Do it.
+    val newState = startState.fold(foldingEdge) as ComplexState
+    if (newState.polys.size > state.polys.size) {
+      // Fold successful. Let's continue our adventure.
+      return solveWithWrapping(problem, newState)
+    } else {
+      // We failed, return last valid state.
+      return startState
+    }
   }
 
+  private val boundaryComparator: Comparator<Vertex> = object : Comparator<Vertex> {
+    override fun compare(o1: Vertex, o2: Vertex): Int {
+      val v = o1.relativeVector(o2)
+      if (v.a > 0) {
+        return 1
+      } else if (v.a < 0) {
+        return -1
+      } else {
+        return if (v.b > 0) {
+          1
+        } else if (v.b < 0) {
+          -1
+        } else {
+          0
+        }
+      }
+    }
+  }
   override fun solve(problem: Problem, problemId: String): IState? {
-    // Position our square.
-    val startState = BetterTranslatorSolver().solve(problem, problemId)
-    return solveWithWrapping(problem, startState!!)
+    return solveWithWrapping(problem, ComplexState())
   }
 
 }
