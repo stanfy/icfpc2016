@@ -1,4 +1,4 @@
-package icfp16.solver
+package icfp16.utils
 
 import kotlin.collections.*
 import icfp16.data.Edge
@@ -8,18 +8,19 @@ import icfp16.data.Vertex
 import icfp16.state.IState
 import icfp16.state.State
 
-class UnfoldingSolver : Solver {
-  override fun solve(problem: Problem, problemId: String, thresholdResemblance: Double): IState? {
-    val initialSquare = State.initialSquare()
+class PolygonComposer {
 
-    if (problem.skeleton.count() != 7) {
-      return null
+  fun polygonsFromProblem(problem: Problem): List<Polygon> {
+    if (problem.skeleton.count() < 3) {
+      return emptyList()
     }
 
-    return initialSquare
+    val initialEdge = problem.skeleton.first()
+    val polygons = visitVertex(initialEdge.a, emptyArray(), problem.skeleton)
+    return filterPolygons(polygons)
   }
 
-  fun filterPolygons(polygons: List<Polygon>): List<Polygon> {
+  private fun filterPolygons(polygons: List<Polygon>): List<Polygon> {
     return when (polygons.count()) {
       0 -> emptyList()
       1 -> polygons
@@ -47,21 +48,11 @@ class UnfoldingSolver : Solver {
     }
   }
 
-  fun polygonsFromProblem(problem: Problem): List<Polygon> {
-    if (problem.skeleton.count() < 3) {
-      return emptyList()
-    }
-
-    val initialEdge = problem.skeleton.first()
-    val polygons = visitVertex(initialEdge.a, emptyArray(), problem.skeleton)
-    return filterPolygons(polygons)
-  }
-
-  fun findAdjoinedEdges(vertex: Vertex, visitedEdges: Array<Edge>, potentialEdges: List<Edge>): List<Edge> {
+  private fun findAdjoinedEdges(vertex: Vertex, visitedEdges: Array<Edge>, potentialEdges: List<Edge>): List<Edge> {
     return potentialEdges.filter { (it.hasPoint(vertex)) && !visitedEdges.contains(it) }
   }
 
-  fun nearestClosingPolygon(initialVertex: Vertex, visitedEdges: Array<Edge>): Polygon {
+  private fun nearestClosedPolygon(initialVertex: Vertex, visitedEdges: Array<Edge>): Polygon {
     val polygonVertices: MutableList<Vertex> = mutableListOf(initialVertex)
     var previousVertex = initialVertex
 
@@ -80,11 +71,11 @@ class UnfoldingSolver : Solver {
     return Polygon(polygonVertices)
   }
 
-  fun nextVertexForVertex(vertex: Vertex, edge: Edge): Vertex {
+  private fun nextVertexForVertex(vertex: Vertex, edge: Edge): Vertex {
     return if (edge.a == vertex) edge.b else edge.a
   }
 
-  fun visitVertex(vertex: Vertex, visitedEdges: Array<Edge>, availableEdges: List<Edge>): List<Polygon> {
+  private fun visitVertex(vertex: Vertex, visitedEdges: Array<Edge>, availableEdges: List<Edge>): List<Polygon> {
     var adjoinedEdges = findAdjoinedEdges(vertex, visitedEdges, availableEdges)
     if (adjoinedEdges.count() == 2 && visitedEdges.count() == 0) {
       adjoinedEdges = adjoinedEdges.minus(adjoinedEdges.last())
@@ -93,7 +84,7 @@ class UnfoldingSolver : Solver {
     return when (adjoinedEdges.count()) {
       0 -> {
         if (visitedEdges.count() > 1) {
-          val polygon = nearestClosingPolygon(vertex, visitedEdges)
+          val polygon = nearestClosedPolygon(vertex, visitedEdges)
           listOf(polygon)
         } else {
           emptyList()
@@ -120,5 +111,4 @@ class UnfoldingSolver : Solver {
       }
     }
   }
-
 }
