@@ -415,8 +415,10 @@ class PublicStates {
         ).setName("Cool last phigure")
     )
 
-    val states: Array<IState> = localState.plus(PaulPublicStates.states).plus(DimaPublicStates.states)
-//    val states: Array<IState> = DimaPublicStates.states
+    val states: Array<IState> = localState
+      .plus(PaulPublicStates.states)
+      .plus(DimaPublicStates.states)
+      .plus(NastyaPublicStates.states)
   }
 
 }
