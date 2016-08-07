@@ -1,0 +1,63 @@
+-------------------------- resemblance --------------------
+real res =0.636363 estimated res =0.6362889620855484-------------------------- container --------------------
+SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[0,0, 2/3,0, 2/3,1/3, 5/6,1/2, 2/3,2/3])], skeleton=[Edge(a=2/3,1/3, b=5/6,1/2), Edge(a=0,0, b=2/3,0), Edge(a=0,0, b=2/3,2/3), Edge(a=1/3,0, b=1/3,1/3), Edge(a=2/3,0, b=2/3,2/3), Edge(a=1/3,1/3, b=2/3,1/3), Edge(a=5/6,1/2, b=2/3,2/3)], rawString=1
+5
+0,0
+2/3,0
+2/3,1/3
+5/6,1/2
+2/3,2/3
+7
+2/3,1/3 5/6,1/2
+0,0 2/3,0
+0,0 2/3,2/3
+1/3,0 1/3,1/3
+2/3,0 2/3,2/3
+1/3,1/3 2/3,1/3
+5/6,1/2 2/3,2/3
+), problemId=4573, problemHash=d4b4841a904083e4478fb927dcae9108d49b689a), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[1,0, 2/3,0, 2/3,1/3]), final=Polygon(vertices=[1/3,0, 1/3,1/3, 2/3,1/3])), ComplexPolygon(initial=Polygon(vertices=[2/3,1/3, 2/3,2/3, 1,1/3, 1,0]), final=Polygon(vertices=[2/3,1/3, 2/3,2/3, 1/3,1/3, 1/3,0])), ComplexPolygon(initial=Polygon(vertices=[1,1, 1,2/3, 5/6,5/6]), final=Polygon(vertices=[2/3,2/3, 2/3,1/3, 5/6,1/2])), ComplexPolygon(initial=Polygon(vertices=[5/6,5/6, 2/3,1, 1,1]), final=Polygon(vertices=[5/6,1/2, 2/3,1/3, 2/3,2/3])), ComplexPolygon(initial=Polygon(vertices=[2/3,2/3, 2/3,1, 5/6,5/6]), final=Polygon(vertices=[2/3,2/3, 2/3,1/3, 5/6,1/2])), ComplexPolygon(initial=Polygon(vertices=[5/6,5/6, 1,2/3, 1,1/3, 2/3,2/3]), final=Polygon(vertices=[5/6,1/2, 2/3,1/3, 1/3,1/3, 2/3,2/3])), ComplexPolygon(initial=Polygon(vertices=[1/3,1, 2/3,1, 1/2,5/6]), final=Polygon(vertices=[2/3,2/3, 2/3,1/3, 5/6,1/2])), ComplexPolygon(initial=Polygon(vertices=[1/2,5/6, 0,1/3, 0,1, 1/3,1]), final=Polygon(vertices=[5/6,1/2, 1/3,0, 1/3,2/3, 2/3,2/3])), ComplexPolygon(initial=Polygon(vertices=[2/3,2/3, 0,0, 0,1/3, 1/2,5/6]), final=Polygon(vertices=[2/3,2/3, 0,0, 1/3,0, 5/6,1/2])), ComplexPolygon(initial=Polygon(vertices=[1/2,5/6, 2/3,1, 2/3,2/3]), final=Polygon(vertices=[5/6,1/2, 2/3,1/3, 2/3,2/3])), ComplexPolygon(initial=Polygon(vertices=[2/3,1/3, 2/3,0, 1/3,0]), final=Polygon(vertices=[2/3,1/3, 1/3,1/3, 1/3,0])), ComplexPolygon(initial=Polygon(vertices=[1/3,0, 0,0, 2/3,2/3, 2/3,1/3]), final=Polygon(vertices=[1/3,0, 0,0, 2/3,2/3, 2/3,1/3]))]), realResemblance=0.636363, estimatedResemblance=0.6362889620855484)
+-------------------------- solution --------------------
+15
+1,0
+2/3,0
+2/3,1/3
+2/3,2/3
+1,1/3
+1,1
+1,2/3
+5/6,5/6
+2/3,1
+1/3,1
+1/2,5/6
+0,1/3
+0,1
+0,0
+1/3,0
+12
+3 0 1 2
+4 2 3 4 0
+3 5 6 7
+3 7 8 5
+3 3 8 7
+4 7 6 4 3
+3 9 8 10
+4 10 11 12 9
+4 3 13 11 10
+3 10 8 3
+3 2 1 14
+4 14 13 3 2
+1/3,0
+1/3,1/3
+2/3,1/3
+2/3,2/3
+1/3,1/3
+2/3,2/3
+2/3,1/3
+5/6,1/2
+2/3,1/3
+2/3,2/3
+5/6,1/2
+1/3,0
+1/3,2/3
+0,0
+1/3,0

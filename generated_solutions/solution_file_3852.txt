@@ -17,7 +17,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 9999077/69994655,0 0,9999077/69994655
 0,9997961/69994655 9999077/69994655,9997961/69994655
 0,9999077/69994655 9999077/69994655,9999077/69994655
-), problemId=3852, problemHash=), state=(name = ( ->  -> Very small square -> Rotate(1/10,1/10, <(36, 77, 85)>)))icfp16.state.State@4b62dd8, realResemblance=0.16326, estimatedResemblance=0.16428359845967866)
+), problemId=3852, problemHash=d1816f1fb4d4eb6c58b5ee37a461491ecad3a443), state=(name = ( -> Very small square -> Rotate(1/10,1/10, <(36, 77, 85)>)))icfp16.state.State@4b62dd8, realResemblance=0.16326, estimatedResemblance=0.16428359845967866)
 -------------------------- solution --------------------
 25
 0,0
