@@ -15,7 +15,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 223/685,-2551/10960 281/1370,-61/685
 228/685,37/2055 -37/685,684/685
 342/685,37/1370 -37/685,684/685
-), problemId=2546, problemHash=), state=(name = ( ->  ->  -> Kolbaska diagonal -> Translate (-4701/10960,-10487/43840) -> Rotate(2149/10960,5953/43840, <(3, 4, 5)>)))icfp16.state.State@4ec6b88f, realResemblance=0.667149, estimatedResemblance=0.667116854397818)
+), problemId=2546, problemHash=), state=(name = ( ->  -> Kolbaska diagonal -> Translate (-4701/10960,-10487/43840) -> Rotate(2149/10960,5953/43840, <(3, 4, 5)>)))icfp16.state.State@4ec6b88f, realResemblance=0.667149, estimatedResemblance=0.667116854397818)
 -------------------------- solution --------------------
 8
 0,0
