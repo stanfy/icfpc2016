@@ -25,7 +25,8 @@ import java.util.stream.Stream
 val PROBLEMS_START_ID = 3831
 
 fun main(args: Array<String>) {
-  importSolutionsFromLocalToFirebase()
+//  importSolutionsFromLocalToFirebase()
+  icfp16.farm.startSolving()
 }
 
 private fun initFirebase() {
@@ -47,7 +48,9 @@ fun startSolving() {
   println("Get already stored tasks")
   val tasks = getStoredTasks(database)
 
-  tasks.values
+  val taskValues = ArrayList(tasks.values)
+  Collections.shuffle(taskValues)
+  taskValues
       .parallelStream()
       .filter { it.component1().solution.isEmpty() }
       .forEach {
