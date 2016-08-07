@@ -1,10 +1,12 @@
 package icfp16.solver
 
-import icfp16.data.*
+import icfp16.data.Edge
+import icfp16.data.Polygon
+import icfp16.data.Problem
+import icfp16.data.Vertex
 import icfp16.folder.Line
 import icfp16.state.ComplexState
 import icfp16.state.IState
-import icfp16.state.State
 import java.util.*
 
 fun wrappingEdges(envelop: Polygon, target: Polygon): List<Edge> {
@@ -72,7 +74,14 @@ class Wrapper: Solver {
       }
     }
   }
+
   override fun solve(problem: Problem, problemId: String): IState? {
+    // Identify the initial state. If something is on the edge - wrap it.
+    // If not, translate first.
+
+    // TODO
+
+    // Wrap.
     return solveWithWrapping(problem, ComplexState())
   }
 
