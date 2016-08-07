@@ -31,16 +31,6 @@ import java.util.stream.Stream
 
 val PROBLEMS_START_ID = 1
 
-var ourOwnSolutionIds = arrayOf(
-  "705", "706", "1141", "1481", "1573", "1574", "1649", "1853", "1854", "1855", "1902", "1901", "1903", "1904",
-  "1906", "1907", "1908", "1909", "1910", "1911", "2997", "3490", "3546", "3632", "3634", "3636",
-  "3637", "3638", "3639", "3641", "3642", "3643", "3645", "3646", "3647", "3649",
-  "3651", "3652", "3654", "3655", "3656", "3658", "3659", "3661", "3662", "3663",
-  "3665", "3666", "3669", "3670", "3805", "3146", "5031", "5040",
-  "5356", "5357", "5358", "5359", "5360", "5361", "5362", "5363", "5364", "5365",
-  "5366", "5367", "5368", "5369", "5370")
-
-
 fun main(args: Array<String>) {
   // TODO: force solving of only these problems
 
@@ -62,6 +52,7 @@ fun main(args: Array<String>) {
   //updateTasksDb()
 
   //startSolving()
+
 }
 
 
@@ -90,6 +81,8 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
     println("Get already stored tasks... chunkSize=$chunkSize  chunkIndex=$chunkIndex")
     chunkIndex++
     tasks = getStoredTasks(database)
+
+    var ourOwnSolutionIds = OwnSolutionsStorage.updatedOwnSolutions().toTypedArray()
 
     val taskValues = ArrayList(tasks.values)
     Collections.shuffle(taskValues)
@@ -153,6 +146,12 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
 
           do {
             val submission = api.submitSolution(task.problem_id, SolutionSpec(state.solution())).execute()
+            ourOwnSolutionIds = OwnSolutionsStorage.updatedOwnSolutions().toTypedArray()
+
+            if (ourOwnSolutionIds.contains(task.problem_id)) {
+              println("We're smart now we won't re-submit our own problem!")
+              break
+            }
 
             if (submission.isSuccessful) {
               val realResemblance = submission.body().resemblance
@@ -207,6 +206,7 @@ fun newFarmMonitoring() {
   println("Getting tasks...")
 
   val tasks = getStoredTasks(database)
+  val ourOwnSolutionIds = OwnSolutionsStorage.updatedOwnSolutions().toTypedArray()
 
   val taskValues = ArrayList(tasks.values)
 
@@ -257,6 +257,7 @@ fun newFarmMonitoring() {
 
 fun understandIdsDifference() {
   val tasksFromServer: List<String> = getAllTasksIdsFromFireBase().map { it.problem_id }
+  val ourOwnSolutionIds = OwnSolutionsStorage.updatedOwnSolutions().toTypedArray()
 
   val localTasksIds: List<String> = File(FileUtils().getDefaultProblemFileFolder()).listFiles()
     .map { FileUtils().getProblemIdByFileNameWithoutExtension(it.name)!! }
@@ -271,10 +272,10 @@ fun understandIdsDifference() {
   println(" local-server \n${mutableSet.sortedBy { Integer.parseInt(it) }}")
 
 
-  val ownMinusDifference = ourOwnSolutionIds.toMutableSet()
-  ownMinusDifference.removeAll(mutableSet)
-  println("difference ids: count=${ownMinusDifference.count()}")
-  println(ownMinusDifference)
+//  val ownMinusDifference = ourOwnSolutionIds.toMutableSet()
+//  ownMinusDifference.removeAll(mutableSet)
+//  println("difference ids: count=${ownMinusDifference.count()}")
+//  println(ownMinusDifference)
 }
 
 
