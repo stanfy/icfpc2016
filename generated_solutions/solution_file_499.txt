@@ -22,7 +22,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 197/320,1/80 117/320,1/5
 0,5/16 65/64,5/16
 65/64,0 253/320,3/10
-), problemId=499, problemHash=), state=State(vertexes=[0,0, 1,0, 0,1/3, 1,1/3, 0,2/3, 1,2/3, 0,1, 1,1], facets=[4 0 1 3 2, 4 2 3 5 4, 4 4 5 7 6], finalPositions=[129/128,-1/96, 1/128,-1/96, 129/128,31/96, 1/128,31/96, 129/128,-1/96, 1/128,-1/96, 129/128,31/96, 1/128,31/96]), realResemblance=0.923965, estimatedResemblance=0.9236168837166343)
+), problemId=499, problemHash=), state=(name = ( -> Task 0 -> Translate (1/128,-11/32)))icfp16.state.State@a7f62ce6, realResemblance=0.923965, estimatedResemblance=0.9236168837166343)
 -------------------------- solution --------------------
 8
 0,0
@@ -37,11 +37,11 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 4 0 1 3 2
 4 2 3 5 4
 4 4 5 7 6
-129/128,-1/96
-1/128,-1/96
-129/128,31/96
 1/128,31/96
-129/128,-1/96
-1/128,-1/96
 129/128,31/96
+1/128,-1/96
+129/128,-1/96
 1/128,31/96
+129/128,31/96
+1/128,-1/96
+129/128,-1/96

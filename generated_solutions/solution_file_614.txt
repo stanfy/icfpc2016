@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.729258 estimated res =0.7288853336680662-------------------------- container --------------------
+real res =0.765031 estimated res =0.7654255737308379-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[0,5/16, 13/16,5/16, 1,1/2, 1,3/4, 1/4,3/4, 1/8,5/8, 0,5/8])], skeleton=[Edge(a=13/16,5/16, b=1,1/2), Edge(a=0,5/16, b=0,5/8), Edge(a=1/2,5/16, b=1/2,3/4), Edge(a=1,1/2, b=1,3/4), Edge(a=0,1/2, b=1/4,3/4), Edge(a=0,5/16, b=13/16,5/16), Edge(a=0,1/2, b=1,1/2), Edge(a=1/2,1/2, b=1/4,3/4), Edge(a=13/16,5/16, b=1/2,5/8), Edge(a=0,5/8, b=1/2,5/8), Edge(a=1/4,3/4, b=1,3/4)], rawString=1
 7
 0,5/16
@@ -21,7 +21,7 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 13/16,5/16 1/2,5/8
 0,5/8 1/2,5/8
 1/4,3/4 1,3/4
-), problemId=614, problemHash=), state=State(vertexes=[0,0, 1,0, 0,1/3, 1,1/3, 0,2/3, 1,2/3, 0,1, 1,1], facets=[4 0 1 3 2, 4 2 3 5 4, 4 4 5 7 6], finalPositions=[-367/5712,611/952, 26389/28560,3783/4760, -379/28560,1487/4760, 5569/5712,443/952, -367/5712,611/952, 26389/28560,3783/4760, -379/28560,1487/4760, 5569/5712,443/952]), realResemblance=0.729258, estimatedResemblance=0.7288853336680662)
+), problemId=614, problemHash=), state=(name = ( -> Task 0 -> Rotate(1/2,1/2, <(84, 13, 85)>)))icfp16.state.State@e3002da2, realResemblance=0.765031, estimatedResemblance=0.7654255737308379)
 -------------------------- solution --------------------
 8
 0,0
@@ -36,11 +36,11 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 4 0 1 3 2
 4 2 3 5 4
 4 4 5 7 6
--367/5712,611/952
-26389/28560,3783/4760
--379/28560,1487/4760
-5569/5712,443/952
--367/5712,611/952
-26389/28560,3783/4760
--379/28560,1487/4760
-5569/5712,443/952
+-1/51,10/17
+247/255,63/85
+8/255,22/85
+52/51,7/17
+-1/51,10/17
+247/255,63/85
+8/255,22/85
+52/51,7/17
