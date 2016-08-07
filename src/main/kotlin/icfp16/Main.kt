@@ -53,6 +53,12 @@ fun main(args: Array<String>) {
     startSolving(emptyList(), recalculateAll = true)
     return
   }
+
+  if (args.size > 0 && "monitoring".equals(args[0])) {
+    newFarmMonitoring()
+    return
+  }
+
   //=========================================================
 
   if (args.size > 0 && "grab".equals(args[0])) {

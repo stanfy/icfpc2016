@@ -22,6 +22,7 @@ import java.io.File
 import java.io.FileInputStream
 import java.nio.file.Files
 import java.nio.file.attribute.BasicFileAttributes
+import java.text.DateFormat
 import java.util.*
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
@@ -42,7 +43,12 @@ var ourOwnSolutionIds = arrayOf(
 fun main(args: Array<String>) {
   // TODO: force solving of only these problems
 
-  val problemsIds = emptyList<String>()
+  var problemsIds = listOf<String>()
+
+  val startingId = 1
+  val count = 100
+  problemsIds = (startingId..(startingId + count)).map { "$it" }
+
   //val problemsIds = listOf<String>("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
   icfp16.farm.startSolving(problemIds = problemsIds)
 }
@@ -87,6 +93,7 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
     filteredValues =
       filteredValues
         .filter { problemIds.contains(it.component1().problem_id) }
+        .sortedBy { Integer.parseInt(it.first.problem_id) }
 
   } else {
     filteredValues =
@@ -145,6 +152,56 @@ fun startSolving(problemIds: List<String> = emptyList(), recalculateAll: Boolean
 
   println("Stop NEW FARM solver (Something wrong with Firebase - program finalization takes time, so wait a minute :)")
 }
+
+
+fun newFarmMonitoring() {
+  println("Cheching Firebase...")
+  initFirebase()
+
+  val database = FirebaseDatabase.getInstance()
+  println("Getting tasks...")
+
+  val tasks = getStoredTasks(database)
+
+  val taskValues = ArrayList(tasks.values)
+
+  val overall = taskValues.count()
+
+  val gems = taskValues
+    .filter { it.component1().realResemblance == 1.0 }
+    .count()
+
+  val veryNice = taskValues
+    .filter { it.component1().realResemblance < 1.0 &&  it.component1().realResemblance >= 0.8 }
+    .count()
+
+  val betterThanNothing = taskValues
+    .filter { it.component1().realResemblance < 0.8 &&  it.component1().realResemblance >= 0.5 }
+    .count()
+
+  val veryBad = taskValues
+    .filter { it.component1().realResemblance <= 0.3 }
+    .count()
+
+  val unsolved = taskValues
+    .filter { it.component1().solution.isEmpty()}
+    .count()
+
+  println("")
+  println("-------------------- Firebase current status ----------------- ")
+  println("date " + Date())
+  println("- overall tasks count = " + overall)
+  println("- unsolved tasks count = " + unsolved)
+  println("")
+  println("gems: r == 1.0 tasks count = " + gems)
+  println("nice: r in [0.8 .. 1.0) tasks count = " + veryNice)
+  println("ok: r in [0.5 .. 0.8) tasks count = " + betterThanNothing)
+  println("bad: r =< 0.3 count = " + veryBad)
+  println("-------------------------------------------------------------- ")
+  println("")
+  println("")
+}
+
 
 fun updateTasksDb() {
   initFirebase()
