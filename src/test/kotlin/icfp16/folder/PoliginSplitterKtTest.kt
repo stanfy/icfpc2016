@@ -104,8 +104,8 @@ class PoliginSplitterKtTest {
         ))
     val b6 = b5
         .fold(Edge(
-            Vertex(Fraction(0,8), Fraction(5, 8)),
-            Vertex(Fraction(1,8), Fraction(6, 8))
+            Vertex(Fraction(-1,4), Fraction(3, 8)),
+            Vertex(Fraction(-1,8), Fraction(1, 2))
         ))
         .appendName("Okolobubl")
 
