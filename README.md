@@ -13,6 +13,25 @@ To automate solutions submission for all problems: `gw run -PrunArgs=doit`. But 
 To start N parallel Farms that split all the problems set: `gw run -PrunArgs=<N>` (for instance, `gw run -PrunArgs=4`).
 You can add `.ignore` suffix to problem files in order to make Farm ignore it and avoid solving it.
 
+New farm
+========
+
+New farm contains two parts:
+* solver: get tasks from firebase and solves it
+* syncer: get tasks from REST API sends them to Firebase
+
+`new_farm_start.sh` - starts solver. Solver tries to solve all unsolved tasks. After this it wait 1 minute, pulls repo
+and begin solve again
+`new_farm_update_tasks.sh` - call sync every hour
+
+Clone this repo into some separate place and start both scripts in different terminals.
+
+Also: use
+```
+./gradlew run -PrunArgs=printNewFarmTasks
+```
+to show all tasks from Firebase
+
 **Install Java 8!!!**
 Also, please ensure [your global `.gitignore`](https://help.github.com/articles/ignoring-files/#create-a-global-gitignore) 
 file excludes your editor file (like .idea or .eclipse).

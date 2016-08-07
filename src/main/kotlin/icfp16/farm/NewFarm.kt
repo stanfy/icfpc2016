@@ -25,7 +25,8 @@ import java.util.stream.Stream
 val PROBLEMS_START_ID = 3831
 
 fun main(args: Array<String>) {
-  importSolutionsFromLocalToFirebase()
+//  importSolutionsFromLocalToFirebase()
+  icfp16.farm.startSolving()
 }
 
 private fun initFirebase() {
@@ -47,7 +48,9 @@ fun startSolving() {
   println("Get already stored tasks")
   val tasks = getStoredTasks(database)
 
-  tasks.values
+  val taskValues = ArrayList(tasks.values)
+  Collections.shuffle(taskValues)
+  taskValues
       .parallelStream()
       .filter { it.component1().solution.isEmpty() }
       .forEach {
@@ -56,8 +59,9 @@ fun startSolving() {
 
         println("Start solving problem #${task.problem_id}")
 
+          val resemblance = task.realResemblance
         val solver = BestSolverEver()
-        val state = solver.solve(problem, task.problem_id)
+        val state = solver.solve(problem, task.problem_id, resemblance)
 
         if (state == null) {
           println("Problem ${task.problem_id} is not solved")
@@ -258,8 +262,8 @@ data class Task(
     val time: Long = 0,
     val problem: String = "",
     val solution: String = "",
-    val realResemblance: Any = 0.toDouble(),
-    val estimatedResemblance: Any = 0.toDouble()
+    val realResemblance: Double = 0.toDouble(),
+    val estimatedResemblance: Double = 0.toDouble()
 )
 
 fun <T> Collection<T>.parallelStream(): Stream<T> {
