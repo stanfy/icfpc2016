@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.666666 estimated res =0.6673726759629687-------------------------- container --------------------
+real res =0.710435 estimated res =0.7111001384590324-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[1/8,0, 5/12,0, 5/12,5/24, 11/24,1/4, 5/12,7/24, 5/12,5/12, 3/8,5/12, 1/3,11/24, 7/24,11/24, 7/24,5/12, 5/24,1/2, 5/24,2/3, 1/6,2/3, 0,1/2, 0,5/24, 1/8,1/12])], skeleton=[Edge(a=5/24,0, b=11/24,1/4), Edge(a=3/8,1/4, b=5/12,7/24), Edge(a=1/8,0, b=5/12,0), Edge(a=1/4,1/4, b=7/24,7/24), Edge(a=0,5/24, b=0,1/2), Edge(a=1/8,0, b=1/8,5/12), Edge(a=1/6,0, b=1/6,2/3), Edge(a=5/24,0, b=5/24,2/3), Edge(a=1/4,1/4, b=1/4,7/24), Edge(a=7/24,3/8, b=7/24,11/24), Edge(a=1/3,7/24, b=1/3,11/24), Edge(a=3/8,0, b=3/8,5/12), Edge(a=5/12,0, b=5/12,5/12), Edge(a=1/6,1/4, b=17/48,7/16), Edge(a=0,5/24, b=5/24,5/12), Edge(a=5/24,0, b=0,5/24), Edge(a=5/48,19/48, b=5/24,1/2), Edge(a=0,1/2, b=1/6,2/3), Edge(a=1/6,1/4, b=5/12,1/4), Edge(a=17/48,7/48, b=0,1/2), Edge(a=5/24,7/24, b=5/12,7/24), Edge(a=19/48,3/16, b=7/48,7/16), Edge(a=3/8,1/4, b=1/3,7/24), Edge(a=1/6,1/3, b=5/24,1/3), Edge(a=11/24,1/4, b=5/24,1/2), Edge(a=7/24,3/8, b=5/12,3/8), Edge(a=1/3,5/12, b=7/24,11/24), Edge(a=5/12,3/8, b=1/3,11/24), Edge(a=0,5/12, b=5/12,5/12), Edge(a=7/24,11/24, b=1/3,11/24), Edge(a=0,1/2, b=5/24,1/2), Edge(a=1/6,2/3, b=5/24,2/3)], rawString=1
 16
 1/8,0
@@ -51,29 +51,93 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 7/24,11/24 1/3,11/24
 0,1/2 5/24,1/2
 1/6,2/3 5/24,2/3
-), problemId=2124, problemHash=), state=(name = ( -> problem 8, 567, 569, 583, 773, 1094, 1558, 1606, 1610, 1705, 1778, 1779, 1780, 1781, 1782, 1783, 1784, 2421, 2424, 2425, 2426, 2427, 2531, 2670, 2780, 2802))icfp16.state.State@984bb8b1, realResemblance=0.666666, estimatedResemblance=0.6673726759629687)
+), problemId=2124, problemHash=), state=ComplexState(polys=[ComplexPolygon(transform=icfp16.data.ComposedTransform@5fdcb102, final=Polygon(vertices=[1001/2136,95/356, 761/2136,229/712, 439/1068,309/712])), ComplexPolygon(transform=icfp16.data.ComposedTransform@2e05f35d, final=Polygon(vertices=[199/1068,387/712, 281/2136,307/712, 41/2136,173/356])), ComplexPolygon(transform=icfp16.data.ComposedTransform@6401647e, final=Polygon(vertices=[205/1068,-11/712, 527/2136,69/712, 767/2136,15/356])), ComplexPolygon(transform=icfp16.data.ComposedTransform@397e3a83, final=Polygon(vertices=[-193/2136,93/356, 47/2136,147/712, -35/1068,67/712])), ComplexPolygon(transform=icfp16.data.ComposedTransform@310d80f, final=Polygon(vertices=[-35/1068,67/712, 205/1068,-11/712, 767/2136,15/356, 1001/2136,95/356, 439/1068,309/712, 199/1068,387/712, 41/2136,173/356, -193/2136,93/356])), ComplexPolygon(transform=icfp16.data.ComposedTransform@28e4c2b, final=Polygon(vertices=[439/1068,309/712, 761/2136,229/712, 1001/2136,95/356])), ComplexPolygon(transform=icfp16.data.ComposedTransform@6d43ea90, final=Polygon(vertices=[41/2136,173/356, 281/2136,307/712, 199/1068,387/712])), ComplexPolygon(transform=icfp16.data.ComposedTransform@25a16f99, final=Polygon(vertices=[767/2136,15/356, 527/2136,69/712, 205/1068,-11/712])), ComplexPolygon(transform=icfp16.data.ComposedTransform@20741b82, final=Polygon(vertices=[-35/1068,67/712, 47/2136,147/712, -193/2136,93/356])), ComplexPolygon(transform=icfp16.data.ComposedTransform@506be4b3, final=Polygon(vertices=[-193/2136,93/356, 41/2136,173/356, 199/1068,387/712, 439/1068,309/712, 1001/2136,95/356, 767/2136,15/356, 205/1068,-11/712, -35/1068,67/712])), ComplexPolygon(transform=icfp16.data.ComposedTransform@220e8344, final=Polygon(vertices=[1001/2136,95/356, 761/2136,229/712, 439/1068,309/712])), ComplexPolygon(transform=icfp16.data.ComposedTransform@cfded3b, final=Polygon(vertices=[199/1068,387/712, 281/2136,307/712, 41/2136,173/356])), ComplexPolygon(transform=icfp16.data.ComposedTransform@cd55f2d, final=Polygon(vertices=[205/1068,-11/712, 527/2136,69/712, 767/2136,15/356])), ComplexPolygon(transform=icfp16.data.ComposedTransform@3146c78, final=Polygon(vertices=[-193/2136,93/356, 47/2136,147/712, -35/1068,67/712])), ComplexPolygon(transform=icfp16.data.ComposedTransform@55d6cbfd, final=Polygon(vertices=[-35/1068,67/712, 205/1068,-11/712, 767/2136,15/356, 1001/2136,95/356, 439/1068,309/712, 199/1068,387/712, 41/2136,173/356, -193/2136,93/356])), ComplexPolygon(transform=icfp16.data.ComposedTransform@36216049, final=Polygon(vertices=[439/1068,309/712, 761/2136,229/712, 1001/2136,95/356])), ComplexPolygon(transform=icfp16.data.ComposedTransform@10ab7d97, final=Polygon(vertices=[41/2136,173/356, 281/2136,307/712, 199/1068,387/712])), ComplexPolygon(transform=icfp16.data.ComposedTransform@30fcb456, final=Polygon(vertices=[767/2136,15/356, 527/2136,69/712, 205/1068,-11/712])), ComplexPolygon(transform=icfp16.data.ComposedTransform@53960897, final=Polygon(vertices=[-35/1068,67/712, 47/2136,147/712, -193/2136,93/356])), ComplexPolygon(transform=icfp16.data.RotateTransform@6e880984, final=Polygon(vertices=[-193/2136,93/356, 41/2136,173/356, 199/1068,387/712, 439/1068,309/712, 1001/2136,95/356, 767/2136,15/356, 205/1068,-11/712, -35/1068,67/712]))]), realResemblance=0.710435, estimatedResemblance=0.7111001384590324)
 -------------------------- solution --------------------
-9
-0,0
-0,1/2
-0,1
-1/2,1
-1,1
-1,1/2
+33
+5/8,0
+1/2,0
+1/2,1/8
+1/2,3/8
+1/2,1/2
+5/8,1/2
+1,1/8
 1,0
-1/2,0
-1/2,1/2
-4
-4 0 1 8 7
-4 1 2 3 8
-4 8 3 4 5
-4 7 8 5 6
-0,0
+7/8,0
+7/8,1/2
+1,1/2
+1,3/8
+1/2,7/8
+1/2,1
+5/8,1
+1/2,5/8
+7/8,1
+1,1
+1,7/8
+1,5/8
+3/8,1
+3/8,1/2
+0,7/8
+0,1
+1/8,1
+1/8,1/2
 0,1/2
+0,5/8
+3/8,0
+1/8,0
 0,0
-1/2,0
-0,0
-0,1/2
-0,0
-1/2,0
-1/2,1/2
+0,1/8
+0,3/8
+20
+3 0 1 2
+3 3 4 5
+3 6 7 8
+3 9 10 11
+8 11 6 8 0 2 3 5 9
+3 12 13 14
+3 5 4 15
+3 16 17 18
+3 19 10 9
+8 9 5 15 12 14 16 18 19
+3 20 13 12
+3 15 4 21
+3 22 23 24
+3 25 26 27
+8 27 22 24 20 12 15 21 25
+3 2 1 28
+3 21 4 3
+3 29 30 31
+3 32 26 25
+8 25 21 3 2 28 29 31 32
+1001/2136,95/356
+761/2136,229/712
+439/1068,309/712
+199/1068,387/712
+281/2136,307/712
+41/2136,173/356
+205/1068,-11/712
+527/2136,69/712
+767/2136,15/356
+-193/2136,93/356
+47/2136,147/712
+-35/1068,67/712
+439/1068,309/712
+761/2136,229/712
+1001/2136,95/356
+199/1068,387/712
+767/2136,15/356
+527/2136,69/712
+205/1068,-11/712
+-35/1068,67/712
+1001/2136,95/356
+41/2136,173/356
+205/1068,-11/712
+527/2136,69/712
+767/2136,15/356
+-193/2136,93/356
+47/2136,147/712
+-35/1068,67/712
+1001/2136,95/356
+767/2136,15/356
+527/2136,69/712
+205/1068,-11/712
+-35/1068,67/712

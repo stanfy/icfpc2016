@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.65234 estimated res =0.6520310348799351-------------------------- container --------------------
+real res =0.80817 estimated res =0.8081210905599081-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[1/5,0, 9/20,0, 7/10,1/2, 9/20,1, 1/5,1, 1/5,3/4, 0,3/5, 3/40,1/2, 0,2/5, 1/5,1/4])], skeleton=[Edge(a=9/20,0, b=7/10,1/2), Edge(a=1/5,0, b=9/20,0), Edge(a=1/5,0, b=1/5,1), Edge(a=1/5,1/4, b=7/10,1/2), Edge(a=0,2/5, b=9/20,1), Edge(a=9/20,0, b=0,3/5), Edge(a=1/5,1/4, b=0,2/5), Edge(a=7/10,1/2, b=9/20,1), Edge(a=0,3/5, b=1/5,3/4), Edge(a=1/5,1/2, b=7/10,1/2), Edge(a=7/10,1/2, b=1/5,3/4), Edge(a=1/5,1, b=9/20,1)], rawString=1
 10
 1/5,0
@@ -25,22 +25,45 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 1/5,1/2 7/10,1/2
 7/10,1/2 1/5,3/4
 1/5,1 9/20,1
-), problemId=2495, problemHash=), state=State(vertexes=[0,0, 1,0, 1,1, 2/3,1, 0,1, 0,1/3], facets=[3 5 3 4, 4 0 2 3 5, 3 0 1 2], finalPositions=[48623/190800,-107/477, 149423/190800,298/477, -12577/190800,550/477, 41423/190800,466/477, -25777/190800,196/477, 82223/190800,28/477]), realResemblance=0.65234, estimatedResemblance=0.6520310348799351)
+), problemId=2495, problemHash=), state=ComplexState(polys=[ComplexPolygon(transform=icfp16.data.ComposedTransform@6b71ce0a, final=Polygon(vertices=[12/35,1/7, 51/100,2/25, 26/55,1/22])), ComplexPolygon(transform=icfp16.data.ComposedTransform@7f6ff73a, final=Polygon(vertices=[7/10,1/2, 3/20,3/5, 17/125,81/125, 31/55,17/22])), ComplexPolygon(transform=icfp16.data.ReflectTransform@35b902be, final=Polygon(vertices=[31/55,17/22, 3/25,11/25, 12/35,1/7, 26/55,1/22, 7/10,1/2])), ComplexPolygon(transform=icfp16.data.ComposedTransform@1f3b56d9, final=Polygon(vertices=[191/380,17/19, 2/5,14/15, 26/55,21/22])), ComplexPolygon(transform=icfp16.data.ReflectTransform@30f11083, final=Polygon(vertices=[26/55,21/22, 0,3/5, 48/125,61/125, 191/380,17/19])), ComplexPolygon(transform=icfp16.data.ComplexPolygonKt$TRANSFORM_IDENTITY$1@cd2dae5, final=Polygon(vertices=[7/10,1/2, 26/55,1/22, 0,2/5, 0,3/5, 26/55,21/22])), ComplexPolygon(transform=icfp16.data.ReflectTransform@7573f134, final=Polygon(vertices=[26/55,21/22, 2/5,14/15, 3/20,3/5, 7/10,1/2])), ComplexPolygon(transform=icfp16.data.ReflectTransform@1a445a93, final=Polygon(vertices=[26/55,1/22, 51/100,2/25, 48/125,64/125, 0,2/5]))]), realResemblance=0.80817, estimatedResemblance=0.8081210905599081)
 -------------------------- solution --------------------
-6
-0,0
-1,0
+15
+22/35,0
+9/20,0
+26/55,1/22
+7/10,1/2
+19/20,1
 1,1
-2/3,1
+1,61/110
+1,0
+161/380,1
+8/15,1
+26/55,21/22
+0,3/5
 0,1
-0,1/3
-3
-3 5 3 4
-4 0 2 3 5
+0,2/5
+0,0
+8
 3 0 1 2
-48623/190800,-107/477
-149423/190800,298/477
--12577/190800,550/477
-41423/190800,466/477
--25777/190800,196/477
-82223/190800,28/477
+4 3 4 5 6
+5 6 7 0 2 3
+3 8 9 10
+4 10 11 12 8
+5 3 2 13 11 10
+4 10 9 4 3
+4 2 1 14 13
+12/35,1/7
+51/100,2/25
+26/55,1/22
+7/10,1/2
+3/20,3/5
+17/125,81/125
+31/55,17/22
+3/25,11/25
+191/380,17/19
+2/5,14/15
+26/55,21/22
+0,3/5
+48/125,61/125
+0,2/5
+48/125,64/125
