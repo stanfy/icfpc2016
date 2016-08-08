@@ -14,7 +14,7 @@ class FigureCheckTest {
   @Test
   @Ignore
   fun figureTest() {
-    val problem = ProblemContainersParser().generateProblemContainerForProblemId("7")!!.problem
+    val problem = ProblemContainersParser().generateProblemContainerForProblemId("4725")!!.problem
 
     val state = NastyaPublicStates.states.last()
     Visualizer().visualizedAndSaveImage(problem, state, filePath = "./figure_triangle.png")
