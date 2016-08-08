@@ -9,9 +9,29 @@ Some automation
 To automate getting new problems, run `./scripts/scheduler-get-new-problems.sh` and leave it in bg.
 
 
-To automate solutions submission for all problems: `gw run -PrunArgs=doit`. But you might prefer next solution instead.
-To start N parallel Farms that split all the problems set: `gw run -PrunArgs=<N>` (for instance, `gw run -PrunArgs=4`).
-You can add `.ignore` suffix to problem files in order to make Farm ignore it and avoid solving it.
+###Farm:
+
+Solve unsolved:
+
+```
+./new_farm_start.sh 
+```
+
+
+Solve all current tasks:
+
+```
+./new_farm_recalculate_all.sh
+```
+
+###Monitoring
+```
+./new_farm_monitoring.sh
+```
+
+![pic](last_results.png?raw=true)
+
+
 
 New farm
 ========
