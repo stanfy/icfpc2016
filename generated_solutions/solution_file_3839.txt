@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.746753 estimated res =0.7464671654197839-------------------------- container --------------------
+real res =1.0 estimated res =1.0-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[0,-13/128, 1,-13/128, 1,115/256, 0,115/256])], skeleton=[Edge(a=0,-13/128, b=1,-13/128), Edge(a=0,0, b=1,0), Edge(a=0,-13/128, b=0,115/256), Edge(a=1,-13/128, b=1,115/256), Edge(a=0,115/256, b=1,115/256)], rawString=1
 4
 0,-13/128
@@ -12,21 +12,21 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 0,-13/128 0,115/256
 1,-13/128 1,115/256
 0,115/256 1,115/256
-), problemId=3839, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[0,1/2, 0,1, 1,1, 1,1/2]), final=Polygon(vertices=[0,1/2, 0,0, 1,0, 1,1/2])), ComplexPolygon(initial=Polygon(vertices=[1,1/2, 1,0, 0,0, 0,1/2]), final=Polygon(vertices=[1,1/2, 1,0, 0,0, 0,1/2]))]), realResemblance=0.746753, estimatedResemblance=0.7464671654197839)
+), problemId=3839, problemHash=0a33ea32314a0c022858d5107dbeace77f020922), state=ComplexState(polys=[ComplexPolygon(transform=icfp16.data.ReflectTransform@2f6fad8c, final=Polygon(vertices=[0,115/256, 0,-13/128, 1,-13/128, 1,115/256])), ComplexPolygon(transform=icfp16.data.ComplexPolygonKt$TRANSFORM_IDENTITY$1@1f29febe, final=Polygon(vertices=[1,115/256, 1,0, 0,0, 0,115/256]))]), realResemblance=1.0, estimatedResemblance=1.0)
 -------------------------- solution --------------------
 6
-0,1/2
+0,115/256
 0,1
 1,1
-1,1/2
+1,115/256
 1,0
 0,0
 2
 4 0 1 2 3
 4 3 4 5 0
-0,1/2
-0,0
-1,0
-1,1/2
+0,115/256
+0,-13/128
+1,-13/128
+1,115/256
 1,0
 0,0

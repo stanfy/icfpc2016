@@ -20,21 +20,21 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 7/11,7/11 25/22,7/11
 7/11,25/22 18/11,25/22
 18/11,39/44 57/55,147/110
-), problemId=2762, problemHash=), state=ComplexState(polys=[ComplexPolygon(initial=Polygon(vertices=[0/2,0, 0/2,1, 1/2,1, 1/2,0]), final=Polygon(vertices=[3239/5280,6187/5280, 8519/5280,6187/5280, 8519/5280,3547/5280, 3239/5280,3547/5280])), ComplexPolygon(initial=Polygon(vertices=[1/2,0, 1/2,1, 2/2,1, 2/2,0]), final=Polygon(vertices=[3239/5280,3547/5280, 8519/5280,3547/5280, 8519/5280,6187/5280, 3239/5280,6187/5280]))]), realResemblance=0.770518, estimatedResemblance=0.7709960317155313)
+), problemId=2762, problemHash=), state=ComplexState(polys=[ComplexPolygon(transform=icfp16.data.ComposedTransform@1704cf5d, final=Polygon(vertices=[8519/5280,3547/5280, 8519/5280,6187/5280, 3239/5280,6187/5280, 3239/5280,3547/5280])), ComplexPolygon(transform=icfp16.data.ComposedTransform@dcc4592, final=Polygon(vertices=[3239/5280,3547/5280, 3239/5280,6187/5280, 8519/5280,6187/5280, 8519/5280,3547/5280]))]), realResemblance=0.770518, estimatedResemblance=0.7709960317155313)
 -------------------------- solution --------------------
 6
-0/2,0
-0/2,1
-1/2,1
-1/2,0
-2/2,1
-2/2,0
+0,1/2
+0,1
+1,1
+1,1/2
+1,0
+0,0
 2
 4 0 1 2 3
-4 3 2 4 5
-3239/5280,6187/5280
-8519/5280,6187/5280
+4 3 4 5 0
 8519/5280,3547/5280
-3239/5280,3547/5280
 8519/5280,6187/5280
 3239/5280,6187/5280
+3239/5280,3547/5280
+3239/5280,6187/5280
+8519/5280,6187/5280

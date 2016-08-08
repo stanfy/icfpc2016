@@ -1,5 +1,5 @@
 -------------------------- resemblance --------------------
-real res =0.119511 estimated res =0.118916-------------------------- container --------------------
+real res =0.122997 estimated res =0.1223899153575075-------------------------- container --------------------
 SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Polygon(vertices=[0,0, 14/129,0, 14/129,17/247, 0,17/247])], skeleton=[Edge(a=0,0, b=14/129,0), Edge(a=0,0, b=0,17/247), Edge(a=11/129,0, b=11/129,17/247), Edge(a=14/129,0, b=14/129,17/247), Edge(a=0,9/247, b=14/129,9/247), Edge(a=0,17/247, b=14/129,17/247)], rawString=1
 4
 0,0
@@ -13,73 +13,322 @@ SolutionContainer(problemContainer=ProblemContainer(problem=Problem(poligons=[Po
 14/129,0 14/129,17/247
 0,9/247 14/129,9/247
 0,17/247 14/129,17/247
-), problemId=2777, problemHash=), state=(name = ( -> Very small square))icfp16.state.State@707c73d5, realResemblance=0.119511, estimatedResemblance=0.118916)
+), problemId=2777, problemHash=), state=ComplexState(polys=[ComplexPolygon(transform=icfp16.data.ComposedTransform@4decc428, final=Polygon(vertices=[0,0, 14/129,0, 14/129,17/247, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@1eabc044, final=Polygon(vertices=[0,17/247, 15/43,17/247, 15/43,0, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@3e4d0180, final=Polygon(vertices=[0,0, 14/129,0, 14/129,17/247, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@44d7536b, final=Polygon(vertices=[14/129,0, 0,0, 0,17/247, 14/129,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@7f9d6d46, final=Polygon(vertices=[0,0, 14/129,0, 14/129,17/247, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@208679c9, final=Polygon(vertices=[14/129,0, 0,0, 0,17/247, 14/129,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@c2160c1, final=Polygon(vertices=[14/129,17/247, 0,17/247, 0,0, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@4c829d7a, final=Polygon(vertices=[0,0, 15/43,0, 15/43,17/247, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@725e6c7d, final=Polygon(vertices=[0,17/247, 14/129,17/247, 14/129,0, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@20b38ab7, final=Polygon(vertices=[14/129,17/247, 0,17/247, 0,0, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@6c54bd19, final=Polygon(vertices=[0,17/247, 14/129,17/247, 14/129,0, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@7df2e4cb, final=Polygon(vertices=[0,0, 14/129,0, 14/129,17/247, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@6ac5e52d, final=Polygon(vertices=[0,17/247, 15/43,17/247, 15/43,0, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@12d14c21, final=Polygon(vertices=[0,0, 14/129,0, 14/129,17/247, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@7a0d36c6, final=Polygon(vertices=[14/129,0, 0,0, 0,17/247, 14/129,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@34672e39, final=Polygon(vertices=[14/129,17/247, 0,17/247, 0,0, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@6984ecaf, final=Polygon(vertices=[0,0, 15/43,0, 15/43,17/247, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@3dd3d03d, final=Polygon(vertices=[0,17/247, 14/129,17/247, 14/129,0, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@6bc49706, final=Polygon(vertices=[0,0, 14/129,0, 14/129,17/247, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@6380afff, final=Polygon(vertices=[0,17/247, 15/43,17/247, 15/43,0, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@32f0372f, final=Polygon(vertices=[15/43,0, 15/43,17/247, 0,17/247, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@13242cc, final=Polygon(vertices=[0,0, 0,43/247, 15/43,43/247, 15/43,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@27276a92, final=Polygon(vertices=[14/129,0, 14/129,43/247, 0,43/247, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@4534e4b8, final=Polygon(vertices=[0,0, 0,17/247, 14/129,17/247, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@1d56dc36, final=Polygon(vertices=[0,0, 0,43/247, 14/129,43/247, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@54c5a56b, final=Polygon(vertices=[14/129,0, 14/129,17/247, 0,17/247, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@b6afa06, final=Polygon(vertices=[14/129,17/247, 14/129,0, 0,0, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@26e39ea0, final=Polygon(vertices=[14/129,0, 14/129,43/247, 0,43/247, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@76569863, final=Polygon(vertices=[0,0, 0,17/247, 14/129,17/247, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@2214cdb5, final=Polygon(vertices=[0,17/247, 0,0, 14/129,0, 14/129,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@1e28cde5, final=Polygon(vertices=[0,0, 0,17/247, 14/129,17/247, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@35549c92, final=Polygon(vertices=[0,0, 0,43/247, 14/129,43/247, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@154689f7, final=Polygon(vertices=[14/129,0, 14/129,17/247, 0,17/247, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@31f0e5d7, final=Polygon(vertices=[14/129,17/247, 14/129,0, 0,0, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@7edf152e, final=Polygon(vertices=[14/129,0, 14/129,17/247, 0,17/247, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@6031036, final=Polygon(vertices=[14/129,17/247, 14/129,0, 0,0, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@29bb0350, final=Polygon(vertices=[14/129,0, 14/129,43/247, 0,43/247, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@58bdcd10, final=Polygon(vertices=[0,0, 0,17/247, 14/129,17/247, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@2af0abb3, final=Polygon(vertices=[0,17/247, 0,0, 14/129,0, 14/129,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@338f1007, final=Polygon(vertices=[0,0, 0,17/247, 14/129,17/247, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@1a31a93b, final=Polygon(vertices=[0,17/247, 0,0, 14/129,0, 14/129,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@26ec1114, final=Polygon(vertices=[0,0, 0,17/247, 14/129,17/247, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@227dd3d, final=Polygon(vertices=[0,0, 0,43/247, 14/129,43/247, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@199b48e3, final=Polygon(vertices=[14/129,0, 14/129,17/247, 0,17/247, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@7696ce21, final=Polygon(vertices=[14/129,17/247, 14/129,0, 0,0, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@451af89b, final=Polygon(vertices=[14/129,0, 14/129,17/247, 0,17/247, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@7b150a7a, final=Polygon(vertices=[14/129,17/247, 14/129,0, 0,0, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@7676aa72, final=Polygon(vertices=[14/129,0, 14/129,17/247, 0,17/247, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@634b2974, final=Polygon(vertices=[14/129,17/247, 14/129,0, 0,0, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@1ecc32ab, final=Polygon(vertices=[14/129,17/247, 0,17/247, 0,0, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@3c7cf585, final=Polygon(vertices=[0,0, 15/43,0, 15/43,17/247, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@6a782387, final=Polygon(vertices=[0,17/247, 14/129,17/247, 14/129,0, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@5806c358, final=Polygon(vertices=[14/129,17/247, 0,17/247, 0,0, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@79bef29c, final=Polygon(vertices=[0,17/247, 14/129,17/247, 14/129,0, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@3b06fafa, final=Polygon(vertices=[14/129,17/247, 0,17/247, 0,0, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@4f12367d, final=Polygon(vertices=[0,17/247, 14/129,17/247, 14/129,0, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@36152d69, final=Polygon(vertices=[14/129,0, 0,0, 0,17/247, 14/129,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@9b3e589, final=Polygon(vertices=[0,17/247, 15/43,17/247, 15/43,0, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@7250caad, final=Polygon(vertices=[0,0, 14/129,0, 14/129,17/247, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@329aecff, final=Polygon(vertices=[14/129,0, 0,0, 0,17/247, 14/129,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@6d5d57b0, final=Polygon(vertices=[0,0, 14/129,0, 14/129,17/247, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@e8dd894, final=Polygon(vertices=[14/129,0, 0,0, 0,17/247, 14/129,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@1544d270, final=Polygon(vertices=[0,0, 14/129,0, 14/129,17/247, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@1714fee1, final=Polygon(vertices=[14/129,17/247, 0,17/247, 0,0, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@229e6efa, final=Polygon(vertices=[0,0, 15/43,0, 15/43,17/247, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@51a1aee2, final=Polygon(vertices=[0,17/247, 14/129,17/247, 14/129,0, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@64417ac3, final=Polygon(vertices=[14/129,17/247, 0,17/247, 0,0, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@24289377, final=Polygon(vertices=[0,17/247, 14/129,17/247, 14/129,0, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@46791886, final=Polygon(vertices=[14/129,17/247, 0,17/247, 0,0, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@78e806bf, final=Polygon(vertices=[0,17/247, 14/129,17/247, 14/129,0, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@15e66c8e, final=Polygon(vertices=[14/129,0, 0,0, 0,17/247, 14/129,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@418e5a29, final=Polygon(vertices=[0,17/247, 15/43,17/247, 15/43,0, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@1e926f77, final=Polygon(vertices=[0,0, 14/129,0, 14/129,17/247, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@36b1d11e, final=Polygon(vertices=[14/129,0, 0,0, 0,17/247, 14/129,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@4e96ef85, final=Polygon(vertices=[0,0, 14/129,0, 14/129,17/247, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@43a86e8b, final=Polygon(vertices=[14/129,0, 0,0, 0,17/247, 14/129,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@538e400e, final=Polygon(vertices=[0,0, 14/129,0, 14/129,17/247, 0,17/247])), ComplexPolygon(transform=icfp16.data.ReflectTransform@744c12c, final=Polygon(vertices=[14/129,17/247, 0,17/247, 0,0, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@42150ad5, final=Polygon(vertices=[0,0, 15/43,0, 15/43,17/247, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@35dd0339, final=Polygon(vertices=[0,17/247, 14/129,17/247, 14/129,0, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@484d37d5, final=Polygon(vertices=[14/129,17/247, 0,17/247, 0,0, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@4032ced9, final=Polygon(vertices=[0,17/247, 14/129,17/247, 14/129,0, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@2002f86e, final=Polygon(vertices=[14/129,17/247, 0,17/247, 0,0, 14/129,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@df125dc, final=Polygon(vertices=[0,17/247, 14/129,17/247, 14/129,0, 0,0])), ComplexPolygon(transform=icfp16.data.ComplexPolygonKt$TRANSFORM_IDENTITY$1@1be65099, final=Polygon(vertices=[14/129,0, 0,0, 0,17/247, 14/129,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@1d85d016, final=Polygon(vertices=[0,17/247, 15/43,17/247, 15/43,0, 0,0])), ComplexPolygon(transform=icfp16.data.ComposedTransform@412cb28d, final=Polygon(vertices=[0,0, 14/129,0, 14/129,17/247, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@6a6b231c, final=Polygon(vertices=[14/129,0, 0,0, 0,17/247, 14/129,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@4755f1b8, final=Polygon(vertices=[0,0, 14/129,0, 14/129,17/247, 0,17/247])), ComplexPolygon(transform=icfp16.data.ComposedTransform@92e2d19, final=Polygon(vertices=[14/129,0, 0,0, 0,17/247, 14/129,17/247])), ComplexPolygon(transform=icfp16.data.ReflectTransform@3e95a140, final=Polygon(vertices=[0,0, 14/129,0, 14/129,17/247, 0,17/247]))]), realResemblance=0.122997, estimatedResemblance=0.1223899153575075)
 -------------------------- solution --------------------
-25
-0,0
-0,1/4
-0,1/2
-0,3/4
-0,1
-1/4,1
-1/2,1
-3/4,1
+112
+28/129,102/247
+14/129,102/247
+14/129,119/247
+28/129,119/247
+28/43,119/247
+1,119/247
+1,102/247
+28/43,102/247
+70/129,102/247
+70/129,119/247
+56/129,102/247
+56/129,119/247
+14/43,102/247
+14/43,119/247
+28/129,136/247
+14/43,136/247
+28/43,136/247
+1,136/247
+70/129,136/247
+56/129,136/247
+14/43,153/247
+56/129,153/247
+28/43,153/247
+1,153/247
+70/129,153/247
+56/129,170/247
+70/129,170/247
+28/43,170/247
+1,170/247
+70/129,187/247
+28/43,187/247
+1,187/247
+1,204/247
+28/43,204/247
+28/43,1
 1,1
-1,3/4
-1,1/2
-1,1/4
+70/129,204/247
+70/129,1
+56/129,204/247
+56/129,1
+56/129,187/247
+14/43,204/247
+14/43,1
+14/43,187/247
+14/43,170/247
+28/129,204/247
+28/129,1
+28/129,187/247
+28/129,170/247
+28/129,153/247
+14/129,204/247
+14/129,1
+14/129,187/247
+14/129,170/247
+14/129,153/247
+14/129,136/247
+0,204/247
+0,1
+0,187/247
+0,170/247
+0,153/247
+0,136/247
+0,119/247
+0,102/247
+14/129,85/247
+0,85/247
+1,85/247
+28/43,85/247
+70/129,85/247
+56/129,85/247
+14/43,85/247
+28/129,85/247
+14/129,68/247
+0,68/247
+1,68/247
+28/43,68/247
+70/129,68/247
+56/129,68/247
+14/43,68/247
+28/129,68/247
+14/129,51/247
+0,51/247
+1,51/247
+28/43,51/247
+70/129,51/247
+56/129,51/247
+14/43,51/247
+28/129,51/247
+14/129,34/247
+0,34/247
+1,34/247
+28/43,34/247
+70/129,34/247
+56/129,34/247
+14/43,34/247
+28/129,34/247
+14/129,17/247
+0,17/247
+1,17/247
+28/43,17/247
+70/129,17/247
+56/129,17/247
+14/43,17/247
+28/129,17/247
+14/129,0
+0,0
 1,0
-3/4,0
-1/2,0
-1/4,0
-1/4,1/4
-1/4,1/2
-1/4,3/4
-1/2,3/4
-3/4,3/4
-3/4,1/2
-3/4,1/4
-1/2,1/4
-1/2,1/2
-16
-4 0 1 16 15
-4 1 2 17 16
-4 2 3 18 17
-4 3 4 5 18
-4 18 5 6 19
-4 19 6 7 20
-4 20 7 8 9
-4 21 20 9 10
-4 22 21 10 11
-4 13 22 11 12
-4 14 23 22 13
-4 15 16 23 14
-4 16 17 24 23
-4 17 18 19 24
-4 24 19 20 21
-4 23 24 21 22
+28/43,0
+70/129,0
+56/129,0
+14/43,0
+28/129,0
+91
+4 0 1 2 3
+4 4 5 6 7
+4 7 8 9 4
+4 8 10 11 9
+4 10 12 13 11
+4 12 0 3 13
+4 13 3 14 15
+4 16 17 5 4
+4 4 9 18 16
+4 9 11 19 18
+4 11 13 15 19
+4 19 15 20 21
+4 22 23 17 16
+4 16 18 24 22
+4 18 19 21 24
+4 24 21 25 26
+4 27 28 23 22
+4 22 24 26 27
+4 27 26 29 30
+4 30 31 28 27
+4 32 31 30 33
+4 33 34 35 32
+4 36 37 34 33
+4 33 30 29 36
+4 38 39 37 36
+4 36 29 40 38
+4 29 26 25 40
+4 41 42 39 38
+4 38 40 43 41
+4 40 25 44 43
+4 25 21 20 44
+4 45 46 42 41
+4 41 43 47 45
+4 43 44 48 47
+4 44 20 49 48
+4 20 15 14 49
+4 50 51 46 45
+4 45 47 52 50
+4 47 48 53 52
+4 48 49 54 53
+4 49 14 55 54
+4 14 3 2 55
+4 56 57 51 50
+4 50 52 58 56
+4 52 53 59 58
+4 53 54 60 59
+4 54 55 61 60
+4 55 2 62 61
+4 2 1 63 62
+4 64 65 63 1
+4 7 6 66 67
+4 67 68 8 7
+4 68 69 10 8
+4 69 70 12 10
+4 70 71 0 12
+4 71 64 1 0
+4 72 73 65 64
+4 67 66 74 75
+4 75 76 68 67
+4 76 77 69 68
+4 77 78 70 69
+4 78 79 71 70
+4 79 72 64 71
+4 80 81 73 72
+4 75 74 82 83
+4 83 84 76 75
+4 84 85 77 76
+4 85 86 78 77
+4 86 87 79 78
+4 87 80 72 79
+4 88 89 81 80
+4 83 82 90 91
+4 91 92 84 83
+4 92 93 85 84
+4 93 94 86 85
+4 94 95 87 86
+4 95 88 80 87
+4 96 97 89 88
+4 91 90 98 99
+4 99 100 92 91
+4 100 101 93 92
+4 101 102 94 93
+4 102 103 95 94
+4 103 96 88 95
+4 104 105 97 96
+4 99 98 106 107
+4 107 108 100 99
+4 108 109 101 100
+4 109 110 102 101
+4 110 111 103 102
+4 111 104 96 103
 0,0
-0,1/4
+14/129,0
+14/129,17/247
+0,17/247
+0,17/247
+15/43,17/247
+15/43,0
 0,0
-0,1/4
+14/129,0
+14/129,17/247
 0,0
-1/4,0
+0,17/247
+14/129,0
+14/129,17/247
 0,0
-1/4,0
+14/129,0
 0,0
-0,1/4
+15/43,0
+14/129,0
 0,0
-0,1/4
+14/129,17/247
+0,17/247
+0,17/247
+15/43,17/247
+14/129,17/247
 0,0
-1/4,0
+14/129,0
 0,0
-1/4,0
-1/4,1/4
-1/4,0
-1/4,1/4
-0,1/4
-1/4,1/4
-1/4,0
-1/4,1/4
-0,1/4
+15/43,0
+14/129,17/247
+0,17/247
+15/43,17/247
+15/43,0
+0,0
+0,43/247
+15/43,43/247
+14/129,0
+14/129,43/247
+0,0
+0,43/247
+0,17/247
+14/129,0
+14/129,43/247
+14/129,17/247
+14/129,0
+0,0
+0,43/247
+0,17/247
+0,0
+0,17/247
+14/129,0
+14/129,43/247
+14/129,17/247
+14/129,0
+14/129,17/247
+14/129,0
+0,0
+0,43/247
+0,17/247
+0,0
+0,17/247
+0,0
+0,17/247
+0,0
+14/129,17/247
+0,17/247
+15/43,17/247
+0,17/247
+14/129,17/247
+0,17/247
+14/129,17/247
+0,17/247
+14/129,0
+0,0
+15/43,0
+0,0
+14/129,0
+0,0
+14/129,0
+0,0
+14/129,17/247
+0,17/247
+15/43,17/247
+0,17/247
+14/129,17/247
+0,17/247
+14/129,17/247
+0,17/247
+14/129,0
+0,0
+15/43,0
+0,0
+14/129,0
+0,0
+14/129,0
+0,0
+14/129,17/247
+0,17/247
+15/43,17/247
+0,17/247
+14/129,17/247
+0,17/247
+14/129,17/247
+0,17/247
+14/129,0
+0,0
+15/43,0
+0,0
+14/129,0
+0,0
+14/129,0
 0,0
